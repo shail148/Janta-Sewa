@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:janta_sewa/screen/home_screen.dart';
-import 'package:janta_sewa/screen/profile_screen.dart';
-import 'package:janta_sewa/screen/support_page.dart';
-import 'package:janta_sewa/screen/track_page.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/home_screen.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/profile_screen.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/support_page.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/track_page.dart';
 import 'package:janta_sewa/widget/colors.dart';
 
 class BottomNav extends StatefulWidget {

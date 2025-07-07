@@ -9,15 +9,15 @@ import 'package:janta_sewa/widget/label_text.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
-class TransferLetter extends StatefulWidget {
-  const TransferLetter({super.key});
+class PostingLetter extends StatefulWidget {
+  const PostingLetter({super.key});
 
   @override
-  State<TransferLetter> createState() => _TransferLetterState();
+  State<PostingLetter> createState() => _PostingLetterState();
 }
 
-class _TransferLetterState extends State<TransferLetter> {
-  final List<String>typesOfTransfer=[
+class _PostingLetterState extends State<PostingLetter> {
+  final List<String>typesOfPosting=[
     'new'.tr,
     'revised'.tr,
   ];
@@ -52,7 +52,7 @@ class _TransferLetterState extends State<TransferLetter> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
-                      text: "transfer".tr,
+                      text: "posting".tr,
                       color: AppColors.textColor,
                       fontsize: 16,
                       fontWeight: FontWeight.bold,
@@ -62,8 +62,8 @@ class _TransferLetterState extends State<TransferLetter> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'types_of_transfer'.tr),
-                          CustomDropdown(items: typesOfTransfer, selectedValue: selectedType, onChanged: (value){
+                          CustomLabelText(text: 'types_of_posting'.tr),
+                          CustomDropdown(items: typesOfPosting, selectedValue: selectedType, onChanged: (value){
 
                             setState(() {
                               selectedType = value;

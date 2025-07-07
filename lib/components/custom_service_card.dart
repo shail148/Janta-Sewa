@@ -19,7 +19,7 @@ class CustomServiceCard extends StatelessWidget {
     this.height = 120,
     this.iconColor = Colors.black,
     this.backgroundColor = const Color(0xFFF5F7FF),
-    this.borderColor = const Color(0xFFB3D1FF),
+    this.borderColor = const Color(0xFFB3D1FF), BoxDecoration? decoration,
   });
 
   @override

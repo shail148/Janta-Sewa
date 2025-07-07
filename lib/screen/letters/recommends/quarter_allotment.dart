@@ -8,27 +8,25 @@ import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/label_text.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
-
-class TransferLetter extends StatefulWidget {
-  const TransferLetter({super.key});
+class QuarterAllotment extends StatefulWidget {
+  const QuarterAllotment({super.key});
 
   @override
-  State<TransferLetter> createState() => _TransferLetterState();
+  State<QuarterAllotment> createState() => _QuarterAllotmentState();
 }
-
-class _TransferLetterState extends State<TransferLetter> {
-  final List<String>typesOfTransfer=[
+class _QuarterAllotmentState extends State<QuarterAllotment> {
+  final List<String>typesOfQuarter=[
     'new'.tr,
-    'revised'.tr,
+    'existing'.tr,
   ];
-  final List<String>department=[
+  String? selectedType;
+   final List<String>optedQuarter=[
     'bsp'.tr,
     'state govt'.tr,
     'central govt'.tr,
     'private'.tr,
   ];
-  String? selectedType;
-  String? seletedDepartment;
+  String? selectedQuarter;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +50,7 @@ class _TransferLetterState extends State<TransferLetter> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
-                      text: "transfer".tr,
+                      text: "quarter_allotment".tr,
                       color: AppColors.textColor,
                       fontsize: 16,
                       fontWeight: FontWeight.bold,
@@ -62,33 +60,34 @@ class _TransferLetterState extends State<TransferLetter> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'types_of_transfer'.tr),
-                          CustomDropdown(items: typesOfTransfer, selectedValue: selectedType, onChanged: (value){
+                          CustomLabelText(text: 'types_of_allotment'.tr),
+                          CustomDropdown(items: typesOfQuarter, selectedValue: selectedType, onChanged: (value){
 
-                            setState(() {
+                           setState(() {
                               selectedType = value;
-                            });
+                           });
                           }),
                          // CustomTextFormField(hintText: 'applicant_name'.tr),
                           CustomLabelText(text: 'full_name'.tr),
                           CustomTextFormField(hintText: 'full_name'.tr),
                           CustomLabelText(text: 'mobile'.tr),
                           CustomTextFormField(hintText: 'mobile'.tr),
-                          CustomLabelText(text: 'designation'.tr),
-                          CustomTextFormField(hintText: 'designation'.tr),
-                          CustomLabelText(text: 'department'.tr),
+                          CustomLabelText(text: 'address'.tr),
+                          CustomTextFormField(hintText: 'address'.tr),
+                          CustomLabelText(text: 'opted_quarter_department'.tr),
                          //add dropdown
-                         CustomDropdown(items: department, selectedValue: seletedDepartment, onChanged: (value){
+                         CustomDropdown(items: optedQuarter, selectedValue: selectedQuarter, onChanged: (value){
                           setState(() {
-                            seletedDepartment = value;
+                            
+                            selectedQuarter = value;
                           });
                          }),
-                          CustomLabelText(text: 'posted_office'.tr),
-                          CustomTextFormField(hintText: 'posted_office'.tr),
-                           CustomLabelText(text: 'opted_office'.tr),
-                          CustomTextFormField(hintText: 'opted_office'.tr),
-                           CustomLabelText(text: 'reason_for_transfer'.tr),
-                          CustomTextFormField(hintText: 'reason_for_transfer'.tr),
+                          CustomLabelText(text: 'from_whom_to_opted'.tr),
+                          CustomTextFormField(hintText: 'from_whom_to_opted'.tr),
+                          CustomLabelText(text: 'opted_quarter_address'.tr),
+                          CustomTextFormField(hintText: 'opted_quarter_address'.tr),
+                           CustomLabelText(text: 'reason_for_quarter_allotment'.tr),
+                          CustomTextFormField(hintText: 'reason_for_quarter_allotment'.tr),
                           CustomLabelText(text: 'upload_signed_documents'.tr),
                           SizedBox(height: 10),
                           CustomFileUpload(),

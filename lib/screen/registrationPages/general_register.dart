@@ -21,13 +21,12 @@ class _GeneralRegisterState extends State<GeneralRegister> {
       body: SafeArea(
         child: Scrollbar(
           thumbVisibility: true,
-          trackVisibility: true,
           // thickness: 5,
           radius: const Radius.circular(10),
           child: SingleChildScrollView(
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -44,9 +43,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                           fontWeight: FontWeight.bold,
                         ),
                       ],
-                    ),
-
-                    
+                    ),  
                     SizedBox(height: 10),
                     Form(
                       child: Column(

@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/components/bottom_nav.dart';
 import 'package:janta_sewa/localization/localization.dart';
 import 'package:janta_sewa/screen/forgotPassword/reset_password.dart';
-import 'package:janta_sewa/screen/home_screen.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/home_screen.dart';
 import 'package:janta_sewa/screen/language_switch.dart';
 import 'package:janta_sewa/screen/letters/complains/compain_menu.dart';
+import 'package:janta_sewa/screen/letters/recommends/recommendation_menu.dart';
 import 'package:janta_sewa/screen/login_page.dart';
 import 'package:janta_sewa/screen/register_page.dart';
 import 'package:janta_sewa/screen/registrationPages/authorized_person_reg.dart';
@@ -21,7 +22,6 @@ import 'package:janta_sewa/screen/services/tickets/ticket_confirmation.dart';
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: BottomNav(),
+      home: RecommendationMenu(),
     );
   }
 }
