@@ -27,7 +27,7 @@ class CustomSnackbar {
       forwardAnimationCurve: Curves.easeOutBack,
       reverseAnimationCurve: Curves.easeInBack,
       snackStyle: SnackStyle.FLOATING, // Use FLOATING for better visibility
-      animationDuration: const Duration(milliseconds: 300),
+      animationDuration: const Duration(milliseconds: 180),
     );
   }
 }

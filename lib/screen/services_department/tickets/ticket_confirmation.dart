@@ -190,8 +190,7 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                           ),
                           CustomLabelText(text: 'birth_type'.tr),
                           CustomTextFormField(
-                            hintText: 'enter_birth_type'.tr,
-                            controller: birthTypeController,
+                            hintText: 'enter_birth_type'.tr,     
                           ),
                           SizedBox(height: 10),
                           CustomButton(

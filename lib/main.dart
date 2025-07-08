@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/bottom_nav.dart';
 import 'package:janta_sewa/localization/localization.dart';
+import 'package:janta_sewa/screen/forgotPassword/create_new_password.dart';
+import 'package:janta_sewa/screen/forgotPassword/forgot_otp_verification.dart';
 import 'package:janta_sewa/screen/forgotPassword/reset_password.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/home_screen.dart';
 import 'package:janta_sewa/screen/auth_page/language_switch.dart';
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
         hoverColor: AppColors.btnBgColor
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: BottomNav(),
+      home: LoginPage(),
     );
   }
 }

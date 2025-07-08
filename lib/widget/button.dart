@@ -7,7 +7,10 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final double borderRadius;
   final double? textSize;
+  final double borderWidth ;// Default border width
   final Color backgroundColor;
+  final Color? textColor;
+  final Color? borderColor;
   final VoidCallback? onPressed;
 
   const CustomButton({
@@ -19,6 +22,9 @@ class CustomButton extends StatelessWidget {
     this.backgroundColor = AppColors.btnBgColor,
     this.onPressed,
     required this.textSize, 
+    this.textColor = Colors.white,
+    this.borderWidth = 1.0,
+    this.borderColor,
   });
 
   @override
@@ -28,16 +34,21 @@ class CustomButton extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
+          side: BorderSide(
+            color:borderColor ?? AppColors.btnBgColor,
+            width: borderWidth,
+          )
         ),
         onPressed: onPressed,
         child: Text(
           text,
           style: TextStyle(
-            color: Colors.white,
+            color: textColor,
             fontWeight: FontWeight.bold,
             fontSize: textSize,
           ),

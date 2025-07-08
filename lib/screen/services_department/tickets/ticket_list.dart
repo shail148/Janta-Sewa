@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:janta_sewa/widget/colors.dart';
-import 'package:janta_sewa/widget/text_widget.dart';
 
 class PassengerList extends StatelessWidget {
   final List<Map<String, String>> passengers;
   final void Function(int index) onDelete;
   final void Function()? onAdd;
 
-  const PassengerList({
+   // ignore: use_super_parameters
+   const PassengerList({
     Key? key,
     required this.passengers,
     required this.onDelete,
@@ -22,6 +22,7 @@ class PassengerList extends StatelessWidget {
           final index = entry.key;
           final p = entry.value;
           return Card(
+            key: ValueKey('${p['name']}${p['age']}${p['gender']}$index'),
             color: const Color(0xFFF5F6FA),
             margin: const EdgeInsets.symmetric(vertical: 4),
             child: ListTile(
@@ -43,13 +44,14 @@ class PassengerList extends StatelessWidget {
               FloatingActionButton(
                 onPressed: onAdd,
                 backgroundColor: AppColors.btnBgColor,
-                child: const Icon(Icons.add, color: Colors.white, size: 30),
+                // ignore: sort_child_properties_last
+                child:Icon(Icons.add, color: Colors.white, size: 30),
                 mini: true,
               ),
             ],
           ),
       ],
-    );
-  }
+    );  
 }
 }
+
