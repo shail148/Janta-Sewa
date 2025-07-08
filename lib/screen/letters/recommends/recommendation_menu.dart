@@ -33,9 +33,9 @@ class RecommendationMenu extends StatelessWidget {
           thumbVisibility: true,
           trackVisibility: true,
           // thickness: 5,
-          radius: const Radius.circular(10),
+          radius: const Radius.circular(10),                            
           child: SingleChildScrollView(
-            child: SafeArea(
+            child: SafeArea(  
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(

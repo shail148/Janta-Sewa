@@ -124,6 +124,7 @@ class AppLocalization extends Translations {
           'institute': 'Institute',
           'admission': 'Admission',
           'national': 'National',
+          'welcome': 'Welcome',
           
           'posting': 'Posting',
           'types_of_posting': 'Types of Posting',
@@ -407,6 +408,7 @@ class AppLocalization extends Translations {
           'institute': 'संस्थान',
           'admission': 'प्रवेश',
           'national': 'राष्ट्रीय',
+          'welcome': 'स्वागत है',
           
           'posting': 'पदस्थापन',
           'types_of_posting': 'पदस्थापन के प्रकार',

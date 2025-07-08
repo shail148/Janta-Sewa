@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/bottom_nav.dart';
-import 'package:janta_sewa/controller/auth_controller.dart';
+import 'package:janta_sewa/controllers/auth_controller.dart';
 import 'package:janta_sewa/screen/forgotPassword/reset_password.dart';
 import 'package:janta_sewa/screen/registrationPages/main_register_page.dart';
 import 'package:janta_sewa/widget/button.dart';

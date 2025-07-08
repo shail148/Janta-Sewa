@@ -6,15 +6,15 @@ import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_service_card.dart';
 import 'package:janta_sewa/screen/contacts_invitation/contact_page.dart';
 import 'package:janta_sewa/screen/contacts_invitation/invitation_page.dart';
-import 'package:janta_sewa/screen/language_switch.dart';
+import 'package:janta_sewa/screen/auth_page/language_switch.dart';
 import 'package:janta_sewa/screen/letters/budgetDemand/budget_demand.dart';
 import 'package:janta_sewa/screen/letters/complains/compain_menu.dart';
 import 'package:janta_sewa/screen/letters/recommends/recommendation_menu.dart';
 import 'package:janta_sewa/screen/letters/suggestions/suggestion_menu.dart';
-import 'package:janta_sewa/screen/services/constructions/constructions_menu.dart';
-import 'package:janta_sewa/screen/services/hospital_admission.dart';
-import 'package:janta_sewa/screen/services/parliament_visit.dart';
-import 'package:janta_sewa/screen/services/tickets/ticket_confirmation.dart';
+import 'package:janta_sewa/screen/services_department/constructions/constructions_menu.dart';
+import 'package:janta_sewa/screen/services_department/hospital/hospital_admission.dart';
+import 'package:janta_sewa/screen/services_department/parliament_visit/parliament_visit.dart';
+import 'package:janta_sewa/screen/services_department/tickets/ticket_confirmation.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomTextWidget(
-                    text: "${'welcome'.tr}, ${Get.arguments?['fullName'] ?? 'User'}",
+                    text: "${'Welcome'.tr}, ${Get.arguments?['fullName'] ?? 'User'}",
                   color: AppColors.textColor,
                   fontsize: 16,
                   fontWeight: FontWeight.bold,

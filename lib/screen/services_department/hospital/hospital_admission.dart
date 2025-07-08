@@ -25,8 +25,8 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
   ];
    String? selectedRelationWithPatient; 
    final List<String>admissionTypes =[
-    'government_hospital',
-    'private_hospital',
+    'government_hospital'.tr,
+    'private_hospital'.tr,
   ];
    String? selectedAdmissionType; 
   @override

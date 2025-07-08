@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_list_tile.dart';
-import 'package:janta_sewa/screen/services/constructions/beneficiary_oriented.dart';
-import 'package:janta_sewa/screen/services/constructions/new_work_demand.dart';
-import 'package:janta_sewa/screen/services/constructions/pending_work_demand.dart';
+import 'package:janta_sewa/screen/services_department/constructions/beneficiary_oriented.dart';
+import 'package:janta_sewa/screen/services_department/constructions/new_work_demand.dart';
+import 'package:janta_sewa/screen/services_department/constructions/pending_work_demand.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
