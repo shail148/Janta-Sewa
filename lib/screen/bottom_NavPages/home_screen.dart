@@ -39,12 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomTextWidget(
-                    text: "${'Welcome'.tr}, ${Get.arguments?['fullName'] ?? 'User'}",
-                  color: AppColors.textColor,
-                  fontsize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                // CustomTextWidget(
+                //     text: "${'Welcome'.tr}, ${Get.arguments?['fullName'] ?? 'User'}",
+                //   color: AppColors.textColor,
+                //   fontsize: 16,
+                //   fontWeight: FontWeight.bold,
+                // ),
         
                 SizedBox(height: 24,),
                 Row(children: [

@@ -1,5 +1,4 @@
 // ignore_for_file: unused_import
-
 import 'package:cloudinary_url_gen/config/cloudinary_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
           elevation: 0,
-          
+    
         ),
         hoverColor: AppColors.btnBgColor
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

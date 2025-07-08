@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
+import 'package:janta_sewa/screen/services_department/tickets/ticket_list.dart';
 import 'package:janta_sewa/screen/services_department/tickets/tickethome_page.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
@@ -45,6 +46,35 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
     trainNumberController.clear();
     trainNameController.clear();
     birthTypeController.clear();
+  }
+
+  void _deletePassenger(int index) {
+    setState(() {
+      passengers.removeAt(index);
+    });
+  }
+
+  void _addPassenger() {
+    if (nameController.text.isNotEmpty &&
+        genderController.text.isNotEmpty &&
+        pnrController.text.isNotEmpty) {
+      setState(() {
+        passengers.add({
+          'name': nameController.text,
+          'age': ageController.text,
+          'gender': genderController.text,
+          'mobile': mobileController.text,
+          'journeyDate': journeyDateController.text,
+          'from': fromController.text,
+          'to': toController.text,
+          'pnr': pnrController.text,
+          'trainNumber': trainNumberController.text,
+          'trainName': trainNameController.text,
+          'birthType': birthTypeController.text,
+        });
+        clearForm();
+      });
+    }
   }
 
   @override
@@ -94,25 +124,11 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                     SizedBox(height: 24),
 
                     // Passenger List
-                    ...passengers.map((p) => Card(
-                      color: const Color(0xFFF5F6FA),
-                      margin: const EdgeInsets.symmetric(vertical: 4),
-                      child: ListTile(
-                        title: Text(
-                          "${p['name'] ?? ''}, ${p['gender'] ?? ''}, ${p['pnr'] ?? ''}",
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete, color: Colors.blue),
-                          onPressed: () {
-                            setState(() {
-                              passengers.remove(p);
-                            });
-                          },
-                        ),
-                      ),
-                    )),
-
+                    PassengerList(
+                      passengers: passengers,
+                      onDelete: _deletePassenger,
+                    ),
+                    SizedBox(height: 16),
                     // Add Passenger Form
                     Form(
                       child: Column(
@@ -179,34 +195,23 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                           ),
                           SizedBox(height: 10),
                           CustomButton(
+                            text: 'Add Passenger',
+                            textSize: 14,
+                            backgroundColor: AppColors.btnBgColor,
+                            height: 48,
+                            width: double.infinity,
+                            onPressed: _addPassenger,
+                          ),
+                          SizedBox(height: 10),
+                          CustomButton(
                             text: 'submit_btn'.tr,
                             textSize: 14,
                             backgroundColor: AppColors.btnBgColor,
                             height: 62,
                             width: double.infinity,
                             onPressed: () {
-                              // Save only name, gender, and pnr to the list
-                              if (nameController.text.isNotEmpty &&
-                                  genderController.text.isNotEmpty &&
-                                    pnrController.text.isNotEmpty) {
-                                  setState(() {
-                                    passengers.add({
-                                    'name': nameController.text,
-                                    'age': ageController.text,
-                                    'gender': genderController.text,
-                                    'mobile': mobileController.text,
-                                    'journeyDate': journeyDateController.text,
-                                    'from': fromController.text,
-                                    'to': toController.text,
-                                    'pnr': pnrController.text,
-                                    'trainNumber': trainNumberController.text,
-                                    'trainName': trainNameController.text,
-                                    'birthType': birthTypeController.text,
-                                    });
-                                    clearForm();
-                                  });
-                                // Redirect to ticket home page after saving
-                                Get.to(() => TickethomePage());
+                              if (passengers.isNotEmpty) {
+                                Get.to(() => TickethomePage(), arguments: passengers);
                               }
                             },
                           ),
