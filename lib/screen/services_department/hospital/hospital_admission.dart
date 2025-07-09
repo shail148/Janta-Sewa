@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/components/bottom_nav.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_dropdown.dart';
 import 'package:janta_sewa/widget/button.dart';
@@ -59,7 +59,7 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                       fontWeight: FontWeight.bold,
                     ),
 
-                    SizedBox(height: 24),
+                    SizedBox(height: 16),
                     Form(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,6 +96,7 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                           CustomTextFormField(hintText: 'hospital_name'.tr),
                           CustomLabelText(text: 'hospital_address'.tr),
                           CustomTextFormField(hintText: 'hospital_address'.tr),
+                          SizedBox(height: 16),
                           CustomTextWidget(
                             text: "reference/sourc_of_request".tr,
                             color: AppColors.textColor,
@@ -117,6 +118,7 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                           CustomTextFormField(
                             hintText: 'mobile_number_of_reference'.tr,
                           ),
+                             SizedBox(height: 16),
                           CustomTextWidget(
                             text: "hospital_contact_person(s)".tr,
                             color: AppColors.textColor,

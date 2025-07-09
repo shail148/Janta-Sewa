@@ -39,8 +39,8 @@ class _LanguageSwitchState extends State<LanguageSwitch> {
               color: AppColors.textColor,
               fontWeight: FontWeight.w600,
             ),
-            SizedBox(height: 10,),
-             CustomTextWidget(
+            SizedBox(height: 10),
+            CustomTextWidget(
               text: 'अपनी भाषा का चयन करें',
               fontsize: 14,
               color: AppColors.textColor,
@@ -52,52 +52,56 @@ class _LanguageSwitchState extends State<LanguageSwitch> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 CustomTextWidget(
-              text: 'English',
-              fontsize: 14,
-              color: AppColors.textColor,
-              fontWeight: FontWeight.w600,
-            ),
-             SizedBox(width: 10,),
-                Switch(
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                activeTrackColor: AppColors.btnBgColor,
-               // inactiveTrackColor: Colors.grey,
-               // activeColor: AppColors.btnBgColor,
-                inactiveThumbColor: Colors.grey,
-                // visualDensity: VisualDensity(horizontal: -2.0, vertical: -2.0),
-                // transform: Matrix4.identity()..scale(1.5, 1.5),
-                  value: isHindi,
-                  onChanged: (value) {
-                    setState(() {
-                      isHindi = value;
-                      if (isHindi) {
-                        Get.updateLocale(Locale('hi', 'IN'));
-                      } else {
-                        Get.updateLocale(Locale('en', 'US'));
-                      }
-                    });
-                  },
+                CustomTextWidget(
+                  text: 'English',
+                  fontsize: 14,
+                  color: AppColors.textColor,
+                  fontWeight: FontWeight.w600,
                 ),
-                SizedBox(width: 10,),
-                 CustomTextWidget(
-              text: 'हिंदी',
-              fontsize: 14,
-              color: AppColors.textColor,
-              fontWeight: FontWeight.w600,
-            ),
-            
+                SizedBox(width: 10),
+                Transform.scale(
+                  scale: 1.2, // Adjust the scale factor as needed
+                  child: Switch(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    activeTrackColor: AppColors.btnBgColor,
+                    trackOutlineColor: WidgetStateProperty.all(
+                      AppColors.btnBgColor,
+                    ),
+                    inactiveThumbColor: Colors.grey,
+                    value: isHindi,
+                    onChanged: (value) {
+                      setState(() {
+                        isHindi = value;
+                        if (isHindi) {
+                          Get.updateLocale(Locale('hi', 'IN'));
+                        } else {
+                          Get.updateLocale(Locale('en', 'US'));
+                        }
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(width: 10),
+                CustomTextWidget(
+                  text: 'हिंदी',
+                  fontsize: 14,
+                  color: AppColors.textColor,
+                  fontWeight: FontWeight.w600,
+                ),
               ],
             ),
             SizedBox(height: 30),
             Image.asset('assets/images/bjp.png', height: 150, width: 150),
-            Spacer(),
-            CustomButton(text: 'next'.tr, textSize: 16,
-            width: double.infinity,
-            height: 50,
-            onPressed: (){
-              Get.to(()=>LoginPage());
-            },)
+          Spacer(),
+            CustomButton(
+              text: 'next'.tr,
+              textSize: 16,
+              width: double.infinity,
+              height: 50,
+              onPressed: () {
+                Get.to(() => LoginPage());
+              },
+            ),
           ],
         ),
       ),

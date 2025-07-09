@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:janta_sewa/widget/colors.dart';
 
-class CustomListTile extends StatelessWidget {
+class ContactPageTile extends StatelessWidget {
   final String title;
+  final IconData icons;
   final VoidCallback onTap;
-  const CustomListTile({super.key,required this.title,required this.onTap});
+  const ContactPageTile({super.key,
+    required this.title,
+    required this.icons,
+    required this.onTap,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,10 +21,8 @@ class CustomListTile extends StatelessWidget {
         border: Border.all(color: AppColors.btnBgColor)
       ),
       child: ListTile(
-        
         title: Text(
           title,
-
           style: const TextStyle(
             fontWeight: FontWeight.normal,
             fontSize: 12,
@@ -26,11 +30,7 @@ class CustomListTile extends StatelessWidget {
             fontFamily: 'Poppins', // (optional: for consistency)
           ),
         ),
-        trailing: const Icon(
-          Icons.arrow_forward_ios,
-          size: 20,
-          color: Color(0xFF001489), // Deep blue
-        ),
+       leading: Icon(icons,color: AppColors.btnBgColor,size: 30,),
         onTap: onTap,
       ),
     );

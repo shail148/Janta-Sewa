@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/components/bottom_nav.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/file_upload.dart';
 import 'package:janta_sewa/widget/button.dart';
@@ -38,7 +38,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
-                      text: "parliament_visit".tr,
+                      text: "parliament_visit_menu".tr,
                       color: AppColors.textColor,
                       fontsize: 16,
                       fontWeight: FontWeight.bold,

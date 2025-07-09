@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/components/contact_page_tile.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
-import 'package:janta_sewa/components/file_upload.dart';
-import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
-import 'package:janta_sewa/widget/label_text.dart';
-import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
 class ContactPage extends StatefulWidget {
@@ -44,56 +41,39 @@ class _ContactPageState extends State<ContactPage> {
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(height: 10),
-                    Form(
-                      //this is the form for contact page
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomLabelText(text: 'applicant_name'.tr),
-                          CustomTextFormField(hintText: 'applicant_name'.tr),
-                          CustomLabelText(text: 'mobile_number'.tr),
-                          CustomTextFormField(hintText: 'mobile_number'.tr),
-                          CustomLabelText(text: 'address'.tr),
-                          CustomTextFormField(hintText: 'address'.tr),
-                          CustomLabelText(text: 'complain_department_name'.tr),
-                          CustomTextFormField(
-                            hintText: 'complain_department_name'.tr,
-                          ),
-                          CustomLabelText(text: 'employee_name'.tr),
-                          CustomTextFormField(hintText: 'employee_name'.tr),
-                          CustomLabelText(text: 'designation'.tr),
-                          CustomTextFormField(
-                            hintText: 'designation'.tr,
-                            // this is the designation field
-                          ),
-                          CustomLabelText(text: 'brief_detail_of_complain'.tr),
-                          CustomTextFormField(
-                            hintText: 'brief_detail_of_complain'.tr,
-                          ),
-                          CustomLabelText(text: 'upload_signed_documents'.tr),
-                          SizedBox(height: 10),
-                          CustomFileUpload(),
-                          SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                              //add a login logic
-                              Get.snackbar(
-                                "Success",
-                                "Your complaint has been submitted successfully.",
-                                snackPosition: SnackPosition.BOTTOM,
-                                backgroundColor: Colors.green,
-                                colorText: Colors.white,
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                  
+                    ContactPageTile(
+                      title: '9456789097',
+                      icons: Icons.phone_in_talk,
+                      onTap: () {},
                     ),
+                    ContactPageTile(
+                      title: '945-678-9097',
+                      icons: Icons.message,
+                      onTap: () {},
+                    ),
+                    ContactPageTile(
+                      title: 'demo@gmail.com',
+                      icons: Icons.email,
+                      onTap: () {},
+                    ),
+                    ContactPageTile(
+                      title: 'demo@gmail.com',
+                      icons: Icons.public,
+                      onTap: () {},
+                    ),
+                    SizedBox(height: 20),
+                    CustomTextWidget(text: 'Follow us on', fontsize: 14, fontWeight: FontWeight.w600),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset('assets/images/whatsapp.png', height: 50, width: 50),
+                        Image.asset('assets/images/instagram.png', height: 50, width: 50),
+                        Image.asset('assets/images/twitter.png', height: 50, width: 50),
+                        Image.asset('assets/images/facebook.png', height: 50, width: 50),
+                      ],
+                    )
                   ],
                 ),
               ),

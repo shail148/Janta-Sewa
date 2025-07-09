@@ -1,25 +1,23 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/screen/forgotPassword/create_new_password.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
-class ForgotOtpVerification extends StatefulWidget {
-  const ForgotOtpVerification({super.key});
+class OtpVerification extends StatefulWidget {
+  const OtpVerification({super.key});
 
   @override
-  State<ForgotOtpVerification> createState() => _ForgotOtpVerificationState();
+  State<OtpVerification> createState() => _OtpVerificationState();
 }
 
-class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
+class _OtpVerificationState extends State<OtpVerification> {
   final List<TextEditingController> _otpControllers =
       List.generate(4, (_) => TextEditingController());
   final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
 
-  
-  // ignore: unused_field
   Timer? _timer;
   int _start = 59;
 
@@ -123,8 +121,6 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
                       color: AppColors.textGrey,
                     ),
                     SizedBox(height: 20),
-
-                    /// OTP Input Row
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: List.generate(4, (index) {
@@ -139,7 +135,6 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
                             color: Color(0xFFF5F7FF),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          
                           alignment: Alignment.center,
                           child: TextField(
                             controller: _otpControllers[index],
@@ -147,27 +142,29 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             maxLength: 1,
-                            style: TextStyle(fontSize: 20, color: AppColors.textColor,fontFamily: 'Poppins'),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: AppColors.textColor,
+                              fontFamily: 'Poppins',
+                            ),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               counterText: '',
                             ),
                             onChanged: (value) {
                               if (value.isNotEmpty && index < 3) {
-                                FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
-                              }
-                              if (value.isEmpty && index > 0) {
-                                FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
+                                FocusScope.of(context).requestFocus(
+                                    _focusNodes[index + 1]);
+                              } else if (value.isEmpty && index > 0) {
+                                FocusScope.of(context).requestFocus(
+                                    _focusNodes[index - 1]);
                               }
                             },
                           ),
                         );
                       }),
                     ),
-
                     SizedBox(height: 20),
-
-                    /// Timer and Resend Text
                     Row(
                       children: [
                         CustomTextWidget(
@@ -195,17 +192,20 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
                           fontWeight: FontWeight.bold,
                         ),
                         SizedBox(width: 8),
-                        CustomTextWidget(
-                          text: 'resend_otp'.tr,
-                          fontsize: 10,
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.bold,
+                        GestureDetector(
+                          onTap: () {
+                            resetTimer();
+                          },
+                          child: CustomTextWidget(
+                            text: 'resend_otp'.tr,
+                            fontsize: 10,
+                            color: AppColors.btnBgColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(height: 20),
-
-                    /// Verify Button
                     CustomButton(
                       text: 'verify_otp'.tr,
                       textSize: 14,
@@ -215,8 +215,8 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
                       onPressed: () {
                         String otp = getOtp();
                         print("Entered OTP: $otp");
-                        // Navigate for now
-                        Get.to(() => CreateNewPassword());
+                       Get.offAll(() => BottomNav()); 
+
                       },
                     ),
                   ],

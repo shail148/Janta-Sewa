@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/components/bottom_nav.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/file_upload.dart';
 import 'package:janta_sewa/widget/button.dart';
@@ -46,7 +46,7 @@ class _PendingWorkDemandState extends State<PendingWorkDemand> {
                       fontWeight: FontWeight.bold,
                     ),
 
-                    SizedBox(height: 10),
+                    SizedBox(height: 16),
                     Form(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,14 +66,14 @@ class _PendingWorkDemandState extends State<PendingWorkDemand> {
                           ),
                           CustomTextFormField(
                             hintText: 'demanded_person_mobile_number'.tr,
-                          ),
+                          ), SizedBox(height: 16,),
                           CustomTextWidget(
                             text: 'Location Details',
                             fontsize: 14,
                             fontWeight: FontWeight.w600,
                             color: AppColors.textColor,
                           ),
-                          SizedBox(height: 10,),
+                          SizedBox(height: 16,),
                           // CustomLabelText(text: 'pincode'.tr),
                           // CustomTextFormField(hintText: 'enter_pincode'.tr),
                           CustomLabelText(text: 'district'.tr),

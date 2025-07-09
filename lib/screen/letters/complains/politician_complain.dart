@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/components/bottom_nav.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_dropdown.dart';
 import 'package:janta_sewa/components/file_upload.dart';
@@ -18,8 +18,8 @@ class PoliticianComplain extends StatefulWidget {
 
 class _PoliticianComplainState extends State<PoliticianComplain> {
   final List<String>complainTypes=[
-    'National',
-    'State',
+    'National'.tr,
+    'State'.tr,
   ];
   String? selectedType;
   @override

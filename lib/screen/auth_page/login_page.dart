@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/components/bottom_nav.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/controllers/auth_controller.dart';
 import 'package:janta_sewa/screen/forgotPassword/reset_password.dart';
 import 'package:janta_sewa/screen/registrationPages/main_register_page.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/label_text.dart';
@@ -106,17 +107,13 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                     
                       CustomLabelText(text: "enter_email_phone".tr),
                       SizedBox(height: 5),
                       CustomTextFormField(
                         hintText: 'enter_email_phone'.tr,
                         controller: emailPhoneController,
-                        validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Email or phone is required';
-                          }
-                          return null;
-                        },
+                        validator: FormValidator.validateEmail,
                       ),
                       CustomLabelText(text: "password".tr),
                       SizedBox(height: 5),
@@ -125,12 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                         controller: passwordController,
                         obscureText: true,
                         suffixIcon: Icon(Icons.password, color: AppColors.btnBgColor),
-                        validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Password is required';
-                          }
-                          return null;
-                        },
+                         validator: (value) => FormValidator.validateRequired(value, 'password'.tr),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,

@@ -1,8 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
@@ -40,12 +38,12 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
       decoration: BoxDecoration(
         color: Color(0xFFF6F7FB),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: AppColors.btnBgColor)
+        border: Border.all(color: AppColors.btnBgColor),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Icon(Icons.insert_drive_file, color: AppColors.btnBgColor,size: 30,),
+          Icon(Icons.insert_drive_file, color: AppColors.btnBgColor, size: 30),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
@@ -54,11 +52,12 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          CustomTextWidget(text: 
-            '${(file.size / (1024 * 1024)).toStringAsFixed(1)} MB',fontsize: 12,
+          CustomTextWidget(
+            text: '${(file.size / (1024 * 1024)).toStringAsFixed(1)} MB',
+            fontsize: 12,
           ),
           IconButton(
-            icon: Icon(Icons.delete, color: AppColors.btnBgColor,size: 30,),
+            icon: Icon(Icons.delete, color: AppColors.btnBgColor, size: 30),
             onPressed: () => removeFile(index),
           ),
         ],
@@ -85,21 +84,20 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
               ),
             ),
             width: double.infinity,
-
             child: Container(
-              
               padding: EdgeInsets.all(10),
               width: double.infinity,
               alignment: Alignment.center,
               child: Column(
-                
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               
                 children: [
                   CustomTextWidget(text: 'Upload Your Files', fontsize: 14),
-                    SizedBox(height: 5,),
-                  Icon(Icons.file_upload_outlined, color: AppColors.btnBgColor,size: 30,),
-                  
+                  SizedBox(height: 5),
+                  Icon(
+                    Icons.file_upload_outlined,
+                    color: AppColors.btnBgColor,
+                    size: 30,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -108,7 +106,7 @@ class _CustomFileUploadState extends State<CustomFileUpload> {
                         color: AppColors.textGrey,
                         fontsize: 12,
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(width: 5),
                       CustomTextWidget(
                         text: 'Browse',
                         color: AppColors.btnBgColor,

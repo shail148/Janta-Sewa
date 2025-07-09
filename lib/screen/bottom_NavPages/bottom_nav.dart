@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/home_screen.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/profile_screen.dart';
-import 'package:janta_sewa/screen/bottom_NavPages/support_page.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/track_page.dart';
+import 'package:janta_sewa/screen/contacts_invitation/contact_page.dart';
 import 'package:janta_sewa/widget/colors.dart';
 
 class BottomNav extends StatefulWidget {
@@ -13,13 +13,12 @@ class BottomNav extends StatefulWidget {
   @override
   _BottomNavState createState() => _BottomNavState();
 }
-
 class _BottomNavState extends State<BottomNav> {
   int selectedIndex = 0;
 
   final List<Widget> pages = [
     HomeScreen(),
-    SupportPage(),
+    ContactPage(),
     TrackPage(),
     ProfileScreen(),
   ];

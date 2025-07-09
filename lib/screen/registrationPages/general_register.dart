@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/components/bottom_nav.dart';
+import 'package:janta_sewa/screen/auth_page/otp_verification.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/label_text.dart';
@@ -153,7 +153,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             width: double.infinity,
                             onPressed: () {
                               //add a login logic
-                              Get.to(() => BottomNav());
+                              Get.to(() => OtpVerification());
                             },
                           ),
                         ],
