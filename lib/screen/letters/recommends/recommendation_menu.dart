@@ -48,38 +48,38 @@ class RecommendationMenu extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(height: 16),
-                   CustomListTile(title: 'Transfer', onTap: (){
+                   CustomListTile(title: 'Transfer'.tr, onTap: (){
                     Get.to(()=>TransferLetter());
                    }),
-                   CustomListTile(title: 'Posting', onTap: (){
+                   CustomListTile(title: 'Posting'.tr, onTap: (){
                     Get.to(()=>PostingLetter());
                    }),
-                   CustomListTile(title: 'Quarter Allotment', onTap: (){
+                   CustomListTile(title: 'Quarter Allotment'.tr, onTap: (){
                     Get.to(()=>QuarterAllotment());
                    }),
-                   CustomListTile(title: 'Award', onTap: (){
+                   CustomListTile(title: 'Award'.tr, onTap: (){
                     Get.to(()=>AwardLetter());
                    }),
-                   CustomListTile(title: 'Admission', onTap: (){
+                   CustomListTile(title: 'Admission'.tr, onTap: (){
                     Get.to(()=>AdmissionLetter());
                    }),
-                   CustomListTile(title: 'Land Allotment', onTap: (){
+                   CustomListTile(title: 'Land Allotment'.tr, onTap: (){
                     Get.to(()=>LandAllotmentLetter());
                    }),
-                    CustomListTile(title: 'Job Recommendation', onTap: (){
+                    CustomListTile(title: 'Job Recommendation'.tr, onTap: (){
                      Get.to(()=>JobRecommendationLetter());
 
                    }),
-                   CustomListTile(title: 'Financial Recommendation', onTap: (){
+                   CustomListTile(title: 'Financial Recommendation'.tr, onTap: (){
                   Get.to(()=>FinancialRecommendationLetter());
 
                     
                    }),
-                   CustomListTile(title: 'Cultural Programme', onTap: (){
+                   CustomListTile(title: 'Cultural Programme'.tr, onTap: (){
                     Get.to(()=>CulturalProgrammeLetter());
                     
                    }),
-                   CustomListTile(title: 'Other Recommendation', onTap: (){
+                   CustomListTile(title: 'Other Recommendation'.tr, onTap: (){
                     Get.to(()=>OtherRecommendationLetter());
                    }),
                   ]

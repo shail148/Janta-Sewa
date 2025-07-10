@@ -107,7 +107,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     
                       CustomLabelText(text: "enter_email_phone".tr),
                       SizedBox(height: 5),
                       CustomTextFormField(

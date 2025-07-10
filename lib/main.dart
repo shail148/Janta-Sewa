@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/localization/localization.dart';
 import 'package:janta_sewa/screen/auth_page/otp_verification.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/profile_screen.dart';
 import 'package:janta_sewa/screen/contacts_invitation/contact_page.dart';
 import 'package:janta_sewa/screen/forgotPassword/create_new_password.dart';
 import 'package:janta_sewa/screen/forgotPassword/forgot_otp_verification.dart';

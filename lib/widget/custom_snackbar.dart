@@ -5,13 +5,13 @@ class CustomSnackbar {
   static void show({
     required String title,
     required String message,
-    Color backgroundColor = Colors.black,
+    required Color backgroundColor,
     Color textColor = Colors.white,
-    SnackPosition position = SnackPosition.TOP, // Default to TOP for error/info
+    SnackPosition position = SnackPosition.TOP,
     Duration duration = const Duration(seconds: 2),
     IconData? icon,
   }) {
-    Get.snackbar(
+    Get.snackbar( 
       title,
       message,
       snackPosition: position,
@@ -19,15 +19,31 @@ class CustomSnackbar {
       colorText: textColor,
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       borderRadius: 12,
-      icon: icon != null
-          ? Icon(icon, color: textColor)
-          : null,
+      icon: icon != null ? Icon(icon, color: textColor) : null,
       duration: duration,
       isDismissible: true,
-      forwardAnimationCurve: Curves.easeOutBack,
-      reverseAnimationCurve: Curves.easeInBack,
-      snackStyle: SnackStyle.FLOATING, // Use FLOATING for better visibility
-      animationDuration: const Duration(milliseconds: 180),
+      forwardAnimationCurve: Curves.easeOutCubic, // Smooth in
+      reverseAnimationCurve: Curves.easeInCubic, // Smooth out
+      snackStyle: SnackStyle.FLOATING,
+      animationDuration: const Duration(milliseconds: 500), // Slower animation
+    );
+  }
+
+  static void showSuccess({required String title, required String message}) {
+    show(
+      title: title,
+      message: message,
+      backgroundColor: Colors.green.shade600,
+      icon: Icons.check_circle,
+    );
+  }
+
+  static void showError({required String title, required String message}) {
+    show(
+      title: title,
+      message: message,
+      backgroundColor: Colors.red.shade600,
+      icon: Icons.error,
     );
   }
 }

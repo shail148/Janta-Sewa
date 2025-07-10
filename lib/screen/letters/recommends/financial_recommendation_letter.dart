@@ -19,7 +19,7 @@ class FinancialRecommendationLetter extends StatefulWidget {
 class _FinancialRecommendationLetterState extends State<FinancialRecommendationLetter> {
   final List<String>department=[
    'state govt'.tr,
-    'national govt'.tr,
+    'National Government'.tr,
     'private'.tr,
   ];
   String? selectedDepartment;

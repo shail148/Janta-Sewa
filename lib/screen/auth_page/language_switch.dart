@@ -99,6 +99,7 @@ class _LanguageSwitchState extends State<LanguageSwitch> {
               width: double.infinity,
               height: 50,
               onPressed: () {
+                
                 Get.to(() => LoginPage());
               },
             ),

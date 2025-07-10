@@ -4,6 +4,7 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final IconData? prefixIcon;
   final bool obscureText;
+  final bool enabled;
   final TextInputType keyboardType;
   final Color fillColor;
   final double fontSize;
@@ -25,6 +26,7 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.suffixIconColor,
     this.validator,
+    this.enabled = true,
    
   });
 
@@ -37,7 +39,7 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: keyboardType,
         validator: validator,
-        
+        enabled: enabled,
         style: const TextStyle(
           fontFamily: 'Poppins',
           color: AppColors.textGrey,

@@ -71,8 +71,8 @@ class _LandAllotmentLetterState extends State<LandAllotmentLetter> {
                             selectedDepartment = value;
                           });
                          }),
-                          CustomLabelText(text: 'opted_land_adress'.tr),
-                          CustomTextFormField(hintText: 'opted_land_adress'.tr),
+                          CustomLabelText(text: 'opted_land_address'.tr),
+                          CustomTextFormField(hintText: 'opted_land_address'.tr),
                           CustomLabelText(text: 'reason_for_land_allotment'.tr),
                           CustomTextFormField(hintText: 'reason_for_land_allotment'.tr),
                           CustomLabelText(text: 'upload_signed_documents'.tr),
