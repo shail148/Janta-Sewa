@@ -48,6 +48,7 @@ class AppLocalization extends Translations {
       'enter_password': 'Enter Password',
       'forgot_password': 'Forgot Your Password?',
       'login_btn': 'Login',
+      'logout': 'Logout',
       'dont_have_account': 'Don\'t have an Account?',
       'register_here': 'Register Here',
       'select_app_language': 'Select App Language',
@@ -89,7 +90,7 @@ class AppLocalization extends Translations {
       'invitation': 'Invitation',
       'send_otp': 'Send OTP',
       'forgot_message':
-          'Enter your Registered Mobile Number or Email Address. We’ll Send you a verification Code to Reset Your Password',
+      'Enter your Registered Mobile Number or Email Address. We’ll Send you a verification Code to Reset Your Password',
       'political': 'Political',
       'religious': 'Religious',
       'social': 'Social',
@@ -140,7 +141,6 @@ class AppLocalization extends Translations {
       'journey_date': 'Journey Date',
       'enter_journey_date': 'Enter Journey Date',
       'from': 'From',
-
       'to': 'To',
       'host_detail': 'Host Details',
       'pnr_number': 'PNR Number',
@@ -215,7 +215,7 @@ class AppLocalization extends Translations {
       'suggestion_for_people': 'Suggestion for People',
       'suggestion_for_government_schemes': 'Suggestion for Government Schemes',
       'suggestion_for_government_department':
-          'Suggestion for Government Department',
+      'Suggestion for Government Department',
       'suggestion_for_mp_office': 'Suggestion for MP Office',
       'suggestion_type': 'Suggestion Type',
       'suggestion_for': 'Suggestion For',
@@ -619,6 +619,7 @@ class AppLocalization extends Translations {
       'central govt': 'केंद्र सरकार',
       'private': 'निजी',
       'back_to_login': 'लॉगिन पर वापस जाएं',
+      'logout': 'लॉग आउट',
       'verification_message':
           'कृपया अपना सत्यापन पूरा करने के लिए अपने पंजीकृत ईमेल/फोन नंबर पर भेजा गया ओटीपी (वन टाइम पासवर्ड) दर्ज करें',
       'otp_verification': 'ओटीपी सत्यापन',

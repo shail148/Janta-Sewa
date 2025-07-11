@@ -49,24 +49,25 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'headed_person_name'.tr),
+                          CustomLabelText(text: 'headed_person_name'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'headed_person_name'.tr,
                           ),
                           CustomLabelText(
                             text: 'headed_person_mobile_number'.tr,
+                            isRequired: true,
                           ),
                           CustomTextFormField(
                             hintText: 'headed_person_mobile_number'.tr,
                           ),
 
-                          CustomLabelText(text: 'state'.tr),
+                          CustomLabelText(text: 'state'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'enter_state'.tr),
 
-                          CustomLabelText(text: 'district'.tr),
+                          CustomLabelText(text: 'district'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'enter_district'.tr),
 
-                          CustomLabelText(text: 'block'.tr),
+                          CustomLabelText(text: 'block'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'enter_block'.tr),
 
                           CustomLabelText(text: 'city_village'.tr),
@@ -77,24 +78,24 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                           CustomLabelText(text: 'ward_number'.tr),
                           CustomTextFormField(hintText: 'enter_ward_number'.tr),
 
-                          CustomLabelText(text: 'pincode'.tr),
+                          CustomLabelText(text: 'pincode'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'enter_pincode'.tr),
 
                           CustomLabelText(text: 'constituency'.tr),
                           CustomTextFormField(hintText: 'constituency'.tr),
-                          CustomLabelText(text: 'date_of_visit'.tr),
+                          CustomLabelText(text: 'date_of_visit'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'date_of_visit'.tr),
-                          CustomLabelText(text: 'time_of_visit'.tr),
+                          CustomLabelText(text: 'time_of_visit'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'time_of_visit'.tr),
                           CustomLabelText(text: 'total_number_of_members'.tr),
                           CustomTextFormField(
                             hintText: 'total_number_of_members'.tr,
                           ),
 
-                          CustomLabelText(text: 'parliament_name'.tr),
+                          CustomLabelText(text: 'parliament_name'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'parliament_name'.tr),
 
-                          CustomLabelText(text: 'parliament_mobile_number'.tr),
+                          CustomLabelText(text: 'parliament_mobile_number'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'parliament_mobile_number'.tr,
                           ),

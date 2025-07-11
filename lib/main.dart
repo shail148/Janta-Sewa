@@ -14,7 +14,7 @@ import 'package:janta_sewa/screen/bottom_NavPages/home_screen.dart';
 import 'package:janta_sewa/screen/auth_page/language_switch.dart';
 import 'package:janta_sewa/screen/letters/complains/compain_menu.dart';
 import 'package:janta_sewa/screen/letters/recommends/recommendation_menu.dart';
-import 'package:janta_sewa/screen/auth_page/login_page.dart';
+import 'package:janta_sewa/screen/auth_page/login_page.dart'; 
 import 'package:janta_sewa/screen/register_page.dart';
 import 'package:janta_sewa/screen/registrationPages/authorized_person_reg.dart';
 import 'package:janta_sewa/screen/registrationPages/general_register.dart';

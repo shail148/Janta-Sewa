@@ -5,6 +5,7 @@ import 'package:janta_sewa/screen/services_department/tickets/ticket_list.dart';
 import 'package:janta_sewa/screen/services_department/tickets/tickethome_page.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
+import 'package:janta_sewa/widget/date_picker.dart';
 import 'package:janta_sewa/widget/label_text.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
@@ -134,12 +135,12 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'passenger_name'.tr),
+                          CustomLabelText(text: 'passenger_name'.tr,isRequired: true, ),
                           CustomTextFormField(
                             hintText: 'enter_passenger_name'.tr,
                             controller: nameController,
                           ),
-                          CustomLabelText(text: 'age'.tr),
+                          CustomLabelText(text: 'age'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'enter_age'.tr,
                             controller: ageController,
@@ -147,38 +148,43 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                             // Optionally restrict to digits
                             // inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           ),
-                          CustomLabelText(text: 'gender'.tr),
+                          CustomLabelText(text: 'gender'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'enter_gender'.tr,
                             controller: genderController,
                           ),
-                          CustomLabelText(text: 'mobile_number'.tr),
+                          CustomLabelText(text: 'mobile_number'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'enter_mobile_number'.tr,
                             controller: mobileController,
                           ),
-                          CustomLabelText(text: 'journey_date'.tr),
+                          CustomLabelText(text: 'journey_date'.tr,isRequired: true,),
                           CustomTextFormField(
+                            
                             hintText: 'enter_journey_date'.tr,
-                            suffixIcon: Icon(Icons.calendar_month),
+                            suffixIcon: Icons.calendar_month,
+                            suffixIconColor: AppColors.btnBgColor,
+                            onSuffixTap: () {
+                              showCustomCalendarDialog(context: context, controller: journeyDateController);
+                            },
                             controller: journeyDateController,
                           ),
-                          CustomLabelText(text: 'from'.tr),
+                          CustomLabelText(text: 'from'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'from'.tr,
                             controller: fromController,
                           ),
-                          CustomLabelText(text: 'to'.tr),
+                          CustomLabelText(text: 'to'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'to'.tr,
                             controller: toController,
                           ),
-                          CustomLabelText(text: 'pnr_number'.tr),
+                          CustomLabelText(text: 'pnr_number'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'enter_pnr_number'.tr,
                             controller: pnrController,
                           ),
-                          CustomLabelText(text: 'train_number'.tr),
+                          CustomLabelText(text: 'train_number'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'enter_train_number'.tr,
                             controller: trainNumberController,

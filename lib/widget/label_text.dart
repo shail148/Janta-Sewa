@@ -1,25 +1,42 @@
 import 'package:flutter/material.dart';
 
-
-
 class CustomLabelText extends StatelessWidget {
   final String text;
   final double fontsize;
   final Color? color;
-  
-  
-  const CustomLabelText({super.key,required this.text,this.fontsize = 12, this.color });
+  final bool isRequired; 
+  const CustomLabelText({
+    super.key,
+    required this.text,
+    this.fontsize = 16,
+    this.color,
+    this.isRequired = false, 
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-        text,
+    return RichText(
+      text: TextSpan(
+        text: text,
         style: TextStyle(
           fontSize: fontsize,
-          color: Colors.black54,
+          color: color ?? Colors.black54,
           fontFamily: 'Poppins',
-          fontWeight: FontWeight.w600
+          fontWeight: FontWeight.w600,
         ),
+        children: isRequired
+            ? [
+                TextSpan(
+                  text: ' *',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: fontsize,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ]
+            : [],
+      ),
     );
   }
 }

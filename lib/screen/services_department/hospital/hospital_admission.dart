@@ -15,7 +15,6 @@ class HospitalAdmission extends StatefulWidget {
   @override
   State<HospitalAdmission> createState() => _HospitalAdmissionState();
 }
-
 class _HospitalAdmissionState extends State<HospitalAdmission> {
   final List<String>relationWithPatient =[
     'father'.tr,
@@ -64,13 +63,13 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'patient_name'.tr),
+                          CustomLabelText(text: 'patient_name'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'enter_patient_name'.tr,
                           ),
-                          CustomLabelText(text: 'name_of_attendent'.tr),
+                          CustomLabelText(text: 'name_of_attendent'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'name_of_attendent'.tr),
-                          CustomLabelText(text: 'relation_with_patient'.tr),
+                          CustomLabelText(text: 'relation_with_patient'.tr,isRequired: true,),
                           CustomDropdown(
                             items: relationWithPatient,
                             selectedValue: selectedRelationWithPatient,
@@ -92,9 +91,9 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                               });
                             },
                           ),
-                          CustomLabelText(text: 'hospital_name'.tr),
+                          CustomLabelText(text: 'hospital_name'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'hospital_name'.tr),
-                          CustomLabelText(text: 'hospital_address'.tr),
+                          CustomLabelText(text: 'hospital_address'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'hospital_address'.tr),
                           SizedBox(height: 16),
                           CustomTextWidget(
@@ -104,7 +103,7 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                             fontWeight: FontWeight.bold,
                           ),
                           SizedBox(height: 16),
-                          CustomLabelText(text: 'name_of_reference'.tr),
+                          CustomLabelText(text: 'name_of_reference'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'name_of_reference'.tr),
                           CustomLabelText(
                             text: 'post/designation_of_reference'.tr,
@@ -114,6 +113,7 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                           ),
                           CustomLabelText(
                             text: 'mobile_number_of_reference'.tr,
+                            isRequired: true,
                           ),
                           CustomTextFormField(
                             hintText: 'mobile_number_of_reference'.tr,
@@ -129,10 +129,10 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                           CustomLabelText(text: 'name'.tr),
                           CustomTextFormField(hintText: 'full_name'.tr),
 
-                          CustomLabelText(text: 'desigantion'.tr),
+                          CustomLabelText(text: 'desigantion'.tr,isRequired: true,),
                           CustomTextFormField(hintText: 'desigantion'.tr),
 
-                          CustomLabelText(text: 'mobile_number'.tr),
+                          CustomLabelText(text: 'mobile_number'.tr,isRequired: true,),
                           CustomTextFormField(
                             hintText: 'enter_mobile_number'.tr,
                           ),

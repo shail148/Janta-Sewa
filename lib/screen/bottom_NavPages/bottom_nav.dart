@@ -1,10 +1,11 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/home_screen.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/profile_screen.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/support_page.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/track_page.dart';
-import 'package:janta_sewa/screen/contacts_invitation/contact_page.dart';
 import 'package:janta_sewa/widget/colors.dart';
 
 class BottomNav extends StatefulWidget {
@@ -15,10 +16,9 @@ class BottomNav extends StatefulWidget {
 }
 class _BottomNavState extends State<BottomNav> {
   int selectedIndex = 0;
-
   final List<Widget> pages = [
     HomeScreen(),
-    ContactPage(),
+    SupportPage(),
     TrackPage(),
     ProfileScreen(),
   ];

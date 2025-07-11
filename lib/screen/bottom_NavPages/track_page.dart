@@ -51,10 +51,7 @@ class _TrackPageState extends State<TrackPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomTopAppBar(
-        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
-        onLeftTap: () {
-          Get.back();
-        },
+      
       ),
       body: SafeArea(
         child: Padding(

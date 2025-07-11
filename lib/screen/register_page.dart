@@ -70,7 +70,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           CustomLabelText(text: 'date_of_birth'.tr),
                           CustomTextFormField(
                             hintText: 'dob_hint'.tr,
-                            suffixIcon: Icon(Icons.calendar_month),
+                            suffixIcon:Icons.calendar_month ,
                           ),
                           CustomLabelText(text: 'blood_group'.tr),
                           CustomTextFormField(hintText: 'enter_blood_group'.tr),

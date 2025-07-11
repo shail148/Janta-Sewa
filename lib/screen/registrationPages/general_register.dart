@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/screen/auth_page/otp_verification.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
+import 'package:janta_sewa/widget/date_picker.dart';
 import 'package:janta_sewa/widget/label_text.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
@@ -15,6 +16,25 @@ class GeneralRegister extends StatefulWidget {
 }
 
 class _GeneralRegisterState extends State<GeneralRegister> {
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController mobileController = TextEditingController();
+  final TextEditingController dobController = TextEditingController();
+  final TextEditingController whatsappController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController bloodGroupController = TextEditingController();
+  final TextEditingController aadharController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController stateController = TextEditingController();
+  final TextEditingController districtController = TextEditingController();
+  final TextEditingController blockController = TextEditingController();
+  final TextEditingController vidhansabhaController = TextEditingController();
+  final TextEditingController cityVillageController = TextEditingController();
+  final TextEditingController wardNumberController = TextEditingController();
+  final TextEditingController pincodeController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +53,14 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: ()=>Get.back(),
-                          child: Icon(Icons.arrow_back_ios_new_outlined,color: AppColors.btnBgColor,size: 24,)),
-                        SizedBox(width: 8,),
+                          onTap: () => Get.back(),
+                          child: Icon(
+                            Icons.arrow_back_ios_new_outlined,
+                            color: AppColors.btnBgColor,
+                            size: 24,
+                          ),
+                        ),
+                        SizedBox(width: 8),
                         CustomTextWidget(
                           text: "registration".tr,
                           color: AppColors.textColor,
@@ -43,9 +68,10 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                           fontWeight: FontWeight.bold,
                         ),
                       ],
-                    ),  
+                    ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -56,26 +82,55 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             fontWeight: FontWeight.bold,
                           ),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'full_name'.tr),
+                          CustomLabelText(
+                            text: 'full_name'.tr,
+                            isRequired: true,
+                          ),
                           CustomTextFormField(hintText: 'enter_full_name'.tr),
-                          CustomLabelText(text: 'mobile_number'.tr),
+                          CustomLabelText(
+                            text: 'mobile_number'.tr,
+                            isRequired: true,
+                          ),
                           CustomTextFormField(
                             hintText: 'enter_mobile_number'.tr,
                           ),
-                          CustomLabelText(text: 'whatsapp_number'.tr),
+                          CustomLabelText(
+                            text: 'whatsapp_number'.tr,
+                            isRequired: true,
+                          ),
                           CustomTextFormField(
                             hintText: 'enter_whatsapp_number'.tr,
                           ),
-                          CustomLabelText(text: 'email_id'.tr),
-                          CustomTextFormField(hintText: 'enter_email_id'.tr),
+                          CustomLabelText(
+                            text: 'email_id'.tr,
+                            isRequired: true,
+                          ),
+                          CustomTextFormField(
+                            hintText: 'enter_email_id',
+                           
+                          ),
                           CustomLabelText(text: 'date_of_birth'.tr),
                           CustomTextFormField(
+                            controller: dobController,
                             hintText: 'dob_hint'.tr,
-                            suffixIcon: Icon(Icons.calendar_month),
+                            suffixIconColor: AppColors.btnBgColor,
+                            suffixIcon: Icons.calendar_month,
+                             
+                            onSuffixTap: () {
+                              showCustomCalendarDialog(
+                                context: context,
+                                controller: dobController,
+                              );
+                            },
+                         
                           ),
+
                           CustomLabelText(text: 'blood_group'.tr),
                           CustomTextFormField(hintText: 'enter_blood_group'.tr),
-                          CustomLabelText(text: 'aadhar_number'.tr),
+                          CustomLabelText(
+                            text: 'aadhar_number'.tr,
+                            isRequired: true,
+                          ),
                           CustomTextFormField(
                             hintText: 'enter_aadhar_number'.tr,
                           ),
@@ -87,22 +142,28 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             fontsize: 16,
                           ),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'address'.tr),
+                          CustomLabelText(text: 'address'.tr, isRequired: true),
                           CustomTextFormField(hintText: 'enter_address'.tr),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'state'.tr),
+                          CustomLabelText(text: 'state'.tr, isRequired: true),
                           CustomTextFormField(hintText: 'enter_state'.tr),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'district'.tr),
+                          CustomLabelText(
+                            text: 'district'.tr,
+                            isRequired: true,
+                          ),
                           CustomTextFormField(hintText: 'enter_district'.tr),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'block'.tr),
+                          CustomLabelText(text: 'block'.tr, isRequired: true),
                           CustomTextFormField(hintText: 'enter_block'.tr),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'vidhansabha'.tr),
                           CustomTextFormField(hintText: 'enter_vidhansabha'.tr),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'city_village'.tr),
+                          CustomLabelText(
+                            text: 'city_village'.tr,
+                            isRequired: true,
+                          ),
                           CustomTextFormField(
                             hintText: 'enter_city_village'.tr,
                           ),
@@ -110,7 +171,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                           CustomLabelText(text: 'ward_number'.tr),
                           CustomTextFormField(hintText: 'enter_ward_number'.tr),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'pincode'.tr),
+                          CustomLabelText(text: 'pincode'.tr, isRequired: true),
                           CustomTextFormField(hintText: 'enter_pincode'.tr),
                           SizedBox(height: 10),
                           Row(

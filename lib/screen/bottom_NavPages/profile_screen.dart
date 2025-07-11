@@ -6,6 +6,7 @@ import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/screen/auth_page/login_page.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
+import 'package:janta_sewa/widget/date_picker.dart';
 import 'package:janta_sewa/widget/label_text.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
@@ -79,8 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomTopAppBar(
-        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
-        onLeftTap: () => Get.back(),
+       
       ),
       body: SafeArea(
         child: Scrollbar(
@@ -221,7 +221,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         CustomTextFormField(
                           hintText: 'dob_hint'.tr,
                           controller: dob,
-                          suffixIcon: const Icon(Icons.calendar_month),
+                          suffixIcon: Icons.calendar_month,
+                          suffixIconColor: AppColors.btnBgColor,
+                          onSuffixTap: () {
+                            showCustomCalendarDialog(
+                              context: context,
+                              controller: dob,
+                            );
+                          },
                           enabled: isEditing.value,
                         ),
                         CustomLabelText(text: 'blood_group'.tr),

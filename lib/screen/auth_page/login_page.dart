@@ -8,6 +8,7 @@ import 'package:janta_sewa/utils/form_validator.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/label_text.dart';
+import 'package:janta_sewa/widget/password_visibility.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 import 'package:janta_sewa/widget/custom_snackbar.dart';
@@ -25,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
   final AuthController _authController = Get.put(AuthController());
 
+  final PasswordVisibility passwordCtrl = Get.put(PasswordVisibility());
   @override
   void dispose() {
     emailPhoneController.dispose();
@@ -107,21 +109,37 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomLabelText(text: "enter_email_phone".tr),
+                      CustomLabelText(
+                        text: "enter_email_phone".tr,
+                        isRequired: true,
+                      ),
                       SizedBox(height: 5),
                       CustomTextFormField(
                         hintText: 'enter_email_phone'.tr,
                         controller: emailPhoneController,
                         validator: FormValidator.validateEmail,
                       ),
-                      CustomLabelText(text: "password".tr),
+                      CustomLabelText(text: "password".tr, isRequired: true),
                       SizedBox(height: 5),
-                      CustomTextFormField(
-                        hintText: 'enter_password'.tr,
-                        controller: passwordController,
-                        obscureText: true,
-                        suffixIcon: Icon(Icons.password, color: AppColors.btnBgColor),
-                         validator: (value) => FormValidator.validateRequired(value, 'password'.tr),
+                      Obx(
+                        () => CustomTextFormField(
+                          hintText: 'enter_password'.tr,
+                          controller: passwordController,
+                          obscureText: !passwordCtrl
+                              .isPasswordVisible
+                              .value, // 👁 hide/show password
+                          suffixIcon: passwordCtrl.isPasswordVisible.value
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          onSuffixTap: () {
+                            passwordCtrl
+                                .toggleVisibility(); // 🔄 toggle visibility
+                          },
+                          validator: (value) => FormValidator.validateRequired(
+                            value,
+                            'password'.tr,
+                          ),
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -155,7 +173,10 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomTextWidget(text: 'dont_have_account'.tr, fontsize: 12),
+                    CustomTextWidget(
+                      text: 'dont_have_account'.tr,
+                      fontsize: 12,
+                    ),
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {

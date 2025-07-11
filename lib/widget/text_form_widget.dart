@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:janta_sewa/widget/colors.dart';
+
 class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final IconData? prefixIcon;
   final bool obscureText;
   final bool enabled;
+  final bool readOnly; 
   final TextInputType keyboardType;
   final Color fillColor;
   final double fontSize;
-  final Icon? suffixIcon;
+  final IconData? suffixIcon;
   final Color? suffixIconColor;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  
+  final VoidCallback? onSuffixTap;
 
   const CustomTextFormField({
     super.key,
@@ -27,19 +29,21 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIconColor,
     this.validator,
     this.enabled = true,
-   
+    this.onSuffixTap,
+    this.readOnly = false, 
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8,bottom: 8),
+      padding: const EdgeInsets.only(top: 8, bottom: 8),
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
         validator: validator,
         enabled: enabled,
+        readOnly: readOnly, 
         style: const TextStyle(
           fontFamily: 'Poppins',
           color: AppColors.textGrey,
@@ -48,12 +52,15 @@ class CustomTextFormField extends StatelessWidget {
           filled: true,
           fillColor: fillColor,
           hintText: hintText,
-          suffixIcon: suffixIcon,
-        
-          suffixIconColor: suffixIconColor,
           hintStyle: TextStyle(color: Colors.grey, fontSize: fontSize),
           prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
-          //contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+          suffixIcon: suffixIcon != null
+              ? GestureDetector(
+                  onTap: onSuffixTap,
+                  behavior: HitTestBehavior.translucent,
+                  child: Icon(suffixIcon, color: suffixIconColor),
+                )
+              : null,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,
@@ -61,7 +68,7 @@ class CustomTextFormField extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: AppColors.btnBgColor, // Thin blue border when focused
+              color: AppColors.btnBgColor,
               width: 1,
             ),
           ),
