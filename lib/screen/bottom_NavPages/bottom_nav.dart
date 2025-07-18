@@ -1,8 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:janta_sewa/screen/bottom_NavPages/home_screen.dart';
+import 'package:janta_sewa/components/custom_app_bar.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/custom_drawer.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/main_news_dashboard.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/profile_screen.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/support_page.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/track_page.dart';
@@ -17,7 +18,7 @@ class BottomNav extends StatefulWidget {
 class _BottomNavState extends State<BottomNav> {
   int selectedIndex = 0;
   final List<Widget> pages = [
-    HomeScreen(),
+    MainNewsDashboard(),
     SupportPage(),
     TrackPage(),
     ProfileScreen(),
@@ -28,10 +29,20 @@ class _BottomNavState extends State<BottomNav> {
       selectedIndex = index;
     });
   }
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       key: _scaffoldKey, 
+      drawer: CustomDrawer(),
+      appBar: CustomTopAppBar(
+        leftIcon: Icon(Icons.menu, color: AppColors.btnBgColor, size: 30),
+        onLeftTap: 
+           () => _scaffoldKey.currentState?.openDrawer(),
+        rightIcon:
+            Icon(Icons.notifications, color: AppColors.btnBgColor, size: 30),
+      ),
       body: pages[selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(

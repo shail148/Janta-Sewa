@@ -213,8 +213,8 @@ class _OtpVerificationState extends State<OtpVerification> {
                       height: 62,
                       width: double.infinity,
                       onPressed: () {
-                        String otp = getOtp();
-                        print("Entered OTP: $otp");
+                        //String otp = getOtp();
+                      // print("Entered OTP: $otp");
                        Get.offAll(() => BottomNav()); 
 
                       },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/components/custom_app_bar.dart';
+
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
@@ -50,9 +50,7 @@ class _TrackPageState extends State<TrackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomTopAppBar(
       
-      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),

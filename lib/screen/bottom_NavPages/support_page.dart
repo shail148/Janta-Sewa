@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/contact_page_tile.dart';
-import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
@@ -18,9 +17,7 @@ class _SupportPageState extends State<SupportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomTopAppBar(
-       
-      ),
+      
       body: SafeArea(
         child: Scrollbar(
           thumbVisibility: true,

@@ -4,7 +4,6 @@ import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_list_tile.dart';
 import 'package:janta_sewa/screen/registrationPages/general_register.dart';
 import 'package:janta_sewa/screen/registrationPages/samajik_sansatha_register.dart';
-import 'package:janta_sewa/screen/registrationPages/sample_register.dart';
 import 'package:janta_sewa/screen/registrationPages/sangthan_reg.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
@@ -24,6 +23,10 @@ class MainRegisterPage extends StatelessWidget {
       body: SafeArea(
         child: Scrollbar(
           thumbVisibility: true,
+
+
+
+          
           trackVisibility: true,
           // thickness: 5,
           radius: const Radius.circular(10),
@@ -79,12 +82,12 @@ class MainRegisterPage extends StatelessWidget {
                         Get.to(() => SamajikSansathaRegister());
                       },
                     ),
-                    CustomListTile(
-                      title: 'sample register'.tr,
-                      onTap: () {
-                        Get.to(() => SampleRegister());
-                      },
-                    ),
+                    // CustomListTile(
+                    //   title: 'sample register'.tr,
+                    //   onTap: () {
+                    //     Get.to(() => SampleRegister());
+                    //   },
+                    // ),
                   ],
                 ),
               ),

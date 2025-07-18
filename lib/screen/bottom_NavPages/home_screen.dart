@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_service_card.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/screen/contacts_invitation/contact_page.dart';
 import 'package:janta_sewa/screen/contacts_invitation/invitation_page.dart';
 import 'package:janta_sewa/screen/auth_page/language_switch.dart';
@@ -30,8 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      appBar: CustomTopAppBar(),
+       appBar: CustomTopAppBar(
+        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
+        onLeftTap: () {
+          Get.offAll(()=>BottomNav());
+        },
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(

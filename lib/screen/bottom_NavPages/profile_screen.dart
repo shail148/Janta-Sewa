@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/screen/auth_page/login_page.dart';
+
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/date_picker.dart';
@@ -79,9 +79,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomTopAppBar(
-       
-      ),
+    //  appBar: CustomTopAppBar(
+    //     leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
+    //     onLeftTap: () {
+    //       Get.offAll(()=>BottomNav());
+    //     },
+    //   ),
       body: SafeArea(
         child: Scrollbar(
           thumbVisibility: true,

@@ -213,8 +213,8 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
                       height: 62,
                       width: double.infinity,
                       onPressed: () {
-                        String otp = getOtp();
-                        print("Entered OTP: $otp");
+                      //  String otp = getOtp();
+                     //   print("Entered OTP: $otp");
                         // Navigate for now
                         Get.to(() => CreateNewPassword());
                       },
