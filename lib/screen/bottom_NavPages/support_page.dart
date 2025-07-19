@@ -32,7 +32,7 @@ class _SupportPageState extends State<SupportPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
-                      text: "contact_page".tr,
+                      text: "Support Page".tr,
                       color: AppColors.textColor,
                       fontsize: 16,
                       fontWeight: FontWeight.bold,

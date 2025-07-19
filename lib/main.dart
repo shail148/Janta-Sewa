@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 import 'package:cloudinary_url_gen/config/cloudinary_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/localization/localization.dart';
@@ -25,22 +26,31 @@ import 'package:janta_sewa/screen/services_department/hospital/hospital_admissio
 import 'package:janta_sewa/screen/services_department/parliament_visit/parliament_visit.dart';
 import 'package:janta_sewa/screen/services_department/tickets/ticket_confirmation.dart';
 import 'package:janta_sewa/widget/colors.dart';
-void main() {
-  runApp(const MyApp());
+void main()async {
+    WidgetsFlutterBinding.ensureInitialized();
+
+  // orientation in potrait mode setup
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(const MyApp() 
+  );
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      translations: AppLocalization(), // your translations
+      translations: AppLocalization(), //  translations
       locale: const Locale('en', 'US'), // default locale
       fallbackLocale: const Locale('en', 'US'),
       title: 'Janta Sewa',
       theme: ThemeData(
+        fontFamily: 'Poppins',
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
@@ -50,7 +60,7 @@ class MyApp extends StatelessWidget {
         hoverColor: AppColors.btnBgColor
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: LoginPage(),
+      home: BottomNav(),
     );
   }
 }

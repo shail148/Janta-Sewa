@@ -7,6 +7,7 @@ class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onRightTap;
   final Widget? leftIcon;
   final Widget? rightIcon;
+  final String? title ;
 
   const CustomTopAppBar({
     super.key,
@@ -14,6 +15,7 @@ class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onRightTap,
     this.leftIcon,
     this.rightIcon,
+    this.title,
   });
 
   @override
@@ -37,7 +39,7 @@ class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       // backgroundColor: Colors.white,
       title: CustomTextWidget(
-        text: 'Janta Sewa',
+        text: title ??'Janta Sewa',
         color: AppColors.textColor,
         fontWeight: FontWeight.bold,
         fontsize: 24,

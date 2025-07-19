@@ -4,8 +4,8 @@ class CustomServiceCard extends StatelessWidget {
   final IconData icon;
   final String text;
   final VoidCallback onTap;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final Color iconColor;
   final Color backgroundColor;
   final Color borderColor;
@@ -15,21 +15,27 @@ class CustomServiceCard extends StatelessWidget {
     required this.icon,
     required this.text,
     required this.onTap,
-    this.width = 120,
-    this.height = 120,
+    this.width,
+    this.height,
     this.iconColor = Colors.black,
     this.backgroundColor = const Color(0xFFF5F7FF),
-    this.borderColor = const Color(0xFFB3D1FF), BoxDecoration? decoration,
+    this.borderColor = const Color(0xFFB3D1FF),
   });
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    final cardWidth = width ?? screenWidth * 0.28;
+    final cardHeight = height ?? screenHeight * 0.14;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: width,
-        height: height,
-        padding: const EdgeInsets.only(top: 12,bottom: 12),
+        width: cardWidth,
+        height: cardHeight,
+        padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
           color: backgroundColor,
           border: Border.all(color: borderColor),
@@ -37,32 +43,30 @@ class CustomServiceCard extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
-           Container(
-           // margin: EdgeInsets.only(top: 10,),
-            //padding: EdgeInsets.only(bottom: 40),
-            height: 50,
-            width: 50,
-            decoration: BoxDecoration(
-              color: Color(0xFFB3D1FF),
-              borderRadius: BorderRadius.circular(10)
+            Container(
+              height: cardHeight * 0.4,
+              width: cardWidth * 0.4,
+              decoration: BoxDecoration(
+                color: const Color(0xFFB3D1FF),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(icon, size: cardWidth * 0.25, color: iconColor),
             ),
-             child: Icon(
-                  icon,
-                  size: 30,
-                  color: iconColor,
-                  
+            const SizedBox(height: 5),
+            SizedBox(
+              width: cardWidth * 0.8,
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+                style: const TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
                 ),
-           ),
-            Spacer(),
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
               ),
             ),
           ],

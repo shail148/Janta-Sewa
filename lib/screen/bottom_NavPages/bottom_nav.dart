@@ -1,12 +1,14 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/custom_drawer.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/main_news_dashboard.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/profile_screen.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/support_page.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/track_page.dart';
+import 'package:janta_sewa/screen/notification/notification_page.dart';
 import 'package:janta_sewa/widget/colors.dart';
 
 class BottomNav extends StatefulWidget {
@@ -41,7 +43,10 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
         onLeftTap: 
            () => _scaffoldKey.currentState?.openDrawer(),
         rightIcon:
-            Icon(Icons.notifications, color: AppColors.btnBgColor, size: 30),
+
+            Icon(Icons.notifications, color: AppColors.btnBgColor, size: 30,),onRightTap: (){
+              Get.to(()=>NotificationPage());
+            },
       ),
       body: pages[selectedIndex],
       bottomNavigationBar: Container(

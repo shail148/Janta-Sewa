@@ -27,20 +27,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: CustomTopAppBar(
+      appBar: CustomTopAppBar(
         leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
         onLeftTap: () {
-          Get.offAll(()=>BottomNav());
+          Get.offAll(() => BottomNav());
         },
       ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -50,58 +49,51 @@ class _HomeScreenState extends State<HomeScreen> {
                 //   fontsize: 16,
                 //   fontWeight: FontWeight.bold,
                 // ),
-        
-                SizedBox(height: 24,),
-                Row(children: [
-                  ],
-                ),
+                SizedBox(height: 24),
+                
                 CustomTextWidget(
                   text: 'services_departments'.tr,
                   fontsize: 14,
                   fontWeight: FontWeight.w600,
                 ),
                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Wrap(
+                 runSpacing: 15,
+                 spacing: 15,
+                 runAlignment: WrapAlignment.spaceEvenly,
                   children: [
                     CustomServiceCard(
                       icon: Icons.train,
                       text: 'rail_ticket_confirmation'.tr,
                       onTap: () {
-                        Get.to(()=>TicketConfirmation());
+                        Get.to(() => TicketConfirmation());
                       },
                     ),
                     CustomServiceCard(
                       icon: Icons.account_balance,
                       text: 'parliament_visit'.tr,
                       onTap: () {
-                        Get.to(()=>ParliamentVisit());
+                        Get.to(() => ParliamentVisit());
                       },
                     ),
                     CustomServiceCard(
                       icon: Icons.construction,
                       text: 'construction_work'.tr,
                       onTap: () {
-                        
-                        Get.to(()=>ConstructionsMenu());
+                        Get.to(() => ConstructionsMenu());
+                      },
+                    ),
+                     CustomServiceCard(
+                      icon: Icons.local_hospital,
+                      text: 'hospital_admission'.tr,
+                      onTap: () {
+                        Get.to(() => HospitalAdmission());
                       },
                     ),
                   ],
                 ),
                 //second row
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomServiceCard(
-                      icon: Icons.local_hospital,
-                      text: 'hospital_admission'.tr,
-                      onTap: () {
-                        Get.to(()=>HospitalAdmission());
-                      },
-                    ),
-                  ],
-                ),
+              
                 SizedBox(height: 20),
                 CustomTextWidget(
                   text: 'letter_request'.tr,
@@ -109,49 +101,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w600,
                 ),
                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Wrap(
+                  runSpacing: 15,
+                 spacing: 15,
+                 runAlignment: WrapAlignment.spaceEvenly,
                   children: [
                     CustomServiceCard(
                       icon: Icons.description,
                       text: 'recommendation_letter'.tr,
                       onTap: () {
-                        Get.to(()=>RecommendationMenu());
+                        Get.to(() => RecommendationMenu());
                       },
                     ),
                     CustomServiceCard(
                       icon: Icons.report,
                       text: 'complaint_letter'.tr,
                       onTap: () {
-                        Get.to(()=>CompainMenu());
+                        Get.to(() => CompainMenu());
                       },
                     ),
                     CustomServiceCard(
                       icon: Icons.lightbulb_outline,
                       text: 'budget_demand'.tr,
                       onTap: () {
-                        Get.to(()=>BudgetDemand());
+                        Get.to(() => BudgetDemand());
                       },
                     ),
-                  ],
-                ),
-                 SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomServiceCard(
+                      CustomServiceCard(
                       icon: Icons.description,
                       text: 'suggestion_letter'.tr,
                       onTap: () {
-                        Get.to(()=>SuggestionMenu());
+                        Get.to(() => SuggestionMenu());
                       },
                     ),
-                  
-                   
                   ],
                 ),
-        
-        
                 SizedBox(height: 20),
                 CustomTextWidget(
                   text: 'contact_invitation'.tr,
@@ -166,7 +150,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.contact_page,
                       text: 'contact'.tr,
                       onTap: () {
-                        Get.to(()=>ContactPage());
+                        
+                        Get.to(() => ContactPage());
                       },
                     ),
                     SizedBox(width: 10),
@@ -174,17 +159,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.mail_outline,
                       text: 'invitation'.tr,
                       onTap: () {
-                        Get.to(()=>InvitationPage());
+                        Get.to(() => InvitationPage());
                       },
                     ),
                   ],
                 ),
-               
               ],
-              
             ),
           ),
-         
         ),
       ),
     );

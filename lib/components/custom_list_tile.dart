@@ -4,7 +4,9 @@ import 'package:janta_sewa/widget/colors.dart';
 class CustomListTile extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
-  const CustomListTile({super.key,required this.title,required this.onTap});
+  final Icon? leadingWidget;
+  final Icon? trailingWidget;
+  const CustomListTile({super.key,required this.title,required this.onTap,this.leadingWidget,this.trailingWidget});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,10 +17,9 @@ class CustomListTile extends StatelessWidget {
         border: Border.all(color: AppColors.btnBgColor)
       ),
       child: ListTile(
-        
+        leading: leadingWidget,
         title: Text(
-          title,
-
+          title,    
           style: const TextStyle(
             fontWeight: FontWeight.normal,
             fontSize: 12,
@@ -26,7 +27,7 @@ class CustomListTile extends StatelessWidget {
             fontFamily: 'Poppins', // (optional: for consistency)
           ),
         ),
-        trailing: const Icon(
+        trailing:trailingWidget?? const Icon(
           Icons.arrow_forward_ios,
           size: 20,
           color: Color(0xFF001489), // Deep blue
