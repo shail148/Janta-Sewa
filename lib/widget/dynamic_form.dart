@@ -17,7 +17,6 @@ class FormFieldConfig {
     this.validator,
   });
 }
-
 class DynamicForm extends StatelessWidget {
   final List<FormFieldConfig> fields;
   final GlobalKey<FormState> formKey;

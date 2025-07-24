@@ -17,7 +17,7 @@ class CustomEventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),side: BorderSide(color: AppColors.btnBgColor,width: 1)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),side: BorderSide(color: AppColors.galleryBdColors,width: 1)),
       elevation: 4,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -41,22 +41,22 @@ class CustomEventCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomTextWidget(text: description, textAlign: TextAlign.start,),
+                CustomTextWidget(text: description, textAlign: TextAlign.justify,fontsize: 12,),
                 const SizedBox(height: 12),
                 Row(
                   children: [
                     const Icon(
                       Icons.calendar_today,
-                      color: AppColors.btnBgColor,
+                      color: AppColors.btnBgColor,size: 16,
                     ),
                     const SizedBox(width: 5),
-                    CustomTextWidget(text: date),
+                    CustomTextWidget(text: date,fontsize: 12,),
                   ],
                 ),
               ],
             ),
           ),
-          const Divider(height: 1,color: AppColors.btnBgColor,),
+          const Divider(height: 1,color: AppColors.galleryBdColors,),
           // SHARE SECTION
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
@@ -77,7 +77,7 @@ class CustomEventCard extends StatelessWidget {
                 ),
                 // Spacer(),
                 IconButton(
-                  icon: const Icon(Icons.share),
+                  icon: const Icon(Icons.share,color: AppColors.btnBgColor,),
                   onPressed: () {
                     // Share the event description and date
                     Share.share('$description\n📅 $date');

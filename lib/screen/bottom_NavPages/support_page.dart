@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/contact_page_tile.dart';
 import 'package:janta_sewa/widget/colors.dart';
+import 'package:janta_sewa/widget/custom_snackbar.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
-
-
+import 'package:url_launcher/url_launcher.dart';
 
 class SupportPage extends StatefulWidget {
   const SupportPage({super.key});
@@ -17,7 +17,6 @@ class _SupportPageState extends State<SupportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
         child: Scrollbar(
           thumbVisibility: true,
@@ -38,21 +37,61 @@ class _SupportPageState extends State<SupportPage> {
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(height: 10),
-                  
+
                     ContactPageTile(
-                      title: '9456789097',
+                      title: '7270932671',
                       icons: Icons.phone_in_talk,
-                      onTap: () {},
+                      onTap: () async {
+                        final Uri uri = Uri(scheme: 'tel', path: '7270932671');
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri);
+                        } else {
+                          CustomSnackbar.show(
+                            title: 'Error',
+                            message: 'Can not Launch Call',
+                            backgroundColor: Colors.red,
+                          );
+                        }
+                      },
                     ),
                     ContactPageTile(
-                      title: '945-678-9097',
+                      title: '7270932671',
                       icons: Icons.message,
-                      onTap: () {},
+                      onTap: () async {
+                        final Uri uri = Uri(scheme: 'sms', path: '7270932671');
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri);
+                        } else {
+                          CustomSnackbar.show(
+                            title: 'Error',
+                            message: 'Can not Launch ',
+                            backgroundColor: Colors.red,
+                          );
+                        }
+                      },
                     ),
                     ContactPageTile(
-                      title: 'demo@gmail.com',
+                      title: 'shailendra10020@gmail.com',
                       icons: Icons.email,
-                      onTap: () {},
+                      onTap: () async {
+                        final Uri uri = Uri(
+                          scheme: 'mailto',
+                          path: 'shailendra@gmail.com',
+                        );
+
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(
+                            uri,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        } else {
+                          CustomSnackbar.show(
+                            title: 'Error',
+                            message: 'Could not open email app.',
+                            backgroundColor: Colors.red,
+                          );
+                        }
+                      },
                     ),
                     ContactPageTile(
                       title: 'demo@gmail.com',
@@ -60,17 +99,37 @@ class _SupportPageState extends State<SupportPage> {
                       onTap: () {},
                     ),
                     SizedBox(height: 20),
-                    CustomTextWidget(text: 'Follow us on', fontsize: 14, fontWeight: FontWeight.w600),
+                    CustomTextWidget(
+                      text: 'Follow us on',
+                      fontsize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
                     SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Image.asset('assets/images/whatsapp.png', height: 50, width: 50),
-                        Image.asset('assets/images/instagram.png', height: 50, width: 50),
-                        Image.asset('assets/images/twitter.png', height: 50, width: 50),
-                        Image.asset('assets/images/facebook.png', height: 50, width: 50),
+                        Image.asset(
+                          'assets/images/whatsapp.png',
+                          height: 50,
+                          width: 50,
+                        ),
+                        Image.asset(
+                          'assets/images/instagram.png',
+                          height: 50,
+                          width: 50,
+                        ),
+                        Image.asset(
+                          'assets/images/twitter.png',
+                          height: 50,
+                          width: 50,
+                        ),
+                        Image.asset(
+                          'assets/images/facebook.png',
+                          height: 50,
+                          width: 50,
+                        ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),

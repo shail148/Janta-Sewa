@@ -2,8 +2,6 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/screen/auth_page/login_page.dart';
-
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/date_picker.dart';
@@ -19,17 +17,15 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // === CONTROLLER DATA HERE ===
-  final isEditing = false.obs;
 
-  final fullName = TextEditingController(text: "Shail");
+  final isEditing = false.obs;
+  final fullName = TextEditingController(text: "Shailendra");
   final mobileNumber = TextEditingController(text: "9876543210");
   final whatsappNumber = TextEditingController(text: "9876543210");
   final email = TextEditingController(text: "shail@example.com");
   final dob = TextEditingController(text: "2003-01-01");
   final bloodGroup = TextEditingController(text: "O+");
   final aadharNumber = TextEditingController(text: "1234-5678-9012");
-
   final address = TextEditingController(text: "123, Main Street");
   final stateCtrl = TextEditingController(text: "Uttar Pradesh");
   final district = TextEditingController(text: "Noida");
@@ -38,20 +34,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final cityVillage = TextEditingController(text: "Noida City");
   final wardNumber = TextEditingController(text: "15");
   final pincode = TextEditingController(text: "201301");
-
   void toggleEdit() {
     isEditing.value = !isEditing.value;
   }
-  void logout() {
-    Get.snackbar(
-      'Logout',
-      'You have been logged out',
-      backgroundColor: Colors.green,
-      colorText: Colors.white,
-    );
-    Get.offAll(() => const LoginPage());
-  }
-
   void saveProfile() {
     toggleEdit();
     Get.snackbar(
@@ -61,7 +46,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       colorText: Colors.white,
     );
   }
-
   File? selectedImage;
 
   void pickImage() async {
@@ -79,10 +63,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    //  appBar: CustomTopAppBar(
+    //  appBar: CustomTopAppBar(title: 'My Account',
     //     leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
     //     onLeftTap: () {
-    //       Get.offAll(()=>BottomNav());
+    //       Get.back();
     //     },
     //   ),
       body: SafeArea(
@@ -90,18 +74,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
           thumbVisibility: true,
           radius: const Radius.circular(10),
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Obx(
               () => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomTextWidget(
-                    text: "My account".tr,
-                    color: AppColors.textColor,
-                    fontsize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const SizedBox(height: 30),
+                  // CustomTextWidget(
+                  //   text: "My account".tr,
+                  //   color: AppColors.textColor,
+                  //   fontsize: 16,
+                  //   fontWeight: FontWeight.bold,
+                  // ),
+                  const SizedBox(height: 10),
                   Center(
                     child: Stack(
                       alignment: Alignment.center,
@@ -306,7 +290,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
 
                         const SizedBox(height: 20),
-
                         if (isEditing.value)
                           CustomButton(
                             text: 'Save'.tr,
@@ -316,17 +299,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: double.infinity,
                             onPressed: saveProfile,
                           ),
-
-                        const SizedBox(height: 20),
-
-                        CustomButton(
-                          text: 'logout'.tr,
-                          textSize: 14,
-                          backgroundColor: AppColors.btnBgColor,
-                          height: 62,
-                          width: double.infinity,
-                          onPressed: logout,
-                        ),
                       ],
                     ),
                   ),

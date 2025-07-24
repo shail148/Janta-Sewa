@@ -1,35 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/data/status_data.dart';
+
 
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
 class TrackPage extends StatefulWidget {
-  TrackPage({super.key});
-
-  final List<Map<String, dynamic>> statusData = [
-    {
-      "applicationId": "12345678910",
-      "applicantName": "Shailendra",
-      "requestType": "Complaint",
-      "submittedOn": "12/06/2025",
-      "status": "Pending",
-    },
-    {
-      "applicationId": "12345678910",
-      "applicantName": "Adnan Nayyar",
-      "requestType": "Complaint",
-      "submittedOn": "12/06/2025",
-      "status": "Approved",
-    },
-    {
-      "applicationId": "12345678910",
-      "applicantName": "Adnan Nayyar",
-      "requestType": "Complaint",
-      "submittedOn": "12/06/2025",
-      "status": "Rejected",
-    },
-  ];
+const  TrackPage({super.key});
 
   Color getStatusColor(String status) {
     switch (status) {
@@ -64,14 +42,14 @@ class _TrackPageState extends State<TrackPage> {
                 fontWeight: FontWeight.bold,
               ),
               const SizedBox(height: 16),
-              Divider(thickness: 1.2, color: AppColors.btnBgColor),
+            //  Divider(thickness: 1.2, color: AppColors.btnBgColor),
 
-              /// ✅ Using Expanded here
+              
               Expanded(
                 child: ListView.builder(
-                  itemCount: widget.statusData.length,
+                  itemCount: statusData.length,
                   itemBuilder: (context, index) {
-                    final item = widget.statusData[index];
+                    final item = statusData[index];
                     return Container(
                       margin: const EdgeInsets.symmetric(vertical: 8),
                       padding: const EdgeInsets.all(12),

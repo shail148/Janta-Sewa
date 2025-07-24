@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
+import 'package:janta_sewa/controllers/language_controller.dart';
 import 'package:janta_sewa/data/notification_data.dart';
 import 'package:janta_sewa/widget/colors.dart';
 
@@ -12,6 +13,7 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationPageState extends State<NotificationPage> {
+  final LanguageController languageController = Get.put(LanguageController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +29,9 @@ class _NotificationPageState extends State<NotificationPage> {
             const SizedBox(height: 12),
             Expanded(
               child: ListView.builder(
-                itemCount: notifications.length,
+                itemCount: languageController.isHindi? notificationsHindi.length: notifications.length,
                 itemBuilder: (context, index) {
-                  final notification = notifications[index];
+                  final notification = languageController.isHindi? notificationsHindi[index]: notifications[index];
 
                   return Card(
                     margin: const EdgeInsets.symmetric(vertical: 5),

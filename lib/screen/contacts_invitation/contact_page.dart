@@ -62,35 +62,45 @@ class _ContactPageState extends State<ContactPage> {
                     ContactPageTile(
                       title: '7270932671',
                       icons: Icons.message,
-                      onTap: () async{
-                        final Uri uri = Uri(scheme: 'sms', path:'7270932671' );
-                        if(await canLaunchUrl(uri)){
+                      onTap: () async {
+                        final Uri uri = Uri(scheme: 'sms', path: '7270932671');
+                        if (await canLaunchUrl(uri)) {
                           await launchUrl(uri);
-                        }else{
-                          CustomSnackbar.show(title: 'Error', message: 'Can not Launch ', backgroundColor: Colors.red);
-                        }
-                      },
-                    ),
-                    ContactPageTile(
-                      title: 'demo@gmail.com',
-                      icons: Icons.email,
-                      onTap: () async{
-                        final Uri uri = Uri(scheme: 'mailto',path: "shailendra10020@gmail.com");
-                        if(await canLaunchUrl(uri)){
-                          await launchUrl(uri); 
-                        }else{
-                          CustomSnackbar.show(title: 'Erroe', message: 'Not Launch', backgroundColor: Colors.red
+                        } else {
+                          CustomSnackbar.show(
+                            title: 'Error',
+                            message: 'Can not Launch ',
+                            backgroundColor: Colors.red,
                           );
                         }
-
                       },
                     ),
                     ContactPageTile(
-                      title: 'demo@gmail.com',
-                      icons: Icons.public,
-                      onTap: () {
+                      title: 'shailendra10020@gmail.com',
+                      icons: Icons.email,
+                      onTap: () async {
+                        final Uri uri = Uri(
+                          scheme: 'mailto',
+                          path: 'shailendra@gmail.com',
+                          
+                        );
 
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri, mode: LaunchMode.externalApplication,);
+                        } else {
+                          CustomSnackbar.show(
+                            title: 'Error',
+                            message: 'Could not open email app.',
+                            backgroundColor: Colors.red,
+                          );
+                        }
                       },
+                    ),
+
+                    ContactPageTile(
+                      title: 'shailendra@gmail.com',
+                      icons: Icons.public,
+                      onTap: () {},
                     ),
                     SizedBox(height: 20),
                     CustomTextWidget(

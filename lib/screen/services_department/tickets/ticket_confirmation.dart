@@ -55,6 +55,7 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
     });
   }
 
+  // ignore: unused_element
   void _addPassenger() {
     if (nameController.text.isNotEmpty &&
         genderController.text.isNotEmpty &&
@@ -199,14 +200,14 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                             hintText: 'enter_birth_type'.tr,     
                           ),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'Add Passenger',
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 48,
-                            width: double.infinity,
-                            onPressed: _addPassenger,
-                          ),
+                          // CustomButton(
+                          //   text: 'Add Passenger',
+                          //   textSize: 14,
+                          //   backgroundColor: AppColors.btnBgColor,
+                          //   height: 48,
+                          //   width: double.infinity,
+                          //   onPressed: _addPassenger,
+                          // ),
                           SizedBox(height: 10),
                           CustomButton(
                             text: 'submit_btn'.tr,

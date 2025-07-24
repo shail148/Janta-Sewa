@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/custom_dropdown.dart';
+import 'package:janta_sewa/screen/auth_page/otp_verification.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/label_text.dart';
@@ -162,7 +163,7 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                             width: double.infinity,
                             onPressed: () {
                               //add a login logic
-                              // Get.to(()=>BottomNav());
+                               Get.to(()=>OtpVerification());
                             },
                           ),
                         ],

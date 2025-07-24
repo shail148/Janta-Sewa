@@ -19,27 +19,27 @@ import 'package:janta_sewa/screen/services_department/tickets/ticket_confirmatio
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ServicesHomeScreen extends StatefulWidget {
+  const ServicesHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ServicesHomeScreen> createState() => _ServicesHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomTopAppBar(
-        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
-        onLeftTap: () {
-          Get.offAll(() => BottomNav());
-        },
-      ),
+      // appBar: CustomTopAppBar(
+      //   leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
+      //   onLeftTap: () {
+      //     Get.offAll(() => BottomNav());
+      //   },
+      // ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -50,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 //   fontWeight: FontWeight.bold,
                 // ),
                 SizedBox(height: 24),
-                
                 CustomTextWidget(
                   text: 'services_departments'.tr,
                   fontsize: 14,

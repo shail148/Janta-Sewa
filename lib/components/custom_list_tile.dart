@@ -4,8 +4,8 @@ import 'package:janta_sewa/widget/colors.dart';
 class CustomListTile extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
-  final Icon? leadingWidget;
-  final Icon? trailingWidget;
+  final Widget? leadingWidget;
+  final Widget? trailingWidget;
   const CustomListTile({super.key,required this.title,required this.onTap,this.leadingWidget,this.trailingWidget});
   @override
   Widget build(BuildContext context) {

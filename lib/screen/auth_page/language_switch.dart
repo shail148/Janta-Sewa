@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/components/languageToggleSwitch.dart';
+import 'package:janta_sewa/controllers/language_controller.dart';
 import 'package:janta_sewa/screen/auth_page/login_page.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
-class LanguageSwitch extends StatefulWidget {
-  const LanguageSwitch({super.key});
+class LanguageSwitch extends StatelessWidget {
+  final LanguageController languageController = Get.find();
 
-  @override
-  State<LanguageSwitch> createState() => _LanguageSwitchState();
-}
-
-class _LanguageSwitchState extends State<LanguageSwitch> {
-  bool isHindi = false;
+  LanguageSwitch({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,64 +44,48 @@ class _LanguageSwitchState extends State<LanguageSwitch> {
               fontWeight: FontWeight.w600,
             ),
             SizedBox(height: 30),
-
-            /// Language Switch
-            /// 
-            /// 
-            /// 
-            /// 
-            /// 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomTextWidget(
-                  text: 'English',
-                  fontsize: 14,
-                  color: AppColors.textColor,
-                  fontWeight: FontWeight.w600,
-                ),
-                SizedBox(width: 10),
-                Transform.scale(
-                  scale: 1.2, // Adjust the scale factor as needed
-                  child: Switch(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    activeTrackColor: AppColors.btnBgColor,
-                    trackOutlineColor: WidgetStateProperty.all(
-                      AppColors.btnBgColor,
-                    ),
-                    inactiveThumbColor: Colors.grey,
-                    value: isHindi,
-                    onChanged: (value) {
-                      setState(() {
-                        isHindi = value;
-                        if (isHindi) {
-                          Get.updateLocale(Locale('hi', 'IN'));
-                        } else {
-                          Get.updateLocale(Locale('en', 'US'));
-                        }
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(width: 10),
-                CustomTextWidget(
-                  text: 'हिंदी',
-                  fontsize: 14,
-                  color: AppColors.textColor,
-                  fontWeight: FontWeight.w600,
-                ),
+                // CustomTextWidget(
+                //   text: 'English',
+                //   fontsize: 14,
+                //   color: AppColors.textColor,
+                //   fontWeight: FontWeight.w600,
+                // ),
+                // SizedBox(width: 10),
+                // Obx(() => Transform.scale(
+                //       scale: 1.2,
+                //       child: Switch(
+                //         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                //         activeTrackColor: AppColors.btnBgColor,
+                //         trackOutlineColor: WidgetStateProperty.all(AppColors.btnBgColor),
+                //         inactiveThumbColor: Colors.grey,
+                //         value: languageController.isHindi,
+                //         onChanged: (value) {
+                //           languageController.toggleLanguage(value);
+                //         },
+                //       ),
+                //     )),
+                // SizedBox(width: 10),
+                // CustomTextWidget(
+                //   text: 'हिंदी',
+                //   fontsize: 14,
+                //   color: AppColors.textColor,
+                //   fontWeight: FontWeight.w600,
+                // ),
+                LanguageToggleSwitch(),
               ],
             ),
             SizedBox(height: 30),
             Image.asset('assets/images/bjp.png', height: 150, width: 150),
-          Spacer(),
+            Spacer(),
             CustomButton(
               text: 'next'.tr,
               textSize: 16,
               width: double.infinity,
               height: 50,
               onPressed: () {
-                
                 Get.to(() => LoginPage());
               },
             ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
+import 'package:janta_sewa/controllers/language_controller.dart';
 import 'package:janta_sewa/data/speech_data.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
@@ -15,10 +16,12 @@ class SpeechListView extends StatefulWidget {
 
 class _SpeechListViewState extends State<SpeechListView> {
   // Local JSON list
-
+  final LanguageController languageController = Get.put(LanguageController());
   @override
   Widget build(BuildContext context) {
-    final List speeches = json.decode(speechList);
+    
+    final List speeches =languageController.isHindi?json.decode(speechListHindi):json.decode(speechList); 
+
 
     return SizedBox(
       height: 280,
@@ -34,7 +37,7 @@ class _SpeechListViewState extends State<SpeechListView> {
             margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
               color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300),
+              border: Border.all(color:AppColors.galleryBdColors),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -60,7 +63,7 @@ class _SpeechListViewState extends State<SpeechListView> {
                         softWrap: true,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 14, fontFamily: 'Poppins'),
+                        style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
                         // optional style
                       ),
                 ),
@@ -111,9 +114,12 @@ class DetailsViewSpeech extends StatefulWidget {
 }
 
 class _DetailsViewSpeechState extends State<DetailsViewSpeech> {
-  final List speeches = json.decode(speechList);
+  final LanguageController languageController = Get.put(LanguageController());
+    
   @override
   Widget build(BuildContext context) {
+    final List speeches =languageController.isHindi?json.decode(speechListHindi):json.decode(speechList); 
+
     return Scaffold(
       appBar: CustomTopAppBar(
         leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
@@ -134,10 +140,10 @@ class _DetailsViewSpeechState extends State<DetailsViewSpeech> {
                   return Container(
                     width: 250,
             
-                    margin: EdgeInsets.only(bottom: 10),
+                    margin: EdgeInsets.only(bottom: 14),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(color: Colors.grey.shade300),
+                      border: Border.all(color:AppColors.galleryBdColors),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
@@ -163,7 +169,7 @@ class _DetailsViewSpeechState extends State<DetailsViewSpeech> {
                             softWrap: true,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 14, fontFamily: 'Poppins'),
+                            style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
                             // optional style
                           ),
                         ),

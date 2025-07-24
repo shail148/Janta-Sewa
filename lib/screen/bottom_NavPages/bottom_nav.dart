@@ -6,7 +6,7 @@ import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/custom_drawer.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/main_news_dashboard.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/profile_screen.dart';
-import 'package:janta_sewa/screen/bottom_NavPages/support_page.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/sevices_home_screen.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/track_page.dart';
 import 'package:janta_sewa/screen/notification/notification_page.dart';
 import 'package:janta_sewa/widget/colors.dart';
@@ -21,7 +21,7 @@ class _BottomNavState extends State<BottomNav> {
   int selectedIndex = 0;
   final List<Widget> pages = [
     MainNewsDashboard(),
-    SupportPage(),
+    ServicesHomeScreen(),
     TrackPage(),
     ProfileScreen(),
   ];
@@ -65,12 +65,12 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
           type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
+              icon: Icon(Icons.home_outlined,size: 30,),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.support_agent_outlined,size: 30,),
-              label: 'Support',
+              icon: Icon(Icons.dashboard_customize_outlined,size: 30,),
+              label: 'Dashboard',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.timelapse_outlined,size: 30,),

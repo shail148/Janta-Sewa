@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 class AuthController extends GetxController {
   final String baseUrl =
-      'https://appbackend-1-wpge.onrender.com'; // Change to your API base URL
+      'https://appbackend-1-wpge.onrender.com'; 
 
   // Signup method
   Future<Map<String, dynamic>> register({

@@ -4,7 +4,6 @@ import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_list_tile.dart';
 import 'package:janta_sewa/screen/registrationPages/general_register.dart';
 import 'package:janta_sewa/screen/registrationPages/samajik_sansatha_register.dart';
-import 'package:janta_sewa/screen/registrationPages/sangthan_reg.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
@@ -24,9 +23,6 @@ class MainRegisterPage extends StatelessWidget {
         child: Scrollbar(
           thumbVisibility: true,
 
-
-
-          
           trackVisibility: true,
           // thickness: 5,
           radius: const Radius.circular(10),
@@ -58,26 +54,21 @@ class MainRegisterPage extends StatelessWidget {
                         Get.to(() => GeneralRegister());
                       },
                     ),
+                   
+                    // CustomListTile(
+                    //   title: 'sangthan'.tr,
+                    //   onTap: () {
+                    //     Get.to(() => SangthanRegistration());
+                    //   },
+                    // ),
+                    // CustomListTile(
+                    //   title: 'mediator'.tr,
+                    //   onTap: () {
+                    //     Get.to(() => GeneralRegister());
+                    //   },
+                    // ),
                     CustomListTile(
-                      title: 'janpratinidhi'.tr,
-                      onTap: () {
-                        Get.to(() => GeneralRegister());
-                      },
-                    ),
-                    CustomListTile(
-                      title: 'sangthan'.tr,
-                      onTap: () {
-                        Get.to(() => SangthanRegistration());
-                      },
-                    ),
-                    CustomListTile(
-                      title: 'mediator'.tr,
-                      onTap: () {
-                        Get.to(() => GeneralRegister());
-                      },
-                    ),
-                    CustomListTile(
-                      title: 'samajik_sanstha'.tr,
+                      title: 'Organization'.tr,
                       onTap: () {
                         Get.to(() => SamajikSansathaRegister());
                       },
