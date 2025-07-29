@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/screen/auth_page/login_page.dart';
@@ -9,6 +10,7 @@ import 'package:janta_sewa/screen/events/event_page.dart';
 import 'package:janta_sewa/screen/notification/notification_page.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -89,6 +91,14 @@ class CustomDrawer extends StatelessWidget {
                     onTap: () => Get.to(() => const SettingsPage()),
                   ),
                   _drawerItem(
+                    Icons.share_outlined,
+                    'share_this_app'.tr,
+                    onTap: (){
+                     
+       
+                    },
+                  ),
+                  _drawerItem(
                     Icons.logout,
                     'logout'.tr,
                     onTap: () => Get.offAll(() => const LoginPage()),
@@ -143,4 +153,12 @@ class CustomDrawer extends StatelessWidget {
       onTap: onTap,
     );
   }
+
+  
+
+
+
 }
+
+
+

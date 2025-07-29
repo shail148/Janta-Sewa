@@ -9,7 +9,6 @@ class AppLocalization extends Translations {
       'email': 'Email',
       'submit': 'Submit',
       'next': 'Next',
-      // Added for RegisterPage, LoginPage, LanguageSwitch
       'janta_sewa': 'Janta Sewa',
       'registration': 'Registration',
       'provide_info': 'Provide Your Information',
@@ -343,7 +342,6 @@ class AppLocalization extends Translations {
       'email': 'ईमेल',
       'submit': 'जमा करें',
       'next': 'आगे बढ़े',
-      // Added for RegisterPage, LoginPage, LanguageSwitch
       'janta_sewa': 'जनता सेवा',
       'registration': 'पंजीकरण',
       'provide_info': 'अपनी जानकारी प्रदान करें',

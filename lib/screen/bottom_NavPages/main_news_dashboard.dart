@@ -24,7 +24,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
   ];
 
   int currentIndex = 0;
-  // controller type changed for v5
+  // controller type changed for v
   final CarouselSliderController sliderController = CarouselSliderController();
 
   @override
@@ -42,7 +42,6 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
               children: [
                 ///Carousel
                 CarouselSlider(
-
                   carouselController: sliderController,
                   items: imageList.map((item) {
                     return ClipRRect(

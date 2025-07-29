@@ -22,10 +22,10 @@ class CustomSnackbar {
       icon: icon != null ? Icon(icon, color: textColor) : null,
       duration: duration,
       isDismissible: true,
-      forwardAnimationCurve: Curves.easeOutCubic, // Smooth in
-      reverseAnimationCurve: Curves.easeInCubic, // Smooth out
+      forwardAnimationCurve: Curves.easeOutCubic,
+      reverseAnimationCurve: Curves.easeInCubic, 
       snackStyle: SnackStyle.FLOATING,
-      animationDuration: const Duration(milliseconds: 500), // Slower animation
+      animationDuration: const Duration(milliseconds: 500), 
     );
   }
 

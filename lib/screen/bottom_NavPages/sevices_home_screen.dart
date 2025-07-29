@@ -65,7 +65,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                       icon: Icons.train,
                       text: 'rail_ticket_confirmation'.tr,
                       onTap: () {
-                        Get.to(() => TicketConfirmation());
+                         Get.to(() => TicketConfirmation());
                       },
                     ),
                     CustomServiceCard(

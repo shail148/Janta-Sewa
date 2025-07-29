@@ -49,8 +49,8 @@ dependencies:
   url_launcher: ^6.3.2
   smooth_page_indicator: ^1.1.0
   webview_flutter: ^4.13.0
-
-
+  image_picker: ^1.1.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

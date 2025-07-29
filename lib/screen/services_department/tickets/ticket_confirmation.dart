@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:janta_sewa/components/custom_app_bar.dart';
-import 'package:janta_sewa/screen/services_department/tickets/ticket_list.dart';
-import 'package:janta_sewa/screen/services_department/tickets/tickethome_page.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/date_picker.dart';
@@ -31,54 +30,18 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
   final TextEditingController trainNameController = TextEditingController();
   final TextEditingController birthTypeController = TextEditingController();
 
-  // List to store passenger data
   List<Map<String, String>> passengers = [];
 
-  // Helper to clear form
-  void clearForm() {
+ 
+  void clearPassengerFields() {
     nameController.clear();
     ageController.clear();
     genderController.clear();
     mobileController.clear();
-    journeyDateController.clear();
-    fromController.clear();
-    toController.clear();
-    pnrController.clear();
-    trainNumberController.clear();
-    trainNameController.clear();
     birthTypeController.clear();
   }
 
-  void _deletePassenger(int index) {
-    setState(() {
-      passengers.removeAt(index);
-    });
-  }
-
-  // ignore: unused_element
-  void _addPassenger() {
-    if (nameController.text.isNotEmpty &&
-        genderController.text.isNotEmpty &&
-        pnrController.text.isNotEmpty) {
-      setState(() {
-        passengers.add({
-          'name': nameController.text,
-          'age': ageController.text,
-          'gender': genderController.text,
-          'mobile': mobileController.text,
-          'journeyDate': journeyDateController.text,
-          'from': fromController.text,
-          'to': toController.text,
-          'pnr': pnrController.text,
-          'trainNumber': trainNumberController.text,
-          'trainName': trainNameController.text,
-          'birthType': birthTypeController.text,
-        });
-        clearForm();
-      });
-    }
-  }
-
+  
   @override
   void dispose() {
     nameController.dispose();
@@ -108,124 +71,135 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
         child: Scrollbar(
           thumbVisibility: true,
           trackVisibility: true,
-          // thickness: 5,
           radius: const Radius.circular(10),
           child: SingleChildScrollView(
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: "ticket_confirmation".tr,
-                      color: AppColors.textColor,
-                      fontsize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    SizedBox(height: 24),
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomTextWidget(
+                    text: "ticket_confirmation".tr,
+                    color: AppColors.textColor,
+                    fontsize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  SizedBox(height: 24),
 
-                    // Passenger List
-                    PassengerList(
-                      passengers: passengers,
-                      onDelete: _deletePassenger,
+                  // Show passenger list
+                  // ListView.builder(
+                  //   shrinkWrap: true,
+                  //   physics: NeverScrollableScrollPhysics(),
+                  //   itemCount: passengers.length,
+                  //   itemBuilder: (context, index) {
+                  //     final p = passengers[index];
+                  //     return Card(
+                  //       child: ListTile(
+                  //         title: Text(p['name'] ?? ''),
+                  //         subtitle: Text("Age: ${p['age']}, Gender: ${p['gender']}"),
+                  //         trailing: IconButton(
+                  //           icon: Icon(Icons.delete),
+                  //           onPressed: () => _deletePassenger(index),
+                  //         ),
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
+
+                  // SizedBox(height: 20),
+                  Form(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomLabelText(text: 'passenger_name'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'enter_passenger_name'.tr,
+                          controller: nameController,
+                        ),
+                        CustomLabelText(text: 'age'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'enter_age'.tr,
+                          controller: ageController,
+                          keyboardType: TextInputType.number,
+                        ),
+                        CustomLabelText(text: 'gender'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'enter_gender'.tr,
+                          controller: genderController,
+                        ),
+                        CustomLabelText(text: 'mobile_number'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'enter_mobile_number'.tr,
+                          controller: mobileController,
+                        ),
+                        CustomLabelText(text: 'birth_type'.tr),
+                        CustomTextFormField(
+                          hintText: 'enter_birth_type'.tr,
+                          controller: birthTypeController,
+                        ),
+
+                        SizedBox(height: 16),
+                        // CustomButton(
+                        //   text: 'Add Passenger',
+                        //   textSize: 14,
+                        //   backgroundColor: AppColors.btnBgColor,
+                        //   height: 48,
+                        //   width: double.infinity,
+                        //   onPressed: _addPassenger,
+                        // ),
+                        // SizedBox(height: 30),
+
+                        // Shared ticket info
+                        CustomLabelText(text: 'journey_date'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'enter_journey_date'.tr,
+                          controller: journeyDateController,
+                          suffixIcon: Icons.calendar_month,
+                          suffixIconColor: AppColors.btnBgColor,
+                          onSuffixTap: () {
+                            showCustomCalendarDialog(
+                                context: context, controller: journeyDateController);
+                          },
+                        ),
+                        CustomLabelText(text: 'from'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'from'.tr,
+                          controller: fromController,
+                        ),
+                        CustomLabelText(text: 'to'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'to'.tr,
+                          controller: toController,
+                        ),
+                        CustomLabelText(text: 'pnr_number'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'enter_pnr_number'.tr,
+                          controller: pnrController,
+                        ),
+                        CustomLabelText(text: 'train_number'.tr, isRequired: true),
+                        CustomTextFormField(
+                          hintText: 'enter_train_number'.tr,
+                          controller: trainNumberController,
+                        ),
+                        CustomLabelText(text: 'train_name'.tr),
+                        CustomTextFormField(
+                          hintText: 'enter_train_name'.tr,
+                          controller: trainNameController,
+                        ),
+
+                        SizedBox(height: 20),
+                        CustomButton(
+                          text: 'submit_btn'.tr,
+                          textSize: 14,
+                          backgroundColor: AppColors.btnBgColor,
+                          height: 62,
+                          width: double.infinity,
+                          onPressed: (){},
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 16),
-                    // Add Passenger Form
-                    Form(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomLabelText(text: 'passenger_name'.tr,isRequired: true, ),
-                          CustomTextFormField(
-                            hintText: 'enter_passenger_name'.tr,
-                            controller: nameController,
-                          ),
-                          CustomLabelText(text: 'age'.tr,isRequired: true,),
-                          CustomTextFormField(
-                            hintText: 'enter_age'.tr,
-                            controller: ageController,
-                            keyboardType: TextInputType.number,
-                            // Optionally restrict to digits
-                            // inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                          ),
-                          CustomLabelText(text: 'gender'.tr,isRequired: true,),
-                          CustomTextFormField(
-                            hintText: 'enter_gender'.tr,
-                            controller: genderController,
-                          ),
-                          CustomLabelText(text: 'mobile_number'.tr,isRequired: true,),
-                          CustomTextFormField(
-                            hintText: 'enter_mobile_number'.tr,
-                            controller: mobileController,
-                          ),
-                          CustomLabelText(text: 'journey_date'.tr,isRequired: true,),
-                          CustomTextFormField(
-                            
-                            hintText: 'enter_journey_date'.tr,
-                            suffixIcon: Icons.calendar_month,
-                            suffixIconColor: AppColors.btnBgColor,
-                            onSuffixTap: () {
-                              showCustomCalendarDialog(context: context, controller: journeyDateController);
-                            },
-                            controller: journeyDateController,
-                          ),
-                          CustomLabelText(text: 'from'.tr,isRequired: true,),
-                          CustomTextFormField(
-                            hintText: 'from'.tr,
-                            controller: fromController,
-                          ),
-                          CustomLabelText(text: 'to'.tr,isRequired: true,),
-                          CustomTextFormField(
-                            hintText: 'to'.tr,
-                            controller: toController,
-                          ),
-                          CustomLabelText(text: 'pnr_number'.tr,isRequired: true,),
-                          CustomTextFormField(
-                            hintText: 'enter_pnr_number'.tr,
-                            controller: pnrController,
-                          ),
-                          CustomLabelText(text: 'train_number'.tr,isRequired: true,),
-                          CustomTextFormField(
-                            hintText: 'enter_train_number'.tr,
-                            controller: trainNumberController,
-                          ),
-                          CustomLabelText(text: 'train_name'.tr),
-                          CustomTextFormField(
-                            hintText: 'enter_train_name'.tr,
-                            controller: trainNameController,
-                          ),
-                          CustomLabelText(text: 'birth_type'.tr),
-                          CustomTextFormField(
-                            hintText: 'enter_birth_type'.tr,     
-                          ),
-                          SizedBox(height: 10),
-                          // CustomButton(
-                          //   text: 'Add Passenger',
-                          //   textSize: 14,
-                          //   backgroundColor: AppColors.btnBgColor,
-                          //   height: 48,
-                          //   width: double.infinity,
-                          //   onPressed: _addPassenger,
-                          // ),
-                          SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                              if (passengers.isNotEmpty) {
-                                Get.to(() => TickethomePage(), arguments: passengers);
-                              }
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

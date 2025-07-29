@@ -164,7 +164,25 @@ class _LoginPageState extends State<LoginPage> {
                         backgroundColor: AppColors.btnBgColor,
                         height: 62,
                         width: double.infinity,
-                        onPressed: _login,
+                        // onPressed: _login,
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            Get.focusScope?.unfocus();
+
+                            final email = emailPhoneController.text.trim();
+                            final password = passwordController.text.trim();
+
+                            if (email == 'admin@gmail.com' &&
+                                password == 'admin') {
+                                  CustomSnackbar.showSuccess(title: 'Login', message: 'Successful');
+                              Get.offAll(() => BottomNav());
+
+                            } else {
+                              CustomSnackbar.showError(title: "Login Failed", message: "Invalid email or password",);
+                            
+                            }
+                          }
+                        },
                       ),
                     ],
                   ),
@@ -181,6 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: () {
                         //add ontap Btn
+
                         Get.to(() => MainRegisterPage());
                       },
                       child: CustomTextWidget(

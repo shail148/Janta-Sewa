@@ -38,6 +38,7 @@ void main()async {
     DeviceOrientation.portraitDown,
   ]);
   Get.put(LanguageController());
+   debugProfileBuildsEnabled = true;
   runApp(const MyApp() 
   );
 }
