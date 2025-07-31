@@ -34,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  // ignore: unused_element
   Future<void> _login() async {
     if (_formKey.currentState?.validate() ?? false) {
       Get.focusScope?.unfocus();

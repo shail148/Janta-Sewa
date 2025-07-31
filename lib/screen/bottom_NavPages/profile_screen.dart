@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -41,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
       builder: (context) => Wrap(
         children: [
           ListTile(
-            leading: const Icon(Icons.photo),
+            leading: const Icon(Icons.photo,),
             title: const Text('Pick from Gallery'),
             onTap: () {
               imagePickerController.pickImage(ImageSource.gallery);

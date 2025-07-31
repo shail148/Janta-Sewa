@@ -124,8 +124,8 @@ class _ContactPageState extends State<ContactPage> {
                         ),
                         Image.asset(
                           'assets/images/twitter.png',
-                          height: 50,
-                          width: 50,
+                          height: 80,
+                          width: 80,
                         ),
                         Image.asset(
                           'assets/images/facebook.png',

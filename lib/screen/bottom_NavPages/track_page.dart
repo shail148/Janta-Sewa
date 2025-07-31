@@ -43,8 +43,6 @@ class _TrackPageState extends State<TrackPage> {
               ),
               const SizedBox(height: 16),
             //  Divider(thickness: 1.2, color: AppColors.btnBgColor),
-
-              
               Expanded(
                 child: ListView.builder(
                   itemCount: statusData.length,
