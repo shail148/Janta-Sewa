@@ -6,6 +6,7 @@ import 'package:janta_sewa/components/file_upload.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/label_text.dart';
+import 'package:janta_sewa/widget/message_text_form_widget.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
@@ -99,6 +100,12 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                           CustomTextFormField(
                             hintText: 'parliament_mobile_number'.tr,
                           ),
+
+                           CustomLabelText(text: 'message'.tr),
+                           CustomMessageTextFormField(
+                          hintText: 'enter_message'.tr,
+                          ),
+
                           CustomFileUpload(),
                           SizedBox(height: 10),
                           CustomButton(

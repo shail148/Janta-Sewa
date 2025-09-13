@@ -70,28 +70,33 @@ class AppLocalization extends Translations {
       'enter_email_id': 'Enter Email ID',
       'enter_blood_group': 'Enter Blood Group',
       'enter_aadhar_number': 'Enter Aadhar Number',
-      'services_departments': 'Services & Departments',
-      'rail_ticket_confirmation': 'Rail Ticket Confirmation',
-      'parliament_visit': 'Parliament \n Visit',
+      'services': 'Services',
+      'departments': 'Departments',
+      'train_ticket_confirmation': 'Rail Ticket \nConfirmation',
+      'parliament_visit':
+          'Parliament \nVisit', //changed so that on servicesHomeScreen it take no extra space
       'parliament_visit_menu': 'Parliament Visit',
-      'construction_work': 'Construction \n Work',
-      'hospital_admission': 'Hospital \n Admission',
+      'construction_work':
+          'Construction \nWork', //changed for servicesHomeScreen
+      'hospital_admission':
+          'Hospital \nAdmission', //changed for servicesHomeScreen
       'letter_request': 'Letter & Request',
-      'recommendation_letter': 'Recommendation \n Letter',
+      'letters': 'Letters',
+      'recommendation_letter': 'Recommendation \nLetter', //changed
       'recommendation_letter-m': 'Recommendation \n Letter',
-      'complaint_letter': 'Complaint Letter',
+      'complaint_letter': 'Complaint \nLetter', //changed
       'complain_gov_emp': 'Complaint against Government Employee',
       'complain_of_politician': 'Complaint of Politician',
       'complain_of_national': 'Complaint of National Issue',
       'complain_of_mp_office': 'Complaint of MP Office',
-      'suggestion_letter': 'Suggestion \n Letter',
-      'budget_demand': 'Budget \n Demand',
+      'suggestion_letter': 'Suggestion \nLetter', //changed
+      'budget_demand': 'Budget \nDemand', //changed
       'contact_invitation': 'Contact & Invitation',
       'contact': 'Contact',
       'invitation': 'Invitation',
       'send_otp': 'Send OTP',
       'forgot_message':
-      'Enter your Registered Mobile Number or Email Address. We’ll Send you a verification Code to Reset Your Password',
+          'Enter your Registered Mobile Number or Email Address. We’ll Send you a verification Code to Reset Your Password',
       'political': 'Political',
       'religious': 'Religious',
       'social': 'Social',
@@ -220,7 +225,7 @@ class AppLocalization extends Translations {
       'suggestion_for_people': 'Suggestion for People',
       'suggestion_for_government_schemes': 'Suggestion for Government Schemes',
       'suggestion_for_government_department':
-      'Suggestion for Government Department',
+          'Suggestion for Government Department',
       'suggestion_for_mp_office': 'Suggestion for MP Office',
       'suggestion_type': 'Suggestion Type',
       'suggestion_for': 'Suggestion For',
@@ -248,7 +253,8 @@ class AppLocalization extends Translations {
       'compain_of_national/state_work': 'Complaint of National/State Work',
       'arrangement': 'Arrangement',
       'Staff': 'Staff',
-      'journey_quotes': 'Leadership is not about power, it’s about purpose — serving every citizen with commitment and care."',
+      'journey_quotes':
+          'Leadership is not about power, it’s about purpose — serving every citizen with commitment and care."',
       'beneficiary_oriendted': 'Beneficiary Oriented',
       'compain_of_mp_office': 'Complaint of MP Office',
       'local_program': 'Local Program',
@@ -264,6 +270,12 @@ class AppLocalization extends Translations {
       'date': 'Date',
       'time': 'Time',
       'status': 'Status',
+      'status :': 'Status :',
+      'view': 'View',
+      'approved': 'Approved',
+      'pending': 'Pending',
+      'rejected': 'Rejected',
+      'in_progress': 'In Progress',
       'contact_page': 'Contact Page',
       'location': 'Location',
       'remarks': 'Remarks',
@@ -291,7 +303,7 @@ class AppLocalization extends Translations {
       'career_achievement': 'Career Achievement',
       'award_name': 'Award Name',
       'brief_details': 'Brief Details',
-      'home' : 'Home',
+      'home': 'Home',
       'quarter_allotment': 'Quarter Allotment',
       'types_of_allotment': 'Types of Allotment',
       'opted_quarter_department': 'Opted Quarter Department',
@@ -311,10 +323,13 @@ class AppLocalization extends Translations {
       'bsp': 'BSP',
       "speech": "Speech",
       "view_more": "View More",
+      'name_of_applicant :' : 'Name of Applicant :',
+      'submitted_on :' : 'Submitted on :',
+      'type_of_request :' : 'Type of Request :',
       "photo_gallery": "Photo Gallery",
       "join_bjp": "Join BJP",
       "join_volunteer": "Join as Volunteer",
-       'upcoming_event': 'Upcoming Event',
+      'upcoming_event': 'Upcoming Event',
       'our_journey': 'Our Journey',
       'notifications': 'Notifications',
       'contact_us': 'Contact Us',
@@ -335,6 +350,9 @@ class AppLocalization extends Translations {
       'cancel': 'Cancel',
       'save': 'Save',
       'verify_otp': 'Verify OTP',
+      'message': 'Message',
+      'enter_message': 'Enter Message',
+      'requests': 'Requests',
     },
     'hi_IN': {
       'hello': 'नमस्ते',
@@ -400,8 +418,9 @@ class AppLocalization extends Translations {
       'enter_email_id': 'ईमेल आईडी दर्ज करें',
       'enter_blood_group': 'ब्लड ग्रुप दर्ज करें',
       'enter_aadhar_number': 'आधार नंबर दर्ज करें',
-      'services_departments': 'सेवाएँ और विभाग',
-      'rail_ticket_confirmation': 'रेल टिकट पुष्टि',
+      'services': 'सेवाएँ', //changed
+      'departments': 'विभाग', //changed
+      'train_ticket_confirmation': 'रेल टिकट पुष्टि',
       'parliament_visit': 'संसद यात्रा',
       'parliament_visit_menu': 'संसद यात्रा',
       'beneficiary_oriendted': 'लाभार्थी उन्मुख',
@@ -409,6 +428,7 @@ class AppLocalization extends Translations {
       'construction_work': 'निर्माण कार्य',
       'hospital_admission': 'अस्पताल में भर्ती',
       'letter_request': 'पत्र और अनुरोध',
+      'letters': 'पत्र', //changed
       'recommendation_letter-m': 'सिफारिश पत्र',
       'complaint_letter': 'शिकायत पत्र',
       'complain_gov_emp': 'सरकारी कर्मचारी के खिलाफ शिकायत',
@@ -430,6 +450,12 @@ class AppLocalization extends Translations {
       'youth': 'युवा',
       'women': 'महिला',
       'status': 'स्थिति',
+      'status :': 'स्थिति :',
+      'approved': 'स्वीकृत',
+      'pending': 'लंबित',
+      'rejected': 'अस्वीकृत',
+      'in_progress': 'प्रगति में',
+      'view' : 'देखें',
       'sangthan_registration': 'संगठन पंजीकरण',
       'oragnization_name': 'संगठन का नाम',
       'enter_oragnization_name': 'संगठन का नाम दर्ज करें',
@@ -465,6 +491,9 @@ class AppLocalization extends Translations {
       'national': 'राष्ट्रीय',
       'welcome': 'स्वागत है',
       'view_details': 'विवरण देखें',
+      'name_of_applicant :' : 'आवेदक का नाम :',
+      'submitted_on :' : 'सबमिट किया गया :',
+      'type_of_request :' : 'अनुरोध का प्रकार :',
       'posting': 'पदस्थापन',
       'types_of_posting': 'पदस्थापन के प्रकार',
       'revised': 'संशोधित',
@@ -505,7 +534,8 @@ class AppLocalization extends Translations {
       'beneficiary_oriented': 'लाभार्थी उन्मुख',
       'department_name': 'विभाग का नाम',
       'animal': 'पशु',
-      'journey_quotes': 'नेतृत्व का मतलब शक्ति नहीं है, बल्कि इसका मतलब है उद्देश्य - प्रतिबद्धता और देखभाल के साथ प्रत्येक नागरिक की सेवा करना।"',
+      'journey_quotes':
+          'नेतृत्व का मतलब शक्ति नहीं है, बल्कि इसका मतलब है उद्देश्य - प्रतिबद्धता और देखभाल के साथ प्रत्येक नागरिक की सेवा करना।"',
       'husbandry': 'पशुपालन',
       'panchayat': 'पंचायत',
       'agriculture': 'कृषि',
@@ -643,7 +673,7 @@ class AppLocalization extends Translations {
       'back_to_login': 'लॉगिन पर वापस जाएं',
       // ignore: equal_keys_in_map
       'logout': 'लॉग आउट',
-       'language': 'भाषा',
+      'language': 'भाषा',
       'share_this_app': 'ऐप शेयर करें',
       'rate_this_app': 'ऐप को रेट करें',
       'privacy_policy': 'गोपनीयता नीति',
@@ -664,7 +694,12 @@ class AppLocalization extends Translations {
       "view_more": "और देखें",
       "photo_gallery": "फोटो गैलरी",
       "join_bjp": "भाजपा में शामिल हों",
-      "join_volunteer": "स्वयंसेवक के रूप में जुड़ें"
+      "join_volunteer": "स्वयंसेवक के रूप में जुड़ें",
+      "message": "संदेश",
+      "enter_message": "संदेश दर्ज करें",
+      'requests': 'अनुरोध',
+      'recommendation_letter': 'सिफ़ारिश\nपत्र',
+      
     },
   };
 }

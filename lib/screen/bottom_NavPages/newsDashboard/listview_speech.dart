@@ -52,7 +52,8 @@ class _SpeechListViewState extends State<SpeechListView> {
                     item['imageUrl'],
                     height: 140,
                     width: double.infinity,
-                    fit: BoxFit.cover,
+                    //fit: BoxFit.cover,
+                    fit: BoxFit.fill, //changed
                   ),
                 ),
                 // Title
@@ -158,7 +159,8 @@ class _DetailsViewSpeechState extends State<DetailsViewSpeech> {
                             item['imageUrl'],
                             height: 200,
                             width: double.infinity,
-                            fit: BoxFit.cover,
+                            //fit: BoxFit.cover,
+                            fit: BoxFit.fill //changed to fill
                           ),
                         ),
                         // Title

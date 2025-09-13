@@ -21,7 +21,7 @@ class CustomLabelText extends StatelessWidget {
         style: TextStyle(
           fontSize: fontsize,
           color: color ?? Colors.black54,
-          fontFamily: 'Poppins',
+          fontFamily: 'Inter',
           fontWeight: FontWeight.w600,
         ),
         children: isRequired

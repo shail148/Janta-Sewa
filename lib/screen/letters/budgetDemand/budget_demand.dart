@@ -7,6 +7,7 @@ import 'package:janta_sewa/components/file_upload.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/label_text.dart';
+import 'package:janta_sewa/widget/message_text_form_widget.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
@@ -95,7 +96,10 @@ class _BudgetDemandState extends State<BudgetDemand> {
                           }),
                           CustomLabelText(text: 'department_name'.tr),
                           CustomTextFormField(hintText: 'department_name'.tr),
-                         
+                          CustomLabelText(text: 'message'.tr),
+                          CustomMessageTextFormField(
+                          hintText: 'enter_message'.tr,
+                          ),
                           CustomLabelText(text: 'upload_signed_documents'.tr),
                           SizedBox(height: 10),
                           CustomFileUpload(),

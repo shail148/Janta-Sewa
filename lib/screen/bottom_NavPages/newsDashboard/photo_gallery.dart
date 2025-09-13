@@ -50,7 +50,8 @@ class _PhotoGalleryViewState extends State<PhotoGalleryView> {
                     item['imageUrl'],
                     height: 140,
                     width: double.infinity,
-                    fit: BoxFit.cover,
+                    //fit: BoxFit.cover,
+                     fit: BoxFit.fill, //changed to fill
                   ),
                 ),
                 // Title

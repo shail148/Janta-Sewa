@@ -7,6 +7,7 @@ import 'package:janta_sewa/controllers/language_controller.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/localization/localization.dart';
 import 'package:janta_sewa/screen/auth_page/otp_verification.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/main_news_dashboard.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/our_journey_page.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/profile_screen.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/settings_page.dart';
@@ -66,7 +67,8 @@ class MyApp extends StatelessWidget {
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       //the First page is language switch LangaugeSwitch(); It is the Initial Route for this Application.
-      home: LanguageSwitch(),
+     //home: LanguageSwitch(),
+     home: BottomNav(),
     );
   }
 }

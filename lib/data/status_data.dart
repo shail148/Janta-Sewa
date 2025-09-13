@@ -20,4 +20,13 @@ final List<Map<String, dynamic>> statusData = [
       "submittedOn": "12/06/2025",
       "status": "Rejected",
     },
+
+    {
+      "applicationId": "12345678910",
+      "applicantName": "Shailendra",
+      "requestType": "Complaint",
+      "submittedOn": "12/06/2025",
+      "status": "In Process",
+    },
+
   ];

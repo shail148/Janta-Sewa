@@ -49,7 +49,7 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
             },
       ),
       body: pages[selectedIndex],
-      bottomNavigationBar: Container(
+      /* bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Color(0xFFF4F6FE),
           border: Border(top: BorderSide(color: Colors.grey.shade200)),
@@ -80,6 +80,64 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
               icon: Icon(Icons.person_outline,size: 30,),
               label: 'Profile',
             ),
+          ],
+        ), */
+        // inside _BottomNavState.build()
+bottomNavigationBar: Container(
+  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+  decoration:  BoxDecoration(
+    color: Color(0xFFF4F6FE),
+     borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(0),
+      topRight: Radius.circular(0),
+    ), 
+   // borderRadius: BorderRadius.circular(12)
+  ),
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: [
+      buildNavItem(Icons.home_outlined, "Home", 0),
+      buildNavItem(Icons.dashboard_customize_outlined, "Dashboard", 1),
+      buildNavItem(Icons.timelapse_outlined, "Activity", 2),
+      buildNavItem(Icons.person_outline, "Profile", 3),
+    ],
+  ),
+),
+    );
+  }
+
+  Widget buildNavItem(IconData icon, String label, int index) {
+    bool isSelected = selectedIndex == index;
+    return GestureDetector(
+      onTap: () => onItemTapped(index),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? AppColors.btnBgColor.withValues(alpha: 0.1)
+              
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 30,
+              color: isSelected ? AppColors.primary : AppColors.primary,
+            ),
+            if (isSelected) ...[
+              const SizedBox(width: 6),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.primary,
+                ),
+              ),
+            ],
           ],
         ),
       ),

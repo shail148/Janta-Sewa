@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/join_bjp_volunteer.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/listview_speech.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/photo_gallery.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/services_home_screen2.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/sevices_home_screen.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
+import 'package:janta_sewa/widget/services_home_list_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -30,8 +33,8 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final buttonWidth = screenWidth * 0.3; 
-    final buttonHeight = screenWidth * 0.21; 
+    final buttonWidth = screenWidth * 0.3;
+    final buttonHeight = screenWidth * 0.21;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -40,16 +43,16 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ///Carousel
+                //const SizedBox(height: 0),
                 CarouselSlider(
                   carouselController: sliderController,
                   items: imageList.map((item) {
                     return ClipRRect(
-
                       borderRadius: BorderRadius.circular(5),
                       child: Image.asset(
                         item['image'],
-                        fit: BoxFit.cover,
+                        // fit: BoxFit.cover, //changed to fill from cover
+                        fit: BoxFit.fill,
                         width: double.infinity,
                         errorBuilder: (_, __, ___) => Container(
                           color: Colors.grey[300],
@@ -62,8 +65,9 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                   options: CarouselOptions(
                     autoPlay: true,
                     viewportFraction: 1,
-                    aspectRatio: 2,
-                    
+                    //aspectRatio: 2,
+                    aspectRatio: 1.6,
+
                     scrollPhysics: const BouncingScrollPhysics(),
                     onPageChanged: (index, _) =>
                         setState(() => currentIndex = index),
@@ -73,10 +77,10 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                 const SizedBox(height: 8),
 
                 //DOT
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: [
-                     AnimatedSmoothIndicator(
+                  children: [
+                    AnimatedSmoothIndicator(
                       activeIndex: currentIndex,
                       count: imageList.length,
                       effect: ExpandingDotsEffect(
@@ -90,9 +94,9 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                       onDotClicked: (index) {
                         sliderController.animateToPage(index);
                       },
-                                     ),
-                   ],
-                 ),
+                    ),
+                  ],
+                ),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //   children: imageList.asMap().entries.map((entry) {
@@ -112,7 +116,33 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                 //     );
                 //   }).toList(),
                 // ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomTextWidget(
+                      text: 'Services'.tr,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.btnBgColor,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => ServicesHomeScreen2());
+                      },
+                      child: CustomTextWidget(
+                        text: 'view_more'.tr,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.btnBgColor,
+                        fontsize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 8),
+                const ServicesHomeListWidget(),
+                const SizedBox(height: 8),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -127,16 +157,17 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                       },
                       child: CustomTextWidget(
                         text: 'view_more'.tr,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w400,
                         color: AppColors.btnBgColor,
                         fontsize: 12,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 8),
+
                 SpeechListView(),
-                SizedBox(height: 16),
+                SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -151,20 +182,20 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                       },
                       child: CustomTextWidget(
                         text: 'view_more'.tr,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w400,
                         color: AppColors.btnBgColor,
                         fontsize: 12,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 8),
                 PhotoGalleryView(),
-                SizedBox(height: 16),
+                SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                     children: [
                       CustomButton(
@@ -176,7 +207,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                         textColor: Colors.orange,
                         borderColor: Colors.orange,
                         onPressed: () {
-                            Get.to(()=>JoinBjpVolunteerPage());
+                          Get.to(() => JoinBjpVolunteerPage());
                         },
                       ),
                       CustomButton(
@@ -188,7 +219,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                         textColor: AppColors.btnBgColor,
                         borderColor: AppColors.btnBgColor,
                         onPressed: () {
-                          Get.to(()=>JoinBjpVolunteerPage());
+                          Get.to(() => JoinBjpVolunteerPage());
                         },
                       ),
                     ],

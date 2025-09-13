@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:janta_sewa/widget/colors.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomMessageTextFormField extends StatelessWidget {
   final String hintText;
   final IconData? prefixIcon;
   final bool obscureText;
   final bool enabled;
-  final bool readOnly; 
+  final bool readOnly;
   final TextInputType keyboardType;
   final Color fillColor;
   final double fontSize;
@@ -16,7 +16,11 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final VoidCallback? onSuffixTap;
 
-  const CustomTextFormField({
+  // NEW
+  final int minLines;
+  final int maxLines;
+
+  const CustomMessageTextFormField({
     super.key,
     required this.hintText,
     this.prefixIcon,
@@ -30,7 +34,9 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     this.enabled = true,
     this.onSuffixTap,
-    this.readOnly = false, 
+    this.readOnly = false,
+    this.minLines = 4,
+    this.maxLines = 8,
   });
 
   @override
@@ -43,9 +49,10 @@ class CustomTextFormField extends StatelessWidget {
         keyboardType: keyboardType,
         validator: validator,
         enabled: enabled,
-        readOnly: readOnly, 
+        readOnly: readOnly,
+        minLines: minLines,
+        maxLines: obscureText ? 1 : maxLines, 
         style: const TextStyle(
-          // height: 1,
           fontFamily: 'Inter',
           color: AppColors.textGrey,
         ),

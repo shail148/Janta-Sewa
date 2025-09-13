@@ -40,7 +40,7 @@ class _ContactPageState extends State<ContactPage> {
                       text: "contact_page".tr,
                       color: AppColors.textColor,
                       fontsize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500, //changed to medium or w500 medium from bold or w700
                     ),
                     SizedBox(height: 10),
                     ContactPageTile(
@@ -106,7 +106,7 @@ class _ContactPageState extends State<ContactPage> {
                     CustomTextWidget(
                       text: 'Follow us on',
                       fontsize: 14,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,//changed to medium or w500 medium from  w600
                     ),
                     SizedBox(height: 10),
                     Row(

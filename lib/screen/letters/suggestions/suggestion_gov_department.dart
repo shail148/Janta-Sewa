@@ -6,6 +6,7 @@ import 'package:janta_sewa/components/file_upload.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/label_text.dart';
+import 'package:janta_sewa/widget/message_text_form_widget.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 class SuggestionForGovDepartment extends StatefulWidget {
@@ -73,6 +74,10 @@ class _SuggestionForGovDepartmentState extends State<SuggestionForGovDepartment>
                           CustomLabelText(text: 'brief_detail_of_suggestion'.tr),
                           CustomTextFormField(
                             hintText: 'brief_detail_of_suggestion'.tr,
+                          ),
+                          CustomLabelText(text: 'message'.tr),
+                          CustomMessageTextFormField(
+                          hintText: 'enter_message'.tr,
                           ),
                           CustomLabelText(text: 'upload_signed_documents'.tr),
                           SizedBox(height: 10),

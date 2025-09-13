@@ -21,7 +21,7 @@ class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       automaticallyImplyLeading: false,
       centerTitle: true,
       leading: leftIcon != null
@@ -37,15 +37,19 @@ class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
           IconButton(onPressed: onRightTap, icon: rightIcon!),
       ],
       elevation: 0,
-      // backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       title: CustomTextWidget(
-        text: title ??'Janta Sewa',
+        text: title ??'JANTA SEWA',
         color: AppColors.textColor,
-        fontWeight: FontWeight.bold,
-        fontsize: 24,
+        fontWeight: FontWeight.w900,
+        fontsize: 16,
+
+        
       ),
     );
   }
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+//  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+    Size get preferredSize => const Size.fromHeight(48);
+
 }

@@ -22,7 +22,7 @@ class _NotificationPageState extends State<NotificationPage> {
           Get.back();
         },),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,7 +35,7 @@ class _NotificationPageState extends State<NotificationPage> {
 
                   return Card(
                     margin: const EdgeInsets.symmetric(vertical: 5),
-                    elevation: 2,
+                   
                     color: AppColors.formBgColor,  
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),

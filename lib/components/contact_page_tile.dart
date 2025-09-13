@@ -27,7 +27,7 @@ class ContactPageTile extends StatelessWidget {
             fontWeight: FontWeight.normal,
             fontSize: 12,
             color: AppColors.textColor,
-            fontFamily: 'Poppins', // (optional: for consistency)
+            fontFamily: 'Inter', // (optional: for consistency)
           ),
         ),
        leading: Icon(icons,color: AppColors.btnBgColor,size: 30,),

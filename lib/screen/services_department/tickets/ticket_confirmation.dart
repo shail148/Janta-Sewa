@@ -6,6 +6,7 @@ import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/date_picker.dart';
 import 'package:janta_sewa/widget/label_text.dart';
+import 'package:janta_sewa/widget/message_text_form_widget.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
@@ -28,6 +29,7 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
   final TextEditingController pnrController = TextEditingController();
   final TextEditingController trainNumberController = TextEditingController();
   final TextEditingController trainNameController = TextEditingController();
+  final TextEditingController messageController = TextEditingController(); //new msg controller
   final TextEditingController birthTypeController = TextEditingController();
 
   List<Map<String, String>> passengers = [];
@@ -54,6 +56,7 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
     pnrController.dispose();
     trainNumberController.dispose();
     trainNameController.dispose();
+    messageController.dispose(); //disposed meesggae controoler here
     birthTypeController.dispose();
     super.dispose();
   }
@@ -186,6 +189,12 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                           hintText: 'enter_train_name'.tr,
                           controller: trainNameController,
                         ),
+
+                        CustomLabelText(text: 'message'.tr),
+                        CustomMessageTextFormField(
+                          hintText: 'enter_message'.tr,
+                          controller: messageController, //created controller here
+                           ),
 
                         SizedBox(height: 20),
                         CustomButton(

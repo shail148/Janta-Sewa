@@ -50,6 +50,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   webview_flutter: ^4.13.0
   image_picker: ^1.1.2
+  flutter_screenutil: ^5.9.3
 
   
 dev_dependencies:
@@ -80,6 +81,18 @@ flutter:
     - assets/images/
     - assets/sliderimages/
     - assets/journeyimg/
+    - assets/images/train.png
+    - assets/images/parliament.png
+    - assets/images/construction.png
+    - assets/images/hospital.png
+    - assets/images/recommendation.png
+    - assets/images/complaint.png
+    - assets/images/suggestion.png
+    - assets/images/budget.png
+    - assets/images/invitation.png
+   #- assets/images/contact.png
+
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -94,10 +107,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Poppins
+    - family: Inter
       fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
-        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
           weight: 700
   
   # For details regarding fonts from package dependencies,

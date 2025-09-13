@@ -158,12 +158,12 @@ class ProfileScreen extends StatelessWidget {
                         text: 'personal_details'.tr,
                         color: AppColors.textColor,
                         fontsize: 16,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                       ),
                       const Spacer(),
                       Obx(() => CustomLabelText(
                             text: isEditing.value ? 'Editing'.tr : 'Edit'.tr,
-                            color: isEditing.value ? Colors.green : AppColors.textColor,
+                            color: isEditing.value ? Colors.green : AppColors.textColor, 
                           )),
                       IconButton(
                         icon: Icon(
