@@ -64,7 +64,7 @@ class CustomServiceCard extends StatelessWidget {
                 text,
                 style: const TextStyle(
                   fontFamily: "Inter",
-                  fontSize: 10,
+                  fontSize: 12,
                   fontWeight: FontWeight.w400,
                   color: AppColors.black,
                   height: 1.2,

@@ -22,7 +22,7 @@ class CustomLabelText extends StatelessWidget {
           fontSize: fontsize,
           color: color ?? Colors.black54,
           fontFamily: 'Inter',
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w500,
         ),
         children: isRequired
             ? [

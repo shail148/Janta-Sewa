@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/screen/auth_page/login_page.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/our_journey_page.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/services_home_screen2.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/settings_page.dart';
 import 'package:janta_sewa/screen/contacts_invitation/contact_page.dart';
 import 'package:janta_sewa/screen/events/event_page.dart';
@@ -65,6 +66,12 @@ class CustomDrawer extends StatelessWidget {
                   //   onTap: () => Get.to(() => const ServicesHomeScreen()),
                   // ),
                   _drawerItem(
+                    Icons.dashboard,
+                    'dashboard'.tr,
+                    onTap: () => Get.to(() => const ServicesHomeScreen2()),
+                  ),
+
+                  _drawerItem(
                     Icons.event,
                     'upcoming_event'.tr,
                     onTap: () => Get.to(() => const EventPage()),
@@ -88,7 +95,7 @@ class CustomDrawer extends StatelessWidget {
                   _drawerItem(
                     Icons.settings,
                     'settings'.tr,
-                    onTap: () => Get.to(() => const SettingsPage()),
+                    onTap: () => Get.to(() =>  SettingsPage()),
                   ),
                   _drawerItem(
                     Icons.share_outlined,

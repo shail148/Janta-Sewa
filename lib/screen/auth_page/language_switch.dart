@@ -32,14 +32,14 @@ class LanguageSwitch extends StatelessWidget {
             SizedBox(height: 40),
             CustomTextWidget(
               text: 'Select Your Langauge',
-              fontsize: 14,
+              fontsize: 16,
               color: AppColors.textColor,
               fontWeight: FontWeight.w600,
             ),
             SizedBox(height: 10),
             CustomTextWidget(
               text: 'अपनी भाषा का चयन करें',
-              fontsize: 14,
+              fontsize: 16,
               color: AppColors.textColor,
               fontWeight: FontWeight.w600,
             ),

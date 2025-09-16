@@ -42,7 +42,7 @@ class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
         text: title ??'JANTA SEWA',
         color: AppColors.textColor,
         fontWeight: FontWeight.w900,
-        fontsize: 16,
+        fontsize: 20,
 
         
       ),

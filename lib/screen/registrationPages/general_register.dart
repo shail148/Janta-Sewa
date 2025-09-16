@@ -57,14 +57,14 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                           child: Icon(
                             Icons.arrow_back_ios_new_outlined,
                             color: AppColors.btnBgColor,
-                            size: 24,
+                            size: 22,
                           ),
                         ),
                         SizedBox(width: 8),
                         CustomTextWidget(
                           text: "registration".tr,
                           color: AppColors.textColor,
-                          fontsize: 16,
+                          fontsize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ],
@@ -80,6 +80,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             color: AppColors.textColor,
                             fontsize: 16,
                             fontWeight: FontWeight.bold,
+                          
                           ),
                           SizedBox(height: 10),
                           CustomLabelText(
@@ -106,7 +107,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             isRequired: true,
                           ),
                           CustomTextFormField(
-                            hintText: 'enter_email_id',
+                            hintText: 'enter_email_id'.tr,
                            
                           ),
                           CustomLabelText(text: 'date_of_birth'.tr),
@@ -197,10 +198,10 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(10.0),
                               child: CustomTextWidget(
                                 text: 'after_register_info'.tr,
-                                fontsize: 12,
+                                fontsize: 14,
                                 textAlign: TextAlign.justify,
                               ),
                             ),

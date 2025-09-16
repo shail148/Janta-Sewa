@@ -88,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                
                 Center(
                   child: Image.asset(
                     'assets/images/indialogo.png',
@@ -161,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: 20),
                       CustomButton(
                         text: 'login_btn'.tr,
-                        textSize: 14,
+                        textSize: 16,
                         backgroundColor: AppColors.btnBgColor,
                         height: 62,
                         width: double.infinity,

@@ -1,5 +1,242 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // ✅ ScreenUtil import
+import 'package:janta_sewa/data/status_data.dart';
+import 'package:janta_sewa/widget/colors.dart';
+import 'package:janta_sewa/widget/text_widget.dart';
+
+class TrackPage extends StatefulWidget {
+  const TrackPage({super.key});
+
+  Color getStatusColor(String status) {
+    switch (status) {
+      case "Approved":
+        return Colors.green;
+      case "Rejected":
+        return Colors.red;
+      case "In Process":
+        return const Color(0xFF356CC5);
+      default:
+        return Colors.orange; // Pending
+    }
+  }
+
+  @override
+  State<TrackPage> createState() => _TrackPageState();
+}
+
+class _TrackPageState extends State<TrackPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16.w), // w responsive padding
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomTextWidget(
+                text: "status".tr,
+                color: AppColors.textColor,
+                fontsize: 16.sp, // font
+                fontWeight: FontWeight.w600,
+              ),
+              SizedBox(height: 8.h), // h
+              Expanded(
+                child: ListView.builder(
+                  itemCount: statusData.length,
+                  itemBuilder: (context, index) {
+                    final item = statusData[index];
+                    return Card(
+                      margin: EdgeInsets.symmetric(vertical: 8.h), // h
+                      elevation: 0,
+                      color: const Color(0xFFDDDBE6).withAlpha(30),
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: const Color(0xFF403572).withValues(alpha: 0.2),
+                          width: 1.w, // w
+                        ),
+                        borderRadius: BorderRadius.circular(16.r), // rad
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: 0.h, left: 8.w, right: 8.w, bottom: 8.h), // h
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Card(
+                              elevation: 0,
+                              margin: EdgeInsets.symmetric(vertical: 8.h), // h
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  width: 1.w, // width
+                                  color: const Color(0xFF403572)
+                                      .withValues(alpha: 0.2),
+                                ),
+                                borderRadius: BorderRadius.circular(12.r), // rad
+                              ),
+                              color: AppColors.white,
+                              child: Padding(
+                                padding: EdgeInsets.all(12.w), // width
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 8.w, vertical: 2.h), //h
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xffF6F8FA),
+                                        borderRadius:
+                                            BorderRadius.circular(15.r), //rad
+                                      ),
+                                      child: Text(
+                                        item['applicationId'],
+                                        style: TextStyle(
+                                          color: AppColors.primary,
+                                          fontSize: 12.sp, // font size responsive
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 8.h), // height responsive
+                                    _infoRow(
+                                      icon: Icons.person,
+                                      text:
+                                          "${'name_of_applicant :'.tr} ${item['applicantName']}",
+                                    ),
+                                    SizedBox(height: 6.h), // h
+                                    _infoRow(
+                                      icon: Icons.calendar_today,
+                                      text:
+                                          "${'submitted_on :'.tr} ${item['submittedOn']}",
+                                    ),
+                                    SizedBox(height: 6.h), // h
+                                    _infoRow(
+                                      icon: Icons.message,
+                                      text:
+                                          "${'type_of_request :'.tr} ${item['requestType']}",
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(4.w), // padding
+                              child: Row(
+                                children: [
+                                  SizedBox(width: 4.w), // width
+                                  Icon(Icons.access_time, size: 20.sp), // icon size
+                                  SizedBox(width: 8.w), // w
+                                  Text(
+                                    'Status :',
+                                    style: TextStyle(fontSize: 12.sp), // font
+                                  ),
+                                  SizedBox(width: 6.w), // width responsive
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height:
+                                        MediaQuery.of(context).size.height *
+                                            0.035,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.23,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 6.w, vertical: 4.h), // h
+                                    decoration: BoxDecoration(
+                                      color: widget
+                                          .getStatusColor(item['status'])
+                                          .withValues(alpha: 0.15),
+                                      borderRadius:
+                                          BorderRadius.circular(15.r), // rad
+                                    ),
+                                    child: Text(
+                                      item['status'],
+                                      style: TextStyle(
+                                        color: widget
+                                            .getStatusColor(item['status']),
+                                        fontSize: 12.sp, // font
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.035,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.w,
+                                          vertical: 2.h), // h
+                                      decoration: BoxDecoration(
+                                        color: AppColors.primary,
+                                        borderRadius:
+                                            BorderRadius.circular(15.r), // radius
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            "view".tr,
+                                            style: TextStyle(
+                                              color: AppColors.white,
+                                              fontSize: 11.sp, // sp
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          SizedBox(width: 4.w), // w
+                                          Icon(
+                                            Icons.arrow_forward_ios_outlined,
+                                            size: 12.sp, // sp
+                                            color: Colors.white,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _infoRow({required IconData icon, required String text}) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 20.sp, color: Colors.black), // icon size
+        SizedBox(width: 8.w), // width responsive
+        Expanded(
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              text,
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 12.sp), // font
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+/* import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:janta_sewa/data/status_data.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
@@ -237,258 +474,6 @@ class _TrackPageState extends State<TrackPage> {
           ),
         ),
       ],
-    );
-  }
-}
-
-
-
-/* import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:janta_sewa/data/status_data.dart';
-import 'package:janta_sewa/widget/colors.dart';
-import 'package:janta_sewa/widget/text_widget.dart';
-
-class TrackPage extends StatefulWidget {
-  const TrackPage({super.key});
-
-  Color getStatusColor(String status) {
-    switch (status) {
-      case "Approved":
-        return Colors.green;
-      case "Rejected":
-        return Colors.red;
-      case "In Process":
-        return AppColors.textColor;
-      default:
-        return Colors.orange; // Pending
-    }
-  }
-
-  @override
-  State<TrackPage> createState() => _TrackPageState();
-}
-
-class _TrackPageState extends State<TrackPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomTextWidget(
-                text: "status".tr,
-                color: AppColors.textColor,
-                fontsize: 16,
-                // fontWeight: FontWeight.bold,
-              ),
-              const SizedBox(height: 16),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: statusData.length,
-                  itemBuilder: (context, index) {
-                    final item = statusData[index];
-                    //outer light grey container or backround
-                    return Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8),
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                      color: AppColors.bgLight, // Light grey background
-                      border: Border.all(color: const Color(0xFF403572).withValues(alpha:0.2)), //border color
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                            BoxShadow(
-                              color: AppColors.btnBgColor.withValues(alpha: 0.3), // shadow color
-                              //blurRadius: 6,                         // softness
-                              //spreadRadius: 3,                        // how far it spreads
-                              //offset: const Offset(0, 3),             // x,y offset
-                          ),
-                       ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Inner white container
-                          Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: AppColors.white, //background color
-                              border: Border.all(color: const Color(0xFF403572).withValues(alpha:0.2)), //border color
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Application ID pill
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                   // color: AppColors.bgLight,
-                                    color: Color(0xffF6F8FA),
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Text(
-                                    item['applicationId'],
-                                    style: const TextStyle(
-                                      color: AppColors.btnBgColor,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 12),
-
-                                // Name
-                                Row(
-                                  children: [
-                                    const Icon(Icons.person, size: 16),
-                                    const SizedBox(width: 6),
-                                    CustomTextWidget(
-                                      text:
-                                          //"name_of_applicant :${item['applicantName']}".tr,
-                                          "${'name_of_applicant :'.tr} ${item['applicantName']}",
-
-                                      fontsize: 12,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 6),
-
-                                // Date
-                                Row(
-                                  children: [
-                                    const Icon(Icons.calendar_today, size: 16),
-                                    const SizedBox(width: 6),
-                                    CustomTextWidget(
-                                      text:
-                                          //"Submitted on : ${item['submittedOn']}",
-                                          "${'submitted_on :'.tr} ${item['submittedOn']}",
-
-                                      fontsize: 12,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 6),
-
-                                // Request
-                                Row(
-                                  //crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Icon(Icons.message, size: 16),
-                                    const SizedBox(width: 6),
-                                    Expanded(
-                                      child: CustomTextWidget(
-                                        text:
-                                            //"Type of Request : ${item['requestType']}",
-                                            "${'type_of_request :'.tr} ${item['requestType']}",
-
-                                        fontsize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          const SizedBox(height: 12),
-
-                          // Status + View Button outside white container
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.autorenew, // or Icons.loop, Icons.sync
-                                    size: 20,
-                                    color: AppColors.textGrey,
-                                  ),
-                                  const SizedBox(width: 6),
-                                  Text(
-                                    "status :".tr,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 4,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: widget
-                                          .getStatusColor(item['status'])
-                                          .withAlpha(38),
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Text(
-                                      item['status'],
-                                      style: TextStyle(
-                                        //fontWeight: FontWeight.bold,
-                                        fontSize: 12,
-                                        color: widget.getStatusColor(
-                                          item['status'],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-                              // View > Button
-                              GestureDetector(
-                                onTap: () {
-                                  // Navigate or do something
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 12,
-                                    vertical: 6,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.btnBgColor,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        "view".tr,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: AppColors.white,
-                                        ),
-                                      ),
-                                      SizedBox(width: 4),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        size: 16,
-                                        color: AppColors.white,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

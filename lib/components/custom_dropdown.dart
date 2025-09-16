@@ -43,7 +43,7 @@ class CustomDropdown extends StatelessWidget {
              
               borderRadius: BorderRadius.circular(20),
               value: selectedValue,
-              hint: Text('Select type',style: TextStyle(fontFamily: 'Poppins',fontSize: 12,color: AppColors.textGrey),),
+              hint: Text('Select type',style: TextStyle(fontFamily: 'Inter',fontSize: 14,color: AppColors.textGrey),),
             isExpanded: true,
             dropdownColor: AppColors.bgLight,
             enableFeedback: true,
@@ -53,7 +53,7 @@ class CustomDropdown extends StatelessWidget {
                 return DropdownMenuItem<String>(
                   
                   value: value,
-                  child: Text(value,style: TextStyle(color: AppColors.textGrey,fontSize: 13,fontFamily: 'Poppins',fontWeight: FontWeight.w500,),),
+                  child: Text(value,style: TextStyle(color: AppColors.textGrey,fontSize: 13,fontFamily: 'Inter',fontWeight: FontWeight.w500,),),
                 );
               }).toList(),
               onChanged: onChanged,

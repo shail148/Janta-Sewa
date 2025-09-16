@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 //custome text widget
 class CustomTextWidget extends StatelessWidget {
   final String text;
-  final double fontsize;
+  final double? fontsize;
   final Color color;
   final TextAlign? textAlign;
   final FontWeight? fontWeight;
@@ -12,7 +12,7 @@ class CustomTextWidget extends StatelessWidget {
   const CustomTextWidget( {
     super.key,
     required this.text,
-    this.fontsize = 14,
+    this.fontsize ,
     this.color = Colors.black,
     this.fontWeight,
     this.textAlign,
@@ -24,7 +24,7 @@ class CustomTextWidget extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: TextStyle(
-        fontSize: fontsize,
+        fontSize:fontsize?? 14.sp,
         color: color,
         fontFamily: 'Inter',
         fontWeight: fontWeight,

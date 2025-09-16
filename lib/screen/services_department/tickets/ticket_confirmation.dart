@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:janta_sewa/components/custom_app_bar.dart';
+import 'package:janta_sewa/screen/services_department/tickets/ticket_confirmation2.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/date_picker.dart';
@@ -77,7 +78,7 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
           radius: const Radius.circular(10),
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -203,7 +204,9 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                           backgroundColor: AppColors.btnBgColor,
                           height: 62,
                           width: double.infinity,
-                          onPressed: (){},
+                          onPressed: (){
+                            Get.to(() => TicketConfirmation2());
+                          },
                         ),
                       ],
                     ),

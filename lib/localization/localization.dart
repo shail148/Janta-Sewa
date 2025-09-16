@@ -265,6 +265,7 @@ class AppLocalization extends Translations {
       'invitation_for_event': 'Invitation for Event',
       'meeting_agenda': 'Meeting Agenda',
       'organization_name': 'Organization Name',
+      'organization': 'Organization',
       'program_name': 'Program Name',
       'village/word': 'Village/Ward',
       'date': 'Date',
@@ -353,6 +354,8 @@ class AppLocalization extends Translations {
       'message': 'Message',
       'enter_message': 'Enter Message',
       'requests': 'Requests',
+      'dashboard' : 'Dashboard',
+      'post_name' : 'Post Name'
     },
     'hi_IN': {
       'hello': 'नमस्ते',
@@ -623,6 +626,7 @@ class AppLocalization extends Translations {
       'invitation_for_event': 'कार्यक्रम के लिए निमंत्रण',
       'meeting_agenda': 'बैठक का एजेंडा',
       'organization_name': 'संगठन का नाम',
+      'organization': 'संगठन',
       'program_name': 'कार्यक्रम का नाम',
       'village/word': 'गांव/वार्ड',
       'date': 'तारीख',
@@ -699,6 +703,8 @@ class AppLocalization extends Translations {
       "enter_message": "संदेश दर्ज करें",
       'requests': 'अनुरोध',
       'recommendation_letter': 'सिफ़ारिश\nपत्र',
+      'dashboard' : 'डैशबोर्ड',
+      'post_name' : 'पद नाम'
       
     },
   };

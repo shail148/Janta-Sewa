@@ -33,6 +33,7 @@ class MainRegisterPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(height: 20),
                     Center(
                       child: Image.asset(
                         'assets/images/indialogo.png',
@@ -40,7 +41,7 @@ class MainRegisterPage extends StatelessWidget {
                         width: 100,
                       ),
                     ),
-                    SizedBox(height: 24),
+                    SizedBox(height: 80),
                     CustomTextWidget(
                       text: "select_your_category".tr,
                       color: AppColors.textColor,
@@ -68,7 +69,7 @@ class MainRegisterPage extends StatelessWidget {
                     //   },
                     // ),
                     CustomListTile(
-                      title: 'Organization'.tr,
+                      title: 'organization'.tr,
                       onTap: () {
                         Get.to(() => SamajikSansathaRegister());
                       },

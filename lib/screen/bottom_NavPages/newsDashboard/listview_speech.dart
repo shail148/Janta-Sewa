@@ -36,7 +36,7 @@ class _SpeechListViewState extends State<SpeechListView> {
             width: 250,
             margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white,
               border: Border.all(color:AppColors.galleryBdColors),
               borderRadius: BorderRadius.circular(12),
             ),
@@ -50,7 +50,7 @@ class _SpeechListViewState extends State<SpeechListView> {
                   ),
                   child: Image.asset(
                     item['imageUrl'],
-                    height: 140,
+                    height: 175, //changed from 140
                     width: double.infinity,
                     //fit: BoxFit.cover,
                     fit: BoxFit.fill, //changed

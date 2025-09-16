@@ -22,9 +22,9 @@ class CustomListTile extends StatelessWidget {
           title,    
           style: const TextStyle(
             fontWeight: FontWeight.normal,
-            fontSize: 12,
+            fontSize: 14,
             color: AppColors.textColor,
-            fontFamily: 'Poppins', // (optional: for consistency)
+            fontFamily: 'Inter', // (optional: for consistency)
           ),
         ),
         trailing:trailingWidget?? const Icon(

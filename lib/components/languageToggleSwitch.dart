@@ -19,7 +19,7 @@ class LanguageToggleSwitch extends StatelessWidget {
       children: [
         CustomTextWidget(
           text: 'English',
-          fontsize: 12,
+          fontsize: 16,
           color: AppColors.textColor,
           fontWeight: FontWeight.w600,
         ),
@@ -40,7 +40,7 @@ class LanguageToggleSwitch extends StatelessWidget {
         const SizedBox(width: 8),
         CustomTextWidget(
           text: 'हिंदी',
-          fontsize: 12,
+          fontsize: 16,
           color: AppColors.textColor,
           fontWeight: FontWeight.w600,
         ),

@@ -51,6 +51,10 @@ dependencies:
   webview_flutter: ^4.13.0
   image_picker: ^1.1.2
   flutter_screenutil: ^5.9.3
+  flutter_switch: ^0.3.2
+
+
+
 
   
 dev_dependencies:
@@ -78,7 +82,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/indialogo.png
-    - assets/images/
+    - assets/images/bjp.png
+    - assets/images/user_placeholder.png
     - assets/sliderimages/
     - assets/journeyimg/
     - assets/images/train.png
@@ -90,6 +95,10 @@ flutter:
     - assets/images/suggestion.png
     - assets/images/budget.png
     - assets/images/invitation.png
+    - assets/images/instagram.png
+    - assets/images/facebook.png
+    - assets/images/twitter.png
+    - assets/images/whatsapp.png
    #- assets/images/contact.png
 
 
