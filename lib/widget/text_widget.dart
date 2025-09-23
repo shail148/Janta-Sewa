@@ -24,7 +24,7 @@ class CustomTextWidget extends StatelessWidget {
       text,
       textAlign: textAlign,
       style: TextStyle(
-        fontSize:fontsize?? 14.sp,
+        fontSize:fontsize?? 14,
         color: color,
         fontFamily: 'Inter',
         fontWeight: fontWeight,

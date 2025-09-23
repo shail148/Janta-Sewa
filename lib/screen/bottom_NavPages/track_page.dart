@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // ✅ ScreenUtil import
+import 'package:flutter_screenutil/flutter_screenutil.dart'; 
 import 'package:janta_sewa/data/status_data.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
@@ -39,7 +39,7 @@ class _TrackPageState extends State<TrackPage> {
               CustomTextWidget(
                 text: "status".tr,
                 color: AppColors.textColor,
-                fontsize: 16.sp, // font
+                fontsize: 16, // font
                 fontWeight: FontWeight.w600,
               ),
               SizedBox(height: 8.h), // h
@@ -55,9 +55,9 @@ class _TrackPageState extends State<TrackPage> {
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
                           color: const Color(0xFF403572).withValues(alpha: 0.2),
-                          width: 1.w, // w
+                          width: 1, // w
                         ),
-                        borderRadius: BorderRadius.circular(16.r), // rad
+                        borderRadius: BorderRadius.circular(16), // rad
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
@@ -70,11 +70,11 @@ class _TrackPageState extends State<TrackPage> {
                               margin: EdgeInsets.symmetric(vertical: 8.h), // h
                               shape: RoundedRectangleBorder(
                                 side: BorderSide(
-                                  width: 1.w, // width
+                                  width: 1, // width
                                   color: const Color(0xFF403572)
                                       .withValues(alpha: 0.2),
                                 ),
-                                borderRadius: BorderRadius.circular(12.r), // rad
+                                borderRadius: BorderRadius.circular(12), // rad
                               ),
                               color: AppColors.white,
                               child: Padding(
@@ -88,13 +88,13 @@ class _TrackPageState extends State<TrackPage> {
                                       decoration: BoxDecoration(
                                         color: const Color(0xffF6F8FA),
                                         borderRadius:
-                                            BorderRadius.circular(15.r), //rad
+                                            BorderRadius.circular(15), //rad
                                       ),
                                       child: Text(
                                         item['applicationId'],
                                         style: TextStyle(
                                           color: AppColors.primary,
-                                          fontSize: 12.sp, // font size responsive
+                                          fontSize: 12, // font size responsive
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -126,11 +126,11 @@ class _TrackPageState extends State<TrackPage> {
                               child: Row(
                                 children: [
                                   SizedBox(width: 4.w), // width
-                                  Icon(Icons.access_time, size: 20.sp), // icon size
+                                  Icon(Icons.access_time, size: 20), // icon size
                                   SizedBox(width: 8.w), // w
                                   Text(
                                     'Status :',
-                                    style: TextStyle(fontSize: 12.sp), // font
+                                    style: TextStyle(fontSize: 12), // font
                                   ),
                                   SizedBox(width: 6.w), // width responsive
                                   Container(
@@ -147,14 +147,14 @@ class _TrackPageState extends State<TrackPage> {
                                           .getStatusColor(item['status'])
                                           .withValues(alpha: 0.15),
                                       borderRadius:
-                                          BorderRadius.circular(15.r), // rad
+                                          BorderRadius.circular(15), // rad
                                     ),
                                     child: Text(
                                       item['status'],
                                       style: TextStyle(
                                         color: widget
                                             .getStatusColor(item['status']),
-                                        fontSize: 12.sp, // font
+                                        fontSize: 12, // font
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
@@ -173,7 +173,7 @@ class _TrackPageState extends State<TrackPage> {
                                       decoration: BoxDecoration(
                                         color: AppColors.primary,
                                         borderRadius:
-                                            BorderRadius.circular(15.r), // radius
+                                            BorderRadius.circular(15), // radius
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -182,14 +182,14 @@ class _TrackPageState extends State<TrackPage> {
                                             "view".tr,
                                             style: TextStyle(
                                               color: AppColors.white,
-                                              fontSize: 11.sp, // sp
+                                              fontSize: 11, // sp
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           SizedBox(width: 4.w), // w
                                           Icon(
                                             Icons.arrow_forward_ios_outlined,
-                                            size: 12.sp, // sp
+                                            size: 12, // sp
                                             color: Colors.white,
                                           ),
                                         ],
@@ -217,7 +217,7 @@ class _TrackPageState extends State<TrackPage> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, size: 20.sp, color: Colors.black), // icon size
+        Icon(icon, size: 20, color: Colors.black), // icon size
         SizedBox(width: 8.w), // width responsive
         Expanded(
           child: Align(
@@ -225,7 +225,7 @@ class _TrackPageState extends State<TrackPage> {
             child: Text(
               text,
               textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 12.sp), // font
+              style: TextStyle(fontSize: 12), // font
             ),
           ),
         ),

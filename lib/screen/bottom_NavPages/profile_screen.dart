@@ -11,6 +11,7 @@ import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
+  final bool startEditing; //added so that from setting in drawer navigate to profile screen in editing mode
   final isEditing = false.obs;
   final fullName = TextEditingController(text: "Shailendra");
   final mobileNumber = TextEditingController(text: "9876543210");
@@ -30,7 +31,13 @@ class ProfileScreen extends StatelessWidget {
 
   final ImagePickerController imagePickerController = Get.put(ImagePickerController());
 
-  ProfileScreen({super.key});
+  //ProfileScreen({super.key});
+
+  
+
+  ProfileScreen({super.key, this.startEditing = false}) {
+    isEditing.value = startEditing; // set initial state
+  }
 
   void _showImageSourceOptions(BuildContext context) {
     showModalBottomSheet(
@@ -124,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
                             child: selectedImage == null
                                 ? Icon(
                                     Icons.person,
-                                    size: 40.sp, // .sp added
+                                    size: 40, 
                                     color: AppColors.btnBgColor,
                                   )
                                 : null,
@@ -144,7 +151,7 @@ class ProfileScreen extends StatelessWidget {
                               child: Icon(
                                 Icons.camera_alt,
                                 color: Colors.white,
-                                size: 20.sp, // .sp added
+                                size: 20, 
                               ),
                             ),
                           ),
@@ -158,7 +165,7 @@ class ProfileScreen extends StatelessWidget {
                       CustomTextWidget(
                         text: 'personal_details'.tr,
                         color: AppColors.textColor,
-                        fontsize: 16.sp, // .sp added
+                        fontsize: 16, 
                         fontWeight: FontWeight.w600,
                       ),
                       const Spacer(),
@@ -231,7 +238,7 @@ class ProfileScreen extends StatelessWidget {
                     text: 'location_details'.tr,
                     color: AppColors.textColor,
                     fontWeight: FontWeight.bold,
-                    fontsize: 16.sp, // .sp added
+                    fontsize: 16, 
                   ),
                   SizedBox(height: 10.h), // .h added
                   CustomLabelText(text: 'address'.tr),
@@ -287,7 +294,7 @@ class ProfileScreen extends StatelessWidget {
                   if (isEditing.value)
                     CustomButton(
                       text: 'Save'.tr,
-                      textSize: 14.sp, // .sp added
+                      textSize: 14, 
                       backgroundColor: AppColors.btnBgColor,
                       height: 52.h, // .h added
                       width: double.infinity,

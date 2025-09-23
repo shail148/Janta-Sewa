@@ -14,20 +14,20 @@ import 'package:janta_sewa/screen/services_department/parliament_visit/parliamen
 import 'package:janta_sewa/screen/services_department/tickets/ticket_confirmation.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
-class ServicesHomeScreen2 extends StatefulWidget {
-  const ServicesHomeScreen2({super.key});
+class DrawerDashboardServicesHomeScreen extends StatefulWidget {
+  const DrawerDashboardServicesHomeScreen({super.key});
 
   @override
-  State<ServicesHomeScreen2> createState() => _ServicesHomeScreenState2();
+  State<DrawerDashboardServicesHomeScreen> createState() => _ServicesHomeScreenState2();
 }
 
-class _ServicesHomeScreenState2 extends State<ServicesHomeScreen2> {
+class _ServicesHomeScreenState2 extends State<DrawerDashboardServicesHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomTopAppBar(
-        title: 'Services',
-        leftIcon: Icon(Icons.arrow_back_ios, size: 24.sp), // responsive icon
+        title: 'Dashboard',
+        leftIcon: Icon(Icons.arrow_back_ios, size: 24), 
         onLeftTap: Get.back,
       ),
       body: SafeArea(
@@ -42,7 +42,7 @@ class _ServicesHomeScreenState2 extends State<ServicesHomeScreen2> {
                   children: [
                     CustomTextWidget(
                       text: 'services'.tr,
-                      fontsize: 14.sp, // font
+                      fontsize: 14, // font
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h), // h
@@ -78,7 +78,7 @@ class _ServicesHomeScreenState2 extends State<ServicesHomeScreen2> {
                   children: [
                     CustomTextWidget(
                       text: 'departments'.tr,
-                      fontsize: 14.sp, // font
+                      fontsize: 14, // font
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h), // h
@@ -115,7 +115,7 @@ class _ServicesHomeScreenState2 extends State<ServicesHomeScreen2> {
                   children: [
                     CustomTextWidget(
                       text: 'letters'.tr,
-                      fontsize: 14.sp, // font
+                      fontsize: 14, // font
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h), // h
@@ -167,7 +167,7 @@ class _ServicesHomeScreenState2 extends State<ServicesHomeScreen2> {
                   children: [
                     CustomTextWidget(
                       text: 'requests'.tr,
-                      fontsize: 14.sp, // font
+                      fontsize: 14, // font
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h), // h

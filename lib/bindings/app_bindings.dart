@@ -10,7 +10,8 @@ class AppBinding extends Bindings {
 
     //  Auto recreate when needed
     Get.lazyPut<ReportIssueController>(() => ReportIssueController(), fenix: true);
-    Get.lazyPut<LanguageController>(() => LanguageController(), fenix: true);
+    
+    Get.put<LanguageController>(LanguageController(), permanent: true);
    
    //
     Get.put<SettingsController>(SettingsController(), permanent: true);

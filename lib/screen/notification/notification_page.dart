@@ -68,8 +68,8 @@ class _NotificationPageState extends State<NotificationPage> {
                                 Text(
                                   maxLines: 2,
                                 notification['title'] ?? '',style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
                                   
                                 ),
                                                                
@@ -81,14 +81,14 @@ class _NotificationPageState extends State<NotificationPage> {
                                   children: [
                                     Text(
                                       notification['subtitle'] ?? '',style: TextStyle(
-                                  fontSize: 10
+                                      fontSize: 12
                                 ),
                                       
                                     
                                     ),
                                     Text(
                                        notification['time'] ?? '',style: TextStyle(
-                                  fontSize: 8
+                                       fontSize: 11
                                 ),
                                     
                                     ),

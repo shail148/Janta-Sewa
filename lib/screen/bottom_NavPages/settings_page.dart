@@ -6,21 +6,131 @@ import 'package:janta_sewa/controllers/language_controller.dart';
 import 'package:janta_sewa/controllers/setting_controller.dart';
 import 'package:janta_sewa/screen/about_janta_sewa/privacy_policy_page.dart';
 import 'package:janta_sewa/screen/about_janta_sewa/terms_of_use_page.dart';
-import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/report_issue_page.dart';
 import 'package:janta_sewa/widget/colors.dart';
+import 'package:janta_sewa/widget/setting_widget.dart';
+
 
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
 
   // find from app_binding.dart ,all controller binding present here
-  final SettingsController controller = Get.find<SettingsController>(); 
-  final LanguageController languageController = Get.find<LanguageController>(); 
+  final SettingsController controller = Get.find<SettingsController>();
+  final LanguageController languageController = Get.find<LanguageController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
+      appBar: CustomTopAppBar(
+        title: 'Setting',
+        leftIcon: Icon(Icons.arrow_back_ios, size: 24), 
+        onLeftTap: Get.back,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          buildProfileHeader(languageController),
+          const SizedBox(height: 8),
+          buildSectionTitle("Account Security"),
+          buildButtonTile(
+            "Change Password",
+            Icons.lock_outline,
+            onTap: () {
+              // Navigate to change password screen
+            },
+          ),
+          const SizedBox(height: 8),
+          buildSectionTitle("Notification"),
+          buildToggleTile(
+            "Email Alerts",
+            controller.emailAlerts,
+            controller.toggleEmailAlerts,
+            icon: Icons.email_outlined,
+          ),
+          buildToggleTile(
+            "SMS Alerts",
+            controller.smsAlerts,
+            controller.toggleSmsAlerts,
+            icon: Icons.sms_outlined,
+          ),
+          buildToggleTile(
+            "Notification",
+            controller.pushNotifications,
+            controller.togglePushNotifications,
+            icon: Icons.notifications_outlined,
+          ),
+          const SizedBox(height: 8),
+          buildSectionTitle("Language"),
+          buildLanguageToggleTile(languageController),
+          const SizedBox(height: 8),
+          buildSectionTitle("Support & Legal"),
+          buildNavigationTile(
+            "Share this app",
+            Icons.share_outlined,
+            onTap: () {
+              // Implement share logic
+            },
+          ),
+          buildNavigationTile(
+            "Privacy policy",
+            Icons.privacy_tip_outlined,
+            onTap: () {
+              Get.to(() => const PrivacyPolicyPage());
+            },
+          ),
+          buildNavigationTile(
+            "Terms of Use",
+            Icons.warning_amber_outlined,
+            onTap: () {
+              Get.to(() => const TermsOfUsePage());
+            },
+          ),
+          //  NEW SECTION: Report an Issue
+          buildNavigationTile(
+            "Report an issue",
+            Icons.bug_report_outlined,
+            onTap: () {
+              // Navigate to report issue or open email
+              // can  launch("mailto:support@example.com")
+
+              Get.to(ReportIssuePage());
+            },
+          ),
+          const SizedBox(height: 32),
+          buildLogoutButton(controller),
+        ],
+      ),
+    );
+  }
+}
+
+
+/* import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:janta_sewa/components/custom_app_bar.dart';
+import 'package:janta_sewa/controllers/language_controller.dart';
+import 'package:janta_sewa/controllers/setting_controller.dart';
+import 'package:janta_sewa/screen/about_janta_sewa/privacy_policy_page.dart';
+import 'package:janta_sewa/screen/about_janta_sewa/terms_of_use_page.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/report_issue_page.dart';
+import 'package:janta_sewa/widget/colors.dart';
+import 'package:flutter_switch/flutter_switch.dart';
+
+
+class SettingsPage extends StatelessWidget {
+  SettingsPage({super.key});
+
+  // find from app_binding.dart ,all controller binding present here
+  final SettingsController controller = Get.find<SettingsController>();
+  final LanguageController languageController = Get.find<LanguageController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: CustomTopAppBar(
         title: 'Setting',
         leftIcon: Icon(Icons.arrow_back_ios, size: 24.sp), // responsive icon
@@ -147,21 +257,42 @@ class SettingsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Rahul Sharma",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                //name text and inkwell
+                InkWell(
+                  onTap: () {
+                    //Get.to(() => const BottomNav(), arguments: 3); // 3 = Profile tab index, i got earlier int so error while using in map
+                    Get.to(
+                      () => const BottomNav(),
+                      arguments: {'index': 3},
+                    ); // use a map, key matches the check in BottomNav
+                  },
+                  child: Text(
+                    "Rahul Sharma",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppColors.black),
+                  ),
                 ),
-                Text(
-                  "Gram Sachiv",
-                  style: TextStyle(color: AppColors.textGrey, fontSize: 14),
+
+                //gram sachiv text and inkwell
+                InkWell(
+                  onTap: () {
+                    Get.to(() => const BottomNav(), arguments: {'index': 3});
+                  },
+                  child: Text(
+                    "Gram Sachiv",
+                    style: TextStyle(fontSize: 14, color: Color(0xFF626262)),
+                  ),
                 ),
               ],
             ),
           ),
           TextButton(
             onPressed: () {
-              // Navigate to edit profile screen
-              Get.to(BottomNav());
+              // Navigate to edit profile screen in editing mode
+              // send both the tab index (3) and editing flag
+              Get.to(
+                () => const BottomNav(),
+                arguments: {'index': 3, 'edit': true},
+              );
             },
             child: Text(
               "Edit Profile",
@@ -229,43 +360,8 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  /* Widget _buildToggleTile(String title, RxBool value, Function(bool) onChanged, {required IconData icon}) {
-    return Obx(
-      () => Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        height: 60,
-        decoration: BoxDecoration(
-          color: Colors.grey[100],
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.btnBgColor),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Icon(icon, color: AppColors.primary),
-                const SizedBox(width: 10),
-                Text(title, style: TextStyle(color: AppColors.btnBgColor)),
-              ],
-            ),
-            Switch(
-              value: value.value,
-              onChanged: onChanged,
-              activeTrackColor: AppColors.btnBgColor,
-              activeColor: AppColors.white,
-              inactiveThumbColor: AppColors.btnBgColor,
-              inactiveTrackColor: Colors.grey.shade300,
-            ),
-          ],
-        ),
-      ),
-    );
-  } 
- */
 
-  Widget _buildToggleTile(
+ /*  Widget _buildToggleTile(
     String title,
     RxBool value,
     Function(bool) onChanged, {
@@ -295,7 +391,7 @@ class SettingsPage extends StatelessWidget {
               ],
             ),
 
-             Transform.scale(
+            Transform.scale(
               scale: 0.8, // Shrink only the toggle button
               child: Switch(
                 value: value.value,
@@ -305,7 +401,7 @@ class SettingsPage extends StatelessWidget {
                 inactiveThumbColor: AppColors.btnBgColor,
                 inactiveTrackColor: Colors.grey.shade300,
               ),
-            ), 
+            ),
             /* FlutterSwitch(
               width: 50.0,
               height: 25.0,
@@ -324,9 +420,59 @@ class SettingsPage extends StatelessWidget {
         ),
       ),
     );
-  }
+  } */
 
-  /// Language toggle with "English | Switch | हिन्दी"
+ Widget _buildToggleTile(
+  String title,
+  RxBool value,
+  Function(bool) onChanged, {
+  required IconData icon,
+}) {
+  return Obx(
+    () => Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      height: 60,
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Color(0xFFD9D9D9)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(icon, color: AppColors.black),
+              const SizedBox(width: 10),
+              Text(
+                title,
+                style: TextStyle(color: AppColors.black, fontSize: 14),
+              ),
+            ],
+          ),
+          FlutterSwitch(
+            width: 42.0,
+            height: 26.0,
+            toggleSize: 16.0, // 👈 smaller toggle circle
+            value: value.value,
+            borderRadius: 20.0,
+            padding: 2.0,
+            activeColor: AppColors.btnBgColor,
+            inactiveColor: Colors.grey.shade300,
+            //inactiveColor: const Color(0xFFD9D7E3), 
+            //inactiveColor: const Color(0xFFD9D9D9),
+            toggleColor: AppColors.white,
+            onToggle: onChanged,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+
+  /* /// Language toggle with "English | Switch | हिन्दी"
   Widget _buildLanguageToggleTile() {
     return Obx(
       () => Container(
@@ -379,7 +525,54 @@ class SettingsPage extends StatelessWidget {
         ),
       ),
     );
-  }
+  } */
+
+ Widget _buildLanguageToggleTile() {
+  return Obx(
+    () => Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      height: 60,
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        border: Border.all(color: Color(0xFFD9D9D9)),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.language, color: AppColors.black),
+              const SizedBox(width: 10),
+              Text(
+                "Change Language",
+                style: TextStyle(color: AppColors.black, fontSize: 14),
+              ),
+            ],
+          ),
+          FlutterSwitch(
+            width: 42.0, // Smaller width
+            height: 26.0, // Smaller height
+            toggleSize: 16.0, // Smaller toggle circle
+            value: languageController.isHindi,
+            borderRadius: 20.0,
+            padding: 2.0,
+            activeColor: AppColors.btnBgColor,
+            inactiveColor: Colors.grey.shade300,
+            //inactiveColor: const Color(0xFFD9D7E3), 
+            //inactiveColor: const Color(0xFFD9D9D9),
+            toggleColor: AppColors.white,
+            onToggle: (val) {
+              languageController.toggleLanguage(val);
+            },
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 
   Widget _buildLogoutButton() {
     return ElevatedButton(
@@ -397,7 +590,7 @@ class SettingsPage extends StatelessWidget {
   }
 }
 
-
+ */
 
 /* import 'package:flutter/material.dart';
 import 'package:get/get.dart';

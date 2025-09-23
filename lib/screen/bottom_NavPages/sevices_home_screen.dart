@@ -36,7 +36,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   children: [
                     CustomTextWidget(
                       text: 'services'.tr,
-                      fontsize: 14.sp, // responsive font
+                      fontsize: 14, // responsive font
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h),
@@ -74,7 +74,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   children: [
                     CustomTextWidget(
                       text: 'departments'.tr,
-                      fontsize: 14.sp,
+                      fontsize: 14,
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h),
@@ -113,7 +113,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   children: [
                     CustomTextWidget(
                       text: 'letters'.tr,
-                      fontsize: 14.sp,
+                      fontsize: 14,
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h),
@@ -166,7 +166,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   children: [
                     CustomTextWidget(
                       text: 'requests'.tr,
-                      fontsize: 14.sp,
+                      fontsize: 14,
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h),

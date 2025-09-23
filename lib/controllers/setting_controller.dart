@@ -2,10 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class SettingsController extends GetxController {
-  var emailAlerts = true.obs;
+  var emailAlerts = false.obs;
+  var smsAlerts = false.obs;
+  var pushNotifications = false.obs;
+
+  /* var emailAlerts = true.obs;
   var smsAlerts = true.obs;
-  var pushNotifications = true.obs;
-  //var languageToggle = false.obs;
+  var pushNotifications = true.obs; */
+  //var languageToggle = false.obs; 
 
   
 

@@ -43,7 +43,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  Get.put(LanguageController());
+  //Get.put(LanguageController());
   debugProfileBuildsEnabled = true;
   runApp(const MyApp());
 }

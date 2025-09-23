@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/join_bjp_volunteer.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/listview_speech.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/photo_gallery.dart';
-import 'package:janta_sewa/screen/bottom_NavPages/services_home_screen2.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/drawer_dashboard_services_home_screen.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/services_home_list_widget.dart';
@@ -56,7 +56,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                           color: Colors.grey[300],
                           alignment: Alignment.center,
                           child: Icon(Icons.broken_image,
-                              size: 24.sp, // responsive icon size
+                              size: 24, // responsive icon size
                               color: Colors.grey),
                         ),
                       ),
@@ -108,13 +108,13 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => ServicesHomeScreen2());
+                        Get.to(() => DrawerDashboardServicesHomeScreen());
                       },
                       child: CustomTextWidget(
                         text: 'view_more'.tr,
                         fontWeight: FontWeight.w400,
                         color: AppColors.btnBgColor,
-                        fontsize: 12.sp, // responsive font
+                        fontsize: 12, // responsive font
                       ),
                     ),
                   ],
@@ -140,7 +140,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                         text: 'view_more'.tr,
                         fontWeight: FontWeight.w400,
                         color: AppColors.btnBgColor,
-                        fontsize: 12.sp,
+                        fontsize: 12,
                       ),
                     ),
                   ],
@@ -166,7 +166,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                         text: 'view_more'.tr,
                         fontWeight: FontWeight.w400,
                         color: AppColors.btnBgColor,
-                        fontsize: 12.sp,
+                        fontsize: 12,
                       ),
                     ),
                   ],
@@ -182,7 +182,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                     children: [
                       CustomButton(
                         text: 'join_bjp'.tr,
-                        textSize: 12.sp,
+                        textSize: 12,
                         height: buttonHeight,
                         width: buttonWidth,
                         backgroundColor: AppColors.bgLight,
@@ -194,7 +194,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                       ),
                       CustomButton(
                         text: 'join_volunteer'.tr,
-                        textSize: 12.sp,
+                        textSize: 12,
                         height: buttonHeight,
                         width: buttonWidth,
                         backgroundColor: AppColors.bgLight,
