@@ -4,13 +4,13 @@ class CustomLabelText extends StatelessWidget {
   final String text;
   final double fontsize;
   final Color? color;
-  final bool isRequired; 
+  final bool isRequired;
   const CustomLabelText({
     super.key,
     required this.text,
-    this.fontsize = 16,
+    this.fontsize = 12,
     this.color,
-    this.isRequired = false, 
+    this.isRequired = false,
   });
 
   @override

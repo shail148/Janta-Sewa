@@ -19,9 +19,9 @@ class _SpeechListViewState extends State<SpeechListView> {
   final LanguageController languageController = Get.put(LanguageController());
   @override
   Widget build(BuildContext context) {
-    
-    final List speeches =languageController.isHindi?json.decode(speechListHindi):json.decode(speechList); 
-
+    final List speeches = languageController.isHindi
+        ? json.decode(speechListHindi)
+        : json.decode(speechList);
 
     return SizedBox(
       height: 280,
@@ -37,7 +37,7 @@ class _SpeechListViewState extends State<SpeechListView> {
             margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
               color: Colors.white,
-              border: Border.all(color:AppColors.galleryBdColors),
+              border: Border.all(color: AppColors.galleryBdColors),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Column(
@@ -60,13 +60,13 @@ class _SpeechListViewState extends State<SpeechListView> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                        '${item['title']}',
-                        softWrap: true,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
-                        // optional style
-                      ),
+                    '${item['title']}',
+                    softWrap: true,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+                    // optional style
+                  ),
                 ),
                 // Date
                 Padding(
@@ -116,10 +116,12 @@ class DetailsViewSpeech extends StatefulWidget {
 
 class _DetailsViewSpeechState extends State<DetailsViewSpeech> {
   final LanguageController languageController = Get.put(LanguageController());
-    
+
   @override
   Widget build(BuildContext context) {
-    final List speeches =languageController.isHindi?json.decode(speechListHindi):json.decode(speechList); 
+    final List speeches = languageController.isHindi
+        ? json.decode(speechListHindi)
+        : json.decode(speechList);
 
     return Scaffold(
       appBar: CustomTopAppBar(
@@ -140,11 +142,11 @@ class _DetailsViewSpeechState extends State<DetailsViewSpeech> {
                   final item = speeches[index];
                   return Container(
                     width: 250,
-            
+
                     margin: EdgeInsets.only(bottom: 14),
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(color:AppColors.galleryBdColors),
+                      border: Border.all(color: AppColors.galleryBdColors),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
@@ -160,7 +162,7 @@ class _DetailsViewSpeechState extends State<DetailsViewSpeech> {
                             height: 200,
                             width: double.infinity,
                             //fit: BoxFit.cover,
-                            fit: BoxFit.fill //changed to fill
+                            fit: BoxFit.fill, //changed to fill
                           ),
                         ),
                         // Title
@@ -171,7 +173,10 @@ class _DetailsViewSpeechState extends State<DetailsViewSpeech> {
                             softWrap: true,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 12, fontFamily: 'Poppins'),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Poppins',
+                            ),
                             // optional style
                           ),
                         ),

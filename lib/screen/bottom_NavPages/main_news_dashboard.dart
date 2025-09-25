@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/join_bjp_volunteer.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/listview_speech.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/photo_gallery.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/services_home_screen2.dart';
-import 'package:janta_sewa/screen/bottom_NavPages/sevices_home_screen.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/services_home_list_widget.dart';
@@ -200,9 +200,9 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                     children: [
                       CustomButton(
                         text: 'join_bjp'.tr,
-                        textSize: 12,
-                        height: buttonHeight,
-                        width: buttonWidth,
+                        textSize: 12.sp,
+                        height: 100.h,
+                        width: 120.w,
                         backgroundColor: AppColors.bgLight,
                         textColor: Colors.orange,
                         borderColor: Colors.orange,
@@ -212,9 +212,9 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                       ),
                       CustomButton(
                         text: 'join_volunteer'.tr,
-                        textSize: 12,
-                        height: buttonHeight,
-                        width: buttonWidth,
+                        textSize: 12.sp,
+                        height: 100.h,
+                        width: 120.w,
                         backgroundColor: AppColors.bgLight,
                         textColor: AppColors.btnBgColor,
                         borderColor: AppColors.btnBgColor,

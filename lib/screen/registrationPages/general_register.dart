@@ -33,8 +33,6 @@ class _GeneralRegisterState extends State<GeneralRegister> {
   final TextEditingController pincodeController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +44,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
           child: SingleChildScrollView(
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -105,24 +103,20 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             text: 'email_id'.tr,
                             isRequired: true,
                           ),
-                          CustomTextFormField(
-                            hintText: 'enter_email_id',
-                           
-                          ),
+                          CustomTextFormField(hintText: 'enter_email_id'),
                           CustomLabelText(text: 'date_of_birth'.tr),
                           CustomTextFormField(
                             controller: dobController,
                             hintText: 'dob_hint'.tr,
                             suffixIconColor: AppColors.btnBgColor,
                             suffixIcon: Icons.calendar_month,
-                             
+
                             onSuffixTap: () {
                               showCustomCalendarDialog(
                                 context: context,
                                 controller: dobController,
                               );
                             },
-                         
                           ),
 
                           CustomLabelText(text: 'blood_group'.tr),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_list_tile.dart';
@@ -29,15 +30,16 @@ class MainRegisterPage extends StatelessWidget {
           child: SingleChildScrollView(
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(height: 85.h),
                     Center(
                       child: Image.asset(
                         'assets/images/indialogo.png',
-                        height: 150,
-                        width: 100,
+                        height: 98.h,
+                        width: 62.w,
                       ),
                     ),
                     SizedBox(height: 24),
@@ -54,7 +56,7 @@ class MainRegisterPage extends StatelessWidget {
                         Get.to(() => GeneralRegister());
                       },
                     ),
-                   
+
                     // CustomListTile(
                     //   title: 'sangthan'.tr,
                     //   onTap: () {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/components/languageToggleSwitch.dart';
 import 'package:janta_sewa/controllers/language_controller.dart';
@@ -19,27 +20,32 @@ class LanguageSwitch extends StatelessWidget {
         centerTitle: true,
         title: CustomTextWidget(
           text: "Janta Sewa".tr,
-          fontsize: 24,
+          fontsize: 18.sp,
           color: AppColors.textColor,
           fontWeight: FontWeight.bold,
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           children: [
-            Image.asset('assets/images/indialogo.png', height: 300, width: 150),
-            SizedBox(height: 40),
+            SizedBox(height: 60.h),
+            Image.asset(
+              'assets/images/indialogo.png',
+              height: 98.h,
+              width: 62.w,
+            ),
+            SizedBox(height: 40.h),
             CustomTextWidget(
               text: 'Select Your Langauge',
-              fontsize: 14,
+              fontsize: 20.sp,
               color: AppColors.textColor,
               fontWeight: FontWeight.w600,
             ),
             SizedBox(height: 10),
             CustomTextWidget(
               text: 'अपनी भाषा का चयन करें',
-              fontsize: 14,
+              fontsize: 20.sp,
               color: AppColors.textColor,
               fontWeight: FontWeight.w600,
             ),
@@ -77,17 +83,20 @@ class LanguageSwitch extends StatelessWidget {
                 LanguageToggleSwitch(),
               ],
             ),
-            SizedBox(height: 30),
-            Image.asset('assets/images/bjp.png', height: 150, width: 150),
+            SizedBox(height: 28.h),
+            Image.asset('assets/images/bjp.png', height: 100.h, width: 100.w),
             Spacer(),
-            CustomButton(
-              text: 'next'.tr,
-              textSize: 16,
-              width: double.infinity,
-              height: 50,
-              onPressed: () {
-                Get.to(() => LoginPage());
-              },
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: CustomButton(
+                text: 'next'.tr,
+                textSize: 16,
+                width: double.infinity,
+                height: 50,
+                onPressed: () {
+                  Get.to(() => LoginPage());
+                },
+              ),
             ),
           ],
         ),

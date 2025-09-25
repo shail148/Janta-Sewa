@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/widget/button.dart';
@@ -14,8 +15,10 @@ class OtpVerification extends StatefulWidget {
 }
 
 class _OtpVerificationState extends State<OtpVerification> {
-  final List<TextEditingController> _otpControllers =
-      List.generate(4, (_) => TextEditingController());
+  final List<TextEditingController> _otpControllers = List.generate(
+    4,
+    (_) => TextEditingController(),
+  );
   final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
 
   Timer? _timer;
@@ -88,18 +91,19 @@ class _OtpVerificationState extends State<OtpVerification> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 46.h),
               Center(
                 child: Image.asset(
                   'assets/images/indialogo.png',
-                  height: 150,
-                  width: 100,
+                  height: 98.h,
+                  width: 62.w,
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 48.h),
               Center(
                 child: CustomTextWidget(
                   text: "otp_verification".tr,
@@ -153,11 +157,13 @@ class _OtpVerificationState extends State<OtpVerification> {
                             ),
                             onChanged: (value) {
                               if (value.isNotEmpty && index < 3) {
-                                FocusScope.of(context).requestFocus(
-                                    _focusNodes[index + 1]);
+                                FocusScope.of(
+                                  context,
+                                ).requestFocus(_focusNodes[index + 1]);
                               } else if (value.isEmpty && index > 0) {
-                                FocusScope.of(context).requestFocus(
-                                    _focusNodes[index - 1]);
+                                FocusScope.of(
+                                  context,
+                                ).requestFocus(_focusNodes[index - 1]);
                               }
                             },
                           ),
@@ -214,9 +220,8 @@ class _OtpVerificationState extends State<OtpVerification> {
                       width: double.infinity,
                       onPressed: () {
                         //String otp = getOtp();
-                      // print("Entered OTP: $otp");
-                       Get.offAll(() => BottomNav()); 
-
+                        // print("Entered OTP: $otp");
+                        Get.offAll(() => BottomNav());
                       },
                     ),
                   ],

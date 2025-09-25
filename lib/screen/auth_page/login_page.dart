@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/controllers/auth_controller.dart';
@@ -84,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -161,9 +162,9 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: 20),
                       CustomButton(
                         text: 'login_btn'.tr,
-                        textSize: 14,
+                        textSize: 18.sp,
                         backgroundColor: AppColors.btnBgColor,
-                        height: 62,
+                        height: 50.h,
                         width: double.infinity,
                         // onPressed: _login,
                         onPressed: () {
@@ -175,12 +176,16 @@ class _LoginPageState extends State<LoginPage> {
 
                             if (email == 'admin@gmail.com' &&
                                 password == 'admin') {
-                                  CustomSnackbar.showSuccess(title: 'Login', message: 'Successful');
+                              CustomSnackbar.showSuccess(
+                                title: 'Login',
+                                message: 'Successful',
+                              );
                               Get.offAll(() => BottomNav());
-
                             } else {
-                              CustomSnackbar.showError(title: "Login Failed", message: "Invalid email or password",);
-                            
+                              CustomSnackbar.showError(
+                                title: "Login Failed",
+                                message: "Invalid email or password",
+                              );
                             }
                           }
                         },
