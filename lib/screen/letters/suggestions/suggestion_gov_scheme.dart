@@ -9,6 +9,7 @@ import 'package:janta_sewa/widget/label_text.dart';
 import 'package:janta_sewa/widget/message_text_form_widget.dart';
 import 'package:janta_sewa/widget/text_form_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SuggestionForGovScheme extends StatefulWidget {
   const SuggestionForGovScheme({super.key});
@@ -18,16 +19,17 @@ class SuggestionForGovScheme extends StatefulWidget {
 }
 
 class _SuggestionForGovSchemeState extends State<SuggestionForGovScheme> {
- final List<String>suggestionForScheme =[
+  final List<String> suggestionForScheme = [
     'national government'.tr,
     'state government'.tr,
   ];
   String? selectedType;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomTopAppBar(
-        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
+        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor, size: 20.sp),
         onLeftTap: () {
           Get.back();
         },
@@ -36,68 +38,73 @@ class _SuggestionForGovSchemeState extends State<SuggestionForGovScheme> {
         child: Scrollbar(
           thumbVisibility: true,
           trackVisibility: true,
-          // thickness: 5,
-          radius: const Radius.circular(10),
+          radius: Radius.circular(10.r),
           child: SingleChildScrollView(
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: "suggestion_for_Gov_scheme".tr,
-                      color: AppColors.textColor,
-                      fontsize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-
-                    SizedBox(height: 10),
-                    Form(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomLabelText(text: 'applicant_name'.tr),
-                          CustomTextFormField(hintText: 'applicant_name'.tr),
-                          CustomLabelText(text: 'mobile_number'.tr),
-                          CustomTextFormField(hintText: 'mobile_number'.tr),
-                          CustomLabelText(text: 'address'.tr),
-                          CustomTextFormField(hintText: 'address'.tr),
-                          CustomLabelText(text: 'suggestion_type'.tr),
-                          CustomDropdown(items: suggestionForScheme, selectedValue: selectedType, onChanged: (value){
+            child: Padding(
+              padding: EdgeInsets.all(16.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomTextWidget(
+                    text: "suggestion_for_Gov_scheme".tr,
+                    color: AppColors.textColor,
+                    fontsize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  SizedBox(height: 10.h),
+                  Form(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomLabelText(text: 'applicant_name'.tr),
+                        CustomTextFormField(hintText: 'applicant_name'.tr),
+                        SizedBox(height: 8.h),
+                        CustomLabelText(text: 'mobile_number'.tr),
+                        CustomTextFormField(hintText: 'mobile_number'.tr),
+                        SizedBox(height: 8.h),
+                        CustomLabelText(text: 'address'.tr),
+                        CustomTextFormField(hintText: 'address'.tr),
+                        SizedBox(height: 8.h),
+                        CustomLabelText(text: 'suggestion_type'.tr),
+                        CustomDropdown(
+                          items: suggestionForScheme,
+                          selectedValue: selectedType,
+                          onChanged: (value) {
                             setState(() {
                               selectedType = value;
                             });
-                          }),
-                          const SizedBox(height: 8,),
-                          CustomLabelText(text: 'department_name'.tr),
-                          CustomTextFormField(hintText: 'department_name'.tr),
-                          CustomLabelText(text: 'brief_detail_of_suggestion'.tr),
-                          CustomTextFormField(
-                            hintText: 'brief_detail_of_suggestion'.tr,
-                          ),
-                          CustomLabelText(text: 'message'.tr),
-                          CustomMessageTextFormField(
+                          },
+                        ),
+                        SizedBox(height: 8.h),
+                        CustomLabelText(text: 'department_name'.tr),
+                        CustomTextFormField(hintText: 'department_name'.tr),
+                        SizedBox(height: 8.h),
+                        CustomLabelText(text: 'brief_detail_of_suggestion'.tr),
+                        CustomTextFormField(
+                          hintText: 'brief_detail_of_suggestion'.tr,
+                        ),
+                        SizedBox(height: 8.h),
+                        CustomLabelText(text: 'message'.tr),
+                        CustomMessageTextFormField(
                           hintText: 'enter_message'.tr,
-                          ),
-                          CustomLabelText(text: 'upload_signed_documents'.tr),
-                          SizedBox(height: 10),
-                          CustomFileUpload(),
-                          SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                            },
-                          ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(height: 8.h),
+                        CustomLabelText(text: 'upload_signed_documents'.tr),
+                        SizedBox(height: 10.h),
+                        CustomFileUpload(),
+                        SizedBox(height: 10.h),
+                        CustomButton(
+                          text: 'submit_btn'.tr,
+                          textSize: 14.sp,
+                          backgroundColor: AppColors.btnBgColor,
+                          height: 62.h,
+                          width: double.infinity,
+                          onPressed: () {},
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -106,3 +113,4 @@ class _SuggestionForGovSchemeState extends State<SuggestionForGovScheme> {
     );
   }
 }
+

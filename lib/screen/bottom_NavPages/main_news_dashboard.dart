@@ -5,12 +5,232 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/join_bjp_volunteer.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/listview_speech.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/photo_gallery.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/drawer_dashboard_services_home_screen.dart';
+import 'package:janta_sewa/widget/button.dart';
+import 'package:janta_sewa/widget/colors.dart';
+import 'package:janta_sewa/widget/services_home_list_widget.dart';
+import 'package:janta_sewa/widget/text_widget.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+class MainNewsDashboard extends StatefulWidget {
+  const MainNewsDashboard({super.key});
+  @override
+  State<MainNewsDashboard> createState() => _MainNewsDashboardState();
+}
+
+class _MainNewsDashboardState extends State<MainNewsDashboard> {
+  final List<Map<String, dynamic>> imageList = [
+    {'id': 1, 'image': 'assets/sliderimages/1.png'},
+    {'id': 2, 'image': 'assets/sliderimages/2.jpg'},
+    {'id': 3, 'image': 'assets/sliderimages/3.jpg'},
+    {'id': 4, 'image': 'assets/sliderimages/3.jpg'},
+  ];
+
+  int currentIndex = 0;
+  final CarouselSliderController sliderController = CarouselSliderController();
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final buttonWidth = screenWidth * 0.3;  //  percentage based
+    final buttonHeight = screenWidth * 0.21;
+
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16).r, // responsive padding
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CarouselSlider(
+                  carouselController: sliderController,
+                  items: imageList.map((item) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(5).r, // responsive radius
+                      child: Image.asset(
+                        item['image'],
+                        fit: BoxFit.fill,
+                        width: double.infinity,
+                        errorBuilder: (_, __, ___) => Container(
+                          color: Colors.grey[300],
+                          alignment: Alignment.center,
+                          child: Icon(Icons.broken_image,
+                              size: 24, // responsive icon size
+                              color: Colors.grey),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    //height: 250.h,
+                    autoPlay: true,
+                    viewportFraction: 1,
+                    aspectRatio: 1.5,
+                    scrollPhysics: const BouncingScrollPhysics(),
+                    onPageChanged: (index, _) =>
+                        setState(() => currentIndex = index),
+                  ),
+                ),
+
+                SizedBox(height: 8.h),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AnimatedSmoothIndicator(
+                      activeIndex: currentIndex,
+                      count: imageList.length,
+                      effect: ExpandingDotsEffect(
+                        dotHeight: 10.h,
+                        dotWidth: 10.w,
+                        spacing: 6.w,
+                        expansionFactor: 2,
+                        activeDotColor: AppColors.btnBgColor,
+                        dotColor: Colors.grey.shade400,
+                      ),
+                      onDotClicked: (index) {
+                        sliderController.animateToPage(index);
+                      },
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 16.h),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomTextWidget(
+                      text: 'Services'.tr,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.btnBgColor,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => DrawerDashboardServicesHomeScreen());
+                      },
+                      child: CustomTextWidget(
+                        text: 'view_more'.tr,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.btnBgColor,
+                        fontsize: 12, // responsive font
+                      ),
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 8.h),
+                const ServicesHomeListWidget(),
+                SizedBox(height: 8.h),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomTextWidget(
+                      text: 'speech'.tr,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.btnBgColor,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => DetailsViewSpeech());
+                      },
+                      child: CustomTextWidget(
+                        text: 'view_more'.tr,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.btnBgColor,
+                        fontsize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8.h),
+
+                SpeechListView(),
+                SizedBox(height: 8.h),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomTextWidget(
+                      text: 'photo_gallery'.tr,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.btnBgColor,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => DetailsViewSpeech());
+                      },
+                      child: CustomTextWidget(
+                        text: 'view_more'.tr,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.btnBgColor,
+                        fontsize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8.h),
+                PhotoGalleryView(),
+                SizedBox(height: 8.h),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w).r,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CustomButton(
+                        text: 'join_bjp'.tr,
+                        textSize: 12,
+                        height: buttonHeight,
+                        width: buttonWidth,
+                        backgroundColor: AppColors.bgLight,
+                        textColor: Colors.orange,
+                        borderColor: Colors.orange,
+                        onPressed: () {
+                          Get.to(() => JoinBjpVolunteerPage());
+                        },
+                      ),
+                      CustomButton(
+                        text: 'join_volunteer'.tr,
+                        textSize: 12,
+                        height: buttonHeight,
+                        width: buttonWidth,
+                        backgroundColor: AppColors.bgLight,
+                        textColor: AppColors.btnBgColor,
+                        borderColor: AppColors.btnBgColor,
+                        onPressed: () {
+                          Get.to(() => JoinBjpVolunteerPage());
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+/* import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/join_bjp_volunteer.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/listview_speech.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/photo_gallery.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/services_home_screen2.dart';
 import 'package:janta_sewa/widget/button.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/services_home_list_widget.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class MainNewsDashboard extends StatefulWidget {
   const MainNewsDashboard({super.key});
@@ -39,7 +259,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0).r,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -57,7 +277,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                         errorBuilder: (_, __, ___) => Container(
                           color: Colors.grey[300],
                           alignment: Alignment.center,
-                          child: Icon(Icons.broken_image, color: Colors.grey),
+                          child: Icon(Icons.broken_image, color:Colors.grey),
                         ),
                       ),
                     );
@@ -84,8 +304,8 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                       activeIndex: currentIndex,
                       count: imageList.length,
                       effect: ExpandingDotsEffect(
-                        dotHeight: 10,
-                        dotWidth: 10,
+                        dotHeight: 10.h,
+                        dotWidth: 10.w,
                         spacing: 6,
                         expansionFactor: 2,
                         activeDotColor: AppColors.btnBgColor,
@@ -133,15 +353,15 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
                         text: 'view_more'.tr,
                         fontWeight: FontWeight.w400,
                         color: AppColors.btnBgColor,
-                        fontsize: 12,
+                        fontsize: 12.sp,
                       ),
                     ),
                   ],
                 ),
 
-                const SizedBox(height: 8),
+                 SizedBox(height: 8.h),
                 const ServicesHomeListWidget(),
-                const SizedBox(height: 8),
+                 SizedBox(height: 8.h),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -233,3 +453,4 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
     );
   }
 }
+ */

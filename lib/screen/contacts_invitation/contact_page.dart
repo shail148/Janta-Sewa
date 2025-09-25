@@ -105,8 +105,8 @@ class _ContactPageState extends State<ContactPage> {
                     SizedBox(height: 20),
                     CustomTextWidget(
                       text: 'Follow us on',
-                      fontsize: 14,
-                      fontWeight: FontWeight.w500,//changed to medium or w500 medium from  w600
+                      fontsize: 16,
+                      fontWeight: FontWeight.w600,//changed to medium or w500 medium from  w600
                     ),
                     SizedBox(height: 10),
                     Row(

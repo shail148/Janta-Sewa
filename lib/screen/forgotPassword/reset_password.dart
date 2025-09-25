@@ -44,6 +44,7 @@ class _ResetPasswordState extends State<ResetPassword> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+             SizedBox(height: 40),
               Center(
                 child: Image.asset(
                   'assets/images/indialogo.png',
@@ -51,7 +52,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   width: 100,
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 40),
               Center(
                 child: CustomTextWidget(
                   text: "forgot_password".tr,

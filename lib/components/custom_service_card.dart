@@ -38,9 +38,9 @@ class CustomServiceCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        clipBehavior: Clip.antiAlias,
         width: cardWidth,
         height: cardHeight,
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: backgroundColor.withValues(alpha: 0.90), //0.0 to 1.0 values
           border: Border.all(color: const Color(0xFFEEEEEE)),
@@ -64,7 +64,7 @@ class CustomServiceCard extends StatelessWidget {
                 text,
                 style: const TextStyle(
                   fontFamily: "Inter",
-                  fontSize: 10,
+                  fontSize: 12,
                   fontWeight: FontWeight.w400,
                   color: AppColors.black,
                   height: 1.2,

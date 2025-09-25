@@ -121,7 +121,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                       text: 'verification_message'.tr,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.bold,
-                      fontsize: 12,
+                      fontsize: 14,
                       color: AppColors.textGrey,
                     ),
                     SizedBox(height: 20),
@@ -149,7 +149,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                             style: TextStyle(
                               fontSize: 20,
                               color: AppColors.textColor,
-                              fontFamily: 'Poppins',
+                              fontFamily: 'Inter',
                             ),
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -175,16 +175,17 @@ class _OtpVerificationState extends State<OtpVerification> {
                       children: [
                         CustomTextWidget(
                           text: 'remaining_time'.tr,
-                          fontsize: 10,
+                          fontsize: 12,
                           color: AppColors.textGrey,
                           fontWeight: FontWeight.bold,
                         ),
                         SizedBox(width: 8),
                         CustomTextWidget(
                           text: '00:${_start.toString().padLeft(2, '0')}',
-                          fontsize: 10,
+                          fontsize: 12,
                           color: AppColors.textColor,
                           fontWeight: FontWeight.bold,
+                          
                         ),
                       ],
                     ),
@@ -193,7 +194,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                       children: [
                         CustomTextWidget(
                           text: 'Didn’t_get_the_code?'.tr,
-                          fontsize: 10,
+                          fontsize: 12,
                           color: AppColors.textGrey,
                           fontWeight: FontWeight.bold,
                         ),
@@ -204,7 +205,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                           },
                           child: CustomTextWidget(
                             text: 'resend_otp'.tr,
-                            fontsize: 10,
+                            fontsize: 12,
                             color: AppColors.btnBgColor,
                             fontWeight: FontWeight.bold,
                           ),
@@ -214,7 +215,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                     SizedBox(height: 20),
                     CustomButton(
                       text: 'verify_otp'.tr,
-                      textSize: 14,
+                      textSize: 16,
                       backgroundColor: AppColors.btnBgColor,
                       height: 62,
                       width: double.infinity,

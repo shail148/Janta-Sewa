@@ -98,7 +98,7 @@ class ServicesHomeListWidget extends StatelessWidget {
                     service['title'],
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      fontSize: 10,
+                      fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Colors.black87,
                       height: 1.2,

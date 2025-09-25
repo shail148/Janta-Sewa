@@ -89,6 +89,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                
                 Center(
                   child: Image.asset(
                     'assets/images/indialogo.png',

@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/bindings/app_bindings.dart';
 import 'package:janta_sewa/controllers/language_controller.dart';
+import 'package:janta_sewa/routes/app_pages.dart';
+import 'package:janta_sewa/routes/app_routes.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/localization/localization.dart';
 import 'package:janta_sewa/screen/auth_page/otp_verification.dart';
@@ -40,7 +43,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  Get.put(LanguageController());
+  //Get.put(LanguageController());
   debugProfileBuildsEnabled = true;
   runApp(const MyApp());
 }
@@ -51,28 +54,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(360, 800),
+      designSize: const Size(360, 800),
       minTextAdapt: true,
       splitScreenMode: true,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
+
+        //added for routes
+        initialRoute: AppRoutes.languageswitch,
+        getPages: AppPages.pages,
+        initialBinding: AppBinding(), // Inject all controllers here
+
         translations: AppLocalization(), //  translations
         locale: const Locale('en', 'US'), // default locale
         fallbackLocale: const Locale('en', 'US'),
         title: 'Janta Sewa',
         theme: ThemeData(
-          fontFamily: 'Poppins',
-          scaffoldBackgroundColor: Colors.white,
+          fontFamily: 'Inter',
+          scaffoldBackgroundColor: AppColors.white,
           appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
+            backgroundColor: AppColors.white,
             elevation: 0,
           ),
           hoverColor: AppColors.btnBgColor,
           //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
+
         //the First page is language switch LangaugeSwitch(); It is the Initial Route for this Application.
-        home: LanguageSwitch(),
-        //  home: BottomNav(),
+        // home: LanguageSwitch(),
+        //home: BottomNav(),
       ),
     );
   }

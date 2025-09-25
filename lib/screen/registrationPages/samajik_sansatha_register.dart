@@ -146,10 +146,10 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(10.0),
                               child: CustomTextWidget(
                                 text: 'after_register_info'.tr,
-                                fontsize: 12,
+                                fontsize: 14,
                                 textAlign: TextAlign.justify,
                               ),
                             ),

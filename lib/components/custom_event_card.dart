@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
@@ -17,7 +18,10 @@ class CustomEventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),side: BorderSide(color: AppColors.galleryBdColors,width: 1)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: AppColors.galleryBdColors, width: 1),
+      ),
       elevation: 4,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,36 +38,40 @@ class CustomEventCard extends StatelessWidget {
                   const Icon(Icons.broken_image, size: 100),
             ),
           ),
-         
+
           // TEXT CONTENT
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomTextWidget(text: description, textAlign: TextAlign.justify,fontsize: 12,),
+                CustomTextWidget(
+                  text: description,
+                  textAlign: TextAlign.justify,
+                  fontsize: 12,
+                ),
                 const SizedBox(height: 12),
                 Row(
                   children: [
                     const Icon(
                       Icons.calendar_today,
-                      color: AppColors.btnBgColor,size: 16,
+                      color: AppColors.btnBgColor,
+                      size: 16,
                     ),
                     const SizedBox(width: 5),
-                    CustomTextWidget(text: date,fontsize: 12,),
+                    CustomTextWidget(text: date, fontsize: 12),
                   ],
                 ),
               ],
             ),
           ),
-          const Divider(height: 1,color: AppColors.galleryBdColors,),
+          const Divider(height: 1, color: AppColors.galleryBdColors),
           // SHARE SECTION
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-               
                 Image.asset(
                   'assets/images/instagram.png',
                   height: 20,
@@ -77,11 +85,37 @@ class CustomEventCard extends StatelessWidget {
                 ),
                 // Spacer(),
                 IconButton(
-                  icon: const Icon(Icons.share,color: AppColors.btnBgColor,),
-                  onPressed: () {
+                  icon: const Icon(Icons.share, color: AppColors.btnBgColor),
+
+                  /* onPressed: () {
                     // Share the event description and date
                     Share.share('$description\n📅 $date');
+                  }, */
+
+                  onPressed: () async {
+                    try {
+                      final result = await SharePlus.instance.share(
+                        ShareParams(
+                          text: '$description\n📅 $date',
+                          subject: 'Event Details',
+                        ),
+                      );
+                      if (result.status == ShareResultStatus.success) {
+                        if (kDebugMode) {
+                          print('Event details shared successfully');
+                        }
+                      } else {
+                        if (kDebugMode) {
+                          print('Share dismissed or failed: ${result.status}');
+                        }
+                      }
+                    } catch (e) {
+                      if (kDebugMode) {
+                        print('Error while sharing event details: $e');
+                      }
+                    }
                   },
+                  
                 ),
               ],
             ),

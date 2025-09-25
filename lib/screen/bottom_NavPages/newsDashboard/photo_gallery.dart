@@ -48,7 +48,7 @@ class _PhotoGalleryViewState extends State<PhotoGalleryView> {
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                   child: Image.asset(
                     item['imageUrl'],
-                    height: 140,
+                    height: 175, //changed from 140
                     width: double.infinity,
                     //fit: BoxFit.cover,
                      fit: BoxFit.fill, //changed to fill

@@ -1,15 +1,17 @@
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/screen/auth_page/login_page.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/newsDashboard/our_journey_page.dart';
+import 'package:janta_sewa/screen/bottom_NavPages/drawer_dashboard_services_home_screen.dart';
 import 'package:janta_sewa/screen/bottom_NavPages/settings_page.dart';
 import 'package:janta_sewa/screen/contacts_invitation/contact_page.dart';
 import 'package:janta_sewa/screen/events/event_page.dart';
 import 'package:janta_sewa/screen/notification/notification_page.dart';
 import 'package:janta_sewa/widget/colors.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -37,8 +39,11 @@ class CustomDrawer extends StatelessWidget {
                       backgroundImage: AssetImage('assets/sliderimages/1.png'),
                     ),
                     SizedBox(height: 10),
-                    CustomTextWidget(text: 'Welcome Shailendra', color: Colors.white,
-                    fontsize: 12,),
+                    CustomTextWidget(
+                      text: 'Welcome Shailendra',
+                      color: Colors.white,
+                      fontsize: 12,
+                    ),
                     CustomTextWidget(
                       text: 'shailendra@gmail.com',
                       color: Colors.white,
@@ -65,6 +70,12 @@ class CustomDrawer extends StatelessWidget {
                   //   onTap: () => Get.to(() => const ServicesHomeScreen()),
                   // ),
                   _drawerItem(
+                    Icons.dashboard,
+                    'dashboardss'.tr,
+                    onTap: () => Get.to(() => const DrawerDashboardServicesHomeScreen()),
+                  ),
+
+                  _drawerItem(
                     Icons.event,
                     'upcoming_event'.tr,
                     onTap: () => Get.to(() => const EventPage()),
@@ -88,16 +99,39 @@ class CustomDrawer extends StatelessWidget {
                   _drawerItem(
                     Icons.settings,
                     'settings'.tr,
-                    onTap: () => Get.to(() => const SettingsPage()),
+                    onTap: () => Get.to(() => SettingsPage()),
                   ),
                   _drawerItem(
                     Icons.share_outlined,
                     'share_this_app'.tr,
-                    onTap: (){
-                     
-       
+                    onTap: () async {
+                      try {
+                        final result = await SharePlus.instance.share(
+                          ShareParams(
+                            text: 'Please download Janta Sewa app from this link below : \n\nhttps://play.google.com/store/apps/details?id=com.jantasewa.app',
+                            subject: 'Janta Sewa App',
+                          ),
+                        );
+                        // Optionally handle the result
+                        if (result.status == ShareResultStatus.success) {
+                          if (kDebugMode) {
+                            if (kDebugMode) {
+                              print('App link shared successfully');
+                            }
+                          }
+                        } else {
+                          if (kDebugMode) {
+                            print('Share dismissed or failed: ${result.status}');
+                          }
+                        }
+                      } catch (e) {
+                        if (kDebugMode) {
+                          print('Error while sharing: $e');
+                        }
+                      }
                     },
                   ),
+
                   _drawerItem(
                     Icons.logout,
                     'logout'.tr,
@@ -129,10 +163,12 @@ class CustomDrawer extends StatelessWidget {
                         throw 'Could not launch $url';
                       }
                     },
-                      child: CustomTextWidget(text: 'Kasper Infotech Pvt. Ltd.',color: AppColors.textColor,
-                      fontsize: 10,),
+                    child: CustomTextWidget(
+                      text: 'Kasper Infotech Pvt. Ltd.',
+                      color: AppColors.textColor,
+                      fontsize: 10,
                     ),
-                  
+                  ),
                 ],
               ),
             ),
@@ -148,17 +184,9 @@ class CustomDrawer extends StatelessWidget {
     VoidCallback? onTap,
   }) {
     return ListTile(
-      leading: Icon(icon, color: AppColors.btnBgColor,size: 32,),
+      leading: Icon(icon, color: AppColors.btnBgColor, size: 32),
       title: CustomTextWidget(text: title),
       onTap: onTap,
     );
   }
-
-  
-
-
-
 }
-
-
-

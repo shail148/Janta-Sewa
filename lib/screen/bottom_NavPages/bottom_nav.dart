@@ -17,36 +17,68 @@ class BottomNav extends StatefulWidget {
   @override
   _BottomNavState createState() => _BottomNavState();
 }
+
 class _BottomNavState extends State<BottomNav> {
   int selectedIndex = 0;
-  final List<Widget> pages = [
+  bool startEditing = false; //for open in editing mode on profile screen in nav bar
+  late List<Widget> pages;
+
+  /* final List<Widget> pages = [
     MainNewsDashboard(),
     ServicesHomeScreen(),
     TrackPage(),
-    ProfileScreen(),
-  ];
+    //ProfileScreen(),
+  ]; */
+
+  //for navigating from Settings in drawer
+  /* @override
+  void initState() {
+    super.initState();
+    final arg = Get.arguments;
+    if (arg is int) selectedIndex = arg;
+  } */
+
+  @override
+  void initState() {
+    super.initState();
+    final args = Get.arguments;
+    if (args is Map) {
+      if (args['index'] != null) selectedIndex = args['index'];
+      startEditing = args['edit'] == true;
+    }
+
+    pages = [
+      MainNewsDashboard(),
+      ServicesHomeScreen(),
+      TrackPage(),
+      ProfileScreen(startEditing: startEditing),
+    ];
+  }
 
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
     });
   }
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       key: _scaffoldKey, 
+      key: _scaffoldKey,
       drawer: CustomDrawer(),
       appBar: CustomTopAppBar(
         leftIcon: Icon(Icons.menu, color: AppColors.btnBgColor, size: 30),
-        onLeftTap: 
-           () => _scaffoldKey.currentState?.openDrawer(),
-        rightIcon:
-
-            Icon(Icons.notifications, color: AppColors.btnBgColor, size: 30,),onRightTap: (){
-              Get.to(()=>NotificationPage());
-            },
+        onLeftTap: () => _scaffoldKey.currentState?.openDrawer(),
+        rightIcon: Icon(
+          Icons.notifications,
+          color: AppColors.btnBgColor,
+          size: 30,
+        ),
+        onRightTap: () {
+          Get.to(() => NotificationPage());
+        },
       ),
       body: pages[selectedIndex],
       /* bottomNavigationBar: Container(
@@ -82,27 +114,27 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
             ),
           ],
         ), */
-        // inside _BottomNavState.build()
-bottomNavigationBar: Container(
-  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-  decoration:  BoxDecoration(
-    color: Color(0xFFF4F6FE),
-     borderRadius: BorderRadius.only(
-      topLeft: Radius.circular(0),
-      topRight: Radius.circular(0),
-    ), 
-   // borderRadius: BorderRadius.circular(12)
-  ),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children: [
-      buildNavItem(Icons.home_outlined, "Home", 0),
-      buildNavItem(Icons.dashboard_customize_outlined, "Dashboard", 1),
-      buildNavItem(Icons.timelapse_outlined, "Activity", 2),
-      buildNavItem(Icons.person_outline, "Profile", 3),
-    ],
-  ),
-),
+      // inside _BottomNavState.build()
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        decoration: BoxDecoration(
+          color: Color(0xFFF4F6FE),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(0),
+            topRight: Radius.circular(0),
+          ),
+          // borderRadius: BorderRadius.circular(12)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            buildNavItem(Icons.home_outlined, "Home", 0),
+            buildNavItem(Icons.dashboard_customize_outlined, "Dashboard", 1),
+            buildNavItem(Icons.timelapse_outlined, "Activity", 2),
+            buildNavItem(Icons.person_outline, "Profile", 3),
+          ],
+        ),
+      ),
     );
   }
 
@@ -116,7 +148,6 @@ bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: isSelected
               ? AppColors.btnBgColor.withValues(alpha: 0.1)
-              
               : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
         ),

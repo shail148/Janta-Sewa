@@ -27,7 +27,7 @@ class CustomMessageTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.fillColor = const Color(0xFFF5F6FA),
-    this.fontSize = 12,
+    this.fontSize = 14,
     this.controller,
     this.suffixIcon,
     this.suffixIconColor,

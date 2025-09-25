@@ -25,7 +25,7 @@ class ContactPageTile extends StatelessWidget {
           title,
           style: const TextStyle(
             fontWeight: FontWeight.normal,
-            fontSize: 12,
+            fontSize: 14,
             color: AppColors.textColor,
             fontFamily: 'Inter', // (optional: for consistency)
           ),

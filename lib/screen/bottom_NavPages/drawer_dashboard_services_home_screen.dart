@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // ✅ add ScreenUtil import
+import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_service_card.dart';
 import 'package:janta_sewa/screen/contacts_invitation/invitation_page.dart';
 import 'package:janta_sewa/screen/letters/budgetDemand/budget_demand.dart';
@@ -11,35 +13,39 @@ import 'package:janta_sewa/screen/services_department/hospital/hospital_admissio
 import 'package:janta_sewa/screen/services_department/parliament_visit/parliament_visit.dart';
 import 'package:janta_sewa/screen/services_department/tickets/ticket_confirmation.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ServicesHomeScreen extends StatefulWidget {
-  const ServicesHomeScreen({super.key});
+class DrawerDashboardServicesHomeScreen extends StatefulWidget {
+  const DrawerDashboardServicesHomeScreen({super.key});
 
   @override
-  State<ServicesHomeScreen> createState() => _ServicesHomeScreenState();
+  State<DrawerDashboardServicesHomeScreen> createState() => _ServicesHomeScreenState2();
 }
 
-class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
+class _ServicesHomeScreenState2 extends State<DrawerDashboardServicesHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomTopAppBar(
+        title: 'Dashboard',
+        leftIcon: Icon(Icons.arrow_back_ios, size: 24), 
+        onLeftTap: Get.back,
+      ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w), // responsive padding
+          padding: EdgeInsets.symmetric(horizontal: 16.w), //  responsive
           child: Column(
             children: [
-              SizedBox(height: 16.h),
+              SizedBox(height: 16.h), // height
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
                       text: 'services'.tr,
-                      fontsize: 14, // responsive font
+                      fontsize: 14, // font
                       fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 8.h), // h
                     Expanded(
                       child: Row(
                         children: [
@@ -50,7 +56,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                               onTap: () => Get.to(() => TicketConfirmation()),
                             ),
                           ),
-                          SizedBox(width: 15.w),
+                          SizedBox(width: 15.w), // h
                           Expanded(
                             child: CustomServiceCard(
                               text: 'hospital_admission'.tr,
@@ -64,9 +70,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   ],
                 ),
               ),
-
-              SizedBox(height: 16.h),
-
+              SizedBox(height: 16.h), // h
               // Departments Section
               Expanded(
                 child: Column(
@@ -74,10 +78,10 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   children: [
                     CustomTextWidget(
                       text: 'departments'.tr,
-                      fontsize: 14,
+                      fontsize: 14, // font
                       fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 8.h), // h
                     Expanded(
                       child: Row(
                         children: [
@@ -88,7 +92,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                               onTap: () => Get.to(() => BudgetDemand()),
                             ),
                           ),
-                          SizedBox(width: 15.w),
+                          SizedBox(width: 15.w), // w
                           Expanded(
                             child: CustomServiceCard(
                               text: 'construction_work'.tr,
@@ -102,33 +106,31 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   ],
                 ),
               ),
-
-              SizedBox(height: 16.h),
-
+              SizedBox(height: 16.h), // h
               // Letters Section
               Expanded(
-                flex: 2, // make this section taller
+                flex: 2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
                       text: 'letters'.tr,
-                      fontsize: 14,
+                      fontsize: 14, // font
                       fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 8.h), // h
                     Expanded(
                       child: Row(
                         children: [
                           Expanded(
                             child: CustomServiceCard(
-                              height: 300.h, // responsive height
+                              height: 300.h, // h
                               text: 'recommendation_letter'.tr,
                               imagePath: 'assets/images/recommendation.png',
                               onTap: () => Get.to(() => RecommendationMenu()),
                             ),
                           ),
-                          SizedBox(width: 15.w),
+                          SizedBox(width: 15.w), // w
                           Expanded(
                             flex: 1,
                             child: Column(
@@ -140,7 +142,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                                     onTap: () => Get.to(() => CompainMenu()),
                                   ),
                                 ),
-                                SizedBox(height: 15.h),
+                                SizedBox(height: 15.h), // h
                                 Expanded(
                                   child: CustomServiceCard(
                                     text: 'suggestion_letter'.tr,
@@ -157,19 +159,18 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   ],
                 ),
               ),
-
-              SizedBox(height: 16.h),
-
+              SizedBox(height: 16.h), // h
+              // Requests Section
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
                       text: 'requests'.tr,
-                      fontsize: 14,
+                      fontsize: 14, // font
                       fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 8.h), // h
                     Expanded(
                       child: Row(
                         children: [
@@ -181,7 +182,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                               onTap: () => Get.to(() => ParliamentVisit()),
                             ),
                           ),
-                          SizedBox(width: 15.w),
+                          SizedBox(width: 15.w), // responsive width
                           Expanded(
                             child: CustomServiceCard(
                               text: 'invitation'.tr,
@@ -195,8 +196,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                   ],
                 ),
               ),
-
-              SizedBox(height: 16.h),
+              SizedBox(height: 16.h), // responsive height
             ],
           ),
         ),
@@ -209,6 +209,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
 
 /* import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/components/custom_app_bar.dart';
 import 'package:janta_sewa/components/custom_service_card.dart';
 import 'package:janta_sewa/screen/contacts_invitation/invitation_page.dart';
 import 'package:janta_sewa/screen/letters/budgetDemand/budget_demand.dart';
@@ -221,19 +222,24 @@ import 'package:janta_sewa/screen/services_department/parliament_visit/parliamen
 import 'package:janta_sewa/screen/services_department/tickets/ticket_confirmation.dart';
 import 'package:janta_sewa/widget/text_widget.dart';
 
-class ServicesHomeScreen extends StatefulWidget {
-  const ServicesHomeScreen({super.key});
+class ServicesHomeScreen2 extends StatefulWidget {
+  const ServicesHomeScreen2({super.key});
 
   @override
-  State<ServicesHomeScreen> createState() => _ServicesHomeScreenState();
+  State<ServicesHomeScreen2> createState() => _ServicesHomeScreenState2();
 }
 
-class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
+class _ServicesHomeScreenState2 extends State<ServicesHomeScreen2> {
   @override
   Widget build(BuildContext context) {
     
 
     return Scaffold(
+      appBar: CustomTopAppBar(
+        title: 'Services',
+        leftIcon: Icon(Icons.arrow_back_ios),
+        onLeftTap: Get.back,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -372,7 +378,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
               
               SizedBox(height: 16),
 
-
+              // Requests Section
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -390,9 +396,7 @@ class _ServicesHomeScreenState extends State<ServicesHomeScreen> {
                             child: CustomServiceCard(
                               text: 'parliament_visit'.tr,
                               imagePath: 'assets/images/parliament.png',
-                              //imageScale: 0.9,   // <– smaller number = bigger image
-                             // imageZoom: 5.3,
-                              imageBoxFactor: 0.5,  // << bigger box => visibly larger image, we can increase to 0.7 also
+                              imageBoxFactor: 0.5,
                               onTap: () => Get.to(() => ParliamentVisit()),
                             ),
                           ),

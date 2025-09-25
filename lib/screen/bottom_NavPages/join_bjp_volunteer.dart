@@ -34,13 +34,26 @@ class _JoinBjpVolunteerPageState extends State<JoinBjpVolunteerPage> {
     return PopScope(
       canPop: false,
       // ignore: deprecated_member_use
-      onPopInvoked: (didPop) async {
+      /* onPopInvoked: (didPop) async {
         if (!didPop && await webViewController.canGoBack()) {
           webViewController.goBack();
         } else {
           Get.back();
         }
+      }, */
+      onPopInvokedWithResult: (didPop, result) async {
+        // If WebView can go back, just navigate inside it
+        if (await webViewController.canGoBack()) {
+          webViewController.goBack();
+          return; // stop here so Flutter/GetX doesn't pop this page
+        }
+
+        // Otherwise, let Flutter finish the pop if it hasn’t already
+        if (!didPop) {
+          Get.back(result: result);
+        }
       },
+
       child: Scaffold(
         appBar: CustomTopAppBar(
           title: 'Janta Sewa',

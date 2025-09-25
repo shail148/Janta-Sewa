@@ -38,7 +38,7 @@ class LanguageSwitch extends StatelessWidget {
             SizedBox(height: 40.h),
             CustomTextWidget(
               text: 'Select Your Langauge',
-              fontsize: 20.sp,
+              fontsize: 16,
               color: AppColors.textColor,
               fontWeight: FontWeight.w600,
             ),

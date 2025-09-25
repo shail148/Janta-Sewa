@@ -7,6 +7,8 @@ class LanguageController extends GetxController {
   // Reactive language state
   Rx<Locale> currentLocale = const Locale('en', 'US').obs;
 
+   
+
   void toggleLanguage(bool isHindi) {
     currentLocale.value = isHindi
         ? const Locale('hi', 'IN')
