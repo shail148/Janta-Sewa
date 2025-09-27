@@ -25,11 +25,11 @@ class LoginViewModel extends GetxController {
       if (RegExp(r'^[0-9]+$').hasMatch(input)) {
         // 📱 user entered phone number
         data = {
-          "phone": input,
+          "mobileNumber": input,
           "password": passwordController.value.text.trim(),
         };
       } else {
-        // 📧 user entered email
+        //  user entered email
         data = {
           "email": input,
           "password": passwordController.value.text.trim(),
