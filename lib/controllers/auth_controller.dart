@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController extends GetxController {
-  final String baseUrl =
-      'https://appbackend-1-wpge.onrender.com'; 
-
+  final String baseUrl = 'https://appbackend-1-wpge.onrender.com';
   // Signup method
   Future<Map<String, dynamic>> register({
     required String fullName,
@@ -31,8 +29,7 @@ class AuthController extends GetxController {
         'password': password,
       }),
     );
-    // print('Register Status Code: ${response.statusCode}');
-    // print('Register Response Body: ${response.body}');
+   
     if (response.statusCode == 200 || response.statusCode == 201) {
       return {'success': true, 'data': jsonDecode(response.body)};
     } else {

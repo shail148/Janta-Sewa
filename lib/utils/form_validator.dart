@@ -58,6 +58,24 @@ class FormValidator {
     return null;
   }
 
+  static String? validateEmailOrPhone(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Email or Phone is required";
+    }
+
+    // Check if valid email
+    if (RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+      return null;
+    }
+
+    // Check if valid phone (10 digits for India, adjust as needed)
+    if (RegExp(r'^[0-9]{10}$').hasMatch(value)) {
+      return null;
+    }
+
+    return "Enter a valid email or phone number";
+  }
+
   static String? validateAddress(String? value) =>
       validateRequired(value, "Address");
 
@@ -67,8 +85,7 @@ class FormValidator {
   static String? validateBlock(String? value) =>
       validateRequired(value, "Block");
 
-  static String? validateCity(String? value) =>
-      validateRequired(value, "City");
+  static String? validateCity(String? value) => validateRequired(value, "City");
 
   static String? validateWardNumber(String? value) =>
       validateRequired(value, "Ward number");

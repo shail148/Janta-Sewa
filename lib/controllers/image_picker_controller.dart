@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:janta_sewa/widget/custom_snackbar.dart';
+import 'package:janta_sewa/widgets/custom_snackbar.dart';
 
 class ImagePickerController extends GetxController {
   final ImagePicker _picker = ImagePicker();
