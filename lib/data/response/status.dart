@@ -1,5 +1,3 @@
-enum Status {
-  LOADING,
-  SUCCESS,
-  ERROR,
-}
+// ignore_for_file: constant_identifier_names
+
+enum Status { LOADING, SUCCESS, ERROR }

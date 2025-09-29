@@ -3,6 +3,7 @@ import 'package:janta_sewa/models/login/login_with_email_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreference extends GetxController {
+  
   Future<bool> saveUser(LoginWithEmailModel loginWithEmailModel) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
 

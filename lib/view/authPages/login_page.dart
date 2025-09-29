@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/view/forgotPassword/reset_password_page.dart';
 import 'package:janta_sewa/view/authPages/registrationPages/select_category_register_page.dart';
 import 'package:janta_sewa/utils/form_validator.dart';
-import 'package:janta_sewa/view_models/controllers/login/login_view_model.dart';
+import 'package:janta_sewa/view_models/controllers/auth_view_model/login_view_model.dart';
+import 'package:janta_sewa/view_models/user_preference/user_preference_view_model.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/label_text.dart';
@@ -15,20 +16,31 @@ import 'package:janta_sewa/widgets/text_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final loginVM = Get.put(LoginViewModel());
 
   final PasswordVisibility passwordCtrl = Get.put(PasswordVisibility());
+
+  @override
+  void initState(){
+    super.initState();
+    //store language in shared preferences
+UserPreference().getUser().then((value) {
+  if (value.email.isNotEmpty) {
+    loginVM.emailController.value.text = value.email;
+    loginVM.passwordController.value.text = value.password;
+  }
+});
+  }
   @override
   void dispose() {
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +164,6 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: () {
                         //add ontap Btn
-
                         Get.to(() => MainRegisterPage());
                       },
                       child: CustomTextWidget(

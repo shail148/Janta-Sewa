@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/repository/login_repository/login_repository.dart';
+import 'package:janta_sewa/models/login/login_with_email_model.dart';
+import 'package:janta_sewa/repository/auth_repository/auth_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/view_models/user_preference/user_preference_view_model.dart';
 
 class LoginViewModel extends GetxController {
-  final _api = LoginRepository();
+  final _api = AuthRepository();
   final _userPreference = UserPreference();
 
   final emailController = TextEditingController().obs;
@@ -20,6 +21,7 @@ class LoginViewModel extends GetxController {
   void loginApi() async {
     try {
       isLoading.value = true;
+      //  check if user entered phone number or email
       String input = emailController.value.text.trim();
       Map data;
       if (RegExp(r'^[0-9]+$').hasMatch(input)) {
@@ -43,6 +45,13 @@ class LoginViewModel extends GetxController {
         Utils.showSnackBar("Login Failed", value['error'].toString());
       } else {
         Utils.showSuccessSnackBar("Login", "Login Successful 🎉");
+        // saved the user data in shared preferences
+        _userPreference.saveUser(
+          LoginWithEmailModel(
+            email: input,
+            password: passwordController.value.text.trim(),
+          ),
+        );
         Get.offAll(() => const BottomNav());
       }
     } catch (error) {

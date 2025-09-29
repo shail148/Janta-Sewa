@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/view/authPages/login_page.dart';
-import 'package:janta_sewa/view/forgotPassword/forgot_otp_verification_page.dart';
 import 'package:janta_sewa/view/register_page.dart';
+import 'package:janta_sewa/view_models/controllers/resetPassword/reset_pass_view_model.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/label_text.dart';
@@ -16,6 +17,7 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
+  final resetPassVM = Get.put(ResetPassViewModel());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,23 +42,23 @@ class _ResetPasswordState extends State<ResetPassword> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             SizedBox(height: 40),
+              SizedBox(height: 40.h),
               Center(
                 child: Image.asset(
                   'assets/images/indialogo.png',
-                  height: 150,
-                  width: 100,
+                  height: 98.h,
+                  width: 312.w,
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 40.h),
               Center(
                 child: CustomTextWidget(
                   text: "forgot_password".tr,
-                  fontsize: 20,
+                  fontsize: 20.sp,
                   color: AppColors.textColor,
                   fontWeight: FontWeight.bold,
                 ),
@@ -68,35 +70,41 @@ class _ResetPasswordState extends State<ResetPassword> {
                   children: [
                     CustomTextWidget(
                       text: 'forgot_message'.tr,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.justify,
                       fontWeight: FontWeight.bold,
-                      fontsize: 12,
+                      fontsize: 12.sp,
                       color: AppColors.textGrey,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     CustomLabelText(text: "enter_email_phone".tr),
-                    SizedBox(height: 5),
-                    CustomTextFormField(hintText: 'enter_email_phone'.tr),
-                    SizedBox(height: 20),
-                    CustomButton(
-                      text: 'send_otp'.tr,
-                      textSize: 14,
-                      backgroundColor: AppColors.btnBgColor,
-                      height: 62,
-                      width: double.infinity,
-                      onPressed: () {
-                        Get.to(()=>ForgotOtpVerification());
-                      },
+                    SizedBox(height: 5.h),
+                    CustomTextFormField(
+                      controller: resetPassVM.emailController.value,
+                      hintText: 'enter_email_phone'.tr,
+                    ),
+                    SizedBox(height: 20.h),
+                    Obx(
+                      () => CustomButton(
+                        text: 'send_otp'.tr,
+                        textSize: 18.sp,
+                        backgroundColor: const Color.fromARGB(255, 20, 1, 102),
+                        height: 62,
+                        isLoading: resetPassVM.isLoading.value,
+                        width: double.infinity,
+                        onPressed: () {
+                          resetPassVM.forgotPasswordApi();
+                        },
+                      ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 25),
+              SizedBox(height: 25.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.arrow_back,size: 30,color: Colors.black,),
-                  SizedBox(width: 5),
+                  Icon(Icons.arrow_back, size: 30.h, color: Colors.black),
+                  SizedBox(width: 5.w),
                   GestureDetector(
                     onTap: () {
                       //add ontap Btn

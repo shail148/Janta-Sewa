@@ -6,9 +6,13 @@ import 'package:janta_sewa/res/routes/routes.dart';
 import 'package:janta_sewa/localization/localization.dart';
 import 'package:janta_sewa/view/authPages/language_switch_page.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
+import 'package:janta_sewa/view/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/view_models/user_preference/user_preference_view_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final userPref = UserPreference();
+  final user = await userPref.getUser();
 
   // orientation in potrait mode setup
   await SystemChrome.setPreferredOrientations([
@@ -17,11 +21,12 @@ void main() async {
   ]);
 
   debugProfileBuildsEnabled = true;
-  runApp(const MyApp());
+  runApp(MyApp(isLoggedIn: user.email.isNotEmpty && user.password.isNotEmpty));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLoggedIn;
+  const MyApp({super.key, required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +51,7 @@ class MyApp extends StatelessWidget {
           ),
           hoverColor: AppColors.btnBgColor,
         ),
-        home: LanguageSwitch(),
+        home: isLoggedIn ? BottomNav() : LanguageSwitch(),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/view/authPages/otp_verification_page.dart';
+import 'package:janta_sewa/view_models/controllers/auth_view_model/register_view_model.dart';
+import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/date_picker.dart';
@@ -16,26 +17,20 @@ class GeneralRegister extends StatefulWidget {
 }
 
 class _GeneralRegisterState extends State<GeneralRegister> {
-  final TextEditingController fullNameController = TextEditingController();
-  final TextEditingController mobileController = TextEditingController();
-  final TextEditingController dobController = TextEditingController();
-  final TextEditingController whatsappController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController bloodGroupController = TextEditingController();
-  final TextEditingController aadharController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
-  final TextEditingController stateController = TextEditingController();
-  final TextEditingController districtController = TextEditingController();
-  final TextEditingController blockController = TextEditingController();
-  final TextEditingController vidhansabhaController = TextEditingController();
-  final TextEditingController cityVillageController = TextEditingController();
-  final TextEditingController wardNumberController = TextEditingController();
-  final TextEditingController pincodeController = TextEditingController();
+  final registerVM = Get.put(RegisterViewModel());
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomTopAppBar(
+        title: "User Register".tr,
+
+        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
+        onLeftTap: () {
+          Get.back();
+        },
+      ),
       body: SafeArea(
         child: Scrollbar(
           thumbVisibility: true,
@@ -48,25 +43,6 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => Get.back(),
-                          child: Icon(
-                            Icons.arrow_back_ios_new_outlined,
-                            color: AppColors.btnBgColor,
-                            size: 22,
-                          ),
-                        ),
-                        SizedBox(width: 8),
-                        CustomTextWidget(
-                          text: "user-registration".tr,
-                          color: AppColors.textColor,
-                          fontsize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
                     SizedBox(height: 10),
                     Form(
                       key: _formKey,
@@ -84,12 +60,16 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             text: 'full_name'.tr,
                             isRequired: true,
                           ),
-                          CustomTextFormField(hintText: 'enter_full_name'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.fullNameController.value,
+                            hintText: 'enter_full_name'.tr,
+                          ),
                           CustomLabelText(
                             text: 'mobile_number'.tr,
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            controller: registerVM.mobileController.value,
                             hintText: 'enter_mobile_number'.tr,
                           ),
                           CustomLabelText(
@@ -97,6 +77,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            controller: registerVM.whatsappController.value,
                             hintText: 'enter_whatsapp_number'.tr,
                           ),
                           CustomLabelText(
@@ -104,11 +85,14 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             isRequired: true,
                           ),
 
-                          CustomTextFormField(hintText: 'enter_email_id'),
-                          CustomTextFormField(hintText: 'enter_email_id'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.emailController.value,
+                            hintText: 'enter_email_id',
+                          ),
+
                           CustomLabelText(text: 'date_of_birth'.tr),
                           CustomTextFormField(
-                            controller: dobController,
+                            controller: registerVM.dobController.value,
                             hintText: 'dob_hint'.tr,
                             suffixIconColor: AppColors.btnBgColor,
                             suffixIcon: Icons.calendar_month,
@@ -116,18 +100,22 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             onSuffixTap: () {
                               showCustomCalendarDialog(
                                 context: context,
-                                controller: dobController,
+                                controller: registerVM.dobController.value,
                               );
                             },
                           ),
 
                           CustomLabelText(text: 'blood_group'.tr),
-                          CustomTextFormField(hintText: 'enter_blood_group'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.bloodGroupController.value,
+                            hintText: 'enter_blood_group'.tr,
+                          ),
                           CustomLabelText(
                             text: 'aadhar_number'.tr,
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            controller: registerVM.aadharController.value,
                             hintText: 'enter_aadhar_number'.tr,
                           ),
                           SizedBox(height: 10),
@@ -139,36 +127,67 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                           ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'address'.tr, isRequired: true),
-                          CustomTextFormField(hintText: 'enter_address'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.addressController.value,
+                            hintText: 'enter_address'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'state'.tr, isRequired: true),
-                          CustomTextFormField(hintText: 'enter_state'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.stateController.value,
+                            hintText: 'enter_state'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(
                             text: 'district'.tr,
                             isRequired: true,
                           ),
-                          CustomTextFormField(hintText: 'enter_district'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.districtController.value,
+                            hintText: 'enter_district'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'block'.tr, isRequired: true),
-                          CustomTextFormField(hintText: 'enter_block'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.blockController.value,
+                            hintText: 'enter_block'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'vidhansabha'.tr),
-                          CustomTextFormField(hintText: 'enter_vidhansabha'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.vidhansabhaController.value,
+                            hintText: 'enter_vidhansabha'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(
                             text: 'city_village'.tr,
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            controller: registerVM.cityVillageController.value,
                             hintText: 'enter_city_village'.tr,
                           ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'ward_number'.tr),
-                          CustomTextFormField(hintText: 'enter_ward_number'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.wardNumberController.value,
+                            hintText: 'enter_ward_number'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'pincode'.tr, isRequired: true),
-                          CustomTextFormField(hintText: 'enter_pincode'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.pincodeController.value,
+                            hintText: 'enter_pincode'.tr,
+                          ),
+                          SizedBox(height: 10),
+                          CustomLabelText(
+                            text: 'password'.tr,
+                            isRequired: true,
+                          ),
+                          CustomTextFormField(
+                            controller: registerVM.passwordController.value,
+                            hintText: 'enter_password'.tr,
+                          ),
                           SizedBox(height: 10),
                           Row(
                             children: [
@@ -202,17 +221,22 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             ),
                           ),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                              //add a login logic
-                              Get.to(() => OtpVerification());
-                            },
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              isLoading: registerVM.isLoading.value,
+                              width: double.infinity,
+                              onPressed: registerVM.isLoading.value
+                                  ? null
+                                  : () {
+                                      registerVM.registerApi();
+                                    },
+                            ),
                           ),
+
                           SizedBox(height: 20),
                         ],
                       ),

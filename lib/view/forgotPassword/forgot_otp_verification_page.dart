@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/view/forgotPassword/create_new_password_page.dart';
+import 'package:janta_sewa/view_models/controllers/resetPassword/reset_pass_view_model.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
@@ -14,12 +15,17 @@ class ForgotOtpVerification extends StatefulWidget {
 }
 
 class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
-  final List<TextEditingController> _otpControllers =
-      List.generate(4, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
+  final resetPassVM = Get.put(ResetPassViewModel());
 
-  
-  // ignore: unused_field
+  // 6 controllers for OTP digits
+  final List<TextEditingController> _otpControllers = List.generate(
+    6,
+    (_) => TextEditingController(),
+  );
+
+  // 6 focus nodes for OTP boxes
+  final List<FocusNode> _focusNodes = List.generate(6, (_) => FocusNode());
+
   Timer? _timer;
   int _start = 59;
 
@@ -31,8 +37,8 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
 
   void startTimer() {
     _start = 59;
-    _timer?.cancel(); // Cancel existing timer if any
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_start > 0) {
         setState(() {
           _start--;
@@ -43,25 +49,19 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
     });
   }
 
-  void resetTimer() {
-    setState(() {
-      _start = 59;
-    });
-    startTimer();
-  }
-
   @override
   void dispose() {
-    for (final controller in _otpControllers) {
-      controller.dispose();
+    for (final c in _otpControllers) {
+      c.dispose();
     }
-    for (final node in _focusNodes) {
-      node.dispose();
+    for (final f in _focusNodes) {
+      f.dispose();
     }
-    _timer?.cancel(); // Cancel timer on back
+    _timer?.cancel();
     super.dispose();
   }
 
+  /// Combine all 6 digits
   String getOtp() {
     return _otpControllers.map((e) => e.text).join();
   }
@@ -71,9 +71,7 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
-          onTap: () {
-            Get.back();
-          },
+          onTap: () => Get.back(),
           child: Icon(
             Icons.arrow_back_ios_new_outlined,
             color: AppColors.btnBgColor,
@@ -90,18 +88,18 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Image.asset(
                   'assets/images/indialogo.png',
-                  height: 150,
-                  width: 100,
+                  height: 98.h,
+                  width: 312.w,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Center(
                 child: CustomTextWidget(
                   text: "otp_verification".tr,
@@ -110,123 +108,143 @@ class _ForgotOtpVerificationState extends State<ForgotOtpVerification> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
-              Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: 'verification_message'.tr,
+              const SizedBox(height: 20),
+
+              /// Instructions
+              CustomTextWidget(
+                text: 'verification_message'.tr,
+                textAlign: TextAlign.center,
+                fontWeight: FontWeight.bold,
+                fontsize: 12,
+                color: AppColors.textGrey,
+              ),
+              const SizedBox(height: 20),
+
+              /// OTP Boxes
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: List.generate(6, (index) {
+                  return Container(
+                    width: 50,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppColors.btnBgColor,
+                        width: 1.5,
+                      ),
+                      color: const Color(0xFFF5F7FF),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    alignment: Alignment.center,
+                    child: TextField(
+                      controller: _otpControllers[index],
+                      focusNode: _focusNodes[index],
+                      keyboardType: TextInputType.number,
                       textAlign: TextAlign.center,
-                      fontWeight: FontWeight.bold,
-                      fontsize: 12,
-                      color: AppColors.textGrey,
-                    ),
-                    SizedBox(height: 20),
+                      maxLength: 1,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: AppColors.textColor,
+                        fontFamily: 'Poppins',
+                      ),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        counterText: '',
+                      ),
+                      onChanged: (value) {
+                        if (value.isNotEmpty && index < 5) {
+                          FocusScope.of(
+                            context,
+                          ).requestFocus(_focusNodes[index + 1]);
+                        }
+                        if (value.isEmpty && index > 0) {
+                          FocusScope.of(
+                            context,
+                          ).requestFocus(_focusNodes[index - 1]);
+                        }
 
-                    /// OTP Input Row
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: List.generate(4, (index) {
-                        return Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: AppColors.btnBgColor,
-                              width: 1.5,
-                            ),
-                            color: Color(0xFFF5F7FF),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          
-                          alignment: Alignment.center,
-                          child: TextField(
-                            controller: _otpControllers[index],
-                            focusNode: _focusNodes[index],
-                            keyboardType: TextInputType.number,
-                            textAlign: TextAlign.center,
-                            maxLength: 1,
-                            style: TextStyle(fontSize: 20, color: AppColors.textColor,fontFamily: 'Poppins'),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              counterText: '',
-                            ),
-                            onChanged: (value) {
-                              if (value.isNotEmpty && index < 3) {
-                                FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
-                              }
-                              if (value.isEmpty && index > 0) {
-                                FocusScope.of(context).requestFocus(_focusNodes[index - 1]);
-                              }
-                            },
-                          ),
-                        );
-                      }),
-                    ),
-
-                    SizedBox(height: 20),
-
-                    /// Timer and Resend Text
-                    Row(
-                      children: [
-                        CustomTextWidget(
-                          text: 'remaining_time'.tr,
-                          fontsize: 10,
-                          color: AppColors.textGrey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(width: 8),
-                        CustomTextWidget(
-                          text: '00:${_start.toString().padLeft(2, '0')}',
-                          fontsize: 10,
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        CustomTextWidget(
-                          text: 'Didn’t_get_the_code?'.tr,
-                          fontsize: 10,
-                          color: AppColors.textGrey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        SizedBox(width: 8),
-                        CustomTextWidget(
-                          text: 'resend_otp'.tr,
-                          fontsize: 10,
-                          color: AppColors.textColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-
-                    /// Verify Button
-                    CustomButton(
-                      text: 'verify_otp'.tr,
-                      textSize: 14,
-                      backgroundColor: AppColors.btnBgColor,
-                      height: 62,
-                      width: double.infinity,
-                      onPressed: () {
-                      //  String otp = getOtp();
-                     //   print("Entered OTP: $otp");
-                        // Navigate for now
-                        Get.to(() => CreateNewPassword());
+                        // Auto-submit if last digit filled
+                        if (index == 5 && value.isNotEmpty) {
+                          resetPassVM.otpController.value.text = getOtp();
+                          resetPassVM.verifyOtpApi();
+                        }
                       },
                     ),
-                  ],
-                ),
+                  );
+                }),
               ),
-              SizedBox(height: 25),
+
+              const SizedBox(height: 20),
+
+              /// Timer
+              Row(
+                children: [
+                  CustomTextWidget(
+                    text: 'remaining_time'.tr,
+                    fontsize: 10,
+                    color: AppColors.textGrey,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(width: 8),
+                  CustomTextWidget(
+                    text: '00:${_start.toString().padLeft(2, '0')}',
+                    fontsize: 10,
+                    color: AppColors.textColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+
+              /// Resend
+              Row(
+                children: [
+                  CustomTextWidget(
+                    text: 'Didn’t_get_the_code?'.tr,
+                    fontsize: 10,
+                    color: AppColors.textGrey,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () {
+                      resetTimer();
+                      resetPassVM.forgotPasswordApi(); // resend OTP
+                    },
+                    child: CustomTextWidget(
+                      text: 'resend_otp'.tr,
+                      fontsize: 10,
+                      color: AppColors.textColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+
+              /// Verify Button
+              CustomButton(
+                text: 'verify_otp'.tr,
+                textSize: 14,
+                backgroundColor: AppColors.btnBgColor,
+                height: 62,
+                width: double.infinity,
+                onPressed: () {
+                  resetPassVM.otpController.value.text = getOtp();
+                  resetPassVM.verifyOtpApi();
+                },
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void resetTimer() {
+    setState(() {
+      _start = 59;
+    });
+    startTimer();
   }
 }

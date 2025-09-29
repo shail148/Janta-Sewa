@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/view_models/controllers/auth_view_model/register_view_model.dart';
+import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
-import 'package:janta_sewa/view/authPages/otp_verification_page.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
+import 'package:janta_sewa/widgets/custom_snackbar.dart';
 import 'package:janta_sewa/widgets/label_text.dart';
 import 'package:janta_sewa/widgets/text_form_widget.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
@@ -17,6 +19,7 @@ class SamajikSansathaRegister extends StatefulWidget {
 }
 
 class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
+  final registerVM = Get.put(RegisterViewModel());
   final List<String> organisationTypes = [
     'NGO',
     'Trust',
@@ -27,6 +30,14 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomTopAppBar(
+        title: "Organization Register".tr,
+
+        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
+        onLeftTap: () {
+          Get.back();
+        },
+      ),
       body: SafeArea(
         child: Scrollbar(
           thumbVisibility: true,
@@ -36,64 +47,60 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
           child: SingleChildScrollView(
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          icon: Icon(Icons.arrow_back_ios_new_outlined),
-                        ),
-                        //(width: 5,),
-                        Expanded(
-                          child: CustomTextWidget(
-                            text: "samajik_sanstha_registration".tr,
-                            color: AppColors.textColor,
-                            fontsize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
                     Form(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 20),
-                          CustomLabelText(text: 'oragnization_name'.tr),
+                          SizedBox(height: 10),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'oragnization_name'.tr,
+                          ),
                           CustomTextFormField(
+                            controller: registerVM.fullNameController.value,
                             hintText: 'enter_oragnization_name'.tr,
                           ),
                           CustomLabelText(text: 'types_of_oragnization'.tr),
                           CustomDropdown(
                             items: organisationTypes,
-                            selectedValue: selectedType,
+                            selectedValue: registerVM.selectedType.value.isEmpty
+                                ? null
+                                : registerVM.selectedType.value,
                             onChanged: (value) {
                               setState(() {
-                                selectedType = value;
+                                registerVM.selectedType.value = value ?? "";
+                                registerVM.isOrgnization.value = true;
+                               
                               });
                             },
+
                             label: 'types_of_oragnization'.tr,
                           ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'date_of_establish'.tr),
                           CustomTextFormField(
+                            controller: registerVM.dobController.value,
                             hintText: 'enter_date_of_establish'.tr,
                           ),
                           CustomLabelText(text: 'contact_number'.tr),
                           CustomTextFormField(
+                            controller: registerVM.mobileController.value,
                             hintText: 'enter_contact_number'.tr,
                           ),
                           CustomLabelText(text: 'whatsapp_number'.tr),
                           CustomTextFormField(
+                            controller: registerVM.whatsappController.value,
                             hintText: 'enter_whatsapp_number'.tr,
                           ),
                           CustomLabelText(text: 'email_id'.tr),
-                          CustomTextFormField(hintText: 'enter_email_id'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.emailController.value,
+                            hintText: 'enter_email_id'.tr,
+                          ),
 
                           SizedBox(height: 10),
                           CustomTextWidget(
@@ -104,30 +111,58 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                           ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'address'.tr),
-                          CustomTextFormField(hintText: 'enter_address'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.addressController.value,
+                            hintText: 'enter_address'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'state'.tr),
-                          CustomTextFormField(hintText: 'enter_state'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.stateController.value,
+                            hintText: 'enter_state'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'district'.tr),
-                          CustomTextFormField(hintText: 'enter_district'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.districtController.value,
+                            hintText: 'enter_district'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'block'.tr),
-                          CustomTextFormField(hintText: 'enter_block'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.blockController.value,
+                            hintText: 'enter_block'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'vidhansabha'.tr),
-                          CustomTextFormField(hintText: 'enter_vidhansabha'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.vidhansabhaController.value,
+                            hintText: 'enter_vidhansabha'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'city_village'.tr),
                           CustomTextFormField(
+                            controller: registerVM.cityVillageController.value,
                             hintText: 'enter_city_village'.tr,
                           ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'ward_number'.tr),
-                          CustomTextFormField(hintText: 'enter_ward_number'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.wardNumberController.value,
+                            hintText: 'enter_ward_number'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'pincode'.tr),
-                          CustomTextFormField(hintText: 'enter_pincode'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.pincodeController.value,
+                            hintText: 'enter_pincode'.tr,
+                          ),
+                          SizedBox(height: 10),
+                          CustomLabelText(text: 'password'.tr),
+                          CustomTextFormField(
+                            controller: registerVM.passwordController.value,
+                            hintText: 'enter_password'.tr,
+                          ),
                           SizedBox(height: 10),
                           Row(
                             children: [
@@ -161,16 +196,27 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                             ),
                           ),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                              //add a login logic
-                              Get.to(() => OtpVerification());
-                            },
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              isLoading: registerVM.isLoading.value,
+                              width: double.infinity,
+                              onPressed: () {
+                                //add a login logic
+                                if (registerVM.isOrgnization.value == true) {
+                                  registerVM.registerApi();
+                                } else {
+                                  CustomSnackbar.showError(
+                                    title: "Error",
+                                    message:
+                                        "Please select type of Organization",
+                                  );
+                                }
+                              },
+                            ),
                           ),
                         ],
                       ),

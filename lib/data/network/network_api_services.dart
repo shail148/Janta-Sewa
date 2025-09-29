@@ -40,16 +40,15 @@ class NetworkApiServices extends BaseApiServices {
     }
     dynamic responseJson;
     try {
-      final response = await http
-          .post(
-            Uri.parse(url),
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json",
-            },
-            body: jsonEncode(data),
-          )
-          .timeout(const Duration(seconds: 10));
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: jsonEncode(data),
+      );
+      // .timeout(const Duration(seconds: 10));
 
       responseJson = returnResponse(response);
     } on SocketException {
@@ -121,6 +120,9 @@ class NetworkApiServices extends BaseApiServices {
       case 200:
         dynamic responseJson = jsonDecode(response.body);
         return responseJson;
+      case 201:
+        dynamic responseJson = jsonDecode(response.body);
+        return responseJson;
       case 401:
         throw UnauthorizedException("Unauthorized");
       case 403:
@@ -130,7 +132,9 @@ class NetworkApiServices extends BaseApiServices {
       case 500:
         throw FetchDataException("Internal Server Error");
       default:
-        throw FetchDataException("Error occurred: ${response.statusCode}");
+        throw FetchDataException(
+          "Error occurred: ${response.statusCode},${response.body}",
+        );
     }
   }
 }

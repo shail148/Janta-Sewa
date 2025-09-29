@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/widgets/languageToggleSwitch.dart';
+import 'package:janta_sewa/widgets/language_toggle_switch.dart';
 import 'package:janta_sewa/localization/language_controller.dart';
 import 'package:janta_sewa/view/authPages/login_page.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
 
-class LanguageSwitch extends StatelessWidget {
+class LanguageSwitch extends StatefulWidget {
+
+const  LanguageSwitch({super.key});
+
+  @override
+  State<LanguageSwitch> createState() => _LanguageSwitchState();
+
+}
+class _LanguageSwitchState extends State<LanguageSwitch> {
   final LanguageController languageController = Get.put(LanguageController());
 
-  LanguageSwitch({super.key});
+  @override
+  void initState(){
+    super.initState();
+    //store language in shared preferences
+    languageController.currentLocale.listen((locale) {
+      if (locale.languageCode == 'hi') {
+        languageController.toggleLanguage(true);
+      } else {
+        languageController.toggleLanguage(false);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,33 +72,6 @@ class LanguageSwitch extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // CustomTextWidget(
-                //   text: 'English',
-                //   fontsize: 14,
-                //   color: AppColors.textColor,
-                //   fontWeight: FontWeight.w600,
-                // ),
-                // SizedBox(width: 10),
-                // Obx(() => Transform.scale(
-                //       scale: 1.2,
-                //       child: Switch(
-                //         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                //         activeTrackColor: AppColors.btnBgColor,
-                //         trackOutlineColor: WidgetStateProperty.all(AppColors.btnBgColor),
-                //         inactiveThumbColor: Colors.grey,
-                //         value: languageController.isHindi,
-                //         onChanged: (value) {
-                //           languageController.toggleLanguage(value);
-                //         },
-                //       ),
-                //     )),
-                // SizedBox(width: 10),
-                // CustomTextWidget(
-                //   text: 'हिंदी',
-                //   fontsize: 14,
-                //   color: AppColors.textColor,
-                //   fontWeight: FontWeight.w600,
-                // ),
                 LanguageToggleSwitch(),
               ],
             ),

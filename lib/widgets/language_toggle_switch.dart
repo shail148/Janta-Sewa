@@ -1,4 +1,3 @@
-// ignore: file_names
 // lib/components/language_toggle_switch.dart
 
 import 'package:flutter/material.dart';

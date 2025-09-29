@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
-import 'package:janta_sewa/widgets/languageToggleSwitch.dart';
+import 'package:janta_sewa/widgets/language_toggle_switch.dart';
 import 'package:janta_sewa/view/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
