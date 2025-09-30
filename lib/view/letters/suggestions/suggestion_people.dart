@@ -34,7 +34,7 @@ class _SuggestionForPeopleState extends State<SuggestionForPeople> {
           radius: Radius.circular(10.r),
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(24.h),
+                padding: const EdgeInsets.symmetric(horizontal: 24).w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

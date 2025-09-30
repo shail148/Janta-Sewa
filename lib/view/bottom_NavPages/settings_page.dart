@@ -9,12 +9,12 @@ import 'package:janta_sewa/view/bottom_NavPages/report_issue_page.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/setting_widget.dart';
 
-
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
 
   // find from app_binding.dart ,all controller binding present here
-  final SettingsController controller = Get.find<SettingsController>();
+  final SettingsController controller = Get.put(SettingsController());
+
   final LanguageController languageController = Get.find<LanguageController>();
 
   @override
@@ -23,11 +23,11 @@ class SettingsPage extends StatelessWidget {
       backgroundColor: AppColors.white,
       appBar: CustomTopAppBar(
         title: 'Setting',
-        leftIcon: Icon(Icons.arrow_back_ios, size: 24), 
+        leftIcon: Icon(Icons.arrow_back_ios, size: 24),
         onLeftTap: Get.back,
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         children: [
           buildProfileHeader(languageController),
           const SizedBox(height: 8),

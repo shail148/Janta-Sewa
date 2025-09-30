@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
 import 'package:janta_sewa/view_models/controllers/auth_view_model/register_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
@@ -61,6 +62,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            validator: FormValidator.validateName,
                             controller: registerVM.fullNameController.value,
                             hintText: 'enter_full_name'.tr,
                           ),
@@ -69,6 +71,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            validator: FormValidator.validatePhone,
                             controller: registerVM.mobileController.value,
                             hintText: 'enter_mobile_number'.tr,
                           ),
@@ -77,6 +80,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            validator: FormValidator.validatePhone,
                             controller: registerVM.whatsappController.value,
                             hintText: 'enter_whatsapp_number'.tr,
                           ),
@@ -86,12 +90,14 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                           ),
 
                           CustomTextFormField(
+                            validator: FormValidator.validateEmail,
                             controller: registerVM.emailController.value,
                             hintText: 'enter_email_id',
                           ),
 
                           CustomLabelText(text: 'date_of_birth'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validateDob,
                             controller: registerVM.dobController.value,
                             hintText: 'dob_hint'.tr,
                             suffixIconColor: AppColors.btnBgColor,
@@ -115,6 +121,7 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            validator: FormValidator.validateAadhaar,
                             controller: registerVM.aadharController.value,
                             hintText: 'enter_aadhar_number'.tr,
                           ),
@@ -232,7 +239,10 @@ class _GeneralRegisterState extends State<GeneralRegister> {
                               onPressed: registerVM.isLoading.value
                                   ? null
                                   : () {
-                                      registerVM.registerApi();
+                                      //check if all fields are validate using validator
+                                      if (_formKey.currentState!.validate()) {
+                                        registerVM.registerApi();
+                                      }
                                     },
                             ),
                           ),

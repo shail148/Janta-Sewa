@@ -26,7 +26,7 @@ class _PrivacyPolicyPageState extends State<PrivacyPolicyPage> {
         thickness: 5,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
                 CustomTextWidget(

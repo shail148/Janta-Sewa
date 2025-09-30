@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart'; // ✅ add ScreenUtil import
+import 'package:flutter_screenutil/flutter_screenutil.dart'; 
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_service_card.dart';
 import 'package:janta_sewa/view/contacts_invitation/invitation_page.dart';

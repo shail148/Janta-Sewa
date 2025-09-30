@@ -23,7 +23,7 @@ class ReportIssuePage extends GetView<ReportIssueController> {
         onLeftTap: Get.back,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

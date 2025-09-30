@@ -19,6 +19,7 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
+
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final loginVM = Get.put(LoginViewModel());
@@ -26,21 +27,21 @@ class _LoginPageState extends State<LoginPage> {
   final PasswordVisibility passwordCtrl = Get.put(PasswordVisibility());
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     //store language in shared preferences
-UserPreference().getUser().then((value) {
-  if (value.email.isNotEmpty) {
-    loginVM.emailController.value.text = value.email;
-    loginVM.passwordController.value.text = value.password;
+    UserPreference().getUser().then((value) {
+      if (value.email.isNotEmpty) {
+        loginVM.emailController.value.text = value.email;
+        loginVM.passwordController.value.text = value.password;
+      }
+    });
   }
-});
-  }
+
   @override
   void dispose() {
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +146,9 @@ UserPreference().getUser().then((value) {
                           width: double.infinity,
                           // onPressed: _login,
                           onPressed: () {
-                            loginVM.loginApi();
+                            if (_formKey.currentState!.validate()) {
+                              loginVM.loginApi();
+                            }
                           },
                         ),
                       ),

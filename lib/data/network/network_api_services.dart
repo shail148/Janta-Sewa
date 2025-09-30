@@ -124,7 +124,8 @@ class NetworkApiServices extends BaseApiServices {
         dynamic responseJson = jsonDecode(response.body);
         return responseJson;
       case 401:
-        throw UnauthorizedException("Unauthorized");
+        dynamic responseJson = jsonDecode(response.body);
+        return responseJson;
       case 403:
         throw UnauthorizedException("Forbidden");
       case 404:

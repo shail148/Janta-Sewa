@@ -99,7 +99,7 @@ class ProfileScreen extends StatelessWidget {
           thumbVisibility: true,
           radius: Radius.circular(10).r, // .r added
           child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 24.w), // .w added
+            padding: EdgeInsets.symmetric(horizontal: 16.w), // .w added
             child: Obx(
               () => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

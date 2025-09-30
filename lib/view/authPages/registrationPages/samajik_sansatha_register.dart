@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
 import 'package:janta_sewa/view_models/controllers/auth_view_model/register_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
@@ -61,6 +62,7 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                             text: 'oragnization_name'.tr,
                           ),
                           CustomTextFormField(
+                            validator: FormValidator.validateName,
                             controller: registerVM.fullNameController.value,
                             hintText: 'enter_oragnization_name'.tr,
                           ),
@@ -88,16 +90,19 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                           ),
                           CustomLabelText(text: 'contact_number'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validatePhone,
                             controller: registerVM.mobileController.value,
                             hintText: 'enter_contact_number'.tr,
                           ),
                           CustomLabelText(text: 'whatsapp_number'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validatePhone,
                             controller: registerVM.whatsappController.value,
                             hintText: 'enter_whatsapp_number'.tr,
                           ),
                           CustomLabelText(text: 'email_id'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validateEmail,
                             controller: registerVM.emailController.value,
                             hintText: 'enter_email_id'.tr,
                           ),
@@ -118,6 +123,7 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                           SizedBox(height: 10),
                           CustomLabelText(text: 'state'.tr),
                           CustomTextFormField(
+                           
                             controller: registerVM.stateController.value,
                             hintText: 'enter_state'.tr,
                           ),
@@ -152,14 +158,19 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                             hintText: 'enter_ward_number'.tr,
                           ),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'pincode'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'pincode'.tr),
                           CustomTextFormField(
                             controller: registerVM.pincodeController.value,
                             hintText: 'enter_pincode'.tr,
                           ),
                           SizedBox(height: 10),
-                          CustomLabelText(text: 'password'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'password'.tr),
                           CustomTextFormField(
+                            
                             controller: registerVM.passwordController.value,
                             hintText: 'enter_password'.tr,
                           ),

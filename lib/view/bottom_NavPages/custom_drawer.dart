@@ -10,6 +10,7 @@ import 'package:janta_sewa/view/contacts_invitation/contact_page.dart';
 import 'package:janta_sewa/view/events/event_page.dart';
 import 'package:janta_sewa/view/notification/notification_page.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
+import 'package:janta_sewa/view_models/user_preference/user_preference_view_model.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -72,7 +73,8 @@ class CustomDrawer extends StatelessWidget {
                   _drawerItem(
                     Icons.dashboard,
                     'dashboardss'.tr,
-                    onTap: () => Get.to(() => const DrawerDashboardServicesHomeScreen()),
+                    onTap: () =>
+                        Get.to(() => const DrawerDashboardServicesHomeScreen()),
                   ),
 
                   _drawerItem(
@@ -108,7 +110,8 @@ class CustomDrawer extends StatelessWidget {
                       try {
                         final result = await SharePlus.instance.share(
                           ShareParams(
-                            text: 'Please download Janta Sewa app from this link below : \n\nhttps://play.google.com/store/apps/details?id=com.jantasewa.app',
+                            text:
+                                'Please download Janta Sewa app from this link below : \n\nhttps://play.google.com/store/apps/details?id=com.jantasewa.app',
                             subject: 'Janta Sewa App',
                           ),
                         );
@@ -121,7 +124,9 @@ class CustomDrawer extends StatelessWidget {
                           }
                         } else {
                           if (kDebugMode) {
-                            print('Share dismissed or failed: ${result.status}');
+                            print(
+                              'Share dismissed or failed: ${result.status}',
+                            );
                           }
                         }
                       } catch (e) {
@@ -135,7 +140,14 @@ class CustomDrawer extends StatelessWidget {
                   _drawerItem(
                     Icons.logout,
                     'logout'.tr,
-                    onTap: () => Get.offAll(() => const LoginPage()),
+                    onTap: () {
+                      //logout is login to make false
+                      UserPreference().removeUser().then((value) {
+                        if (value) {
+                          Get.offAll(() => const LoginPage());
+                        }
+                      });
+                    },
                   ),
                 ],
               ),

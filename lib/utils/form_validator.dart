@@ -25,7 +25,7 @@ class FormValidator {
   }
 
   // Add more validators as needed
-  static String? validateRequired(String? value, String fieldName) {
+  static String? validateRequired(String? value, String? fieldName) {
     if (value == null || value.trim().isEmpty) {
       return '$fieldName is required';
     }

@@ -45,8 +45,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Inter',
           scaffoldBackgroundColor: AppColors.white,
-          appBarTheme: const AppBarTheme(
-            backgroundColor: AppColors.white,
+          appBarTheme: AppBarTheme(
+            color: Colors.white,
+            
             elevation: 0,
           ),
           hoverColor: AppColors.btnBgColor,

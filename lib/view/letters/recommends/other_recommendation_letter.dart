@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/res/components/file_upload.dart';
@@ -34,7 +35,7 @@ class _OtherRecommendationLetterState extends State<OtherRecommendationLetter> {
           child: SingleChildScrollView(
             child: SafeArea(
               child: Padding(                
-                padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24).w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

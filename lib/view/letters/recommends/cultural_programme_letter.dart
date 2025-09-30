@@ -43,7 +43,7 @@ class _CulturalProgrammeLetterState extends State<CulturalProgrammeLetter> {
           child: SingleChildScrollView(
             child: SafeArea(
               child: Padding(                
-                padding: const EdgeInsets.all(24.0),
+                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

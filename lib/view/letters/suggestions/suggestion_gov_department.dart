@@ -41,7 +41,7 @@ class _SuggestionForGovDepartmentState extends State<SuggestionForGovDepartment>
           radius: Radius.circular(10.r),
           child: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(16.h),
+               padding: const EdgeInsets.symmetric(horizontal: 24).w,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

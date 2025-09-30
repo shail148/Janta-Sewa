@@ -39,7 +39,7 @@ class _MainNewsDashboardState extends State<MainNewsDashboard> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16).r, // responsive padding
+            padding: const EdgeInsets.symmetric(horizontal: 16).r, // responsive padding
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

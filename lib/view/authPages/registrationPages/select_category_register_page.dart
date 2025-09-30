@@ -60,7 +60,6 @@ class MainRegisterPage extends StatelessWidget {
                         Get.to(() => SamajikSansathaRegister());
                       },
                     ),
- 
                   ],
                 ),
               ),
