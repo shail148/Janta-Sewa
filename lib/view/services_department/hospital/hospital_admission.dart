@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/view/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/view_models/controllers/servicesDepartment/hospital_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
@@ -18,6 +19,8 @@ class HospitalAdmission extends StatefulWidget {
   State<HospitalAdmission> createState() => _HospitalAdmissionState();
 }
 class _HospitalAdmissionState extends State<HospitalAdmission> {
+  final hospitalVM = Get.put(HospitalViewModel());
+  final _formKey = GlobalKey<FormState>();
   final List<String>relationWithPatient =[
     'father'.tr,
     'mother'.tr,
@@ -67,10 +70,13 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                         children: [
                           CustomLabelText(text: 'patient_name'.tr,isRequired: true,),
                           CustomTextFormField(
+                            controller: hospitalVM.patientName.value,
                             hintText: 'enter_patient_name'.tr,
                           ),
                           CustomLabelText(text: 'name_of_attendent'.tr,isRequired: true,),
-                          CustomTextFormField(hintText: 'name_of_attendent'.tr),
+                          CustomTextFormField(
+                            controller: hospitalVM.nameOfAttendant.value,
+                            hintText: 'name_of_attendent'.tr),
                           CustomLabelText(text: 'relation_with_patient'.tr,isRequired: true,),
                           CustomDropdown(
                             items: relationWithPatient,
@@ -82,7 +88,9 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                             },
                           ),
                           CustomLabelText(text: 'disease'.tr),
-                          CustomTextFormField(hintText: 'disease'.tr),
+                          CustomTextFormField(
+                            controller: hospitalVM.disease.value,
+                            hintText: 'disease'.tr),
                           CustomLabelText(text: 'admission_type'.tr),
                           CustomDropdown(
                             items: admissionTypes,
@@ -94,9 +102,13 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                             },
                           ),
                           CustomLabelText(text: 'hospital_name'.tr,isRequired: true,),
-                          CustomTextFormField(hintText: 'hospital_name'.tr),
+                          CustomTextFormField(
+                            controller: hospitalVM.hospitalName.value,
+                            hintText: 'hospital_name'.tr),
                           CustomLabelText(text: 'hospital_address'.tr,isRequired: true,),
-                          CustomTextFormField(hintText: 'hospital_address'.tr),
+                          CustomTextFormField(
+                            controller: hospitalVM.hospitalAddress.value,
+                            hintText: 'hospital_address'.tr),
                           SizedBox(height: 16),
                           CustomTextWidget(
                             text: "reference/sourc_of_request".tr,
@@ -106,11 +118,14 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                           ),
                           SizedBox(height: 16),
                           CustomLabelText(text: 'name_of_reference'.tr,isRequired: true,),
-                          CustomTextFormField(hintText: 'name_of_reference'.tr),
+                          CustomTextFormField(
+                            controller: hospitalVM.referenceSource.value,
+                            hintText: 'name_of_reference'.tr),
                           CustomLabelText(
                             text: 'post/designation_of_reference'.tr,
                           ),
                           CustomTextFormField(
+                            controller: hospitalVM.designationReference.value,
                             hintText: 'post/designation_of_reference'.tr,
                           ),
                           CustomLabelText(
@@ -118,6 +133,7 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                             isRequired: true,
                           ),
                           CustomTextFormField(
+                            controller: hospitalVM.mobileNumberReference.value,
                             hintText: 'mobile_number_of_reference'.tr,
                           ),
                              SizedBox(height: 16),
@@ -129,17 +145,23 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                           ),
                           SizedBox(height: 16),
                           CustomLabelText(text: 'name'.tr),
-                          CustomTextFormField(hintText: 'full_name'.tr),
+                          CustomTextFormField(
+                            controller: hospitalVM.hospitalContactPersonName.value,
+                            hintText: 'full_name'.tr),
 
                           CustomLabelText(text: 'desigantion'.tr,isRequired: true,),
-                          CustomTextFormField(hintText: 'desigantion'.tr),
+                          CustomTextFormField(
+                            controller: hospitalVM.hospitalContactPersonMobileNumber.value,
+                            hintText: 'desigantion'.tr),
 
                           CustomLabelText(text: 'mobile_number'.tr,isRequired: true,),
                           CustomTextFormField(
+                            controller: hospitalVM.hospitalMobileNumber.value,
                             hintText: 'enter_mobile_number'.tr,
                           ),
                           CustomLabelText(text: 'message'.tr),
                           CustomMessageTextFormField(
+                            controller: hospitalVM.message.value,
                           hintText: 'enter_message'.tr,
                           ),
                           SizedBox(height: 10),
@@ -150,8 +172,10 @@ class _HospitalAdmissionState extends State<HospitalAdmission> {
                             height: 62,
                             width: double.infinity,
                             onPressed: () {
-                              //add a login logic
-                              Get.to(() => BottomNav());
+                              
+                              if(_formKey.currentState!.validate()){
+                                hospitalVM.hospitalAdmissionApi();
+                              }
                             },
                           ),
                         ],
