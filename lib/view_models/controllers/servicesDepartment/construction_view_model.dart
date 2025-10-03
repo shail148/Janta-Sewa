@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/utils/utils.dart';
-import 'package:janta_sewa/view/bottom_NavPages/bottom_nav.dart';
 
 class ConstructionViewModel extends GetxController {
   //final _api = ConstructionRepository();

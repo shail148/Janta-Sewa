@@ -47,7 +47,7 @@ class CustomDropdown extends StatelessWidget {
                 size: 40,
                 color: AppColors.btnBgColor,
               ),
-              // dropdownColor: Colors.white.withOpacity(0.95), // Transparent-style
+             
               items: items.map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,

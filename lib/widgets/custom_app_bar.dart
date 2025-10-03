@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
-import 'package:janta_sewa/widgets/text_widget.dart'; // Your custom colors file
+import 'package:janta_sewa/widgets/text_widget.dart'; 
 
 class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onLeftTap;
@@ -49,7 +49,7 @@ class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
   @override
-//  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
     Size get preferredSize => const Size.fromHeight(48);
 
 }

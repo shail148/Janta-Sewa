@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/repository/auth_repository/auth_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
-import 'package:janta_sewa/view/authPages/login_page.dart';
-import 'package:janta_sewa/view/forgotPassword/create_new_password_page.dart';
-import 'package:janta_sewa/view/forgotPassword/forgot_otp_verification_page.dart';
+import 'package:janta_sewa/views/authPages/login_page.dart';
+import 'package:janta_sewa/views/forgotPassword/create_new_password_page.dart';
+import 'package:janta_sewa/views/forgotPassword/forgot_otp_verification_page.dart';
 
 class ResetPassViewModel extends GetxController {
   final _api = AuthRepository();

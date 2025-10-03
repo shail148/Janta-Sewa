@@ -91,7 +91,6 @@ class CustomEventCard extends StatelessWidget {
                     // Share the event description and date
                     Share.share('$description\n📅 $date');
                   }, */
-
                   onPressed: () async {
                     try {
                       final result = await SharePlus.instance.share(
@@ -115,7 +114,6 @@ class CustomEventCard extends StatelessWidget {
                       }
                     }
                   },
-                  
                 ),
               ],
             ),

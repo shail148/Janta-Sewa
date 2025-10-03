@@ -1,6 +1,6 @@
 // ticket_controller.dart
 import 'package:get/get.dart';
-import 'package:janta_sewa/view/bottom_NavPages/main_news_dashboard.dart';
+import 'package:janta_sewa/views/bottom_NavPages/main_news_dashboard.dart';
 
 class Passenger {
   String name;

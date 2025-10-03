@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 
+
 class CustomButton extends StatelessWidget {
   final String text;
   final double? height;
@@ -14,7 +15,6 @@ class CustomButton extends StatelessWidget {
   final Color? borderColor;
   final VoidCallback? onPressed;
   final bool isLoading;
-
   const CustomButton({
     super.key,
     required this.text,

@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/repository/auth_repository/auth_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
-import 'package:janta_sewa/view/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/views/bottom_NavPages/bottom_nav.dart';
 
 class RegisterViewModel extends GetxController {
   final _api = AuthRepository();
-
   // Controllers
   final fullNameController = TextEditingController().obs;
   final mobileController = TextEditingController().obs;

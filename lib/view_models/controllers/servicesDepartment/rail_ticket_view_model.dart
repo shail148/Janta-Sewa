@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/repository/serviceDepartment/rail_ticket_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
-import 'package:janta_sewa/view/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/views/bottom_NavPages/bottom_nav.dart';
 
 class RailTicketViewModel extends GetxController {
-
   final _api = RailTicketRepository();
 
   //passenger controller
@@ -23,23 +22,18 @@ class RailTicketViewModel extends GetxController {
   final birthType = TextEditingController().obs;
   final message = TextEditingController().obs;
 
-  //api call for save data 
-  void ticketConfirmationApi(var data)async{
-
-    try{
-        
-       var value = await _api.ticketConfirmationApi(data);
-       if(value['error'] != null){
+  //api call for save data
+  void ticketConfirmationApi(var data) async {
+    try {
+      var value = await _api.ticketConfirmationApi(data);
+      if (value['error'] != null) {
         Utils.showErrorSnackBar("Error", value['error'].toString());
-       }else{
+      } else {
         Utils.showSuccessSnackBar("Saved", "Saved Successfully");
-        Get.offAll(()=>const BottomNav());
-       }
-       
-    }catch(e){
-     Utils.showErrorSnackBar("Error", e.toString());
+        Get.offAll(() => const BottomNav());
+      }
+    } catch (e) {
+      Utils.showErrorSnackBar("Error", e.toString());
     }
-
-
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/localization/language_controller.dart';
 import 'package:janta_sewa/controllers/setting_controller.dart';
-import 'package:janta_sewa/view/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/views/bottom_NavPages/bottom_nav.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 
 Widget buildSectionTitle(String title) {
