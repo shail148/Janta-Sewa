@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/repository/serviceDepartment/rail_ticket_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
-import 'package:janta_sewa/views/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
 
 class RailTicketViewModel extends GetxController {
   final _api = RailTicketRepository();

@@ -4,7 +4,7 @@ import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_event_card.dart';
 import 'package:janta_sewa/localization/language_controller.dart';
 import 'package:janta_sewa/data/upcoming_event.dart';
-import 'package:janta_sewa/views/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 
 class EventPage extends StatefulWidget {

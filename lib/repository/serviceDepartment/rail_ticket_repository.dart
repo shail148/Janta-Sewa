@@ -1,5 +1,5 @@
 import 'package:janta_sewa/data/network/network_api_services.dart';
-import 'package:janta_sewa/res/app_url/app_url.dart';
+import 'package:janta_sewa/res/appUrl/app_url.dart';
 
 
 

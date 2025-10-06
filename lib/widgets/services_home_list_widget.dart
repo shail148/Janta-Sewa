@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/views/services_department/constructions/constructions_menu.dart';
-import 'package:janta_sewa/views/services_department/hospital/hospital_admission.dart';
-import 'package:janta_sewa/views/services_department/parliament_visit/parliament_visit.dart';
-import 'package:janta_sewa/views/services_department/tickets/ticket_confirmation.dart';
+import 'package:janta_sewa/views/servicesDepartment/constructions/constructions_menu_page.dart';
+import 'package:janta_sewa/views/servicesDepartment/hospital/hospital_admission_page.dart';
+import 'package:janta_sewa/views/servicesDepartment/parliamentVisit/parliament_visit_page.dart';
+import 'package:janta_sewa/views/servicesDepartment/tickets/ticket_confirmation.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 
 class ServicesHomeListWidget extends StatelessWidget {

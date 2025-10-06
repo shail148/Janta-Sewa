@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/views/authPages/login_page.dart';
-import 'package:janta_sewa/views/register_page.dart';
+import 'package:janta_sewa/views/auth/login_page.dart';
+import 'package:janta_sewa/views/auth/general_register_page.dart';
 import 'package:janta_sewa/view_models/controllers/resetPassword/reset_pass_view_model.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
@@ -108,7 +108,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                   GestureDetector(
                     onTap: () {
                       //add ontap Btn
-                      Get.to(() => RegisterPage());
+                      Get.to(() => GeneralRegister());
                     },
                     child: CustomTextWidget(
                       text: 'back_to_login'.tr,

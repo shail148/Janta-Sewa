@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:janta_sewa/models/login/login_with_email_model.dart';
 import 'package:janta_sewa/repository/auth_repository/auth_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
-import 'package:janta_sewa/views/bottom_NavPages/bottom_nav.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
 import 'package:janta_sewa/view_models/user_preference/user_preference_view_model.dart';
 
 class LoginViewModel extends GetxController {

@@ -89,4 +89,31 @@ class FormValidator {
 
   static String? validateWardNumber(String? value) =>
       validateRequired(value, "Ward number");
+
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    } else if (!RegExp(r'^[a-zA-Z0-9]{6,}$').hasMatch(value)) {
+      return 'Enter a valid password';
+    }
+    return null;
+  }
+
+  static String? validateConfirmPassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Confirm Password is required';
+    } else if (value != value) {
+      return 'Passwords do not match';
+    }
+    return null;
+  }
+
+  static String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Phone number is required';
+    } else if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) {
+      return 'Enter a valid 10-digit phone number';
+    }
+    return null;
+  }
 }
