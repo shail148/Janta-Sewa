@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
-import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 import 'package:janta_sewa/views/servicesDepartment/tickets/ticket_confirmation.dart';
 import 'package:janta_sewa/controllers/ticket_controller2.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';

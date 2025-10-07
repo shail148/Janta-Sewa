@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
-import 'package:janta_sewa/widgets/text_widget.dart'; 
+import 'package:janta_sewa/widgets/text_widget.dart';
 
 class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onLeftTap;
   final VoidCallback? onRightTap;
   final Widget? leftIcon;
   final Widget? rightIcon;
-  final String? title ;
+  final String? title;
 
   const CustomTopAppBar({
     super.key,
@@ -39,17 +39,14 @@ class CustomTopAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       //backgroundColor: Colors.white,
       title: CustomTextWidget(
-        text: title ??'JANTA SEWA',
+        text: title ?? 'JANTA SEWA',
         color: AppColors.textColor,
         fontWeight: FontWeight.w900,
         fontsize: 20,
-
-        
       ),
     );
   }
+
   @override
-
-    Size get preferredSize => const Size.fromHeight(48);
-
+  Size get preferredSize => const Size.fromHeight(48);
 }

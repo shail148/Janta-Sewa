@@ -17,7 +17,7 @@ class TrackPage extends StatefulWidget {
       case "In Process":
         return const Color(0xFF356CC5);
       default:
-        return Colors.orange; // Pending
+        return Colors.orange; 
     }
   }
 
@@ -32,7 +32,7 @@ class _TrackPageState extends State<TrackPage> {
       backgroundColor: AppColors.white,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16.w), // w responsive padding
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

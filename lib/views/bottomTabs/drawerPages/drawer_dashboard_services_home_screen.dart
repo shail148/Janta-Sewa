@@ -13,6 +13,7 @@ import 'package:janta_sewa/views/servicesDepartment/hospital/hospital_admission_
 import 'package:janta_sewa/views/servicesDepartment/parliamentVisit/parliament_visit_page.dart';
 import 'package:janta_sewa/views/servicesDepartment/tickets/ticket_confirmation.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class DrawerDashboardServicesHomeScreen extends StatefulWidget {
   const DrawerDashboardServicesHomeScreen({super.key});
@@ -24,6 +25,17 @@ class DrawerDashboardServicesHomeScreen extends StatefulWidget {
 
 class _ServicesHomeScreenState2
     extends State<DrawerDashboardServicesHomeScreen> {
+  final isLoading = false.obs;
+  @override
+  void initState() {
+    super.initState();
+    // Simulate loading delay
+    isLoading.value = true;
+    Future.delayed(const Duration(milliseconds: 500), () {
+      isLoading.value = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,173 +45,177 @@ class _ServicesHomeScreenState2
         onLeftTap: Get.back,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w), //  responsive
-          child: Column(
-            children: [
-              SizedBox(height: 16.h), // height
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: 'services'.tr,
-                      fontsize: 14, // font
-                      fontWeight: FontWeight.w600,
-                    ),
-                    SizedBox(height: 8.h), // h
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: CustomServiceCard(
-                              text: 'train_ticket_confirmation'.tr,
-                              imagePath: 'assets/images/train.png',
-                              onTap: () => Get.to(() => TicketConfirmation()),
-                            ),
-                          ),
-                          SizedBox(width: 15.w), // h
-                          Expanded(
-                            child: CustomServiceCard(
-                              text: 'hospital_admission'.tr,
-                              imagePath: 'assets/images/hospital.png',
-                              onTap: () => Get.to(() => HospitalAdmission()),
-                            ),
-                          ),
-                        ],
+        child: Skeletonizer(
+          enabled: isLoading.value,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w), //  responsive
+            child: Column(
+              children: [
+                SizedBox(height: 16.h), // height
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextWidget(
+                        text: 'services'.tr,
+                        fontsize: 14, // font
+                        fontWeight: FontWeight.w600,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16.h), // h
-              // Departments Section
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: 'departments'.tr,
-                      fontsize: 14, // font
-                      fontWeight: FontWeight.w600,
-                    ),
-                    SizedBox(height: 8.h), // h
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: CustomServiceCard(
-                              text: 'budget_demand'.tr,
-                              imagePath: 'assets/images/budget.png',
-                              onTap: () => Get.to(() => BudgetDemand()),
+                      SizedBox(height: 8.h), // h
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomServiceCard(
+                                text: 'train_ticket_confirmation'.tr,
+                                imagePath: 'assets/images/train.png',
+                                onTap: () => Get.to(() => TicketConfirmation()),
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 15.w), // w
-                          Expanded(
-                            child: CustomServiceCard(
-                              text: 'construction_work'.tr,
-                              imagePath: 'assets/images/construction.png',
-                              onTap: () => Get.to(() => ConstructionsMenu()),
+                            SizedBox(width: 15.w), // h
+                            Expanded(
+                              child: CustomServiceCard(
+                                text: 'hospital_admission'.tr,
+                                imagePath: 'assets/images/hospital.png',
+                                onTap: () => Get.to(() => HospitalAdmission()),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 16.h), // h
-              // Letters Section
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: 'letters'.tr,
-                      fontsize: 14, // font
-                      fontWeight: FontWeight.w600,
-                    ),
-                    SizedBox(height: 8.h), // h
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: CustomServiceCard(
-                              height: 300.h, // h
-                              text: 'recommendation_letter'.tr,
-                              imagePath: 'assets/images/recommendation.png',
-                              onTap: () => Get.to(() => RecommendationMenu()),
+                SizedBox(height: 16.h), // h
+                // Departments Section
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextWidget(
+                        text: 'departments'.tr,
+                        fontsize: 14, // font
+                        fontWeight: FontWeight.w600,
+                      ),
+                      SizedBox(height: 8.h), // h
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomServiceCard(
+                                text: 'budget_demand'.tr,
+                                imagePath: 'assets/images/budget.png',
+                                onTap: () => Get.to(() => BudgetDemand()),
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 15.w), // w
-                          Expanded(
-                            flex: 1,
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: CustomServiceCard(
-                                    text: 'complaint_letter'.tr,
-                                    imagePath: 'assets/images/complaint.png',
-                                    onTap: () => Get.to(() => CompainMenu()),
+                            SizedBox(width: 15.w), // w
+                            Expanded(
+                              child: CustomServiceCard(
+                                text: 'construction_work'.tr,
+                                imagePath: 'assets/images/construction.png',
+                                onTap: () => Get.to(() => ConstructionsMenu()),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 16.h), // h
+                // Letters Section
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextWidget(
+                        text: 'letters'.tr,
+                        fontsize: 14, // font
+                        fontWeight: FontWeight.w600,
+                      ),
+                      SizedBox(height: 8.h), // h
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomServiceCard(
+                                height: 300.h, // h
+                                text: 'recommendation_letter'.tr,
+                                imagePath: 'assets/images/recommendation.png',
+                                onTap: () => Get.to(() => RecommendationMenu()),
+                              ),
+                            ),
+                            SizedBox(width: 15.w), // w
+                            Expanded(
+                              flex: 1,
+                              child: Column(
+                                children: [
+                                  Expanded(
+                                    child: CustomServiceCard(
+                                      text: 'complaint_letter'.tr,
+                                      imagePath: 'assets/images/complaint.png',
+                                      onTap: () => Get.to(() => CompainMenu()),
+                                    ),
                                   ),
-                                ),
-                                SizedBox(height: 15.h), // h
-                                Expanded(
-                                  child: CustomServiceCard(
-                                    text: 'suggestion_letter'.tr,
-                                    imagePath: 'assets/images/suggestion.png',
-                                    onTap: () => Get.to(() => SuggestionMenu()),
+                                  SizedBox(height: 15.h), // h
+                                  Expanded(
+                                    child: CustomServiceCard(
+                                      text: 'suggestion_letter'.tr,
+                                      imagePath: 'assets/images/suggestion.png',
+                                      onTap: () =>
+                                          Get.to(() => SuggestionMenu()),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 16.h), // h
-              // Requests Section
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: 'requests'.tr,
-                      fontsize: 14, // font
-                      fontWeight: FontWeight.w600,
-                    ),
-                    SizedBox(height: 8.h), // h
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: CustomServiceCard(
-                              text: 'parliament_visit'.tr,
-                              imagePath: 'assets/images/parliament.png',
-                              imageBoxFactor: 0.5,
-                              onTap: () => Get.to(() => ParliamentVisit()),
-                            ),
-                          ),
-                          SizedBox(width: 15.w), // responsive width
-                          Expanded(
-                            child: CustomServiceCard(
-                              text: 'invitation'.tr,
-                              imagePath: 'assets/images/invitation.png',
-                              onTap: () => Get.to(() => InvitationPage()),
-                            ),
-                          ),
-                        ],
+                SizedBox(height: 16.h), // h
+                // Requests Section
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTextWidget(
+                        text: 'requests'.tr,
+                        fontsize: 14, // font
+                        fontWeight: FontWeight.w600,
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 8.h), // h
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomServiceCard(
+                                text: 'parliament_visit'.tr,
+                                imagePath: 'assets/images/parliament.png',
+                                imageBoxFactor: 0.5,
+                                onTap: () => Get.to(() => ParliamentVisit()),
+                              ),
+                            ),
+                            SizedBox(width: 15.w), // responsive width
+                            Expanded(
+                              child: CustomServiceCard(
+                                text: 'invitation'.tr,
+                                imagePath: 'assets/images/invitation.png',
+                                onTap: () => Get.to(() => InvitationPage()),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 16.h), // responsive height
-            ],
+                SizedBox(height: 16.h), // responsive height
+              ],
+            ),
           ),
         ),
       ),

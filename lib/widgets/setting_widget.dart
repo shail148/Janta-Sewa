@@ -3,7 +3,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/localization/language_controller.dart';
 import 'package:janta_sewa/controllers/setting_controller.dart';
-import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 
 Widget buildSectionTitle(String title) {
@@ -55,7 +55,11 @@ Widget buildProfileHeader(LanguageController languageController) {
                 },
                 child: Text(
                   "Rahul Sharma",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: AppColors.black),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: AppColors.black,
+                  ),
                 ),
               ),
               InkWell(
@@ -72,16 +76,26 @@ Widget buildProfileHeader(LanguageController languageController) {
         ),
         TextButton(
           onPressed: () {
-            Get.to(() => const BottomNav(), arguments: {'index': 3, 'edit': true});
+            Get.to(
+              () => const BottomNav(),
+              arguments: {'index': 3, 'edit': true},
+            );
           },
-          child: Text("Edit Profile", style: TextStyle(color: AppColors.primary)),
+          child: Text(
+            "Edit Profile",
+            style: TextStyle(color: AppColors.primary),
+          ),
         ),
       ],
     ),
   );
 }
 
-Widget buildButtonTile(String title, IconData icon, {required VoidCallback onTap}) {
+Widget buildButtonTile(
+  String title,
+  IconData icon, {
+  required VoidCallback onTap,
+}) {
   return Container(
     margin: const EdgeInsets.only(bottom: 8),
     decoration: BoxDecoration(
@@ -91,14 +105,21 @@ Widget buildButtonTile(String title, IconData icon, {required VoidCallback onTap
     ),
     child: ListTile(
       leading: Icon(icon, color: AppColors.black),
-      title: Text(title, style: TextStyle(color: AppColors.black, fontSize: 14)),
+      title: Text(
+        title,
+        style: TextStyle(color: AppColors.black, fontSize: 14),
+      ),
       trailing: Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.black),
       onTap: onTap,
     ),
   );
 }
 
-Widget buildNavigationTile(String title, IconData icon, {required VoidCallback onTap}) {
+Widget buildNavigationTile(
+  String title,
+  IconData icon, {
+  required VoidCallback onTap,
+}) {
   return Container(
     margin: const EdgeInsets.only(bottom: 10),
     decoration: BoxDecoration(
@@ -108,7 +129,10 @@ Widget buildNavigationTile(String title, IconData icon, {required VoidCallback o
     ),
     child: ListTile(
       leading: Icon(icon, color: AppColors.black),
-      title: Text(title, style: TextStyle(color: AppColors.black, fontSize: 14)),
+      title: Text(
+        title,
+        style: TextStyle(color: AppColors.black, fontSize: 14),
+      ),
       trailing: Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.black),
       onTap: onTap,
     ),
@@ -117,7 +141,12 @@ Widget buildNavigationTile(String title, IconData icon, {required VoidCallback o
 
 /* Original Switch version (commented) preserved */
 
-Widget buildToggleTile(String title, RxBool value, Function(bool) onChanged, {required IconData icon}) {
+Widget buildToggleTile(
+  String title,
+  RxBool value,
+  Function(bool) onChanged, {
+  required IconData icon,
+}) {
   return Obx(
     () => Container(
       margin: const EdgeInsets.only(bottom: 10),
@@ -135,7 +164,10 @@ Widget buildToggleTile(String title, RxBool value, Function(bool) onChanged, {re
             children: [
               Icon(icon, color: AppColors.black),
               const SizedBox(width: 10),
-              Text(title, style: TextStyle(color: AppColors.black, fontSize: 14)),
+              Text(
+                title,
+                style: TextStyle(color: AppColors.black, fontSize: 14),
+              ),
             ],
           ),
           FlutterSwitch(
@@ -156,7 +188,7 @@ Widget buildToggleTile(String title, RxBool value, Function(bool) onChanged, {re
   );
 }
 
- // Language toggle
+// Language toggle
 Widget buildLanguageToggleTile(LanguageController languageController) {
   return Obx(
     () => Container(
@@ -209,6 +241,9 @@ Widget buildLogoutButton(SettingsController controller) {
       minimumSize: Size(double.infinity, 50),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     ),
-    child: const Text("Logout", style: TextStyle(color: AppColors.white, fontSize: 16)),
+    child: const Text(
+      "Logout",
+      style: TextStyle(color: AppColors.white, fontSize: 16),
+    ),
   );
 }

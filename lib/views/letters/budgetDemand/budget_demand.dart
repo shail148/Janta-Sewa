@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/view_models/controllers/budgetDemandV/iewModel/budget_demand_view_model.dart';
+import 'package:janta_sewa/view_models/controllers/budgetDemandViewModel/budget_demand_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
 import 'package:janta_sewa/res/components/file_upload.dart';
@@ -66,9 +66,9 @@ class _BudgetDemandState extends State<BudgetDemand> {
                         children: [
                           CustomLabelText(
                             isRequired: true,
-                            text: 'requested for'.tr),
+                            text: 'requested for'.tr,
+                          ),
                           CustomDropdown(
-
                             items: requestTypes,
                             selectedValue: selectedRequestType,
                             onChanged: (value) {
@@ -83,7 +83,8 @@ class _BudgetDemandState extends State<BudgetDemand> {
                               text: 'Name of the Office Work Demanded'.tr,
                             ),
                             CustomTextFormField(
-                              controller: budgetDemandVM.nameOfOfficeWorkDemanded.value,
+                              controller:
+                                  budgetDemandVM.nameOfOfficeWorkDemanded.value,
                               hintText: 'office work demanded'.tr,
                             ),
                           ],
@@ -92,31 +93,36 @@ class _BudgetDemandState extends State<BudgetDemand> {
                               text: 'name of the major Work Demanded'.tr,
                             ),
                             CustomTextFormField(
-                              controller: budgetDemandVM.nameOfOfficeWorkDemanded.value,
+                              controller:
+                                  budgetDemandVM.nameOfOfficeWorkDemanded.value,
                               hintText: 'major work demanded'.tr,
                             ),
                           ],
                           CustomLabelText(
                             isRequired: true,
-                            text: 'applicant_name'.tr),
+                            text: 'applicant_name'.tr,
+                          ),
                           CustomTextFormField(
                             controller: budgetDemandVM.applicantName.value,
-                            hintText: 'applicant_name'.tr),
+                            hintText: 'applicant_name'.tr,
+                          ),
                           CustomLabelText(
                             isRequired: true,
-                            text: 'mobile_number'.tr),
+                            text: 'mobile_number'.tr,
+                          ),
                           CustomTextFormField(
                             controller: budgetDemandVM.applicantMobile.value,
-                            hintText: 'mobile_number'.tr),
-                          CustomLabelText(
-                            isRequired: true,
-                            text: 'address'.tr),
+                            hintText: 'mobile_number'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'address'.tr),
                           CustomTextFormField(
                             controller: budgetDemandVM.address.value,
-                            hintText: 'address'.tr),
+                            hintText: 'address'.tr,
+                          ),
                           CustomLabelText(
                             isRequired: true,
-                            text: 'level_of_government'.tr),
+                            text: 'level_of_government'.tr,
+                          ),
                           //add dropdown here
                           CustomDropdown(
                             items: levelOfGovernment,
@@ -129,20 +135,21 @@ class _BudgetDemandState extends State<BudgetDemand> {
                           ),
                           CustomLabelText(
                             isRequired: true,
-                            text: 'department_name'.tr),
+                            text: 'department_name'.tr,
+                          ),
                           CustomTextFormField(
                             controller: budgetDemandVM.departmentName.value,
-                            hintText: 'department_name'.tr),
-                          CustomLabelText(
-                            isRequired: true,
-                            text: 'message'.tr),
+                            hintText: 'department_name'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'message'.tr),
                           CustomMessageTextFormField(
                             controller: budgetDemandVM.message.value,
                             hintText: 'enter_message'.tr,
                           ),
                           CustomLabelText(
                             isRequired: true,
-                            text: 'upload_signed_documents'.tr),
+                            text: 'upload_signed_documents'.tr,
+                          ),
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),

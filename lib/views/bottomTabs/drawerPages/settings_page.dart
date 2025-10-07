@@ -5,7 +5,7 @@ import 'package:janta_sewa/localization/language_controller.dart';
 import 'package:janta_sewa/controllers/setting_controller.dart';
 import 'package:janta_sewa/views/aboutJantaSewa/privacy_policy_page.dart';
 import 'package:janta_sewa/views/aboutJantaSewa/terms_of_use_page.dart';
-import 'package:janta_sewa/views/bottomTabs/report_issue_page.dart';
+import 'package:janta_sewa/views/bottomTabs/drawerPages/report_issue_page.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/setting_widget.dart';
 

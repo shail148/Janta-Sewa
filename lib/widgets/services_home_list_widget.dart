@@ -19,7 +19,6 @@ class ServicesHomeListWidget extends StatelessWidget {
         'color': const Color(0xFFAAE7E2),
         'zoom': 1.0,
         'alignment': Alignment.topLeft,
-
       },
       {
         'title': 'Hospital\nAdmission',
@@ -27,29 +26,28 @@ class ServicesHomeListWidget extends StatelessWidget {
         'page': () => const HospitalAdmission(),
         'color': const Color(0xFFE1ECFE),
         'zoom': 1.3,
-       'alignment': Alignment.center,
-
+        'alignment': Alignment.center,
       },
       {
         'title': 'Parliament\nVisit',
         'image': 'assets/images/parliament.png',
         'page': () => const ParliamentVisit(),
         'color': const Color(0xFFF6F4F5),
-        'zoom' : 0.93,
+        'zoom': 0.93,
         'alignment': Alignment.topRight, //bottomRight
-
       },
       {
         'title': 'Construction\nWork',
         'image': 'assets/images/construction.png',
         'page': () => const ConstructionsMenu(),
         'color': const Color(0xFFC2E6F2),
-        'zoom' : 0.9,
-        'alignment': const Alignment(-0.20, 0.3),   // shifts image slightly left & down
+        'zoom': 0.9,
+        'alignment': const Alignment(
+          -0.20,
+          0.3,
+        ), // shifts image slightly left & down
         //'alignment': Alignment.centerLeft,
-        'offset': const Offset(-4,12), // x, y in logical pixels
-
-
+        'offset': const Offset(-4, 12), // x, y in logical pixels
       },
     ];
 
@@ -68,6 +66,7 @@ class ServicesHomeListWidget extends StatelessWidget {
               Get.to(pageBuilder());
             },
             child: Column(
+             
               children: [
                 Container(
                   width: 73,
@@ -78,7 +77,9 @@ class ServicesHomeListWidget extends StatelessWidget {
                   ),
                   clipBehavior: Clip.hardEdge, // Ensures circular clip
                   child: Transform.translate(
-                     offset: service['offset'] ?? Offset.zero, // x, y in logical pixels
+                    offset:
+                        service['offset'] ??
+                        Offset.zero, // x, y in logical pixels
                     child: Transform.scale(
                       scale: service['zoom'] ?? 1.0,
                       child: Image.asset(

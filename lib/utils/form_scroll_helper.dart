@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class FormScrollHelper {
   /// Scroll to first invalid field in a form
   static void scrollToFirstInvalidField(

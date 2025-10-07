@@ -5,7 +5,8 @@ class ContactPageTile extends StatelessWidget {
   final String title;
   final IconData icons;
   final VoidCallback onTap;
-  const ContactPageTile({super.key,
+  const ContactPageTile({
+    super.key,
     required this.title,
     required this.icons,
     required this.onTap,
@@ -14,11 +15,11 @@ class ContactPageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric( vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
         color: AppColors.formBgColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.btnBgColor)
+        border: Border.all(color: AppColors.btnBgColor),
       ),
       child: ListTile(
         title: Text(
@@ -30,7 +31,7 @@ class ContactPageTile extends StatelessWidget {
             fontFamily: 'Inter', // (optional: for consistency)
           ),
         ),
-       leading: Icon(icons,color: AppColors.btnBgColor,size: 30,),
+        leading: Icon(icons, color: AppColors.btnBgColor, size: 30),
         onTap: onTap,
       ),
     );

@@ -10,9 +10,6 @@ class SettingsController extends GetxController {
   var smsAlerts = true.obs;
   var pushNotifications = true.obs; */
   //var languageToggle = false.obs; 
-
-  
-
   void toggleEmailAlerts(bool value) {
     emailAlerts.value = value;
   }

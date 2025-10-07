@@ -17,10 +17,13 @@ class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomTopAppBar(title: 'Notification', leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
+      appBar: CustomTopAppBar(
+        title: 'Notification',
+        leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
         onLeftTap: () {
           Get.back();
-        },),
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -29,14 +32,17 @@ class _NotificationPageState extends State<NotificationPage> {
             const SizedBox(height: 12),
             Expanded(
               child: ListView.builder(
-                itemCount: languageController.isHindi? notificationsHindi.length: notifications.length,
+                itemCount: languageController.isHindi
+                    ? notificationsHindi.length
+                    : notifications.length,
                 itemBuilder: (context, index) {
-                  final notification = languageController.isHindi? notificationsHindi[index]: notifications[index];
-
+                  final notification = languageController.isHindi
+                      ? notificationsHindi[index]
+                      : notifications[index];
                   return Card(
                     margin: const EdgeInsets.symmetric(vertical: 5),
-                   
-                    color: AppColors.formBgColor,  
+
+                    color: AppColors.formBgColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -59,7 +65,6 @@ class _NotificationPageState extends State<NotificationPage> {
                             ),
                           ),
                           const SizedBox(width: 12),
-
                           // Right Text Info
                           Expanded(
                             child: Column(
@@ -67,12 +72,11 @@ class _NotificationPageState extends State<NotificationPage> {
                               children: [
                                 Text(
                                   maxLines: 2,
-                                notification['title'] ?? '',style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  
-                                ),
-                                                               
+                                  notification['title'] ?? '',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                                 ),
                                 const SizedBox(height: 6),
                                 Row(
@@ -80,17 +84,12 @@ class _NotificationPageState extends State<NotificationPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      notification['subtitle'] ?? '',style: TextStyle(
-                                      fontSize: 12
-                                ),
-                                      
-                                    
+                                      notification['subtitle'] ?? '',
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                     Text(
-                                       notification['time'] ?? '',style: TextStyle(
-                                       fontSize: 11
-                                ),
-                                    
+                                      notification['time'] ?? '',
+                                      style: TextStyle(fontSize: 11),
                                     ),
                                   ],
                                 ),
@@ -125,8 +124,6 @@ IconData getNotificationIcon(String? type) {
       return Icons.notifications;
   }
 }
-
-
 
 Color getColors(String? colortype) {
   switch (colortype) {

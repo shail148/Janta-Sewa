@@ -6,7 +6,7 @@ import 'package:janta_sewa/res/routes/app_pages.dart';
 import 'package:janta_sewa/localization/localization.dart';
 import 'package:janta_sewa/views/auth/language_switch_page.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
-import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 import 'package:janta_sewa/view_models/user_preference/user_preference_view_model.dart';
 
 void main() async {
@@ -30,12 +30,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return ScreenUtilInit(
       designSize: const Size(360, 800),
       minTextAdapt: true,
       splitScreenMode: true,
       child: GetMaterialApp(
+        // themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         getPages: AppPages.routes,
         initialRoute: AppPages.initialRoute,

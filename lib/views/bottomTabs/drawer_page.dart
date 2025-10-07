@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/views/auth/login_page.dart';
-import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 import 'package:janta_sewa/views/newsSection/our_journey_page.dart';
-import 'package:janta_sewa/views/bottomTabs/drawer_dashboard_services_home_screen.dart';
-import 'package:janta_sewa/views/bottomTabs/settings_page.dart';
+import 'package:janta_sewa/views/bottomTabs/drawerPages/drawer_dashboard_services_home_screen.dart';
+import 'package:janta_sewa/views/bottomTabs/drawerPages/settings_page.dart';
 import 'package:janta_sewa/views/contactsInvitation/contact_page.dart';
 import 'package:janta_sewa/views/events/event_page.dart';
 import 'package:janta_sewa/views/notification/notification_page.dart';
@@ -72,7 +72,7 @@ class CustomDrawer extends StatelessWidget {
                   // ),
                   _drawerItem(
                     Icons.dashboard,
-                    'dashboardss'.tr,
+                    'dashboard'.tr,
                     onTap: () =>
                         Get.to(() => const DrawerDashboardServicesHomeScreen()),
                   ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/repository/auth_repository/auth_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
-import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 
 class RegisterViewModel extends GetxController {
   final _api = AuthRepository();
@@ -107,6 +107,41 @@ class RegisterViewModel extends GetxController {
       Utils.showSnackBar("Error", error.toString());
     }
   }
+
+    //update profile api 
+  // void updateProfileApi() async {
+  //   try {
+  //     isLoading.value = true;
+  //     final data = _buildRegisterData();
+  //     //first check the use and and auth tokken then do the api call
+  //     final user = Get.find<LoginViewModel>();
+  //     if (user.isLoggedIn.value) {
+  //       final token = user.token.value;
+  //       final headers = {
+  //         'Authorization': 'Bearer $token',
+  //         'Content-Type': 'application/json',
+  //       };
+  //       final value = await _api.updateProfileApi(data,);
+  //       isLoading.value = false;
+
+  //     if (value['error'] != null) {
+  //       if (kDebugMode) print(data);
+  //       Utils.showErrorSnackBar(
+  //         "Update Failed",
+  //         value['error'].toString(),
+  //       );
+  //     } else {
+  //       Utils.showSuccessSnackBar("Updated", "Profile Updated Successfully ");
+  //       Get.offAll(() => const BottomNav());
+  //     }
+  //   }
+  //   } catch (error) {
+  //     isLoading.value = false;
+  //     if (kDebugMode) print(error);
+  //     Utils.showSnackBar("Error", error.toString());
+  //   }
+    
+  // }
 
   @override
   void onClose() {

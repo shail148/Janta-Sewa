@@ -1,7 +1,6 @@
 
 class AppRoutes {
   static const String initialRoute = "/langswitch";
-  
   static const String loginPage = "/login";
   static const String registerPage = "/register";
   static const String forgotPasswordPage = "/forgot-password";

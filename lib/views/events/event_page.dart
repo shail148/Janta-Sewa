@@ -4,7 +4,7 @@ import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_event_card.dart';
 import 'package:janta_sewa/localization/language_controller.dart';
 import 'package:janta_sewa/data/upcoming_event.dart';
-import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 
 class EventPage extends StatefulWidget {
@@ -34,6 +34,7 @@ class _EventPageState extends State<EventPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ListView.builder(
+                  
                   shrinkWrap: true, 
                   physics: NeverScrollableScrollPhysics(), 
                   itemCount: languageController.isHindi? upcomingEventHindi.length : upcomingEvent.length,

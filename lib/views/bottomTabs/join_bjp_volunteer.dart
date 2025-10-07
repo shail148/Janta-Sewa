@@ -23,7 +23,8 @@ class _JoinBjpVolunteerPageState extends State<JoinBjpVolunteerPage> {
         NavigationDelegate(
           onPageStarted: (_) => setState(() => isLoading = true),
           onPageFinished: (_) => setState(() => isLoading = false),
-          onWebResourceError: (error) => debugPrint("WebView error: ${error.description}"),
+          onWebResourceError: (error) =>
+              debugPrint("WebView error: ${error.description}"),
         ),
       )
       ..loadRequest(Uri.parse('https://membership.bjp.org/en/home/login'));
@@ -65,9 +66,7 @@ class _JoinBjpVolunteerPageState extends State<JoinBjpVolunteerPage> {
             WebViewWidget(controller: webViewController),
             if (isLoading)
               const Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.white,
-                ),
+                child: CircularProgressIndicator(backgroundColor: Colors.white),
               ),
           ],
         ),

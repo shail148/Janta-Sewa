@@ -116,4 +116,13 @@ class FormValidator {
     }
     return null;
   }
+
+  static String? validateOtp(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'OTP is required';
+    } else if (!RegExp(r'^[0-9]{6}$').hasMatch(value)) {
+      return 'Enter a valid 6-digit OTP';
+    }
+    return null;
+  }
 }

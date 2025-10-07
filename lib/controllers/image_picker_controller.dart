@@ -21,8 +21,6 @@ class ImagePickerController extends GetxController {
       }
     }
   }
-
-
   void clearImage() {
     selectedImage.value = null;
   }

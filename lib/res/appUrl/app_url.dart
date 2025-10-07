@@ -8,7 +8,7 @@ class AppUrl {
   static const String resetPasswordApi = "$baseUrl/auth/reset-password";
 
   static const String getUserProfileApi = "$baseUrl/user/profile";
-  static const String updateUserProfileApi = "$baseUrl/user/update-profile";
+  static const String updateUserProfileApi = "$baseUrl/auth/update-profile";
   static const String getUserServicesApi = "$baseUrl/user/services";
   static const String updateUserServicesApi = "$baseUrl/user/update-services";
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/repository/serviceDepartment/parliament_visit_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
-import 'package:janta_sewa/views/bottomTabs/bottom_nav_main_page.dart';
+import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 
 class ParliamentVisitViewModel extends GetxController {
   final _api = ParliamentVisitRepository();
