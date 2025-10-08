@@ -9,8 +9,4 @@ class AppRoutes {
   static const String mainPage = "/main";
   static const String profilePage = "/profile";
   static const String servicesHomePage = "/services-home";
-
- 
-
-
 }

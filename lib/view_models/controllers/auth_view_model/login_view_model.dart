@@ -25,7 +25,7 @@ class LoginViewModel extends GetxController {
       String input = emailController.value.text.trim();
       Map data;
       if (RegExp(r'^[0-9]+$').hasMatch(input)) {
-        // 📱 user entered phone number
+        //  user entered phone number
         data = {
           "mobileNumber": input,
           "password": passwordController.value.text.trim(),

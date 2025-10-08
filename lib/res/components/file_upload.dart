@@ -23,7 +23,7 @@ class CustomFileUpload extends StatelessWidget {
               strokeWidth: 3.0,
               radius: const Radius.circular(12),
               color: AppColors.btnBgColor,
-              padding: const EdgeInsets.all(0),  //can adjust padding
+              padding: const EdgeInsets.all(0), //can adjust padding
             ),
             child: Container(
               height: 150,
@@ -34,7 +34,11 @@ class CustomFileUpload extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomTextWidget(text: 'Upload Your Files', fontsize: 14),
-                  Icon(Icons.file_upload_outlined, color: AppColors.btnBgColor, size: 30),
+                  Icon(
+                    Icons.file_upload_outlined,
+                    color: AppColors.btnBgColor,
+                    size: 30,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -58,10 +62,9 @@ class CustomFileUpload extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Obx(() => Column(
-          children: List.generate(
-            controller.uploadedFiles.length,
-            (index) {
+        Obx(
+          () => Column(
+            children: List.generate(controller.uploadedFiles.length, (index) {
               final file = controller.uploadedFiles[index];
               return Container(
                 margin: const EdgeInsets.symmetric(vertical: 5),
@@ -76,25 +79,26 @@ class CustomFileUpload extends StatelessWidget {
                     Icon(Icons.insert_drive_file, color: AppColors.btnBgColor),
                     const SizedBox(width: 10),
                     Expanded(
-                      child: Text(
-                        file.name,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                      child: Text(file.name, overflow: TextOverflow.ellipsis),
                     ),
                     CustomTextWidget(
-                      text: '${(file.size / (1024 * 1024)).toStringAsFixed(1)} MB',
+                      text:
+                          '${(file.size / (1024 * 1024)).toStringAsFixed(1)} MB',
                       fontsize: 12,
                     ),
                     IconButton(
-                      icon: Icon(Icons.delete_outlined, color: AppColors.btnBgColor),
+                      icon: Icon(
+                        Icons.delete_outlined,
+                        color: AppColors.btnBgColor,
+                      ),
                       onPressed: () => controller.removeFile(index),
                     ),
                   ],
                 ),
               );
-            },
+            }),
           ),
-        )),
+        ),
       ],
     );
   }

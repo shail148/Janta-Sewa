@@ -1,10 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CulturalProgrammeViewModel extends GetxController{
-
+class CulturalProgrammeViewModel extends GetxController {
   // store the variable
   final applicantName = TextEditingController().obs;
   final applicantMobile = TextEditingController().obs;
@@ -18,6 +15,4 @@ class CulturalProgrammeViewModel extends GetxController{
   final image = TextEditingController().obs;
 
   RxBool isLoading = false.obs;
-
-  
 }

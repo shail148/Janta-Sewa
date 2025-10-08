@@ -12,7 +12,6 @@ import 'package:janta_sewa/widgets/setting_widget.dart';
 class SettingsPage extends StatelessWidget {
   SettingsPage({super.key});
 
-  // find from app_binding.dart ,all controller binding present here
   final SettingsController controller = Get.put(SettingsController());
 
   final LanguageController languageController = Get.find<LanguageController>();
@@ -85,13 +84,11 @@ class SettingsPage extends StatelessWidget {
               Get.to(() => const TermsOfUsePage());
             },
           ),
-          //  NEW SECTION: Report an Issue
+          
           buildNavigationTile(
             "Report an issue",
             Icons.bug_report_outlined,
             onTap: () {
-              // Navigate to report issue or open email
-              // can  launch("mailto:support@example.com")
 
               Get.to(ReportIssuePage());
             },

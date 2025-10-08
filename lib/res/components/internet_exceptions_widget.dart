@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class InternetExceptionsWidget extends StatelessWidget {
   final VoidCallback? onRetryTap;
   const InternetExceptionsWidget({super.key, required this.onRetryTap});

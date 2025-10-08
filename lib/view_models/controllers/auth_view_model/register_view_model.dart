@@ -72,7 +72,6 @@ class RegisterViewModel extends GetxController {
         "password": passwordController.value.text.trim(),
         "isOrgnization": false,
       };
-
       //  Add bloodGroup only if not empty
       if (bloodGroupController.value.text.trim().isNotEmpty) {
         data["bloodGroup"] = bloodGroupController.value.text.trim();
@@ -108,7 +107,7 @@ class RegisterViewModel extends GetxController {
     }
   }
 
-    //update profile api 
+  //update profile api
   // void updateProfileApi() async {
   //   try {
   //     isLoading.value = true;
@@ -140,7 +139,7 @@ class RegisterViewModel extends GetxController {
   //     if (kDebugMode) print(error);
   //     Utils.showSnackBar("Error", error.toString());
   //   }
-    
+
   // }
 
   @override

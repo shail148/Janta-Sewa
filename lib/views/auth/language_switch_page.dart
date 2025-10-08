@@ -9,18 +9,17 @@ import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
 
 class LanguageSwitch extends StatefulWidget {
-
-const  LanguageSwitch({super.key});
+  const LanguageSwitch({super.key});
 
   @override
   State<LanguageSwitch> createState() => _LanguageSwitchState();
-
 }
+
 class _LanguageSwitchState extends State<LanguageSwitch> {
   final LanguageController languageController = Get.put(LanguageController());
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     //store language in shared preferences
     languageController.currentLocale.listen((locale) {
@@ -71,9 +70,7 @@ class _LanguageSwitchState extends State<LanguageSwitch> {
             SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LanguageToggleSwitch(),
-              ],
+              children: [LanguageToggleSwitch()],
             ),
             SizedBox(height: 28.h),
             Image.asset('assets/images/bjp.png', height: 100.h, width: 100.w),

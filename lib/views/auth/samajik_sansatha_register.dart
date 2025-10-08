@@ -67,20 +67,18 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                             hintText: 'enter_oragnization_name'.tr,
                           ),
                           CustomLabelText(text: 'types_of_oragnization'.tr),
-                          CustomDropdown(
-                            items: organisationTypes,
-                            selectedValue: registerVM.selectedType.value.isEmpty
-                                ? null
-                                : registerVM.selectedType.value,
-                            onChanged: (value) {
-                              setState(() {
+                          Obx(
+                            () => CustomDropdown(
+                              items: organisationTypes,
+                              selectedValue:
+                                  registerVM.selectedType.value.isEmpty
+                                  ? null
+                                  : registerVM.selectedType.value,
+                              onChanged: (value) {
                                 registerVM.selectedType.value = value ?? "";
                                 registerVM.isOrgnization.value = true;
-                               
-                              });
-                            },
-
-                            label: 'types_of_oragnization'.tr,
+                              },
+                            ),
                           ),
                           SizedBox(height: 10),
                           CustomLabelText(text: 'date_of_establish'.tr),
@@ -123,7 +121,6 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                           SizedBox(height: 10),
                           CustomLabelText(text: 'state'.tr),
                           CustomTextFormField(
-                           
                             controller: registerVM.stateController.value,
                             hintText: 'enter_state'.tr,
                           ),
@@ -158,9 +155,7 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                             hintText: 'enter_ward_number'.tr,
                           ),
                           SizedBox(height: 10),
-                          CustomLabelText(
-                            isRequired: true,
-                            text: 'pincode'.tr),
+                          CustomLabelText(isRequired: true, text: 'pincode'.tr),
                           CustomTextFormField(
                             controller: registerVM.pincodeController.value,
                             hintText: 'enter_pincode'.tr,
@@ -168,9 +163,9 @@ class _SamajikSansathaRegisterState extends State<SamajikSansathaRegister> {
                           SizedBox(height: 10),
                           CustomLabelText(
                             isRequired: true,
-                            text: 'password'.tr),
+                            text: 'password'.tr,
+                          ),
                           CustomTextFormField(
-                            
                             controller: registerVM.passwordController.value,
                             hintText: 'enter_password'.tr,
                           ),

@@ -92,7 +92,7 @@ class CustomDrawer extends StatelessWidget {
                     'notifications'.tr,
                     onTap: () => Get.to(() => const NotificationPage()),
                   ),
-                  // _drawerItem(Icons.person, 'Profile', onTap: () => Get.to(() => const ProfileScreen())),
+                
                   _drawerItem(
                     Icons.contact_page,
                     'contact_us'.tr,

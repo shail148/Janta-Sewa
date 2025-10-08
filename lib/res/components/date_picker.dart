@@ -8,7 +8,6 @@ class CustomDatePicker extends StatelessWidget {
   final DateTime? initialDate;
   final DateTime? firstDate;
   final DateTime? lastDate;
-
   // ignore: use_super_parameters
   const CustomDatePicker({
     Key? key,

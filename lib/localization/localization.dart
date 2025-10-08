@@ -52,7 +52,6 @@ class AppLocalization extends Translations {
       'register_here': 'Register Here',
       'select_app_language': 'Select App Language',
       'language': 'Language',
-
       'select_your_language': 'Select Your Language',
       'english': 'English',
       'hindi': 'Hindi',
@@ -73,8 +72,7 @@ class AppLocalization extends Translations {
       'services': 'Services',
       'departments': 'Departments',
       'train_ticket_confirmation': 'Rail Ticket \nConfirmation',
-      'parliament_visit':
-          'Parliament \nVisit', //changed so that on servicesHomeScreen it take no extra space
+      'parliament_visit': 'Parliament \nVisit',
       'parliament_visit_menu': 'Parliament Visit',
       'construction_work':
           'Construction \nWork', //changed for servicesHomeScreen
@@ -324,9 +322,9 @@ class AppLocalization extends Translations {
       'bsp': 'BSP',
       "speech": "Speech",
       "view_more": "View More",
-      'name_of_applicant :' : 'Name of Applicant :',
-      'submitted_on :' : 'Submitted on :',
-      'type_of_request :' : 'Type of Request :',
+      'name_of_applicant :': 'Name of Applicant :',
+      'submitted_on :': 'Submitted on :',
+      'type_of_request :': 'Type of Request :',
       "photo_gallery": "Photo Gallery",
       "join_bjp": "Join BJP",
       "join_volunteer": "Join as Volunteer",
@@ -354,8 +352,8 @@ class AppLocalization extends Translations {
       'message': 'Message',
       'enter_message': 'Enter Message',
       'requests': 'Requests',
-      'dashboard' : 'Dashboard',
-      'post_name' : 'Post Name'
+      'dashboard': 'Dashboard',
+      'post_name': 'Post Name',
     },
     'hi_IN': {
       'hello': 'नमस्ते',
@@ -458,7 +456,7 @@ class AppLocalization extends Translations {
       'pending': 'लंबित',
       'rejected': 'अस्वीकृत',
       'in_progress': 'प्रगति में',
-      'view' : 'देखें',
+      'view': 'देखें',
       'sangthan_registration': 'संगठन पंजीकरण',
       'oragnization_name': 'संगठन का नाम',
       'enter_oragnization_name': 'संगठन का नाम दर्ज करें',
@@ -494,9 +492,9 @@ class AppLocalization extends Translations {
       'national': 'राष्ट्रीय',
       'welcome': 'स्वागत है',
       'view_details': 'विवरण देखें',
-      'name_of_applicant :' : 'आवेदक का नाम :',
-      'submitted_on :' : 'सबमिट किया गया :',
-      'type_of_request :' : 'अनुरोध का प्रकार :',
+      'name_of_applicant :': 'आवेदक का नाम :',
+      'submitted_on :': 'सबमिट किया गया :',
+      'type_of_request :': 'अनुरोध का प्रकार :',
       'posting': 'पदस्थापन',
       'types_of_posting': 'पदस्थापन के प्रकार',
       'revised': 'संशोधित',
@@ -703,9 +701,8 @@ class AppLocalization extends Translations {
       "enter_message": "संदेश दर्ज करें",
       'requests': 'अनुरोध',
       'recommendation_letter': 'सिफ़ारिश\nपत्र',
-      'dashboard' : 'डैशबोर्ड',
-      'post_name' : 'पद नाम'
-      
+      'dashboard': 'डैशबोर्ड',
+      'post_name': 'पद नाम',
     },
   };
 }

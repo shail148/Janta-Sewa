@@ -13,7 +13,6 @@ class RoleToggleButton extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
   });
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
