@@ -16,23 +16,13 @@ class Utils {
     Fluttertoast.showToast(msg: message);
   }
 
-  static showSnackBar(String title, String message) {
-    Get.snackbar(
-      'error',
-      message,
-      backgroundColor: Colors.red,
-      icon: Icon(Icons.error_outline),
-      colorText: Colors.white,
-    );
-  }
-
   //error snackbar
   static showErrorSnackBar(String title, String message) {
     Get.snackbar(
-      'error',
+      'Error',
       message,
       backgroundColor: Colors.red,
-      icon: Icon(Icons.error_outline),
+      icon: Icon(Icons.error_outline, color: Colors.white, size: 30),
       colorText: Colors.white,
     );
   }
@@ -40,10 +30,10 @@ class Utils {
   //create success snackbar
   static showSuccessSnackBar(String title, String message) {
     Get.snackbar(
-      'success',
+      'Success',
       message,
       backgroundColor: Colors.green,
-      icon: Icon(Icons.check_circle_outline),
+      icon: Icon(Icons.check_circle_outline, color: Colors.white, size: 30),
       colorText: Colors.white,
     );
   }

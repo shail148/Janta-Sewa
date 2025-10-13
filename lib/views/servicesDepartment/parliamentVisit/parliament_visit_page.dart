@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/utils/form_validator.dart';
+import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/servicesDepartment/parliament_visit_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/res/components/file_upload.dart';
@@ -30,161 +31,202 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
           Get.back();
         },
       ),
-      body: SafeArea(
-        child: Scrollbar(
-          thumbVisibility: true,
-          trackVisibility: true,
-          // thickness: 5,
-          radius: const Radius.circular(10),
-          child: SingleChildScrollView(
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24).w,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTextWidget(
-                      text: "parliament_visit_menu".tr,
-                      color: AppColors.textColor,
-                      fontsize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    SizedBox(height: 10),
-                    Form(
+      body: Obx(
+        () => Stack(
+          children: [
+            SafeArea(
+              child: Scrollbar(
+                thumbVisibility: true,
+                trackVisibility: true,
+                // thickness: 5,
+                radius: const Radius.circular(10),
+                child: SingleChildScrollView(
+                  child: SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24).w,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(
-                            text: 'headed_person_name'.tr,
-                            isRequired: true,
+                          CustomTextWidget(
+                            text: "parliament_visit_menu".tr,
+                            color: AppColors.textColor,
+                            fontsize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
-                          CustomTextFormField(
-                            validator: FormValidator.validateName,
-                            controller: parliamentVM.headedPersonName.value,
-                            hintText: 'headed_person_name'.tr,
-                          ),
-                          CustomLabelText(
-                            text: 'headed_person_mobile_number'.tr,
-                            isRequired: true,
-                          ),
-                          CustomTextFormField(
-                            validator: FormValidator.validatePhone,
-                            controller:
-                                parliamentVM.headedPersonMobileNumber.value,
-                            hintText: 'headed_person_mobile_number'.tr,
-                          ),
-                          CustomLabelText(text: 'state'.tr, isRequired: true),
-                          CustomTextFormField(
-                            controller: parliamentVM.state.value,
-                            hintText: 'enter_state'.tr,
-                          ),
-                          CustomLabelText(
-                            text: 'district'.tr,
-                            isRequired: true,
-                          ),
-                          CustomTextFormField(
-                            controller: parliamentVM.district.value,
-                            hintText: 'enter_district'.tr,
-                          ),
-                          CustomLabelText(text: 'block'.tr, isRequired: true),
-                          CustomTextFormField(
-                            controller: parliamentVM.block.value,
-                            hintText: 'enter_block'.tr,
-                          ),
-                          CustomLabelText(
-                            isRequired: true,
-                            text: 'city_village'.tr,
-                          ),
-                          CustomTextFormField(
-                            controller: parliamentVM.cityVillage.value,
-                            hintText: 'enter_city_village'.tr,
-                          ),
-                          CustomLabelText(
-                            isRequired: true,
-                            text: 'ward_number'.tr,
-                          ),
-                          CustomTextFormField(hintText: 'enter_ward_number'.tr),
-                          CustomLabelText(text: 'pincode'.tr, isRequired: true),
-                          CustomTextFormField(
-                            controller: parliamentVM.pincode.value,
-                            hintText: 'enter_pincode'.tr,
-                          ),
-                          CustomLabelText(
-                            isRequired: true,
-                            text: 'constituency'.tr,
-                          ),
-                          CustomTextFormField(
-                            controller: parliamentVM.constituency.value,
-                            hintText: 'constituency'.tr,
-                          ),
-                          CustomLabelText(
-                            text: 'date_of_visit'.tr,
-                            isRequired: true,
-                          ),
-                          CustomTextFormField(
-                            controller: parliamentVM.dateOfVisit.value,
-                            hintText: 'date_of_visit'.tr,
-                          ),
-                          CustomLabelText(
-                            text: 'time_of_visit'.tr,
-                            isRequired: true,
-                          ),
-                          CustomTextFormField(
-                            controller: parliamentVM.timeOfVisit.value,
-                            hintText: 'time_of_visit'.tr,
-                          ),
-                          CustomLabelText(
-                            isRequired: true,
-                            text: 'total_number_of_members'.tr,
-                          ),
-                          CustomTextFormField(
-                            controller: parliamentVM.totalNumberOfMembers.value,
-                            hintText: 'total_number_of_members'.tr,
-                          ),
-                          CustomLabelText(
-                            text: 'parliament_name'.tr,
-                            isRequired: true,
-                          ),
-                          CustomTextFormField(
-                            controller: parliamentVM.parliamentName.value,
-                            hintText: 'parliament_name'.tr,
-                          ),
-                          CustomLabelText(
-                            text: 'parliament_mobile_number'.tr,
-                            isRequired: true,
-                          ),
-                          CustomTextFormField(
-                            controller:
-                                parliamentVM.parliamentMobileNumber.value,
-                            hintText: 'parliament_mobile_number'.tr,
-                          ),
-                          CustomLabelText(text: 'message'.tr),
-                          CustomMessageTextFormField(
-                            controller: parliamentVM.message.value,
-                            hintText: 'enter_message'.tr,
-                          ),
-                          CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                parliamentVM.parliamentVisitApi;
-                              }
-                            },
+                          Form(
+                            key: _formKey,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomLabelText(
+                                  text: 'headed_person_name'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  validator: FormValidator.validateName,
+                                  controller:
+                                      parliamentVM.headedPersonName.value,
+                                  hintText: 'headed_person_name'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'headed_person_mobile_number'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  validator: FormValidator.validatePhone,
+                                  controller: parliamentVM
+                                      .headedPersonMobileNumber
+                                      .value,
+                                  hintText: 'headed_person_mobile_number'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'state'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.state.value,
+                                  hintText: 'enter_state'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'district'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.district.value,
+                                  hintText: 'enter_district'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'block'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.block.value,
+                                  hintText: 'enter_block'.tr,
+                                ),
+                                CustomLabelText(
+                                  isRequired: true,
+                                  text: 'city_village'.tr,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.cityVillage.value,
+                                  hintText: 'enter_city_village'.tr,
+                                ),
+                                CustomLabelText(
+                                  isRequired: true,
+                                  text: 'ward_number'.tr,
+                                ),
+                                CustomTextFormField(
+                                  hintText: 'enter_ward_number'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'pincode'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.pincode.value,
+                                  hintText: 'enter_pincode'.tr,
+                                ),
+                                CustomLabelText(
+                                  isRequired: true,
+                                  text: 'constituency'.tr,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.constituency.value,
+                                  hintText: 'constituency'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'date_of_visit'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.dateOfVisit.value,
+                                  hintText: 'date_of_visit'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'time_of_visit'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.timeOfVisit.value,
+                                  hintText: 'time_of_visit'.tr,
+                                ),
+                                CustomLabelText(
+                                  isRequired: true,
+                                  text: 'total_number_of_members'.tr,
+                                ),
+                                CustomTextFormField(
+                                  controller:
+                                      parliamentVM.totalNumberOfMembers.value,
+                                  hintText: 'total_number_of_members'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'parliament_name'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  controller: parliamentVM.parliamentName.value,
+                                  hintText: 'parliament_name'.tr,
+                                ),
+                                CustomLabelText(
+                                  text: 'parliament_mobile_number'.tr,
+                                  isRequired: true,
+                                ),
+                                CustomTextFormField(
+                                  controller:
+                                      parliamentVM.parliamentMobileNumber.value,
+                                  hintText: 'parliament_mobile_number'.tr,
+                                ),
+                                CustomLabelText(text: 'message'.tr),
+                                CustomMessageTextFormField(
+                                  controller: parliamentVM.message.value,
+                                  hintText: 'enter_message'.tr,
+                                ),
+                                CustomFileUpload(),
+                                SizedBox(height: 10),
+                                CustomButton(
+                                  text: 'submit_btn'.tr,
+                                  textSize: 14,
+                                  backgroundColor: AppColors.btnBgColor,
+                                  height: 62,
+                                  width: double.infinity,
+                                  onPressed: () {
+                                    final valid =
+                                        _formKey.currentState?.validate() ??
+                                        false;
+                                    if (!valid) {
+                                      Utils.showErrorSnackBar(
+                                        'Validation',
+                                        'Please fix the Errors in the Form',
+                                      );
+                                      return;
+                                    }
+                                    parliamentVM.parliamentVisitApi();
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
+            if (parliamentVM.isLoading.value)
+              Positioned.fill(
+                child: AbsorbPointer(
+                  absorbing: true,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.4),
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+              ),
+          ],
         ),
       ),
     );

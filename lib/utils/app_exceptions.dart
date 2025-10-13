@@ -32,3 +32,19 @@ class InvalidDataException extends AppExceptions {
   InvalidDataException([String? message])
     : super(message, "Invalid Data Exception ");
 }
+
+class InvalidInputException extends AppExceptions {
+  InvalidInputException([String? message])
+    : super(message, "Invalid Input Exception ");
+}
+
+class ServerException extends AppExceptions {
+  ServerException([String? message]) : super(message, "Server Exception ");
+}
+
+//bad request 400
+
+class BadRequestException extends AppExceptions {
+  BadRequestException([String? message])
+    : super(message, "Bad Request Exception ");
+}

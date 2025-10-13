@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/controllers/report_issue_controller.dart';
+import 'package:janta_sewa/controllers/file_upload_controller.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
 
 class CustomFileUpload extends StatelessWidget {
-  final ReportIssueController controller = Get.find();
+  final FileUploadController controller = Get.put(FileUploadController());
 
   CustomFileUpload({super.key});
 

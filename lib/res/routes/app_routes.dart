@@ -1,4 +1,3 @@
-
 class AppRoutes {
   static const String initialRoute = "/langswitch";
   static const String loginPage = "/login";
@@ -10,3 +9,5 @@ class AppRoutes {
   static const String profilePage = "/profile";
   static const String servicesHomePage = "/services-home";
 }
+
+

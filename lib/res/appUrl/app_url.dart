@@ -1,6 +1,5 @@
 class AppUrl {
-  static const String baseUrl =
-      "https://janta-seva-backend.onrender.com/api/v1";
+  static const String baseUrl = "http://192.168.1.16:4000/api/v1";
   static const String loginApi = "$baseUrl/auth/login";
   static const String registerApi = "$baseUrl/auth/register";
   static const String forgotPasswordApi = "$baseUrl/auth/forgot-Password";
@@ -18,7 +17,7 @@ class AppUrl {
 
   //parliament visit
   static const String parliamentVisitApi =
-      "$baseUrl/parliament-visit/parliament-visit";
+      "$baseUrl/services-department/parliament-visit/parliament-visit-request";
   //work demand
   static const String newWorkDemandApi = "$baseUrl/work-demand/new-work-demand";
   static const String pendingWorkDemandApi =

@@ -26,6 +26,7 @@ class RailTicketViewModel extends GetxController {
   void ticketConfirmationApi(var data) async {
     try {
       var value = await _api.ticketConfirmationApi(data);
+
       if (value['error'] != null) {
         Utils.showErrorSnackBar("Error", value['error'].toString());
       } else {

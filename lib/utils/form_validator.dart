@@ -1,7 +1,7 @@
 class FormValidator {
   static String? validateName(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Name is required';
+      return 'Enter your name';
     }
     return null;
   }
@@ -10,16 +10,16 @@ class FormValidator {
     if (value == null || value.isEmpty) {
       return 'Email is required';
     } else if (!RegExp(r'^[\w-.]+@([\w-]+\.)+[\w]{2,4}$').hasMatch(value)) {
-      return 'Enter a valid email';
+      return 'Enter a valid Email Address';
     }
     return null;
   }
 
   static String? validatePhone(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Phone number is required';
+      return 'Phone Number is required';
     } else if (value.length != 10) {
-      return 'Phone must be 10 digits';
+      return 'Phone Number must be 10 digits';
     }
     return null;
   }
@@ -36,7 +36,7 @@ class FormValidator {
     if (value == null || value.trim().isEmpty) {
       return 'Pincode is required';
     } else if (!RegExp(r'^\d{6}$').hasMatch(value)) {
-      return 'Enter a valid 6-digit pincode';
+      return 'Enter a valid 6-digit Pincode';
     }
     return null;
   }
@@ -72,7 +72,6 @@ class FormValidator {
     if (RegExp(r'^[0-9]{10}$').hasMatch(value)) {
       return null;
     }
-
     return "Enter a valid email or phone number";
   }
 
@@ -88,7 +87,7 @@ class FormValidator {
   static String? validateCity(String? value) => validateRequired(value, "City");
 
   static String? validateWardNumber(String? value) =>
-      validateRequired(value, "Ward number");
+      validateRequired(value, "Ward Number");
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
@@ -104,15 +103,6 @@ class FormValidator {
       return 'Confirm Password is required';
     } else if (value != value) {
       return 'Passwords do not match';
-    }
-    return null;
-  }
-
-  static String? validatePhoneNumber(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Phone number is required';
-    } else if (!RegExp(r'^[0-9]{10}$').hasMatch(value)) {
-      return 'Enter a valid 10-digit phone number';
     }
     return null;
   }

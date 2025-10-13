@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                       CustomTextFormField(
                         hintText: 'enter_email_phone'.tr,
                         controller: loginVM.emailController.value,
-                        focusNode: loginVM.emailFocusNode.value,
+
                         validator: FormValidator.validateEmailOrPhone,
                       ),
                       CustomLabelText(text: "password".tr, isRequired: true),
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       Obx(
                         () => CustomTextFormField(
                           hintText: 'enter_password'.tr,
-                          focusNode: loginVM.passwordFocusNode.value,
+
                           controller: loginVM.passwordController.value,
                           obscureText: !passwordCtrl
                               .isPasswordVisible

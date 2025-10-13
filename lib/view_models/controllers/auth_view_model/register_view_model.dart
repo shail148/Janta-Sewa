@@ -103,7 +103,7 @@ class RegisterViewModel extends GetxController {
     } catch (error) {
       isLoading.value = false;
       if (kDebugMode) print(error);
-      Utils.showSnackBar("Error", error.toString());
+      Utils.showErrorSnackBar("Error", error.toString());
     }
   }
 
