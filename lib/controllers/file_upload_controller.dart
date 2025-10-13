@@ -4,8 +4,9 @@ import 'package:flutter/foundation.dart';
 
 class FileUploadController extends GetxController {
   final uploadedFiles = <PlatformFile>[].obs;
+
   static const allowedExt = ['jpg', 'jpeg', 'png', 'pdf'];
-  static const maxSize = 10 * 1024 * 1024; // 10 MB
+  static const maxSize = 10 * 1024 * 1024; // 10 MB per file
 
   Future<void> pickFile() async {
     try {
@@ -14,8 +15,10 @@ class FileUploadController extends GetxController {
         type: FileType.custom,
         allowedExtensions: allowedExt,
       );
+
       if (result == null) return;
 
+      // Filter valid new files
       final valid = result.files.where((f) {
         final ext = f.extension?.toLowerCase() ?? '';
         if (!allowedExt.contains(ext)) {
@@ -29,12 +32,31 @@ class FileUploadController extends GetxController {
         return true;
       }).toList();
 
-      if (valid.isNotEmpty) uploadedFiles.assignAll(valid);
+      if (valid.isEmpty) return;
+
+      // ✅ Append new valid files to existing list (no duplicates)
+      final existingNames = uploadedFiles.map((f) => f.name).toSet();
+      final newUniqueFiles = valid
+          .where((f) => !existingNames.contains(f.name))
+          .toList();
+
+      if (newUniqueFiles.isEmpty) {
+        Get.snackbar('Duplicate', 'All selected files are already added');
+        return;
+      }
+
+      uploadedFiles.addAll(newUniqueFiles);
+
+      if (kDebugMode) {
+        print('📁 Total selected files: ${uploadedFiles.length}');
+      }
     } catch (e) {
       if (kDebugMode) print('File pick error: $e');
-      Get.snackbar('Error', 'Failed to pick file');
+      Get.snackbar('Error', 'Failed to pick files');
     }
   }
 
   void removeFile(int index) => uploadedFiles.removeAt(index);
+
+  void clearFiles() => uploadedFiles.clear();
 }

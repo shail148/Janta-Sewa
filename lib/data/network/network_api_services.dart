@@ -142,7 +142,6 @@ class NetworkApiServices extends BaseApiServices {
     String url,
     var data, {
     Map<String, String>? headers,
-    
   }) async {
     if (kDebugMode) {
       print('POST $url');
@@ -250,7 +249,7 @@ class NetworkApiServices extends BaseApiServices {
       final uri = Uri.parse(url);
       final request = http.MultipartRequest('POST', uri);
 
-      // ✅ merge headers (exclude Content-Type, http will handle it)
+      // ✅ merge headers, but remove content-type (auto handled)
       final mergedHeaders = _mergeHeaders(headers);
       mergedHeaders.remove('Content-Type');
       request.headers.addAll(mergedHeaders);
@@ -258,12 +257,12 @@ class NetworkApiServices extends BaseApiServices {
       // ✅ add form fields
       request.fields.addAll(fields);
 
-      // ✅ add files with MIME type
+      // ✅ add multiple files
       for (var file in files) {
         if (file.path != null && file.path!.isNotEmpty) {
           final mimeType = lookupMimeType(file.path!)?.split('/');
           final multipartFile = await http.MultipartFile.fromPath(
-            'files', // 👈 backend expects this name, not 'files'
+            'files', // 👈 must match backend multer field name
             file.path!,
             filename: file.name,
             contentType: mimeType != null
@@ -271,32 +270,20 @@ class NetworkApiServices extends BaseApiServices {
                 : MediaType('application', 'octet-stream'),
           );
           request.files.add(multipartFile);
-
           if (kDebugMode) {
-            print('📤 Uploading file: ${file.name}');
-            print('   MIME: ${lookupMimeType(file.path!)}');
+            print(
+              '📤 Added file: ${file.name} (${lookupMimeType(file.path!)})',
+            );
           }
-        } else if (file.bytes != null) {
-          final mimeType = lookupMimeType(file.name)?.split('/');
-          request.files.add(
-            http.MultipartFile.fromBytes(
-              'files',
-              file.bytes!,
-              filename: file.name,
-              contentType: mimeType != null
-                  ? MediaType(mimeType[0], mimeType[1])
-                  : MediaType('application', 'octet-stream'),
-            ),
-          );
         }
       }
 
+      // ✅ send request
       final streamedResponse = await request.send().timeout(
         const Duration(seconds: 120),
       );
-      final response = await http.Response.fromStream(streamedResponse);
-      await _extractAndSaveTokenFromHeaders(response.headers);
 
+      final response = await http.Response.fromStream(streamedResponse);
       return returnResponse(response);
     } on SocketException {
       if (kDebugMode) print('postMultipart - No internet');

@@ -9,7 +9,7 @@ class HospitalRepository {
   //save the hospital admission data of the user by submitted
 
   Future<dynamic> hospitalAdmissionApi(
-     Map<String, dynamic> data, {
+    Map<String, dynamic> data, {
     Map<String, String>? headers,
     List<PlatformFile>? files,
   }) async {

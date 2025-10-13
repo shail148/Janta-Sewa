@@ -8,6 +8,8 @@ import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/res/components/file_upload.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
+import 'package:janta_sewa/widgets/custom_time_picker.dart';
+import 'package:janta_sewa/widgets/date_picker.dart';
 import 'package:janta_sewa/widgets/label_text.dart';
 import 'package:janta_sewa/widgets/message_text_form_widget.dart';
 import 'package:janta_sewa/widgets/text_form_widget.dart';
@@ -76,6 +78,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
+                                  keyboardType: TextInputType.phone,
                                   validator: FormValidator.validatePhone,
                                   controller: parliamentVM
                                       .headedPersonMobileNumber
@@ -87,6 +90,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
+                                  keyboardType: TextInputType.text,
                                   controller: parliamentVM.state.value,
                                   hintText: 'enter_state'.tr,
                                 ),
@@ -142,22 +146,45 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
-                                  controller: parliamentVM.dateOfVisit.value,
                                   hintText: 'date_of_visit'.tr,
+                                  controller: parliamentVM.dateOfVisit.value,
+                                  suffixIcon: Icons.calendar_month,
+                                  suffixIconColor: AppColors.btnBgColor,
+                                  onSuffixTap: () {
+                                    showCustomCalendarDialog(
+                                      firstDate: DateTime.now(),
+                                      context: context,
+                                      controller:
+                                          parliamentVM.dateOfVisit.value,
+                                    );
+                                  },
                                 ),
+
                                 CustomLabelText(
                                   text: 'time_of_visit'.tr,
                                   isRequired: true,
                                 ),
+
                                 CustomTextFormField(
                                   controller: parliamentVM.timeOfVisit.value,
                                   hintText: 'time_of_visit'.tr,
+                                  suffixIcon: Icons.timer_sharp,
+                                  readOnly:
+                                      true, // prevents keyboard from showing
+                                  onSuffixTap: () async {
+                                    await showCustomTimeDialog(
+                                      context: context,
+                                      controller:
+                                          parliamentVM.timeOfVisit.value,
+                                    );
+                                  },
                                 ),
                                 CustomLabelText(
                                   isRequired: true,
                                   text: 'total_number_of_members'.tr,
                                 ),
                                 CustomTextFormField(
+                                  keyboardType: TextInputType.number,
                                   controller:
                                       parliamentVM.totalNumberOfMembers.value,
                                   hintText: 'total_number_of_members'.tr,
@@ -175,6 +202,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
+                                  keyboardType: TextInputType.phone,
                                   controller:
                                       parliamentVM.parliamentMobileNumber.value,
                                   hintText: 'parliament_mobile_number'.tr,

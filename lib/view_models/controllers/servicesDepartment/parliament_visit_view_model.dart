@@ -68,7 +68,7 @@ class ParliamentVisitViewModel extends GetxController {
       final List<PlatformFile> files = List.from(fileController.uploadedFiles);
       if (kDebugMode) {
         //print api url
-        
+
         print('Send Data : $data');
         print('FIles : $files');
       }

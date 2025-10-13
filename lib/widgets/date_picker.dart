@@ -6,8 +6,11 @@ import 'package:janta_sewa/res/colors/app_color.dart';
 Future<void> showCustomCalendarDialog({
   required BuildContext context,
   required TextEditingController controller,
+  DateTime? firstDate, // 👈 optional
+  DateTime? lastDate, // 👈 optional
+  DateTime? initialDate, // 👈 optional for flexibility
 }) async {
-  DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = initialDate ?? DateTime.now();
 
   await Get.dialog(
     Dialog(
@@ -34,9 +37,6 @@ Future<void> showCustomCalendarDialog({
                 primaryColor: AppColors.btnBgColor,
                 hintColor: AppColors.btnBgColor,
                 colorScheme: ColorScheme.light(primary: AppColors.btnBgColor),
-                buttonTheme: ButtonThemeData(
-                  textTheme: ButtonTextTheme.primary,
-                ),
                 textTheme: TextTheme(
                   bodyMedium: TextStyle(fontFamily: 'Poppins', fontSize: 14),
                   bodySmall: TextStyle(fontFamily: 'Poppins', fontSize: 12),
@@ -49,9 +49,11 @@ Future<void> showCustomCalendarDialog({
               ),
               child: CalendarDatePicker(
                 initialDate: selectedDate,
-                firstDate: DateTime(1950),
-                lastDate: DateTime(2100),
-
+                firstDate:
+                    firstDate ??
+                    DateTime(1950), // ✅ use passed value or default
+                lastDate:
+                    lastDate ?? DateTime(2100), // ✅ use passed value or default
                 onDateChanged: (date) {
                   selectedDate = date;
                 },
