@@ -30,12 +30,13 @@ Future<void> showCustomCalendarDialog({
             ),
             const SizedBox(height: 20),
             Theme(
-              
               data: ThemeData.light().copyWith(
                 primaryColor: AppColors.btnBgColor,
                 hintColor: AppColors.btnBgColor,
                 colorScheme: ColorScheme.light(primary: AppColors.btnBgColor),
-                buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+                buttonTheme: ButtonThemeData(
+                  textTheme: ButtonTextTheme.primary,
+                ),
                 textTheme: TextTheme(
                   bodyMedium: TextStyle(fontFamily: 'Poppins', fontSize: 14),
                   bodySmall: TextStyle(fontFamily: 'Poppins', fontSize: 12),
@@ -47,7 +48,6 @@ Future<void> showCustomCalendarDialog({
                 ),
               ),
               child: CalendarDatePicker(
-
                 initialDate: selectedDate,
                 firstDate: DateTime(1950),
                 lastDate: DateTime(2100),

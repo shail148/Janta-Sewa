@@ -23,7 +23,7 @@ class ServicesHomeListWidget extends StatelessWidget {
       {
         'title': 'Hospital\nAdmission',
         'image': 'assets/images/hospital.png',
-        'page': () => const HospitalAdmission(),
+        'page': () => HospitalAdmission(),
         'color': const Color(0xFFE1ECFE),
         'zoom': 1.3,
         'alignment': Alignment.center,
@@ -66,7 +66,6 @@ class ServicesHomeListWidget extends StatelessWidget {
               Get.to(pageBuilder());
             },
             child: Column(
-             
               children: [
                 Container(
                   width: 73,

@@ -121,14 +121,14 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                 CustomTextFormField(
                                   hintText: 'enter_ward_number'.tr,
                                 ),
-                                CustomLabelText(
-                                  text: 'pincode'.tr,
-                                  isRequired: true,
-                                ),
-                                CustomTextFormField(
-                                  controller: parliamentVM.pincode.value,
-                                  hintText: 'enter_pincode'.tr,
-                                ),
+                                // CustomLabelText(
+                                //   text: 'pincode'.tr,
+                                //   isRequired: true,
+                                // ),
+                                // CustomTextFormField(
+                                //   controller: parliamentVM.p.value,
+                                //   hintText: 'enter_pincode'.tr,
+                                // ),
                                 CustomLabelText(
                                   isRequired: true,
                                   text: 'constituency'.tr,
@@ -187,6 +187,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                 CustomFileUpload(),
                                 SizedBox(height: 10),
                                 CustomButton(
+                                  isLoading: parliamentVM.isLoading.value,
                                   text: 'submit_btn'.tr,
                                   textSize: 14,
                                   backgroundColor: AppColors.btnBgColor,

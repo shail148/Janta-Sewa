@@ -6,32 +6,30 @@ class ParliamentVisitRepository {
   final _apiService = NetworkApiServices();
 
   Future<dynamic> parliamentVisitApi(
-    dynamic data, {
+    Map<String, dynamic> data, {
     Map<String, String>? headers,
     List<PlatformFile>? files,
   }) async {
-    if (files != null && files.isNotEmpty) {
-      // convert all values to strings for fields
+    try {
+      // Convert all form fields (data) to string
       final fields = <String, String>{};
-      if (data is Map) {
-        data.forEach((k, v) {
-          fields[k.toString()] = v?.toString() ?? '';
-        });
-      }
+      data.forEach((key, value) {
+        fields[key] = value?.toString() ?? '';
+      });
+
+      // Always send multipart when files or form fields are present
       final response = await _apiService.postMultipart(
         AppUrl.parliamentVisitApi,
         fields,
-        files,
+        files ?? [], // empty list if no files
         headers: headers,
       );
+
+      print('✅ Parliament Visit API Response: $response');
       return response;
-    } else {
-      final response = await _apiService.postApi(
-        AppUrl.parliamentVisitApi,
-        data,
-        headers: headers,
-      );
-      return response;
+    } catch (e) {
+      print('❌ Error in parliamentVisitApi: $e');
+      rethrow; // let the caller handle it
     }
   }
 }

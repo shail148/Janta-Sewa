@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart';
 import 'package:janta_sewa/data/network/base_api_services.dart';
-
+import 'package:http_parser/http_parser.dart';
+import 'package:mime/mime.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -142,6 +142,7 @@ class NetworkApiServices extends BaseApiServices {
     String url,
     var data, {
     Map<String, String>? headers,
+    
   }) async {
     if (kDebugMode) {
       print('POST $url');
@@ -238,7 +239,7 @@ class NetworkApiServices extends BaseApiServices {
     return responseJson;
   }
 
-  // New: multipart POST for uploading files + fields
+  @override
   Future<dynamic> postMultipart(
     String url,
     Map<String, String> fields,
@@ -249,31 +250,42 @@ class NetworkApiServices extends BaseApiServices {
       final uri = Uri.parse(url);
       final request = http.MultipartRequest('POST', uri);
 
-      // merge headers (keep default headers)
+      // ✅ merge headers (exclude Content-Type, http will handle it)
       final mergedHeaders = _mergeHeaders(headers);
+      mergedHeaders.remove('Content-Type');
       request.headers.addAll(mergedHeaders);
 
-      // add fields
+      // ✅ add form fields
       request.fields.addAll(fields);
 
-      // add files - prefer streaming from path to avoid large memory usage
+      // ✅ add files with MIME type
       for (var file in files) {
         if (file.path != null && file.path!.isNotEmpty) {
-          // stream from file path
-          request.files.add(
-            await http.MultipartFile.fromPath(
-              'files', // backend field name; adjust if needed
-              file.path!,
-              filename: file.name,
-            ),
+          final mimeType = lookupMimeType(file.path!)?.split('/');
+          final multipartFile = await http.MultipartFile.fromPath(
+            'files', // 👈 backend expects this name, not 'files'
+            file.path!,
+            filename: file.name,
+            contentType: mimeType != null
+                ? MediaType(mimeType[0], mimeType[1])
+                : MediaType('application', 'octet-stream'),
           );
+          request.files.add(multipartFile);
+
+          if (kDebugMode) {
+            print('📤 Uploading file: ${file.name}');
+            print('   MIME: ${lookupMimeType(file.path!)}');
+          }
         } else if (file.bytes != null) {
-          // fallback if only bytes are available
+          final mimeType = lookupMimeType(file.name)?.split('/');
           request.files.add(
             http.MultipartFile.fromBytes(
               'files',
               file.bytes!,
               filename: file.name,
+              contentType: mimeType != null
+                  ? MediaType(mimeType[0], mimeType[1])
+                  : MediaType('application', 'octet-stream'),
             ),
           );
         }
@@ -284,6 +296,7 @@ class NetworkApiServices extends BaseApiServices {
       );
       final response = await http.Response.fromStream(streamedResponse);
       await _extractAndSaveTokenFromHeaders(response.headers);
+
       return returnResponse(response);
     } on SocketException {
       if (kDebugMode) print('postMultipart - No internet');

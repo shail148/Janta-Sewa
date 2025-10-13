@@ -11,18 +11,14 @@ class SuggestionViewModel extends GetxController {
   final briefDetails = TextEditingController().obs;
   final message = TextEditingController().obs;
   final uploadedFiles = <PlatformFile>[].obs;
-
   final suggestionFor = TextEditingController().obs;
   final departmentName = TextEditingController().obs;
   final schemeName = TextEditingController().obs;
   final requestedFor = TextEditingController().obs;
   final levelOfGovernment = TextEditingController().obs;
   final nameOfOfficeWorkDemanded = TextEditingController().obs;
-
   RxBool isLoading = false.obs;
-
   //for the suggestion people benefits
-
   void suggestionForPeopleApi(var data) async {
     try {
       var value;
