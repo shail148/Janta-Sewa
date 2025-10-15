@@ -15,4 +15,13 @@ class ComplaintViewModel extends GetxController {
   final image = TextEditingController().obs;
   final politicianName = TextEditingController().obs;
   RxBool isLoading = false.obs;
+
+
+
+
+
+
+
+
+  
 }

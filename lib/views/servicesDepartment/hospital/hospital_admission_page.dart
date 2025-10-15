@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/res/components/file_upload.dart';
 import 'package:janta_sewa/utils/form_validator.dart';
 import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/servicesDepartment/hospital_view_model.dart';
@@ -49,26 +50,25 @@ class HospitalAdmission extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(height: 16),
-
-                    /// ✅ Patient Name
                     CustomLabelText(text: 'patient_name'.tr, isRequired: true),
                     CustomTextFormField(
                       validator: FormValidator.validateName,
                       controller: hospitalVM.patientName.value,
                       hintText: 'enter_patient_name'.tr,
                     ),
-
-                    /// ✅ Attendant Name
                     CustomLabelText(
                       text: 'name_of_attendent'.tr,
                       isRequired: true,
                     ),
                     CustomTextFormField(
+                      validator: (value) => FormValidator.validateRequired(
+                        value,
+                        'Name of Attendant',
+                      ),
+                      keyboardType: TextInputType.text,
                       controller: hospitalVM.nameOfAttendant.value,
                       hintText: 'name_of_attendent'.tr,
                     ),
-
-                    /// ✅ Relation With Patient (Dropdown)
                     CustomLabelText(
                       text: 'relation_with_patient'.tr,
                       isRequired: true,
@@ -84,15 +84,13 @@ class HospitalAdmission extends StatelessWidget {
                         },
                       ),
                     ),
-
-                    /// ✅ Disease
                     CustomLabelText(isRequired: true, text: 'disease'.tr),
                     CustomTextFormField(
+                      validator: (value) =>
+                          FormValidator.validateRequired(value, 'Disease'),
                       controller: hospitalVM.disease.value,
                       hintText: 'disease'.tr,
                     ),
-
-                    /// ✅ Admission Type (Dropdown)
                     CustomLabelText(
                       isRequired: true,
                       text: 'admission_type'.tr,
@@ -109,24 +107,21 @@ class HospitalAdmission extends StatelessWidget {
                         },
                       ),
                     ),
-
-                    /// ✅ Hospital Name
                     CustomLabelText(text: 'hospital_name'.tr, isRequired: true),
                     CustomTextFormField(
+                      validator: FormValidator.validateName,
                       controller: hospitalVM.hospitalName.value,
                       hintText: 'hospital_name'.tr,
                     ),
-
-                    /// ✅ Hospital Address
                     CustomLabelText(
                       text: 'hospital_address'.tr,
                       isRequired: true,
                     ),
                     CustomTextFormField(
+                      validator: FormValidator.validateAddress,
                       controller: hospitalVM.hospitalAddress.value,
                       hintText: 'hospital_address'.tr,
                     ),
-
                     SizedBox(height: 16),
                     CustomTextWidget(
                       text: "reference/sourc_of_request".tr,
@@ -135,37 +130,37 @@ class HospitalAdmission extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(height: 16),
-
-                    /// ✅ Reference Source
                     CustomLabelText(
                       text: 'name_of_reference'.tr,
                       isRequired: true,
                     ),
                     CustomTextFormField(
+                      validator: FormValidator.validateName,
                       controller: hospitalVM.referenceSource.value,
                       hintText: 'name_of_reference'.tr,
                     ),
-
-                    /// ✅ Reference Designation
                     CustomLabelText(
                       isRequired: true,
                       text: 'post/designation_of_reference'.tr,
                     ),
                     CustomTextFormField(
+                      validator: (value) => FormValidator.validateRequired(
+                        value,
+                        'Post/Designation of Reference',
+                      ),
                       controller: hospitalVM.designationReference.value,
                       hintText: 'post/designation_of_reference'.tr,
                     ),
-
-                    /// ✅ Reference Mobile
                     CustomLabelText(
                       text: 'mobile_number_of_reference'.tr,
                       isRequired: true,
                     ),
                     CustomTextFormField(
+                      validator: FormValidator.validatePhone,
+                      keyboardType: TextInputType.phone,
                       controller: hospitalVM.mobileNumberReference.value,
                       hintText: 'mobile_number_of_reference'.tr,
                     ),
-
                     SizedBox(height: 16),
                     CustomTextWidget(
                       text: "hospital_contact_person(s)".tr,
@@ -174,37 +169,34 @@ class HospitalAdmission extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(height: 16),
-
-                    /// ✅ Hospital Contact Person Name
                     CustomLabelText(isRequired: true, text: 'name'.tr),
                     CustomTextFormField(
+                      validator: FormValidator.validateName,
                       controller: hospitalVM.hospitalContactPersonName.value,
                       hintText: 'full_name'.tr,
                     ),
-
-                    /// ✅ Hospital Contact Designation
                     CustomLabelText(text: 'desigantion'.tr, isRequired: true),
                     CustomTextFormField(
+                      validator: FormValidator.validateAddress,
                       controller: hospitalVM.hospitalDesignation.value,
                       hintText: 'desigantion'.tr,
                     ),
-
-                    /// ✅ Mobile Number
                     CustomLabelText(text: 'mobile_number'.tr, isRequired: true),
                     CustomTextFormField(
+                      validator: FormValidator.validatePhone,
+                      keyboardType: TextInputType.phone,
                       controller: hospitalVM.hospitalMobileNumber.value,
                       hintText: 'enter_mobile_number'.tr,
                     ),
-
-                    /// ✅ Message
                     CustomLabelText(isRequired: true, text: 'message'.tr),
                     CustomMessageTextFormField(
+                      validator: FormValidator.validateMessage,
                       controller: hospitalVM.message.value,
                       hintText: 'enter_message'.tr,
                     ),
-
                     SizedBox(height: 10),
-
+                    CustomFileUpload(),
+                    SizedBox(height: 10),
                     CustomButton(
                       isLoading: hospitalVM.isLoading.value,
                       text: 'submit_btn'.tr,

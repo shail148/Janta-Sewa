@@ -6,14 +6,11 @@ import 'package:janta_sewa/data/our_journey.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 class OurJourneyPage extends StatefulWidget {
   const OurJourneyPage({super.key});
-
   @override
   State<OurJourneyPage> createState() => _OurJourneyPageState();
 }
-
 class _OurJourneyPageState extends State<OurJourneyPage> {
   final PageController _pageController = PageController(viewportFraction: 0.95);
   final LanguageController languageController = Get.put(LanguageController());
@@ -116,16 +113,13 @@ class _OurJourneyPageState extends State<OurJourneyPage> {
               expansionFactor: 3,
             ),
           ),
-
           const SizedBox(height: 24),
-
           // Quote
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Center(
               child: CustomTextWidget(
                 text: 'journey_quotes'.tr,
-
                 color: Colors.black54,
                 textAlign: TextAlign.center,
               ),

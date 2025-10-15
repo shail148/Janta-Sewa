@@ -1,50 +1,43 @@
 class AppUrl {
-  static const String baseUrl = "http://192.168.1.16:4000/api/v1";
-  static const String loginApi = "$baseUrl/auth/login";
-  static const String registerApi = "$baseUrl/auth/register";
-  static const String forgotPasswordApi = "$baseUrl/auth/forgot-Password";
-  static const String verifyForgotOtpApi = "$baseUrl/auth/verify-forgot-otp";
-  static const String resetPasswordApi = "$baseUrl/auth/reset-password";
+  static const String baseUrl = "http://192.168.1.19:4000/api/v1";
+  static const String loginApi = "$baseUrl/auth/login"; //done
+  static const String registerApi = "$baseUrl/auth/register"; //done
+  static const String forgotPasswordApi = "$baseUrl/auth/forgot-Password"; //d
+  static const String verifyForgotOtpApi =
+      "$baseUrl/auth/verify-forgot-otp"; //done
+  static const String resetPasswordApi = "$baseUrl/auth/reset-password"; //done
 
-  static const String getUserProfileApi = "$baseUrl/user/profile";
-  static const String updateUserProfileApi = "$baseUrl/auth/update-profile";
-  static const String getUserServicesApi = "$baseUrl/user/services";
-  static const String updateUserServicesApi = "$baseUrl/user/update-services";
+  //service department
 
-  //railway ticket
-  static const String ticketConfirmationApi = "$baseUrl/ticket/confirmation";
-  static const String ticketPassengerApi = "$baseUrl/ticket/passenger";
+  static const String createRailTicketApi =
+      "$baseUrl/services-department/train-ticket-confirmation/train-ticket-request";
 
-  //parliament visit
   static const String parliamentVisitApi =
-      "$baseUrl/services-department/parliament-visit/parliament-visit-request";
-  //work demand
-  static const String newWorkDemandApi = "$baseUrl/work-demand/new-work-demand";
-  static const String pendingWorkDemandApi =
-      "$baseUrl/work-demand/pending-work-demand";
-  static const String beneficiaryOrientedApi =
-      "$baseUrl/work-demand/beneficiary-oriented";
-  //services  department
-  static const String constructionWorkApi =
-      "$baseUrl/services/construction-work";
-  static const String hospitalAdmissionApi =
-      "$baseUrl/services/hospital-admission";
-  static const String letterRequestApi = "$baseUrl/services/letter-request";
-  static const String lettersApi = "$baseUrl/services/letters";
-  static const String recommendationLetterApi =
-      "$baseUrl/services/recommendation-letter";
-  static const String complainLetterApi = "$baseUrl/services/complain-letter";
-  static const String complainOfGovEmployeeApi =
-      "$baseUrl/services/complain-of-gov-employee";
-  static const String complainOfPoliticianApi =
-      "$baseUrl/services/complain-of-politician";
-  static const String complainOfNationalApi =
-      "$baseUrl/services/complain-of-national";
-  static const String complainOfMpOfficeApi =
-      "$baseUrl/services/complain-of-mp-office";
-  static const String suggestionLetterApi =
-      "$baseUrl/services/suggestion-letter";
-  static const String budgetDemandApi = "$baseUrl/services/budget-demand";
-  static const String contactApi = "$baseUrl/services/contact";
-  static const String invitationApi = "$baseUrl/services/invitation";
+      "$baseUrl/services-department/parliament-visit/parliament-visit-request"; //done
+  //hospital admission
+  static const String createhospitalAdmissionApi =
+      "$baseUrl/services-department/hospital-admission/create"; //done
+  //parliament visit
+
+  //Recommendation letter
+  static const String createTransferLetterApi =
+      "$baseUrl/recommendation-letter/transfer/create";
+  static const String createPostingLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
+  static const String createQuarterAllotmentLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
+  static const String createAwardLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
+  static const String createAdmissionLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
+  static const String createLandAllotmentLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
+  static const String createJobRecommendationLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
+  static const String createFinancialRecommendationLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
+  static const String createCulturalRecommendationLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
+  static const String createOtherRecommendationLetterApi =
+      "$baseUrl/recommendation-letter/transfer-letter/create";
 }

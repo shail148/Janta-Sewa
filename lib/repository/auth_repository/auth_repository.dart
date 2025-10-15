@@ -63,11 +63,11 @@ class AuthRepository {
     return response;
   }
 
-  Future<dynamic> updateProfileApi(var data) async {
-    dynamic response = await _apiService.putApi(
-      AppUrl.updateUserProfileApi,
-      data,
-    );
-    return response;
-  }
+  // Future<dynamic> updateProfileApi(var data) async {
+  //   dynamic response = await _apiService.putApi(
+  //     AppUrl.updateUserProfileApi,
+  //     data,
+  //   );
+  //   return response;
+  // }
 }

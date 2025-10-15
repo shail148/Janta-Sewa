@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/transfer_letter_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
@@ -22,15 +23,7 @@ class TransferLetter extends StatefulWidget {
 class _TransferLetterState extends State<TransferLetter> {
   final transferVM = Get.put(TransferLetterViewModel());
   final _formKey = GlobalKey<FormState>();
-  final List<String> typesOfTransfer = ['new'.tr, 'revised'.tr];
-  final List<String> department = [
-    'bsp'.tr,
-    'state govt'.tr,
-    'central govt'.tr,
-    'private'.tr,
-  ];
-  String? selectedType;
-  String? seletedDepartment;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,20 +54,24 @@ class _TransferLetterState extends State<TransferLetter> {
                     ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomLabelText(text: 'types_of_transfer'.tr),
-                          CustomDropdown(
-                            items: typesOfTransfer,
-                            selectedValue: selectedType,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedType = value;
-                              });
-                            },
+                          Obx(
+                            () => CustomDropdown(
+                              items: transferVM.typesOfTransfer,
+                              selectedValue:
+                                  transferVM.selectedType.value.isEmpty
+                                  ? null
+                                  : transferVM.selectedType.value,
+                              onChanged: (value) {
+                                transferVM.selectedType(value!);
+                              },
+                            ),
                           ),
-                          // CustomTextFormField(hintText: 'applicant_name'.tr),
+
                           CustomLabelText(text: 'full_name'.tr),
                           CustomTextFormField(
                             controller: transferVM.fullName.value,
@@ -92,14 +89,17 @@ class _TransferLetterState extends State<TransferLetter> {
                           ),
                           CustomLabelText(text: 'department'.tr),
                           //add dropdown
-                          CustomDropdown(
-                            items: department,
-                            selectedValue: seletedDepartment,
-                            onChanged: (value) {
-                              setState(() {
-                                seletedDepartment = value;
-                              });
-                            },
+                          Obx(
+                            () => CustomDropdown(
+                              items: transferVM.typeOfDepartment,
+                              selectedValue:
+                                  transferVM.selectedDepartment.value.isEmpty
+                                  ? null
+                                  : transferVM.selectedDepartment.value,
+                              onChanged: (value) {
+                                transferVM.selectedDepartment(value!);
+                              },
+                            ),
                           ),
                           CustomLabelText(text: 'posted_office'.tr),
                           CustomTextFormField(
@@ -125,18 +125,27 @@ class _TransferLetterState extends State<TransferLetter> {
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                              //add a login logic
-                              if (_formKey.currentState!.validate()) {
-                                //implement the api call here
-                              }
-                            },
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              isLoading: transferVM.isLoading.value,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: () {
+                                final valid =
+                                    _formKey.currentState?.validate() ?? false;
+                                if (!valid) {
+                                  Utils.showErrorSnackBar(
+                                    'Validation',
+                                    'Please fix the Errors in the Form',
+                                  );
+                                  return;
+                                }
+                                transferVM.createTransferLetterApi();
+                              },
+                            ),
                           ),
                         ],
                       ),

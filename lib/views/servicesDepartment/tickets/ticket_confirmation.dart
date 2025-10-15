@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
+import 'package:janta_sewa/view_models/controllers/servicesDepartment/rail_ticket_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
-import 'package:janta_sewa/views/servicesDepartment/tickets/ticket_confirmation2.dart';
 import 'package:janta_sewa/widgets/custom_button.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/date_picker.dart';
@@ -14,54 +13,13 @@ import 'package:janta_sewa/widgets/text_widget.dart';
 
 class TicketConfirmation extends StatefulWidget {
   const TicketConfirmation({super.key});
-
   @override
   State<TicketConfirmation> createState() => _TicketConfirmationState();
 }
 
 class _TicketConfirmationState extends State<TicketConfirmation> {
+  final ticketVM = Get.put(RailTicketViewModel());
   // Controllers for form fields
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController genderController = TextEditingController();
-  final TextEditingController mobileController = TextEditingController();
-  final TextEditingController journeyDateController = TextEditingController();
-  final TextEditingController fromController = TextEditingController();
-  final TextEditingController toController = TextEditingController();
-  final TextEditingController pnrController = TextEditingController();
-  final TextEditingController trainNumberController = TextEditingController();
-  final TextEditingController trainNameController = TextEditingController();
-  final TextEditingController messageController =
-      TextEditingController(); //new msg controller
-  final TextEditingController birthTypeController = TextEditingController();
-
-  List<Map<String, String>> passengers = [];
-
-  void clearPassengerFields() {
-    nameController.clear();
-    ageController.clear();
-    genderController.clear();
-    mobileController.clear();
-    birthTypeController.clear();
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    ageController.dispose();
-    genderController.dispose();
-    mobileController.dispose();
-    journeyDateController.dispose();
-    fromController.dispose();
-    toController.dispose();
-    pnrController.dispose();
-    trainNumberController.dispose();
-    trainNameController.dispose();
-    messageController.dispose(); //disposed meesggae controoler here
-    birthTypeController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,28 +47,6 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                     fontWeight: FontWeight.bold,
                   ),
                   SizedBox(height: 24),
-
-                  // Show passenger list
-                  // ListView.builder(
-                  //   shrinkWrap: true,
-                  //   physics: NeverScrollableScrollPhysics(),
-                  //   itemCount: passengers.length,
-                  //   itemBuilder: (context, index) {
-                  //     final p = passengers[index];
-                  //     return Card(
-                  //       child: ListTile(
-                  //         title: Text(p['name'] ?? ''),
-                  //         subtitle: Text("Age: ${p['age']}, Gender: ${p['gender']}"),
-                  //         trailing: IconButton(
-                  //           icon: Icon(Icons.delete),
-                  //           onPressed: () => _deletePassenger(index),
-                  //         ),
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
-
-                  // SizedBox(height: 20),
                   Form(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,18 +57,18 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                         ),
                         CustomTextFormField(
                           hintText: 'enter_passenger_name'.tr,
-                          controller: nameController,
+                          controller: ticketVM.passengerName.value,
                         ),
                         CustomLabelText(text: 'age'.tr, isRequired: true),
                         CustomTextFormField(
                           hintText: 'enter_age'.tr,
-                          controller: ageController,
+                          controller: ticketVM.passengerAge.value,
                           keyboardType: TextInputType.number,
                         ),
                         CustomLabelText(text: 'gender'.tr, isRequired: true),
                         CustomTextFormField(
                           hintText: 'enter_gender'.tr,
-                          controller: genderController,
+                          controller: ticketVM.passengerGender.value,
                         ),
                         CustomLabelText(
                           text: 'mobile_number'.tr,
@@ -140,12 +76,12 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                         ),
                         CustomTextFormField(
                           hintText: 'enter_mobile_number'.tr,
-                          controller: mobileController,
+                          controller: ticketVM.passengerMobileNumber.value,
                         ),
                         CustomLabelText(text: 'birth_type'.tr),
                         CustomTextFormField(
                           hintText: 'enter_birth_type'.tr,
-                          controller: birthTypeController,
+                          controller: ticketVM.birthType.value,
                         ),
 
                         SizedBox(height: 16),
@@ -166,25 +102,25 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                         ),
                         CustomTextFormField(
                           hintText: 'enter_journey_date'.tr,
-                          controller: journeyDateController,
+                          controller: ticketVM.journeyDate.value,
                           suffixIcon: Icons.calendar_month,
                           suffixIconColor: AppColors.btnBgColor,
                           onSuffixTap: () {
                             showCustomCalendarDialog(
                               context: context,
-                              controller: journeyDateController,
+                              controller: ticketVM.journeyDate.value,
                             );
                           },
                         ),
                         CustomLabelText(text: 'from'.tr, isRequired: true),
                         CustomTextFormField(
                           hintText: 'from'.tr,
-                          controller: fromController,
+                          controller: ticketVM.from.value,
                         ),
                         CustomLabelText(text: 'to'.tr, isRequired: true),
                         CustomTextFormField(
                           hintText: 'to'.tr,
-                          controller: toController,
+                          controller: ticketVM.to.value,
                         ),
                         CustomLabelText(
                           text: 'pnr_number'.tr,
@@ -192,7 +128,7 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                         ),
                         CustomTextFormField(
                           hintText: 'enter_pnr_number'.tr,
-                          controller: pnrController,
+                          controller: ticketVM.pnrNumber.value,
                         ),
                         CustomLabelText(
                           text: 'train_number'.tr,
@@ -200,31 +136,34 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                         ),
                         CustomTextFormField(
                           hintText: 'enter_train_number'.tr,
-                          controller: trainNumberController,
+                          controller: ticketVM.trainNumber.value,
                         ),
                         CustomLabelText(text: 'train_name'.tr),
                         CustomTextFormField(
                           hintText: 'enter_train_name'.tr,
-                          controller: trainNameController,
+                          controller: ticketVM.trainName.value,
                         ),
 
                         CustomLabelText(text: 'message'.tr),
                         CustomMessageTextFormField(
                           hintText: 'enter_message'.tr,
-                          controller:
-                              messageController, //created controller here
+                          controller: ticketVM.message.value,
+                          //created controller here
                         ),
 
                         SizedBox(height: 20),
-                        CustomButton(
-                          text: 'submit_btn'.tr,
-                          textSize: 14,
-                          backgroundColor: AppColors.btnBgColor,
-                          height: 62,
-                          width: double.infinity,
-                          onPressed: () {
-                            Get.to(() => TicketConfirmation2());
-                          },
+                        Obx(
+                          () => CustomButton(
+                            isLoading: ticketVM.isLoading.value,
+                            text: 'submit_btn'.tr,
+                            textSize: 14,
+                            backgroundColor: AppColors.btnBgColor,
+                            height: 62,
+                            width: double.infinity,
+                            onPressed: () {
+                              ticketVM.ticketConfirmationApi();
+                            },
+                          ),
                         ),
                       ],
                     ),

@@ -90,6 +90,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
+                                  validator: (value)=>FormValidator.validateRequired(value, 'State'),
                                   keyboardType: TextInputType.text,
                                   controller: parliamentVM.state.value,
                                   hintText: 'enter_state'.tr,
@@ -99,6 +100,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
+                                validator: FormValidator.validateDistrict,
                                   controller: parliamentVM.district.value,
                                   hintText: 'enter_district'.tr,
                                 ),
@@ -107,6 +109,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
+                                  validator: FormValidator.validateBlock,
                                   controller: parliamentVM.block.value,
                                   hintText: 'enter_block'.tr,
                                 ),
@@ -115,6 +118,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   text: 'city_village'.tr,
                                 ),
                                 CustomTextFormField(
+                                  validator: FormValidator.validateCity,
                                   controller: parliamentVM.cityVillage.value,
                                   hintText: 'enter_city_village'.tr,
                                 ),
@@ -123,21 +127,16 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   text: 'ward_number'.tr,
                                 ),
                                 CustomTextFormField(
+                                  validator: FormValidator.validateWardNumber,
                                   hintText: 'enter_ward_number'.tr,
                                 ),
-                                // CustomLabelText(
-                                //   text: 'pincode'.tr,
-                                //   isRequired: true,
-                                // ),
-                                // CustomTextFormField(
-                                //   controller: parliamentVM.p.value,
-                                //   hintText: 'enter_pincode'.tr,
-                                // ),
+                                
                                 CustomLabelText(
                                   isRequired: true,
                                   text: 'constituency'.tr,
                                 ),
                                 CustomTextFormField(
+                                  validator: (value)=>FormValidator.validateRequired(value, 'Constituency'),
                                   controller: parliamentVM.constituency.value,
                                   hintText: 'constituency'.tr,
                                 ),
@@ -146,6 +145,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
+                                  validator: (value)=>FormValidator.validateRequired(value, 'Date of Visit'),
                                   hintText: 'date_of_visit'.tr,
                                   controller: parliamentVM.dateOfVisit.value,
                                   suffixIcon: Icons.calendar_month,
@@ -166,6 +166,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                 ),
 
                                 CustomTextFormField(
+                                  validator: (value)=>FormValidator.validateRequired(value, 'Time of Visit'),
                                   controller: parliamentVM.timeOfVisit.value,
                                   hintText: 'time_of_visit'.tr,
                                   suffixIcon: Icons.timer_sharp,
@@ -184,6 +185,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   text: 'total_number_of_members'.tr,
                                 ),
                                 CustomTextFormField(
+                                  validator: (value)=>FormValidator.validateRequired(value, 'Total Number of Members'),
                                   keyboardType: TextInputType.number,
                                   controller:
                                       parliamentVM.totalNumberOfMembers.value,
@@ -202,6 +204,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                   isRequired: true,
                                 ),
                                 CustomTextFormField(
+                                  validator: FormValidator.validatePhone,
                                   keyboardType: TextInputType.phone,
                                   controller:
                                       parliamentVM.parliamentMobileNumber.value,
@@ -209,6 +212,7 @@ class _ParliamentVisitState extends State<ParliamentVisit> {
                                 ),
                                 CustomLabelText(text: 'message'.tr),
                                 CustomMessageTextFormField(
+                                  validator: FormValidator.validateMessage,
                                   controller: parliamentVM.message.value,
                                   hintText: 'enter_message'.tr,
                                 ),

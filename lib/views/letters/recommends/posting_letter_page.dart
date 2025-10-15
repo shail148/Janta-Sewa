@@ -61,6 +61,7 @@ class _PostingLetterState extends State<PostingLetter> {
                     ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -132,9 +133,7 @@ class _PostingLetterState extends State<PostingLetter> {
                             width: double.infinity,
                             onPressed: () {
                               //add a login logic
-                              if (_formKey.currentState!.validate()) {
-                                //implement the api call here
-                              }
+                              postingVM.createPostingLetterApi();
                             },
                           ),
                         ],

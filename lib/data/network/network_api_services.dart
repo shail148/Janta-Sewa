@@ -238,7 +238,7 @@ class NetworkApiServices extends BaseApiServices {
     return responseJson;
   }
 
-  @override
+  // @override
   Future<dynamic> postMultipart(
     String url,
     Map<String, String> fields,
@@ -306,7 +306,7 @@ class NetworkApiServices extends BaseApiServices {
       print('status: ${response.statusCode}, body: ${response.body}');
     }
     final int status = response.statusCode;
-    final String bodyStr = response.body ?? '';
+    final String bodyStr = response.body;
     dynamic decodedBody;
     try {
       decodedBody = bodyStr.isNotEmpty ? jsonDecode(bodyStr) : null;
@@ -318,7 +318,6 @@ class NetworkApiServices extends BaseApiServices {
       return decodedBody ?? {'success': true, 'status': status};
     }
 
-    // For any non-2xx return a normalized map instead of throwing
     String message = 'Request failed';
     if (decodedBody is Map) {
       message =

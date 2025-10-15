@@ -20,7 +20,6 @@ class _PhotoGalleryViewState extends State<PhotoGalleryView> {
     final List speeches = languageController.isHindi
         ? json.decode(photoGalleryHindi)
         : json.decode(photoGallery);
-
     return SizedBox(
       height: 250,
       child: ListView.builder(

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/repository/serviceDepartment/parliament_visit_repository.dart';
+import 'package:janta_sewa/repository/serviceDepartment/service_department_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:janta_sewa/controllers/file_upload_controller.dart';
@@ -10,7 +10,7 @@ import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 import 'dart:developer' as dev;
 
 class ParliamentVisitViewModel extends GetxController {
-  final _api = ParliamentVisitRepository();
+  final _api = ServiceDepartmentRepository();
   final _secureStorage = const FlutterSecureStorage();
   final fileController = Get.put(FileUploadController());
   // form controllers
@@ -28,9 +28,9 @@ class ParliamentVisitViewModel extends GetxController {
   final parliamentMobileNumber = TextEditingController().obs;
   final pinCode = TextEditingController().obs;
   final message = TextEditingController().obs;
-
   RxBool isLoading = false.obs;
 
+  
   Future<void> parliamentVisitApi() async {
     if (isLoading.value) return;
     isLoading(true);
@@ -51,7 +51,6 @@ class ParliamentVisitViewModel extends GetxController {
         "parliamentNumber": parliamentMobileNumber.value.text.trim(),
         "message": message.value.text.trim(),
       };
-
       // get token
       final token = await _secureStorage.read(key: 'token');
       if (token == null || token.isEmpty) {
@@ -73,7 +72,7 @@ class ParliamentVisitViewModel extends GetxController {
         print('FIles : $files');
       }
       // 🔥 Send to API
-      final res = await _api.parliamentVisitApi(
+      final res = await _api.createParliamentVisitApi(
         data,
         headers: headers,
         files: files,

@@ -21,6 +21,7 @@ class SuggestionViewModel extends GetxController {
   //for the suggestion people benefits
   void suggestionForPeopleApi(var data) async {
     try {
+      // ignore: prefer_typing_uninitialized_variables
       var value;
       //  = await _api.suggestionForPeopleApi(data);
       if (value['error'] != null) {
@@ -49,7 +50,6 @@ class SuggestionViewModel extends GetxController {
       Utils.showErrorSnackBar("Error", e.toString());
     }
   }
-
   //method of suggestion gove department
   void suggestionForDepartmentApi(var data) async {
     try {

@@ -3,6 +3,12 @@ class FormValidator {
     if (value == null || value.trim().isEmpty) {
       return 'Enter your name';
     }
+
+    final regex = RegExp(r'^[a-zA-Z\s]+$');
+    if (!regex.hasMatch(value.trim())) {
+      return 'Only letters are allowed';
+    }
+
     return null;
   }
 
@@ -16,11 +22,21 @@ class FormValidator {
   }
 
   static String? validatePhone(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Phone Number is required';
-    } else if (value.length != 10) {
-      return 'Phone Number must be 10 digits';
+    if (value == null || value.trim().isEmpty) {
+      return 'Phone number is required';
     }
+
+    value = value.trim();
+
+    final regex = RegExp(r'^[0-9]+$');
+    if (!regex.hasMatch(value)) {
+      return 'Phone number must contain digits only';
+    }
+
+    if (value.length != 10) {
+      return 'Phone number must be 10 digits';
+    }
+
     return null;
   }
 
@@ -35,18 +51,30 @@ class FormValidator {
   static String? validatePincode(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Pincode is required';
-    } else if (!RegExp(r'^\d{6}$').hasMatch(value)) {
+    }
+
+    value = value.trim();
+
+    final regex = RegExp(r'^[0-9]{6}$');
+    if (!regex.hasMatch(value)) {
       return 'Enter a valid 6-digit Pincode';
     }
+
     return null;
   }
 
   static String? validateAadhaar(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Aadhaar number is required';
-    } else if (!RegExp(r'^\d{12}$').hasMatch(value)) {
+    }
+
+    value = value.trim();
+
+    final regex = RegExp(r'^[0-9]{12}$');
+    if (!regex.hasMatch(value)) {
       return 'Enter a valid 12-digit Aadhaar number';
     }
+
     return null;
   }
 
@@ -108,10 +136,33 @@ class FormValidator {
   }
 
   static String? validateOtp(String? value) {
-    if (value == null || value.isEmpty) {
+    if (value == null || value.trim().isEmpty) {
       return 'OTP is required';
-    } else if (!RegExp(r'^[0-9]{6}$').hasMatch(value)) {
+    }
+
+    value = value.trim();
+
+    final regex = RegExp(r'^[0-9]{6}$');
+    if (!regex.hasMatch(value)) {
       return 'Enter a valid 6-digit OTP';
+    }
+
+    return null;
+  }
+
+
+
+  static String? validateMessage(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Message is required';
+    }
+    value = value.trim();
+    final words = value.split(RegExp(r'\s+'));
+    if (words.length > 100) {
+      return 'Message cannot exceed 100 words';
+    }
+    if (value.length > 500) {
+      return 'Message cannot exceed 500 characters';
     }
     return null;
   }
