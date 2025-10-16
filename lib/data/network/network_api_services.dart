@@ -9,7 +9,6 @@ import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 class NetworkApiServices extends BaseApiServices {
   final _storage = const FlutterSecureStorage(); // secure storage
   String? _authToken; // in-memory token

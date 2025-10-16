@@ -31,7 +31,11 @@ class RoleToggleButton extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            CustomTextWidget(text: text,fontsize: 14,color: AppColors.textGrey,),
+            CustomTextWidget(
+              text: text,
+              fontsize: 14,
+              color: AppColors.textGrey,
+            ),
             Spacer(),
             Icon(
               isSelected ? Icons.radio_button_checked : Icons.radio_button_off,

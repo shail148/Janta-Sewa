@@ -25,7 +25,8 @@ class LoginViewModel extends GetxController {
     try {
       isLoading.value = true;
       String input = emailController.value.text.trim();
-      Map data;
+      Map<String, dynamic> data;
+
       if (RegExp(r'^[0-9]+$').hasMatch(input)) {
         data = {
           "mobileNumber": input,
@@ -38,38 +39,35 @@ class LoginViewModel extends GetxController {
         };
       }
 
+      
       final value = await _api.loginApi(data);
       isLoading.value = false;
 
-      // normalized error from network layer
+      
       if (value is Map && value['success'] == false) {
-        final msg = value['message'] ?? 'Login failed';
-        Utils.showErrorSnackBar('Error', msg.toString());
+        Utils.showErrorSnackBar('Error', value['message'] ?? 'Login failed');
         return;
       }
 
-      // handle success case (value is decoded body or map)
       Utils.showSuccessSnackBar("Login", "Login Successful 🎉");
-      // saved the user data in shared preferences
-      _userPreference.saveUser(
+
+      // ✅ Save login info
+      await _userPreference.saveUser(
         LoginWithEmailModel(
           email: input,
           password: passwordController.value.text.trim(),
         ),
       );
 
-      // debug token/cookies (optional)
-      try {
-        final token = await _secureStorage.read(key: 'token');
-        debugPrint('Saved auth token: $token');
-      } catch (_) {}
+      // ✅ Debug token/cookies
+      final token = await _secureStorage.read(key: 'token');
+      debugPrint('Saved auth token: $token');
 
-      try {
-        final prefs = await SharedPreferences.getInstance();
-        final cookies = prefs.getStringList('cookies') ?? [];
-        debugPrint('Saved cookies: $cookies');
-      } catch (_) {}
+      final prefs = await SharedPreferences.getInstance();
+      final cookies = prefs.getStringList('cookies') ?? [];
+      debugPrint('Saved cookies: $cookies');
 
+      // ✅ Navigate
       Get.offAll(() => const BottomNav());
     } catch (error) {
       isLoading.value = false;
