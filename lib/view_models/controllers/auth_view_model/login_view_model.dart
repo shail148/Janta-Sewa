@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginViewModel extends GetxController {
   final _api = AuthRepository();
   final _userPreference = UserPreference();
-  final _secureStorage = const FlutterSecureStorage(); // <-- added
+  final _secureStorage = const FlutterSecureStorage();
 
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
@@ -21,59 +22,80 @@ class LoginViewModel extends GetxController {
 
   RxBool isLoading = false.obs;
 
+  /// Handles the login flow safely with timeouts and snackbar feedback
   void loginApi() async {
+    isLoading.value = true;
     try {
-      isLoading.value = true;
-      String input = emailController.value.text.trim();
-      Map data;
-      if (RegExp(r'^[0-9]+$').hasMatch(input)) {
-        data = {
-          "mobileNumber": input,
-          "password": passwordController.value.text.trim(),
-        };
-      } else {
-        data = {
-          "email": input,
-          "password": passwordController.value.text.trim(),
-        };
+      print("🟢 [Login] Started");
+
+      final input = emailController.value.text.trim();
+      final password = passwordController.value.text.trim();
+
+      if (input.isEmpty || password.isEmpty) {
+        Utils.showErrorSnackBar(
+          "Error",
+          "Please enter your email and password",
+        );
+        return;
       }
 
-      final value = await _api.loginApi(data);
-      isLoading.value = false;
+      // Detect if login is with mobile or email
+      final Map<String, dynamic> data = RegExp(r'^[0-9]+$').hasMatch(input)
+          ? {"mobileNumber": input, "password": password}
+          : {"email": input, "password": password};
 
-      // normalized error from network layer
+      print("🟢 Sending login request with payload: $data");
+
+      // --- ✅ API Call with timeout ---
+      final value = await _api
+          .loginApi(data)
+          .timeout(
+            const Duration(seconds: 60),
+            onTimeout: () => {'success': false, 'message': 'Request timed out'},
+          );
+
+      print("🟢 Login API returned: $value");
+
+      // --- Handle errors from network layer ---
       if (value is Map && value['success'] == false) {
         final msg = value['message'] ?? 'Login failed';
         Utils.showErrorSnackBar('Error', msg.toString());
         return;
       }
 
-      // handle success case (value is decoded body or map)
+      // --- Successful login ---
       Utils.showSuccessSnackBar("Login", "Login Successful 🎉");
-      // saved the user data in shared preferences
-      _userPreference.saveUser(
-        LoginWithEmailModel(
-          email: input,
-          password: passwordController.value.text.trim(),
-        ),
+
+      // Save basic user info for persistence
+      await _userPreference.saveUser(
+        LoginWithEmailModel(email: input, password: password),
       );
 
-      // debug token/cookies (optional)
+      // Optional debug info for tokens / cookies
       try {
         final token = await _secureStorage.read(key: 'token');
         debugPrint('Saved auth token: $token');
-      } catch (_) {}
+      } catch (e) {
+        debugPrint('Token read error: $e');
+      }
 
       try {
         final prefs = await SharedPreferences.getInstance();
         final cookies = prefs.getStringList('cookies') ?? [];
         debugPrint('Saved cookies: $cookies');
-      } catch (_) {}
+      } catch (e) {
+        debugPrint('Cookies read error: $e');
+      }
 
+      // Navigate to main app screen
       Get.offAll(() => const BottomNav());
+    } on TimeoutException catch (e) {
+      Utils.showErrorSnackBar("Timeout", e.message ?? "Server not responding");
     } catch (error) {
-      isLoading.value = false;
       Utils.showErrorSnackBar("Error", error.toString());
+    } finally {
+      isLoading.value = false; // ✅ always stops loader
+      print("🟢 [Login] Finished");
     }
   }
 

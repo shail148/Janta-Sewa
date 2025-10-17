@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/posting_letter_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
@@ -22,15 +23,7 @@ class PostingLetter extends StatefulWidget {
 class _PostingLetterState extends State<PostingLetter> {
   final postingVM = Get.put(PostingLetterViewModel());
   final _formKey = GlobalKey<FormState>();
-  final List<String> typesOfPosting = ['new'.tr, 'revised'.tr];
-  final List<String> department = [
-    'bsp'.tr,
-    'state govt'.tr,
-    'central govt'.tr,
-    'private'.tr,
-  ];
-  String? selectedType;
-  String? seletedDepartment;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,14 +59,17 @@ class _PostingLetterState extends State<PostingLetter> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomLabelText(text: 'types_of_posting'.tr),
-                          CustomDropdown(
-                            items: typesOfPosting,
-                            selectedValue: selectedType,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedType = value;
-                              });
-                            },
+                          Obx(
+                            () => CustomDropdown(
+                              items: postingVM.typesOfPosting,
+                              selectedValue:
+                                  postingVM.selectedTypePosting.value.isEmpty
+                                  ? null
+                                  : postingVM.selectedTypePosting.value,
+                              onChanged: (value) {
+                                postingVM.selectedTypePosting(value!);
+                              },
+                            ),
                           ),
                           CustomLabelText(text: 'full_name'.tr),
                           CustomTextFormField(
@@ -92,14 +88,17 @@ class _PostingLetterState extends State<PostingLetter> {
                           ),
                           CustomLabelText(text: 'department'.tr),
                           //add dropdown
-                          CustomDropdown(
-                            items: department,
-                            selectedValue: seletedDepartment,
-                            onChanged: (value) {
-                              setState(() {
-                                seletedDepartment = value;
-                              });
-                            },
+                          Obx(
+                            () => CustomDropdown(
+                              items: postingVM.typesOfDepartment,
+                              selectedValue:
+                                  postingVM.selectedDepartment.value.isEmpty
+                                  ? null
+                                  : postingVM.selectedDepartment.value,
+                              onChanged: (value) {
+                                postingVM.selectedDepartment(value!);
+                              },
+                            ),
                           ),
                           CustomLabelText(text: 'posted_office'.tr),
                           CustomTextFormField(
@@ -125,16 +124,27 @@ class _PostingLetterState extends State<PostingLetter> {
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                              //add a login logic
-                              postingVM.createPostingLetterApi();
-                            },
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              isLoading: postingVM.isLoading.value,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: () {
+                                 final valid =
+                                    _formKey.currentState?.validate() ?? false;
+                                if (!valid) {
+                                  Utils.showErrorSnackBar(
+                                    'Validation',
+                                    'Please fix the Errors in the Form',
+                                  );
+                                  return;
+                                }
+                                postingVM.createPostingLetterApi();
+                              },
+                            ),
                           ),
                         ],
                       ),

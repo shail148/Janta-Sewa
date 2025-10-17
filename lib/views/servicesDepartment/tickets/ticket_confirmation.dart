@@ -78,6 +78,15 @@ class _TicketConfirmationState extends State<TicketConfirmation> {
                           hintText: 'enter_mobile_number'.tr,
                           controller: ticketVM.passengerMobileNumber.value,
                         ),
+                        CustomLabelText(
+                          text: 'Nationality'.tr,
+                          isRequired: true,
+                        ),
+                        CustomTextFormField(
+                          hintText: 'Nationality'.tr,
+                          controller: ticketVM.nationality.value,
+                        ),
+
                         CustomLabelText(text: 'birth_type'.tr),
                         CustomTextFormField(
                           hintText: 'enter_birth_type'.tr,

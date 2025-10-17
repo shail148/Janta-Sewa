@@ -14,11 +14,25 @@ import 'package:janta_sewa/widgets/message_text_form_widget.dart';
 import 'package:janta_sewa/widgets/text_form_widget.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
 
-class HospitalAdmission extends StatelessWidget {
+class HospitalAdmission extends StatefulWidget {
   HospitalAdmission({super.key});
 
+  @override
+  State<HospitalAdmission> createState() => _HospitalAdmissionState();
+}
+
+class _HospitalAdmissionState extends State<HospitalAdmission> {
   final hospitalVM = Get.put(HospitalViewModel());
+
   final _formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    // remove controller when page is closed
+    if (Get.isRegistered<HospitalViewModel>()) {
+      Get.delete<HospitalViewModel>();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +94,7 @@ class HospitalAdmission extends StatelessWidget {
                             ? null
                             : hospitalVM.selectedRelation.value,
                         onChanged: (value) {
-                          hospitalVM.setRelation(value!);
+                          hospitalVM.selectedRelation(value!);
                         },
                       ),
                     ),
@@ -103,7 +117,7 @@ class HospitalAdmission extends StatelessWidget {
                             ? null
                             : hospitalVM.selectedAdmissionType.value,
                         onChanged: (value) {
-                          hospitalVM.setAdmissionType(value!);
+                          hospitalVM.selectedAdmissionType(value!);
                         },
                       ),
                     ),
