@@ -15,7 +15,7 @@ class OtherRecommendationViewModel extends GetxController {
   //store the variable
   final applicantName = TextEditingController().obs;
   final applicantMobile = TextEditingController().obs;
-  final recommendationNeeded = TextEditingController().obs;
+  final recommendationNeed = TextEditingController().obs;
   final message = TextEditingController().obs;
   final image = TextEditingController().obs;
   RxBool isLoading = false.obs;
@@ -25,8 +25,8 @@ class OtherRecommendationViewModel extends GetxController {
       //data load krna
       Map<String, dynamic> data = {
         'applicantName': applicantName.value.text.trim(),
-        'applicantMobile': applicantMobile.value.text.trim(),
-        'recommendationNeeded': recommendationNeeded.value.text.trim(),
+        'mobileNumber': applicantMobile.value.text.trim(),
+        'recommendationNeed': recommendationNeed.value.text.trim(),
         'message': message.value.text.trim(),
       };
 
@@ -79,5 +79,19 @@ class OtherRecommendationViewModel extends GetxController {
 
       Utils.showErrorSnackBar("Error", e.toString());
     }
+  }
+
+  //dispose all controllers
+  @override
+  void onClose() {
+    for (var c in [
+      applicantName,
+      applicantMobile,
+      recommendationNeed,
+      message,
+    ]) {
+      c.value.dispose();
+    }
+    super.onClose();
   }
 }

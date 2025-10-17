@@ -19,13 +19,27 @@ class LandAllotmentViewModel extends GetxController {
   final applicantName = TextEditingController().obs;
   final applicantMobile = TextEditingController().obs;
   final address = TextEditingController().obs;
-  final optedLandDepartment = TextEditingController().obs;
   final optedLandAddress = TextEditingController().obs;
   final reason = TextEditingController().obs;
   final message = TextEditingController().obs;
 
+  // 🔹 Dropdown options
+  final RxList<String> quarterDepartments = <String>[
+    'BSP',
+    'State Govt',
+    'Central Govt',
+    'Private',
+  ].obs;
+
+  RxString selectedOptedDepartment = ''.obs;
+
   // 🔹 Reactive loading
   RxBool isLoading = false.obs;
+
+  // ✅ Dropdown Setter
+  void setOptedDepartment(String value) {
+    selectedOptedDepartment.value = value;
+  }
 
   /// 🚀 API Call - Land Allotment
   Future<void> landAllotmentApi() async {
@@ -36,11 +50,11 @@ class LandAllotmentViewModel extends GetxController {
       // ✅ Prepare data
       final Map<String, dynamic> data = {
         "applicantName": applicantName.value.text.trim(),
-        "applicantMobile": applicantMobile.value.text.trim(),
+        "mobileNumber": applicantMobile.value.text.trim(),
         "address": address.value.text.trim(),
-        "optedLandDepartment": optedLandDepartment.value.text.trim(),
+        "optedLandDepartment": selectedOptedDepartment.value.trim(),
         "optedLandAddress": optedLandAddress.value.text.trim(),
-        "reason": reason.value.text.trim(),
+        "reasonForLandAllotment": reason.value.text.trim(),
         "message": message.value.text.trim(),
       };
 
@@ -101,7 +115,6 @@ class LandAllotmentViewModel extends GetxController {
       applicantName,
       applicantMobile,
       address,
-      optedLandDepartment,
       optedLandAddress,
       reason,
       message,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
+import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/job_recommendation_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
@@ -22,12 +24,7 @@ class JobRecommendationLetter extends StatefulWidget {
 
 class _JobRecommendationLetterState extends State<JobRecommendationLetter> {
   final jobVm = Get.put(JobRecommendationViewModel());
-  final List<String> recommendationType = [
-    'Government'.tr,
-    'Private'.tr,
-    'autonomous_body'.tr,
-  ];
-  String? selectedType;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,53 +55,85 @@ class _JobRecommendationLetterState extends State<JobRecommendationLetter> {
                     ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'job_recommendation_type'.tr),
-                          CustomDropdown(
-                            items: recommendationType,
-                            selectedValue: selectedType,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedType = value;
-                              });
-                            },
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'job_recommendation_type'.tr,
                           ),
-                          // CustomTextFormField(hintText: 'applicant_name'.tr),
-                          CustomLabelText(text: 'applicant_name'.tr),
+                          Obx(
+                            () => CustomDropdown(
+                              items: jobVm.recommendationTypes,
+                              selectedValue:
+                                  jobVm.selectedRecommendationType.value.isEmpty
+                                  ? null
+                                  : jobVm.selectedRecommendationType.value,
+                              onChanged: (value) {
+                                if (value != null) {
+                                  jobVm.selectedRecommendationType(value);
+                                }
+                              },
+                            ),
+                          ),
+
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'applicant_name'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: FormValidator.validateName,
                             controller: jobVm.applicantName.value,
                             hintText: 'applicant_name'.tr,
                           ),
-                          CustomLabelText(text: 'mobile'.tr),
+                          CustomLabelText(isRequired: true, text: 'mobile'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validatePhone,
                             controller: jobVm.applicantMobile.value,
                             hintText: 'mobile'.tr,
                           ),
-                          CustomLabelText(text: 'address'.tr),
+                          CustomLabelText(isRequired: true, text: 'address'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validateAddress,
                             controller: jobVm.address.value,
                             hintText: 'address'.tr,
                           ),
-                          CustomLabelText(text: 'post_name'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'post_name'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: (value) =>
+                                FormValidator.validateRequired(
+                                  value,
+                                  "Post Name",
+                                ),
                             controller: jobVm.postName.value,
                             hintText: 'post_name'.tr,
                           ),
-                          CustomLabelText(text: 'department'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'department'.tr,
+                          ),
                           //add dropdown
-                          CustomDropdown(
-                            items: recommendationType,
-                            selectedValue: selectedType,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedType = value;
-                              });
-                            },
+                          Obx(
+                            () => CustomDropdown(
+                              items: jobVm.departmentTypes,
+                              selectedValue:
+                                  jobVm.selectedDepartment.value.isEmpty
+                                  ? null
+                                  : jobVm.selectedDepartment.value,
+                              onChanged: (value) {
+                                if (value != null) {
+                                  jobVm.selectedDepartment(value);
+                                }
+                              },
+                            ),
                           ),
                           CustomLabelText(text: 'message'.tr),
                           CustomMessageTextFormField(
+                            validator: FormValidator.validateMessage,
                             controller: jobVm.message.value,
                             hintText: 'enter_message'.tr,
                           ),
@@ -112,13 +141,29 @@ class _JobRecommendationLetterState extends State<JobRecommendationLetter> {
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {},
+                          Obx(
+                            () => CustomButton(
+                              text: jobVm.isLoading.value
+                                  ? 'Submitting...'
+                                  : 'submit_btn'.tr,
+                              textSize: 14,
+                              isLoading: jobVm.isLoading.value,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: () {
+                                final valid =
+                                    _formKey.currentState?.validate() ?? false;
+                                if (!valid) {
+                                  Utils.showErrorSnackBar(
+                                    'Validation',
+                                    'Please fix the Errors in the Form',
+                                  );
+                                  return;
+                                }
+                                jobVm.jobRecommendationApi();
+                              },
+                            ),
                           ),
                         ],
                       ),

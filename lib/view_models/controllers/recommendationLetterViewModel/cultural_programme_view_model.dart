@@ -23,9 +23,15 @@ class CulturalProgrammeViewModel extends GetxController {
   final date = TextEditingController().obs;
   final programName = TextEditingController().obs;
   final programOwnerName = TextEditingController().obs;
-  final inBehalfOf = TextEditingController().obs;
-  final message = TextEditingController().obs;
+  final RxList<String> inBehalfOf = [
+    'Festival'.tr,
+    'Function'.tr,
+    'Fair'.tr,
+    'Other'.tr,
+  ].obs;
 
+  RxString selectedInBehalfOf = ''.obs;
+  final message = TextEditingController().obs;
   // 🔹 State
   RxBool isLoading = false.obs;
 
@@ -33,18 +39,17 @@ class CulturalProgrammeViewModel extends GetxController {
   Future<void> culturalProgrammeApi() async {
     if (isLoading.value) return;
     isLoading.value = true;
-
     try {
       // ✅ Build data map
       final Map<String, dynamic> data = {
         "applicantName": applicantName.value.text.trim(),
-        "applicantMobile": applicantMobile.value.text.trim(),
+        "mobileNumber": applicantMobile.value.text.trim(),
         "address": address.value.text.trim(),
         "hostDetail": hostDetail.value.text.trim(),
         "date": date.value.text.trim(),
-        "programName": programName.value.text.trim(),
-        "programOwnerName": programOwnerName.value.text.trim(),
-        "inBehalfOf": inBehalfOf.value.text.trim(),
+        "culturalProgrammeName": programName.value.text.trim(),
+        "culturalProgrammeOwnerName": programOwnerName.value.text.trim(),
+        "inBehalfOf": selectedInBehalfOf.value.trim(),
         "message": message.value.text.trim(),
       };
 
@@ -108,11 +113,12 @@ class CulturalProgrammeViewModel extends GetxController {
       date,
       programName,
       programOwnerName,
-      inBehalfOf,
+
       message,
     ]) {
       c.value.dispose();
     }
+    selectedInBehalfOf.value = '';
     super.onClose();
   }
 }

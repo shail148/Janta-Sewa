@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
+import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/cultural_programme_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
@@ -21,13 +23,8 @@ class CulturalProgrammeLetter extends StatefulWidget {
 
 class _CulturalProgrammeLetterState extends State<CulturalProgrammeLetter> {
   final culturalVM = Get.put(CulturalProgrammeViewModel());
-  final List<String> inBehalfOf = [
-    'festival'.tr,
-    'function'.tr,
-    'fair'.tr,
-    'other'.tr,
-  ];
-  String? selectedInBehalfOf;
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,61 +48,96 @@ class _CulturalProgrammeLetterState extends State<CulturalProgrammeLetter> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomTextWidget(
-                      text: "cultural_programm".tr,
+                      text: "cultural_program".tr,
                       color: AppColors.textColor,
                       fontsize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'applicant_name'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'applicant_name'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: FormValidator.validateName,
                             controller: culturalVM.applicantName.value,
                             hintText: 'applicant_name'.tr,
                           ),
-                          CustomLabelText(text: 'mobile'.tr),
-                          CustomTextFormField(hintText: 'mobile'.tr),
-                          CustomLabelText(text: 'address'.tr),
+                          CustomLabelText(isRequired: true, text: 'mobile'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validatePhone,
+                            keyboardType: TextInputType.phone,
+                            controller: culturalVM.applicantMobile.value,
+                            hintText: 'mobile'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'address'.tr),
+                          CustomTextFormField(
+                            validator: FormValidator.validateAddress,
                             controller: culturalVM.address.value,
                             hintText: 'address'.tr,
                           ),
 
-                          CustomLabelText(text: 'host_detail'.tr),
-                          CustomTextFormField(hintText: 'host_detail'.tr),
-                          CustomLabelText(text: 'date'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'host_detail'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: FormValidator.validateMessage,
+                            controller: culturalVM.hostDetail.value,
+                            hintText: 'host_detail'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'date'.tr),
+                          CustomTextFormField(
+                            validator: (value) =>
+                                FormValidator.validateRequired(value, "Date"),
                             controller: culturalVM.date.value,
                             hintText: 'date'.tr,
                           ),
                           CustomLabelText(text: 'cultural_programme_name'.tr),
                           CustomTextFormField(
+                            validator: (value) =>
+                                FormValidator.validateRequired(
+                                  value,
+                                  "Cultural Programme Name",
+                                ),
                             controller: culturalVM.programName.value,
                             hintText: 'cultural_programme_name'.tr,
                           ),
                           CustomLabelText(
+                            isRequired: true,
                             text: 'cultural_programme_owner_name'.tr,
                           ),
                           CustomTextFormField(
+                            validator: (value) =>
+                                FormValidator.validateRequired(
+                                  value,
+                                  "Cultural Programme Owner Name",
+                                ),
                             controller: culturalVM.programOwnerName.value,
                             hintText: 'cultural_programme_owner_name'.tr,
                           ),
                           CustomLabelText(text: 'in_behalf_of'.tr),
                           //add dropdown
-                          CustomDropdown(
-                            items: inBehalfOf,
-                            selectedValue: selectedInBehalfOf,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedInBehalfOf = value;
-                              });
-                            },
+                          Obx(
+                            () => CustomDropdown(
+                              items: culturalVM.inBehalfOf,
+                              selectedValue:
+                                  culturalVM.selectedInBehalfOf.value.isEmpty
+                                  ? null
+                                  : culturalVM.selectedInBehalfOf.value,
+                              onChanged: (value) {
+                                culturalVM.selectedInBehalfOf(value!);
+                              },
+                            ),
                           ),
                           CustomLabelText(text: 'message'.tr),
                           CustomMessageTextFormField(
+                            validator: FormValidator.validateMessage,
                             controller: culturalVM.message.value,
                             hintText: 'enter_message'.tr,
                           ),
@@ -113,13 +145,27 @@ class _CulturalProgrammeLetterState extends State<CulturalProgrammeLetter> {
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {},
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              isLoading: culturalVM.isLoading.value,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: () {
+                                final valid =
+                                    _formKey.currentState?.validate() ?? false;
+                                if (!valid) {
+                                  Utils.showErrorSnackBar(
+                                    'Validation',
+                                    'Please fix the Errors in the Form',
+                                  );
+                                  return;
+                                }
+                                culturalVM.culturalProgrammeApi();
+                              },
+                            ),
                           ),
                         ],
                       ),

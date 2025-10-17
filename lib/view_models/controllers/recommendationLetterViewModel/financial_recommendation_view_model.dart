@@ -15,16 +15,27 @@ class FinancialRecommendationViewModel extends GetxController {
   final _secureStorage = const FlutterSecureStorage();
   final fileController = Get.put(FileUploadController());
 
-  // 🔹 Text controllers
-  final department = TextEditingController().obs;
   final applicantName = TextEditingController().obs;
   final applicantMobile = TextEditingController().obs;
-  final reasonOfProblem = TextEditingController().obs;
   final tentativeAmount = TextEditingController().obs;
   final message = TextEditingController().obs;
   final remarks = TextEditingController().obs;
+  final RxList<String> department = [
+    'state'.tr,
+    'National'.tr,
+    'private'.tr,
+  ].obs;
 
-  // 🔹 State
+  RxString selectedDepartment = ''.obs;
+  final RxList<String> reasonOfProblem = [
+    'Health'.tr,
+    'Education'.tr,
+    'Employment'.tr,
+    'Samiti'.tr,
+    'Sports'.tr,
+    'Other'.tr,
+  ].obs;
+  RxString selectedReasonOfProblem = ''.obs;
   RxBool isLoading = false.obs;
 
   /// 🚀 API Call - Financial Recommendation
@@ -35,10 +46,10 @@ class FinancialRecommendationViewModel extends GetxController {
     try {
       // ✅ Build request body
       final Map<String, dynamic> data = {
-        "department": department.value.text.trim(),
+        "department": selectedDepartment.value.trim(),
         "applicantName": applicantName.value.text.trim(),
-        "applicantMobile": applicantMobile.value.text.trim(),
-        "reasonOfProblem": reasonOfProblem.value.text.trim(),
+        "mobileNumber": applicantMobile.value.text.trim(),
+        "reasonOfProblem": selectedReasonOfProblem.value.trim(),
         "tentativeAmount": tentativeAmount.value.text.trim(),
         "message": message.value.text.trim(),
         "remarks": remarks.value.text.trim(),
@@ -97,17 +108,6 @@ class FinancialRecommendationViewModel extends GetxController {
   /// 🧹 Dispose all controllers
   @override
   void onClose() {
-    for (var c in [
-      department,
-      applicantName,
-      applicantMobile,
-      reasonOfProblem,
-      tentativeAmount,
-      message,
-      remarks,
-    ]) {
-      c.value.dispose();
-    }
     super.onClose();
   }
 }

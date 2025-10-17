@@ -36,6 +36,7 @@ class AppLocalization extends Translations {
       'city_village': 'City/ Village',
       'ward_number': 'Ward Number',
       'pincode': 'Pincode',
+      'autonomous_body':'Autonomous Body',
       'information': 'Information',
       'after_register_info':
           'After you register, you will get your login details and your user ID will be sent to your registered WhatsApp number.',
