@@ -14,7 +14,7 @@ class AwardLetterViewModel extends GetxController {
   final _secureStorage = const FlutterSecureStorage();
   final fileController = Get.put(FileUploadController());
 
-  // 🔹 Form controllers
+  //Form controllers
   final typeOfAward = TextEditingController().obs;
   final fullName = TextEditingController().obs;
   final mobile = TextEditingController().obs;

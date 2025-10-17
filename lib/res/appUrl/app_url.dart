@@ -25,9 +25,9 @@ class AppUrl {
   static const String createQuarterAllotmentLetterApi =
       "$baseUrl/recommendation-letter/quarter-allotment/create"; //done
   static const String createAwardLetterApi =
-      "$baseUrl/recommendation-letter/award/create";
+      "$baseUrl/recommendation-letter/award/create"; //done
   static const String createAdmissionLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/admission/create";
   static const String createLandAllotmentLetterApi =
       "$baseUrl/recommendation-letter/transfer-letter/create";
   static const String createJobRecommendationLetterApi =
