@@ -9,6 +9,7 @@ class UserPreference extends GetxController {
     sp.setString('password', loginWithEmailModel.password);
     return true;
   }
+
   //return user data
   Future<LoginWithEmailModel> getUser() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
@@ -17,6 +18,7 @@ class UserPreference extends GetxController {
     String password = sp.getString('password') ?? '';
     return LoginWithEmailModel(email: email, password: password);
   }
+
   //remove user data
   Future<bool> removeUser() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
