@@ -27,15 +27,15 @@ class AppUrl {
   static const String createAwardLetterApi =
       "$baseUrl/recommendation-letter/award/create"; //done
   static const String createAdmissionLetterApi =
-      "$baseUrl/recommendation-letter/admission/create";
+      "$baseUrl/recommendation-letter/admission/create"; //done
   static const String createLandAllotmentLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/land-allotment/create"; //done
   static const String createJobRecommendationLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/job-recommendation/create"; //done
   static const String createFinancialRecommendationLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/financial-recommendation/create";
   static const String createCulturalRecommendationLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/cultural-programme/create";
   static const String createOtherRecommendationLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/other-recommendation/create";
 }

@@ -16,7 +16,7 @@ class JobRecommendationViewModel extends GetxController {
   final fileController = Get.put(FileUploadController());
 
   // 🔹 Form Controllers
-  final jobRecommendationType = TextEditingController().obs;
+
   final applicantName = TextEditingController().obs;
   final applicantMobile = TextEditingController().obs;
   final address = TextEditingController().obs;
@@ -27,6 +27,19 @@ class JobRecommendationViewModel extends GetxController {
   // 🔹 Loading State
   RxBool isLoading = false.obs;
 
+  final List<String> recommendationTypes = [
+    'Government'.tr,
+    'Private'.tr,
+    'autonomous_body'.tr,
+  ].obs;
+  final List<String> departmentTypes= [
+    'Government'.tr,
+    'Private'.tr,
+    'autonomous_body'.tr,
+  ].obs;
+
+  RxString selectedRecommendationType = ''.obs;
+  RxString selectedDepartment = ''.obs;
   /// 🚀 API Call - Job Recommendation
   Future<void> jobRecommendationApi() async {
     if (isLoading.value) return;
@@ -35,9 +48,9 @@ class JobRecommendationViewModel extends GetxController {
     try {
       // ✅ Prepare Data
       final Map<String, dynamic> data = {
-        "jobRecommendationType": jobRecommendationType.value.text.trim(),
+        "recommendationType": selectedRecommendationType.value.trim(),
         "applicantName": applicantName.value.text.trim(),
-        "applicantMobile": applicantMobile.value.text.trim(),
+        "mobileNumber": applicantMobile.value.text.trim(),
         "address": address.value.text.trim(),
         "postName": postName.value.text.trim(),
         "department": department.value.text.trim(),
@@ -98,7 +111,6 @@ class JobRecommendationViewModel extends GetxController {
   @override
   void onClose() {
     for (var c in [
-      jobRecommendationType,
       applicantName,
       applicantMobile,
       address,
@@ -108,6 +120,7 @@ class JobRecommendationViewModel extends GetxController {
     ]) {
       c.value.dispose();
     }
+    selectedRecommendationType.value = '';
     super.onClose();
   }
 }

@@ -1,7 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
+import 'package:janta_sewa/utils/utils.dart';
+import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/financial_recommendation_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
 import 'package:janta_sewa/res/components/file_upload.dart';
@@ -16,25 +18,14 @@ class FinancialRecommendationLetter extends StatefulWidget {
   const FinancialRecommendationLetter({super.key});
 
   @override
-  State<FinancialRecommendationLetter> createState() => _FinancialRecommendationLetterState();
+  State<FinancialRecommendationLetter> createState() =>
+      _FinancialRecommendationLetterState();
 }
 
-class _FinancialRecommendationLetterState extends State<FinancialRecommendationLetter> {
-  final List<String>department=[
-   'state govt'.tr,
-    'National Government'.tr,
-    'private'.tr,
-  ];
-  String? selectedDepartment;
-  final List<String>reasonOfProblem=[
-    'health'.tr,
-    'education'.tr,
-    'employment'.tr,
-    'samiti'.tr,
-    'sports'.tr,
-    'other'.tr,
-  ];
-  String? selectedProblem;
+class _FinancialRecommendationLetterState
+    extends State<FinancialRecommendationLetter> {
+  final financialVM = Get.put(FinancialRecommendationViewModel());
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,8 +43,8 @@ class _FinancialRecommendationLetterState extends State<FinancialRecommendationL
           radius: const Radius.circular(10),
           child: SingleChildScrollView(
             child: SafeArea(
-              child: Padding(                
-                  padding: const EdgeInsets.symmetric(horizontal: 24).w,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24).w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -65,50 +56,117 @@ class _FinancialRecommendationLetterState extends State<FinancialRecommendationL
                     ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'department'.tr),
-                          CustomDropdown(items: department, selectedValue: selectedDepartment, onChanged: (value){
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'department'.tr,
+                          ),
+                          Obx(
+                            () => CustomDropdown(
+                              items: financialVM.department,
+                              selectedValue:
+                                  financialVM.selectedDepartment.value.isEmpty
+                                  ? null
+                                  : financialVM.selectedDepartment.value,
 
-                            setState(() {
-                              selectedDepartment = value;
-                            });
-                          }),
-                          CustomLabelText(text: 'applicant_name'.tr),
-                         CustomTextFormField(hintText: 'applicant_name'.tr),
-                          
-                          CustomLabelText(text: 'mobile'.tr),
-                          CustomTextFormField(hintText: 'mobile'.tr),
-                         
-                          CustomLabelText(text: 'reason_of_problem'.tr),
-                         
-                         CustomDropdown(items: reasonOfProblem, selectedValue: selectedProblem, onChanged: (value){
-                          setState(() {
-                            selectedProblem = value;
-                          });
-                         }),
-                        
-                           CustomLabelText(text: 'tentative_amount'.tr),
-                          CustomTextFormField(hintText: 'tentative_amount'.tr),
-                           CustomLabelText(text: 'remarks'.tr),
-                          CustomTextFormField(hintText: 'remarks'.tr),
+                              onChanged: (value) {
+                                if (value != null) {
+                                  financialVM.selectedDepartment(value);
+                                }
+                              },
+                            ),
+                          ),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'applicant_name'.tr,
+                          ),
+                          CustomTextFormField(
+                            controller: financialVM.applicantName.value,
+                            validator: FormValidator.validateName,
+                            hintText: 'applicant_name'.tr,
+                          ),
+
+                          CustomLabelText(isRequired: true, text: 'mobile'.tr),
+                          CustomTextFormField(
+                            keyboardType: TextInputType.phone,  
+                            controller: financialVM.applicantMobile.value,
+                            validator: FormValidator.validatePhone,
+                            hintText: 'mobile'.tr,
+                          ),
+
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'reason_of_problem'.tr,
+                          ),
+
+                          Obx(
+                            () => CustomDropdown(
+                              items: financialVM.reasonOfProblem,
+                              selectedValue:
+                                  financialVM
+                                      .selectedReasonOfProblem
+                                      .value
+                                      .isEmpty
+                                  ? null
+                                  : financialVM.selectedReasonOfProblem.value,
+
+                              onChanged: (value) {
+                                if (value != null) {
+                                  financialVM.selectedReasonOfProblem(value);
+                                }
+                              },
+                            ),
+                          ),
+
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'tentative_amount'.tr,
+                          ),
+                          CustomTextFormField(
+                            keyboardType: TextInputType.number,
+                            controller: financialVM.tentativeAmount.value,
+                            hintText: 'tentative_amount'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'remarks'.tr),
+                          CustomTextFormField(
+                            validator: FormValidator.validateMessage,
+                            controller: financialVM.remarks.value,
+                            hintText: 'remarks'.tr,
+                          ),
                           CustomLabelText(text: 'message'.tr),
                           CustomMessageTextFormField(
-                          hintText: 'enter_message'.tr,
+                            validator: FormValidator.validateMessage,
+                            controller: financialVM.message.value,
+                            hintText: 'enter_message'.tr,
                           ),
                           CustomLabelText(text: 'upload_signed_documents'.tr),
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                            },
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              isLoading: financialVM.isLoading.value,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: () {
+                                final valid =
+                                    _formKey.currentState?.validate() ?? false;
+                                if (!valid) {
+                                  Utils.showErrorSnackBar(
+                                    'Validation',
+                                    'Please fix the Errors in the Form',
+                                  );
+                                  return;
+                                }
+                                financialVM.financialRecommendationApi();
+                              },
+                            ),
                           ),
                         ],
                       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
+import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/land_allotment_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
@@ -21,14 +23,8 @@ class LandAllotmentLetter extends StatefulWidget {
 
 class _LandAllotmentLetterState extends State<LandAllotmentLetter> {
   final landAllotmentVM = Get.put(LandAllotmentViewModel());
-  final List<String> quarterDepartment = [
-    'bsp',
-    'bsp'.tr,
-    'state govt'.tr,
-    'central govt'.tr,
-    'private'.tr,
-  ];
-  String? selectedDepartment;
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,44 +55,79 @@ class _LandAllotmentLetterState extends State<LandAllotmentLetter> {
                     ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomLabelText(text: 'applicant_name'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'applicant_name'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: FormValidator.validateName,
                             controller: landAllotmentVM.applicantName.value,
                             hintText: 'applicant_name'.tr,
                           ),
-                          CustomLabelText(text: 'mobile'.tr),
-                          CustomTextFormField(hintText: 'mobile'.tr),
-                          CustomLabelText(text: 'address'.tr),
+                          CustomLabelText(isRequired: true, text: 'mobile'.tr),
                           CustomTextFormField(
+                            keyboardType: TextInputType.phone,
+                            validator: FormValidator.validatePhone,
+                            controller: landAllotmentVM.applicantMobile.value,
+                            hintText: 'mobile'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'address'.tr),
+                          CustomTextFormField(
+                            validator: FormValidator.validateAddress,
                             controller: landAllotmentVM.address.value,
                             hintText: 'address'.tr,
                           ),
-                          CustomLabelText(text: 'opted_quarter_department'.tr),
-                          //add dropdown
-                          CustomDropdown(
-                            items: quarterDepartment,
-                            selectedValue: selectedDepartment,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedDepartment = value;
-                              });
-                            },
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'opted_quarter_department'.tr,
                           ),
-                          CustomLabelText(text: 'opted_land_address'.tr),
+                          //add dropdown
+                          Obx(
+                            () => CustomDropdown(
+                              items: landAllotmentVM.quarterDepartments,
+                              selectedValue:
+                                  landAllotmentVM
+                                      .selectedOptedDepartment
+                                      .value
+                                      .isEmpty
+                                  ? null
+                                  : landAllotmentVM
+                                        .selectedOptedDepartment
+                                        .value,
+                              onChanged: (value) {
+                                if (value != null) {
+                                  landAllotmentVM.setOptedDepartment(value);
+                                }
+                              },
+                            ),
+                          ),
+
+                          SizedBox(height: 10),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'opted_land_address'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: FormValidator.validateAddress,
                             controller: landAllotmentVM.optedLandAddress.value,
                             hintText: 'opted_land_address'.tr,
                           ),
-                          CustomLabelText(text: 'reason_for_land_allotment'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'reason_for_land_allotment'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: FormValidator.validateMessage,
                             controller: landAllotmentVM.reason.value,
                             hintText: 'reason_for_land_allotment'.tr,
                           ),
                           CustomLabelText(text: 'message'.tr),
                           CustomMessageTextFormField(
+                            validator: FormValidator.validateMessage,
                             controller: landAllotmentVM.message.value,
                             hintText: 'enter_message'.tr,
                           ),
@@ -104,13 +135,27 @@ class _LandAllotmentLetterState extends State<LandAllotmentLetter> {
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {},
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              isLoading: landAllotmentVM.isLoading.value,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: () {
+                                final valid =
+                                    _formKey.currentState?.validate() ?? false;
+                                if (!valid) {
+                                  Utils.showErrorSnackBar(
+                                    'Validation',
+                                    'Please fix the Errors in the Form',
+                                  );
+                                  return;
+                                }
+                                landAllotmentVM.landAllotmentApi();
+                              },
+                            ),
                           ),
                         ],
                       ),

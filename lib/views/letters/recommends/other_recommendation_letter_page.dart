@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
+import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/other_recommendation_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/res/components/file_upload.dart';
@@ -21,6 +23,7 @@ class OtherRecommendationLetter extends StatefulWidget {
 
 class _OtherRecommendationLetterState extends State<OtherRecommendationLetter> {
   final otherRecVM = Get.put(OtherRecommendationViewModel());
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,33 +54,70 @@ class _OtherRecommendationLetterState extends State<OtherRecommendationLetter> {
                     ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // CustomTextFormField(hintText: 'applicant_name'.tr),
-                          CustomLabelText(text: 'applicant_name'.tr),
-                          CustomTextFormField(hintText: 'applicant_name'.tr),
-                          CustomLabelText(text: 'mobile'.tr),
-                          CustomTextFormField(hintText: 'mobile'.tr),
-                          CustomLabelText(text: 'recommendation_letter-m'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'applicant_name'.tr,
+                          ),
                           CustomTextFormField(
+                            controller: otherRecVM.applicantName.value,
+                            validator: FormValidator.validateName,
+                            hintText: 'applicant_name'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'mobile'.tr),
+                          CustomTextFormField(
+                            controller: otherRecVM.applicantMobile.value,
+                            validator: FormValidator.validatePhone,
+                            hintText: 'mobile'.tr,
+                          ),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'recommendation_letter-m'.tr,
+                          ),
+                          CustomTextFormField(
+                            controller: otherRecVM.recommendationNeed.value,
+                            validator: (value) =>
+                                FormValidator.validateRequired(
+                                  value,
+                                  "Recommendation Need",
+                                ),
                             hintText: 'recommendation_letter-m'.tr,
                           ),
                           CustomLabelText(text: 'message'.tr),
                           CustomMessageTextFormField(
+                            validator: FormValidator.validateMessage,
+                            controller: otherRecVM.message.value,
                             hintText: 'enter_message'.tr,
                           ),
                           CustomLabelText(text: 'upload_signed_documents'.tr),
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {},
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              isLoading: otherRecVM.isLoading.value,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: () {
+                                final valid =
+                                    _formKey.currentState?.validate() ?? false;
+                                if (!valid) {
+                                  Utils.showErrorSnackBar(
+                                    'Validation',
+                                    'Please fix the Errors in the Form',
+                                  );
+                                  return;
+                                }
+                                otherRecVM.createOtherRecommendationApi();
+                              },
+                            ),
                           ),
                         ],
                       ),
