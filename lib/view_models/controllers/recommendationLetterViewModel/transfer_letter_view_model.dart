@@ -25,10 +25,10 @@ class TransferLetterViewModel extends GetxController {
 
   final List<String> typesOfTransfer = ['new'.tr, 'revised'.tr];
   final List<String> typeOfDepartment = [
-    'bsp'.tr,
-    'state govt'.tr,
-    'central govt'.tr,
-    'private'.tr,
+    "BSP",
+    "State Government",
+    "Central Government",
+    "Private",
   ];
   RxString selectedType = ''.obs;
   RxString selectedDepartment = ''.obs;

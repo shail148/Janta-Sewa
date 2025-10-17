@@ -14,7 +14,7 @@ class QuarterAllotmentViewModel extends GetxController {
   final fileController = Get.put(FileUploadController());
 
   //store the variable
-  final typeOfQuarterAllotment = TextEditingController().obs;
+ 
   final fullName = TextEditingController().obs;
   final mobile = TextEditingController().obs;
   final address = TextEditingController().obs;
@@ -24,19 +24,30 @@ class QuarterAllotmentViewModel extends GetxController {
   final reason = TextEditingController().obs;
   final message = TextEditingController().obs;
   final image = TextEditingController().obs;
+
+  final List<String> typesOfAllotment = ['new'.tr, 'revised'.tr];
+  final List<String> typeOfOptedQuarterAllotment = [
+    "BSP",
+    "State Government",
+    "Central Government",
+    "Private",
+  ];
+
+  RxString selectedAllotment = ''.obs;
+  RxString selectedOptedQuarterAllotment = ''.obs;
   RxBool isLoading = false.obs;
 
   void quarterAllotmentLetterApi() async {
     try {
       //data load krna
       Map<String, dynamic> data = {
-        'typeOfAllotment': typeOfQuarterAllotment.value.text.trim(),
+        'typeOfAllotment': selectedAllotment.value.trim(),
         'fullName': fullName.value.text.trim(),
         'mobileNumber': mobile.value.text.trim(),
         'address': address.value.text.trim(),
         'optedQuarterDepartment': optedQuarterAllotment.value.text.trim(),
         'fromWhomToOpted': fromWhomtoOpted.value.text.trim(),
-        'optedQuarterAddress': optedQuarterAddress.value.text.trim(),
+        'optedQuarterAddress': selectedOptedQuarterAllotment.value.trim(),
         'reasonForQuarterAllotment': reason.value.text.trim(),
         'message': message.value.text.trim(),
       };
@@ -64,7 +75,7 @@ class QuarterAllotmentViewModel extends GetxController {
       }
 
       //api call krna
-      final res = await _api.createTransferLetterApi(
+      final res = await _api.createQuarterAllotmentLetterApi(
         data,
         headers: headers,
         files: files,
@@ -93,21 +104,10 @@ class QuarterAllotmentViewModel extends GetxController {
   }
 
   //dispose method
-  @override
+    @override
   void onClose() {
-    for (var c in [
-      typeOfQuarterAllotment,
-      fullName,
-      mobile,
-      address,
-      optedQuarterAllotment,
-      fromWhomtoOpted,
-      optedQuarterAddress,
-      reason,
-      message,
-    ]) {
-      c.value.dispose();
-    }
-    super.onClose();
+    super.dispose();
   }
+  
+  
 }

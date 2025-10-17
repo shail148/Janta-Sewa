@@ -78,10 +78,7 @@ class RecommendationRepository {
     return response;
   }
 
-
-
-
-  //award letter api 
+  //award letter api
   Future<dynamic> createAwardLetterApi(
     Map<String, dynamic> data, {
     Map<String, String>? headers,
@@ -105,11 +102,8 @@ class RecommendationRepository {
     return response;
   }
 
-
-
-
-  //admission letter api 
-   Future<dynamic> createAdmissionLetterApi(
+  //admission letter api
+  Future<dynamic> createAdmissionLetterApi(
     Map<String, dynamic> data, {
     Map<String, String>? headers,
     List<PlatformFile>? files,
@@ -132,9 +126,8 @@ class RecommendationRepository {
     return response;
   }
 
-
   //land allotment letter api
-   Future<dynamic> createLandAllotmentLetterApi(
+  Future<dynamic> createLandAllotmentLetterApi(
     Map<String, dynamic> data, {
     Map<String, String>? headers,
     List<PlatformFile>? files,
@@ -157,10 +150,8 @@ class RecommendationRepository {
     return response;
   }
 
-
-
   //job recommendation letter api
-   Future<dynamic> createJobRecommendationLetterApi(
+  Future<dynamic> createJobRecommendationLetterApi(
     Map<String, dynamic> data, {
     Map<String, String>? headers,
     List<PlatformFile>? files,
@@ -183,11 +174,8 @@ class RecommendationRepository {
     return response;
   }
 
-
-
-
   //financial recommendation letter api
-   Future<dynamic> createFinancialRecommendationLetterApi(
+  Future<dynamic> createFinancialRecommendationLetterApi(
     Map<String, dynamic> data, {
     Map<String, String>? headers,
     List<PlatformFile>? files,
@@ -210,12 +198,8 @@ class RecommendationRepository {
     return response;
   }
 
-
-
-
-
   //cultural recommendation letter api
-   Future<dynamic> createCulturalRecommendationLetterApi(
+  Future<dynamic> createCulturalRecommendationLetterApi(
     Map<String, dynamic> data, {
     Map<String, String>? headers,
     List<PlatformFile>? files,
@@ -238,13 +222,8 @@ class RecommendationRepository {
     return response;
   }
 
-
-
-
-
-
   //other recommendation letter api
-   Future<dynamic> createOtherRecommendationLetterApi(
+  Future<dynamic> createOtherRecommendationLetterApi(
     Map<String, dynamic> data, {
     Map<String, String>? headers,
     List<PlatformFile>? files,
@@ -266,8 +245,4 @@ class RecommendationRepository {
     }
     return response;
   }
-
-
-
-
 }

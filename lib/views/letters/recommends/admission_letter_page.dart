@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/admission_letter_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
@@ -22,12 +23,7 @@ class AdmissionLetter extends StatefulWidget {
 class _AdmissionLetterState extends State<AdmissionLetter> {
   final admissionVM = Get.put(AdmissionLetterViewModel());
   final _formKey = GlobalKey<FormState>();
-  final List<String> typesOfAdmission = [
-    'school'.tr,
-    'college'.tr,
-    'institute'.tr,
-  ];
-  String? selectedType;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,20 +54,26 @@ class _AdmissionLetterState extends State<AdmissionLetter> {
                     ),
                     SizedBox(height: 10),
                     Form(
+                      key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomLabelText(text: 'types_of_admission'.tr),
-                          CustomDropdown(
-                            items: typesOfAdmission,
-                            selectedValue: admissionVM.typeOfAdmission.value
-                                .toString(),
-                            onChanged: (value) {
-                              setState(() {
-                                admissionVM.typeOfAdmission.value =
-                                    value as TextEditingController;
-                              });
-                            },
+                          Obx(
+                            () => CustomDropdown(
+                              items: admissionVM.typesOfAdmission,
+                              selectedValue:
+                                  admissionVM
+                                      .selectedTypeAdmission
+                                      .value
+                                      .isEmpty
+                                  ? null
+                                  : admissionVM.selectedTypeAdmission.value,
+
+                              onChanged: (value) {
+                                admissionVM.setAdmissionType(value ?? '');
+                              },
+                            ),
                           ),
                           // CustomTextFormField(hintText: 'applicant_name'.tr),
                           CustomLabelText(text: 'applicant_name'.tr),
@@ -108,18 +110,30 @@ class _AdmissionLetterState extends State<AdmissionLetter> {
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                              //add a login logic
-                              if (_formKey.currentState!.validate()) {
-                                //implement the api call here
-                              }
-                            },
+                          Obx(
+                            () => CustomButton(
+                              text: admissionVM.isLoading.value
+                                  ? 'Submitting...'
+                                  : 'submit_btn'.tr,
+                              textSize: 14,
+                              backgroundColor: admissionVM.isLoading.value
+                                  ? Colors.grey.shade400
+                                  : AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: admissionVM.isLoading.value
+                                  ? null // Disable while submitting
+                                  : () {
+                                      if (_formKey.currentState!.validate()) {
+                                        admissionVM.admissionLetterApi();
+                                      } else {
+                                        Utils.showErrorSnackBar(
+                                          'Validation',
+                                          'Please fix the Errors in the Form',
+                                        );
+                                      }
+                                    },
+                            ),
                           ),
                         ],
                       ),

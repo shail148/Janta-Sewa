@@ -8,25 +8,23 @@ import 'package:janta_sewa/repository/recommentdationLetterRepository/recommenda
 import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 
-
-
 class PostingLetterViewModel extends GetxController {
   final _api = RecommendationRepository();
   final _secureStorage = const FlutterSecureStorage();
   final fileController = Get.put(FileUploadController());
   //variable
-  
+
   final List<String> typesOfPosting = ['new'.tr, 'revised'.tr];
   final List<String> typesOfDepartment = [
-    'bsp'.tr,
-    'state govt'.tr,
-    'central govt'.tr,
-    'private'.tr,
+    "BSP",
+    "State Government",
+    "Central Government",
+    "Private",
   ].obs;
 
-  RxString selectedType = ''.obs;
+  RxString selectedTypePosting = ''.obs;
   RxString selectedDepartment = ''.obs;
-  final typeOfPosting = TextEditingController().obs;
+
   final fullName = TextEditingController().obs;
   final mobile = TextEditingController().obs;
   final designation = TextEditingController().obs;
@@ -42,7 +40,7 @@ class PostingLetterViewModel extends GetxController {
     try {
       //data load krna
       Map<String, dynamic> data = {
-        'typeOfPosting': typeOfPosting.value.text.trim(),
+        'typeOfPosting': selectedTypePosting.value.trim(),
         'fullName': fullName.value.text.trim(),
         'mobileNumber': mobile.value.text.trim(),
         'designation': designation.value.text.trim(),
@@ -103,7 +101,6 @@ class PostingLetterViewModel extends GetxController {
       Utils.showErrorSnackBar("Error", e.toString());
     }
   }
-
 
   //dispose method
   @override

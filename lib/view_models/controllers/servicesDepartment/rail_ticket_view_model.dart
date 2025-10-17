@@ -1,18 +1,16 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:janta_sewa/repository/serviceDepartment/service_department_repository.dart';
 import 'package:janta_sewa/utils/utils.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:janta_sewa/controllers/file_upload_controller.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 import 'dart:developer' as dev;
 
 class RailTicketViewModel extends GetxController {
   final _api = ServiceDepartmentRepository();
   final _secureStorage = const FlutterSecureStorage();
-  final fileController = Get.put(FileUploadController());
   RxBool isLoading = false.obs;
 
   // Passenger controllers
@@ -36,10 +34,10 @@ class RailTicketViewModel extends GetxController {
     isLoading.value = true;
 
     try {
-      // ✅ Prepare data for API
+      // ✅ Prepare pure JSON data
       final Map<String, dynamic> data = {
         "passengerName": passengerName.value.text.trim(),
-        "age": passengerAge.value.text.trim(),
+        "age": int.tryParse(passengerAge.value.text.trim()) ?? 0,
         "gender": passengerGender.value.text.trim(),
         "mobileNumber": passengerMobileNumber.value.text.trim(),
         "nationality": nationality.value.text.trim(),
@@ -47,11 +45,13 @@ class RailTicketViewModel extends GetxController {
         "from": from.value.text.trim(),
         "to": to.value.text.trim(),
         "pnrNumber": pnrNumber.value.text.trim(),
+        "trainNumber": trainNumber.value.text.trim(),
+        "trainName": trainName.value.text.trim(),
         "className": birthType.value.text.trim(),
         "message": message.value.text.trim(),
       };
 
-      // ✅ Get token securely
+      // ✅ Get token
       final token = await _secureStorage.read(key: 'token');
       if (token == null || token.isEmpty) {
         Utils.showErrorSnackBar('Auth', 'Please log in again, token missing');
@@ -60,24 +60,17 @@ class RailTicketViewModel extends GetxController {
       }
 
       final headers = {
+        'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',
         'Cookie': 'token=$token',
       };
 
-      // ✅ Attached files (optional)
-      final List<PlatformFile> files = List.from(fileController.uploadedFiles);
-
       if (kDebugMode) {
-        dev.log('🎫 Sending Ticket Confirmation Data: $data');
-        dev.log('📎 Attached Files: ${files.map((f) => f.name).toList()}');
+        dev.log('🎫 Sending JSON Ticket Data: ${jsonEncode(data)}');
       }
 
-      // ✅ Call repository method
-      final res = await _api.createRailTicketApi(
-        data,
-        headers: headers,
-        files: files,
-      );
+      // ✅ Call repository
+      final res = await _api.createRailTicketApi(data, headers: headers);
 
       // ✅ Handle response
       if (res['success'] == true) {
@@ -85,7 +78,6 @@ class RailTicketViewModel extends GetxController {
           'Success',
           res['message'] ?? 'Ticket Submitted Successfully 🎉',
         );
-        fileController.uploadedFiles.clear();
         Get.offAll(() => const BottomNav());
       } else {
         Utils.showErrorSnackBar(
@@ -97,11 +89,10 @@ class RailTicketViewModel extends GetxController {
       dev.log('❌ ticketConfirmationApi Error: $e\n$st');
       Utils.showErrorSnackBar('Error', e.toString());
     } finally {
-      isLoading.value = false; // always reset loader
+      isLoading.value = false;
     }
   }
 
-  /// 🧹 Dispose all controllers
   @override
   void onClose() {
     for (var c in [

@@ -1,15 +1,12 @@
 class AppUrl {
-  static const String baseUrl =
-      "https://janta-seva-backend.onrender.com/api/v1";
+  static const String baseUrl = "http://192.168.1.14:4000/api/v1";
   static const String loginApi = "$baseUrl/auth/login"; //done
   static const String registerApi = "$baseUrl/auth/register"; //done
   static const String forgotPasswordApi = "$baseUrl/auth/forgot-Password"; //d
   static const String verifyForgotOtpApi =
       "$baseUrl/auth/verify-forgot-otp"; //done
   static const String resetPasswordApi = "$baseUrl/auth/reset-password"; //done
-
   //service department
-
   static const String createRailTicketApi =
       "$baseUrl/services-department/train-ticket-confirmation/train-ticket-request";
 
@@ -22,15 +19,15 @@ class AppUrl {
 
   //Recommendation letter
   static const String createTransferLetterApi =
-      "$baseUrl/recommendation-letter/transfer/create";
+      "$baseUrl/recommendation-letter/transfer/create"; //done
   static const String createPostingLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/posting/create"; //done
   static const String createQuarterAllotmentLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/quarter-allotment/create"; //done
   static const String createAwardLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/award/create"; //done
   static const String createAdmissionLetterApi =
-      "$baseUrl/recommendation-letter/transfer-letter/create";
+      "$baseUrl/recommendation-letter/admission/create";
   static const String createLandAllotmentLetterApi =
       "$baseUrl/recommendation-letter/transfer-letter/create";
   static const String createJobRecommendationLetterApi =

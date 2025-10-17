@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:janta_sewa/utils/form_validator.dart';
 import 'package:janta_sewa/view_models/controllers/recommendationLetterViewModel/award_letter_view_model.dart';
 import 'package:janta_sewa/widgets/custom_app_bar.dart';
 import 'package:janta_sewa/widgets/custom_dropdown.dart';
@@ -22,11 +22,7 @@ class AwardLetter extends StatefulWidget {
 
 class _AwardLetterState extends State<AwardLetter> {
   final awardVM = Get.put(AwardLetterViewModel());
-  final List<String>typesOfAward=[
-    'national'.tr,
-    'state'.tr,
-  ];
-  String? selectedType ;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +40,8 @@ class _AwardLetterState extends State<AwardLetter> {
           radius: const Radius.circular(10),
           child: SingleChildScrollView(
             child: SafeArea(
-              child: Padding(                
-                 padding: const EdgeInsets.symmetric(horizontal: 24).w,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24).w,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -61,53 +57,89 @@ class _AwardLetterState extends State<AwardLetter> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomLabelText(text: 'types_of_award'.tr),
-                          CustomDropdown(items: typesOfAward, selectedValue: selectedType, onChanged: (value){
-
-                           setState(() {
-                              selectedType = value;
-                           });
-                          }),
-                         // CustomTextFormField(hintText: 'applicant_name'.tr),
-                          CustomLabelText(text: 'full_name'.tr),
+                          Obx(
+                            () => CustomDropdown(
+                              items: awardVM.typesOfAward,
+                              selectedValue:
+                                  awardVM.selectedAwardType.value.isEmpty
+                                  ? null
+                                  : awardVM.selectedAwardType.value,
+                              onChanged: (value) {
+                                awardVM.selectedAwardType(value!);
+                              },
+                            ),
+                          ),
+                          // CustomTextFormField(hintText: 'applicant_name'.tr),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'full_name'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: FormValidator.validateName,
                             controller: awardVM.fullName.value,
-                            hintText: 'full_name'.tr),
-                          CustomLabelText(text: 'mobile'.tr),
+                            hintText: 'full_name'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'mobile'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validatePhone,
                             controller: awardVM.mobile.value,
-                            hintText: 'mobile'.tr),
-                           CustomLabelText(text: 'address'.tr),
+                            hintText: 'mobile'.tr,
+                          ),
+                          CustomLabelText(isRequired: true, text: 'address'.tr),
                           CustomTextFormField(
+                            validator: FormValidator.validateAddress,
                             controller: awardVM.address.value,
-                            hintText: 'address'.tr),      
-                          CustomLabelText(text: 'career_achievement'.tr),
+                            hintText: 'address'.tr,
+                          ),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'career_achievement'.tr,
+                          ),
                           CustomTextFormField(
+                            validator: (value) =>
+                                FormValidator.validateRequired(
+                                  value,
+                                  "Career Achievement",
+                                ),
                             controller: awardVM.careerAchievement.value,
-                            hintText: 'career_achievement'.tr),          
+                            hintText: 'career_achievement'.tr,
+                          ),
                           CustomLabelText(text: 'award_name'.tr),
-                          CustomTextFormField(hintText: 'award_name'.tr),
-                           CustomLabelText(text: 'brief_details'.tr),
                           CustomTextFormField(
+                            controller: awardVM.awardName.value,
+                            hintText: 'award_name'.tr,
+                          ),
+                          CustomLabelText(
+                            isRequired: true,
+                            text: 'brief_details'.tr,
+                          ),
+                          CustomTextFormField(
+                            validator: FormValidator.validateMessage,
                             controller: awardVM.reason.value,
-                            hintText: 'brief_details'.tr),
+                            hintText: 'brief_details'.tr,
+                          ),
                           CustomLabelText(text: 'message'.tr),
                           CustomMessageTextFormField(
+                            validator: FormValidator.validateMessage,
                             controller: awardVM.message.value,
-                          hintText: 'enter_message'.tr,
+                            hintText: 'enter_message'.tr,
                           ),
                           CustomLabelText(text: 'upload_signed_documents'.tr),
                           SizedBox(height: 10),
                           CustomFileUpload(),
                           SizedBox(height: 10),
-                          CustomButton(
-                            
-                            text: 'submit_btn'.tr,
-                            textSize: 14,
-                            backgroundColor: AppColors.btnBgColor,
-                            height: 62,
-                            width: double.infinity,
-                            onPressed: () {
-                            },
+                          Obx(
+                            () => CustomButton(
+                              text: 'submit_btn'.tr,
+                              textSize: 14,
+                              isLoading: awardVM.isLoading.value,
+                              backgroundColor: AppColors.btnBgColor,
+                              height: 62,
+                              width: double.infinity,
+                              onPressed: () {
+                                awardVM.awardLetterApi();
+                              },
+                            ),
                           ),
                         ],
                       ),
