@@ -17,7 +17,7 @@ class TrackPage extends StatefulWidget {
       case "In Process":
         return const Color(0xFF356CC5);
       default:
-        return Colors.orange; 
+        return Colors.orange;
     }
   }
 

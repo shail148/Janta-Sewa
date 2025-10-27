@@ -65,7 +65,7 @@ class AuthRepository {
 
   //user profile api 
   Future<dynamic> userProfileApi(var data) async {
-    dynamic response = await _apiService.getApi(AppUrl.userProfileApi);
+    dynamic response = await _apiService.getApi(AppUrl.userProfile);
     return response;
   }
  
