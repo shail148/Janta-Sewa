@@ -258,8 +258,6 @@ class AppLocalization extends Translations {
           'Leadership is not about power, it’s about purpose — serving every citizen with commitment and care."',
       'beneficiary_oriendted': 'Beneficiary Oriented',
       'compain_of_mp_office': 'Complaint of MP Office',
-      'local_program': 'Local Program',
-      'meeting': 'Meeting',
       'invitation form': 'Invitation Form',
       'types_of_invitation': 'Types of Invitation',
       'invitation_for_meeting': 'Invitation for Meeting',

@@ -39,15 +39,11 @@ class AppUrl {
   static const String createOtherRecommendationLetterApi =
       "$baseUrl/recommendation-letter/other-recommendation/create";
 
-
-  
-
   //invitation
-  static const String createInvitationApi =
-      "$baseUrl/invitation/create"; //done
-
-
+  static const String createInvitationApi = "$baseUrl/invitation/create"; //done
 
   //user profile
-  static const String userProfileApi = "$baseUrl/profile";
+  static const String userProfile = "$baseUrl/me/profile"; //done
+  
+  static const String updateProfile = "$baseUrl/me/update-profile";
 }
