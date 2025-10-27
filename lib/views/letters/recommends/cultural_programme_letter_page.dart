@@ -20,7 +20,6 @@ class CulturalProgrammeLetter extends StatefulWidget {
   State<CulturalProgrammeLetter> createState() =>
       _CulturalProgrammeLetterState();
 }
-
 class _CulturalProgrammeLetterState extends State<CulturalProgrammeLetter> {
   final culturalVM = Get.put(CulturalProgrammeViewModel());
   final _formKey = GlobalKey<FormState>();

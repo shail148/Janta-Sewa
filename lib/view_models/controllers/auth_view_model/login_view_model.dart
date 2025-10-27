@@ -50,7 +50,7 @@ class LoginViewModel extends GetxController {
       final value = await _api
           .loginApi(data)
           .timeout(
-            const Duration(seconds: 60),
+            const Duration(seconds: 100),
             onTimeout: () => {'success': false, 'message': 'Request timed out'},
           );
 
