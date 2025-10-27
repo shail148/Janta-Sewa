@@ -36,7 +36,7 @@ class AppLocalization extends Translations {
       'city_village': 'City/ Village',
       'ward_number': 'Ward Number',
       'pincode': 'Pincode',
-      'autonomous_body':'Autonomous Body',
+      'autonomous_body': 'Autonomous Body',
       'information': 'Information',
       'after_register_info':
           'After you register, you will get your login details and your user ID will be sent to your registered WhatsApp number.',
@@ -56,6 +56,8 @@ class AppLocalization extends Translations {
       'select_your_language': 'Select Your Language',
       'english': 'English',
       'hindi': 'Hindi',
+      'meeting': 'Meeting',
+      'local_program': 'Local Program',
       'enter_address': 'Enter Address',
       'enter_state': 'Enter State',
       'enter_district': 'Enter District',

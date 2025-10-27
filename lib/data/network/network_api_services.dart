@@ -10,6 +10,7 @@ import 'package:mime/mime.dart';
 import 'package:janta_sewa/data/network/base_api_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 class NetworkApiServices extends BaseApiServices {
   final _storage = const FlutterSecureStorage();
   String? _authToken;
@@ -111,10 +112,6 @@ class NetworkApiServices extends BaseApiServices {
     }
   }
 
-  // --------------------------------------------------------------------------
-  // 🌐 CORE REQUEST HANDLERS (GET, POST, PUT, DELETE)
-  // --------------------------------------------------------------------------
-
   @override
   Future<dynamic> getApi(String url, {Map<String, String>? headers}) async {
     if (kDebugMode) print('GET $url');
@@ -146,7 +143,6 @@ class NetworkApiServices extends BaseApiServices {
       final ioClient = HttpClient()
         ..badCertificateCallback = (cert, host, port) => true;
       final client = IOClient(ioClient);
-
       print("🟢 Sending POST request...");
       final response = await client.post(
         Uri.parse(url),

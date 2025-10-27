@@ -1,5 +1,5 @@
 class AppUrl {
-  static const String baseUrl = "http://192.168.1.14:4000/api/v1";
+  static const String baseUrl = "http://192.168.1.24:4000/api/v1";
   static const String loginApi = "$baseUrl/auth/login"; //done
   static const String registerApi = "$baseUrl/auth/register"; //done
   static const String forgotPasswordApi = "$baseUrl/auth/forgot-Password"; //d
@@ -38,4 +38,16 @@ class AppUrl {
       "$baseUrl/recommendation-letter/cultural-programme/create";
   static const String createOtherRecommendationLetterApi =
       "$baseUrl/recommendation-letter/other-recommendation/create";
+
+
+  
+
+  //invitation
+  static const String createInvitationApi =
+      "$baseUrl/invitation/create"; //done
+
+
+
+  //user profile
+  static const String userProfileApi = "$baseUrl/profile";
 }
