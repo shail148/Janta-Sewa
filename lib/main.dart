@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:janta_sewa/res/routes/app_pages.dart';
 import 'package:janta_sewa/localization/localization.dart';
-import 'package:janta_sewa/views/auth/language_switch_page.dart';
+import 'package:janta_sewa/res/routes/app_pages.dart';
+import 'package:janta_sewa/res/routes/app_routes.dart';
 import 'package:janta_sewa/res/colors/app_color.dart';
-import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 import 'package:janta_sewa/view_models/user_preference/user_preference_view_model.dart';
 
 void main() async {
@@ -35,21 +34,24 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: GetMaterialApp(
-        // themeMode: ThemeMode.system,
         debugShowCheckedModeBanner: false,
         getPages: AppPages.routes,
-        initialRoute: AppPages.initialRoute,
-        translations: AppLocalization(), //  translations
-        locale: const Locale('en', 'US'), // default locale
+        // 👇 Dynamically decide starting route
+        initialRoute: isLoggedIn ? AppRoutes.mainPage : AppRoutes.initialRoute,
+
+        translations: AppLocalization(),
+        locale: const Locale('en', 'US'),
         fallbackLocale: const Locale('en', 'US'),
         title: 'Janta Sewa',
         theme: ThemeData(
           fontFamily: 'Inter',
           scaffoldBackgroundColor: AppColors.white,
-          appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            elevation: 0,
+          ),
           hoverColor: AppColors.btnBgColor,
         ),
-        home: isLoggedIn ? BottomNav() : LanguageSwitch(),
       ),
     );
   }

@@ -9,14 +9,13 @@ import 'package:janta_sewa/views/letters/complaint/politician_complaint_page.dar
 import 'package:janta_sewa/res/colors/app_color.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
 
-
 class CompainMenu extends StatelessWidget {
   const CompainMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  CustomTopAppBar(
+      appBar: CustomTopAppBar(
         leftIcon: Icon(Icons.arrow_back_ios, color: AppColors.btnBgColor),
         onLeftTap: () {
           Get.back();
@@ -42,23 +41,31 @@ class CompainMenu extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     SizedBox(height: 16),
-                   CustomListTile(title: 'complain_gov_emp'.tr, onTap: (){
-                    Get.to(()=> GovernmentEmployeeComplain());
-                    
-                   }),
-                   CustomListTile(title: 'complain_of_politician'.tr, onTap: (){
-                    Get.to(()=>PoliticianComplain());
-                    
-                   }),
-                   CustomListTile(title: 'complain_of_national'.tr, onTap: (){
-                    Get.to(()=> NationalComplain());
-                    
-                   }),
-                   CustomListTile(title: 'complain_of_mp_office'.tr, onTap: (){
-                    Get.to(()=> MpofficeComplain());
-                    
-                   }),
-                  ]
+                    CustomListTile(
+                      title: 'complain_gov_emp'.tr,
+                      onTap: () {
+                        Get.to(() => GovernmentEmployeeComplain());
+                      },
+                    ),
+                    CustomListTile(
+                      title: 'complain_of_politician'.tr,
+                      onTap: () {
+                        Get.to(() => PoliticianComplain());
+                      },
+                    ),
+                    CustomListTile(
+                      title: 'complain_of_national'.tr,
+                      onTap: () {
+                        Get.to(() => NationalComplain());
+                      },
+                    ),
+                    CustomListTile(
+                      title: 'complain_of_mp_office'.tr,
+                      onTap: () {
+                        Get.to(() => MpofficeComplain());
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),

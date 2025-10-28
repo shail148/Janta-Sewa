@@ -241,10 +241,10 @@ class _InvitationPageState extends State<InvitationPage> {
                                   // (Optional) add validation if needed
                                   //add form validator
                                   if (!_formKey.currentState!.validate()) {
-                                    Utils.showErrorSnackBar(
-                                      'Validation',
-                                      'Please fix the Errors in the Form',
-                                    );
+                                    // Utils.showErrorSnackBar(
+                                    //   'Validation',
+                                    //   'Please fix the Errors in the Form',
+                                    // );
                                   }
                                   invitationVM.submitInvitation();
                                 },

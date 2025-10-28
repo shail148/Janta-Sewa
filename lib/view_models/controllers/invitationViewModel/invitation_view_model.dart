@@ -117,7 +117,7 @@ class InvitationViewModel extends GetxController {
       );
 
       if (res['success'] == true) {
-        Utils.showSuccessSnackBar('Success', res['message'] ?? 'Submitted!');
+       // Utils.showSuccessSnackBar('Success', res['message'] ?? 'Submitted!');
         fileController.uploadedFiles.clear();
         Get.offAll(() => const BottomNav());
       } else {
@@ -128,7 +128,7 @@ class InvitationViewModel extends GetxController {
       }
     } catch (e, st) {
       dev.log('❌ submitInvitation Error: $e\n$st');
-      Utils.showErrorSnackBar('Error', e.toString());
+    //  Utils.showErrorSnackBar('Error', e.toString());
     } finally {
       isLoading.value = false;
     }

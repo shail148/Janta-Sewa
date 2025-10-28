@@ -16,17 +16,18 @@ class LoginViewModel extends GetxController {
 
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
-
   final emailFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
 
   RxBool isLoading = false.obs;
 
-  /// Handles the login flow safely with timeouts and snackbar feedback
-  void loginApi() async {
+  /// 🚀 Login Function
+  Future<void> loginApi() async {
+    if (isLoading.value) return; // Prevent multiple requests
     isLoading.value = true;
+
     try {
-      print("🟢 [Login] Started");
+      debugPrint("🟢 [Login] Started");
 
       final input = emailController.value.text.trim();
       final password = passwordController.value.text.trim();
@@ -36,64 +37,75 @@ class LoginViewModel extends GetxController {
           "Error",
           "Please enter your email and password",
         );
+        isLoading.value = false;
         return;
       }
-      // Detect if login is with mobile or email
+
+      // Determine whether it's email or mobile login
       final Map<String, dynamic> data = RegExp(r'^[0-9]+$').hasMatch(input)
           ? {"mobileNumber": input, "password": password}
           : {"email": input, "password": password};
 
-      print("🟢 Sending login request with payload: $data");
+      debugPrint("🟢 Sending login payload: $data");
 
-      // --- ✅ API Call with timeout ---
+      // Timeout protected API call
       final value = await _api
           .loginApi(data)
           .timeout(
-            const Duration(seconds: 100),
-            onTimeout: () => {'success': false, 'message': 'Request timed out'},
+            const Duration(seconds: 30),
+            onTimeout: () => {
+              'success': false,
+              'message': 'Server timeout. Please try again later.',
+            },
           );
 
-      print("🟢 Login API returned: $value");
+      debugPrint("🟢 Login API Response: $value");
 
-      // --- Handle errors from network layer ---
-      if (value is Map && value['success'] == false) {
-        final msg = value['message'] ?? 'Login failed';
-        Utils.showErrorSnackBar('Error', msg.toString());
+      if (value is! Map || value['success'] != true) {
+        final msg = value['message'] ?? 'Invalid credentials';
+        Utils.showErrorSnackBar('Login Failed', msg.toString());
+        isLoading.value = false;
         return;
       }
-      // --- Successful login ---
-      Utils.showSuccessSnackBar("Login", "Login Successful 🎉");
 
-      // Save basic user info for persistence
+      // ✅ Login Success
+    
+
+      // Save credentials locally
       await _userPreference.saveUser(
         LoginWithEmailModel(email: input, password: password),
       );
 
-      // Optional debug info for tokens / cookies
+      // Optional debug info
       try {
         final token = await _secureStorage.read(key: 'token');
-        debugPrint('Saved auth token: $token');
-      } catch (e) {
-        debugPrint('Token read error: $e');
-      }
-
-      try {
+        debugPrint('📦 Token saved: $token');
         final prefs = await SharedPreferences.getInstance();
         final cookies = prefs.getStringList('cookies') ?? [];
-        debugPrint('Saved cookies: $cookies');
+        debugPrint('🍪 Cookies: $cookies');
       } catch (e) {
-        debugPrint('Cookies read error: $e');
+        debugPrint('⚠️ Storage read error: $e');
       }
-
-      // Navigate to main app screen
-      Get.offAll(() => const BottomNav());
+    
+      // Navigate to main app screen safely
+      Future.delayed(const Duration(milliseconds: 300), () {
+        if (Get.isOverlaysOpen || Get.context != null) {
+          Get.offAll(() => const BottomNav());
+        } else {
+          debugPrint("⚠️ Context not ready, retrying navigation...");
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            Get.offAll(() => const BottomNav());
+          });
+        }
+      });
     } on TimeoutException catch (e) {
-      Utils.showErrorSnackBar("Timeout", e.message ?? "Server not responding");
-    } catch (error) {
-      Utils.showErrorSnackBar("Error", error.toString());
+      //Utils.showErrorSnackBar("Timeout", e.message ?? "Server not responding");
+    } catch (error, st) {
+      debugPrint('❌ Login Exception: $error\n$st');
+      // Utils.showErrorSnackBar("Error", error.toString());
     } finally {
-      isLoading.value = false; // ✅ always stops loader
-      print("🟢 [Login] Finished");
+      isLoading.value = false;
+      debugPrint("🟢 [Login] Finished");
     }
   }
 
