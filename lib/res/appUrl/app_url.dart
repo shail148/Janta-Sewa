@@ -44,6 +44,6 @@ class AppUrl {
 
   //user profile
   static const String userProfile = "$baseUrl/me/profile"; //done
-  
-  static const String updateProfile = "$baseUrl/me/update-profile";
+
+  static const String updateProfile = "$baseUrl/me/update-profile"; //done
 }

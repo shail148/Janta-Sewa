@@ -38,7 +38,6 @@ class LoginViewModel extends GetxController {
         );
         return;
       }
-
       // Detect if login is with mobile or email
       final Map<String, dynamic> data = RegExp(r'^[0-9]+$').hasMatch(input)
           ? {"mobileNumber": input, "password": password}
@@ -62,7 +61,6 @@ class LoginViewModel extends GetxController {
         Utils.showErrorSnackBar('Error', msg.toString());
         return;
       }
-
       // --- Successful login ---
       Utils.showSuccessSnackBar("Login", "Login Successful 🎉");
 
