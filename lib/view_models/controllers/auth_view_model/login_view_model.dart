@@ -13,17 +13,14 @@ class LoginViewModel extends GetxController {
   final _api = AuthRepository();
   final _userPreference = UserPreference();
   final _secureStorage = const FlutterSecureStorage();
-
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
   final emailFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
 
   RxBool isLoading = false.obs;
-
-  /// 🚀 Login Function
   Future<void> loginApi() async {
-    if (isLoading.value) return; // Prevent multiple requests
+    if (isLoading.value) return;
     isLoading.value = true;
 
     try {
@@ -40,7 +37,6 @@ class LoginViewModel extends GetxController {
         isLoading.value = false;
         return;
       }
-
       // Determine whether it's email or mobile login
       final Map<String, dynamic> data = RegExp(r'^[0-9]+$').hasMatch(input)
           ? {"mobileNumber": input, "password": password}
@@ -60,22 +56,16 @@ class LoginViewModel extends GetxController {
           );
 
       debugPrint("🟢 Login API Response: $value");
-
       if (value is! Map || value['success'] != true) {
         final msg = value['message'] ?? 'Invalid credentials';
         Utils.showErrorSnackBar('Login Failed', msg.toString());
         isLoading.value = false;
         return;
       }
-
-      // ✅ Login Success
-    
-
       // Save credentials locally
       await _userPreference.saveUser(
         LoginWithEmailModel(email: input, password: password),
       );
-
       // Optional debug info
       try {
         final token = await _secureStorage.read(key: 'token');
@@ -86,7 +76,6 @@ class LoginViewModel extends GetxController {
       } catch (e) {
         debugPrint('⚠️ Storage read error: $e');
       }
-    
       // Navigate to main app screen safely
       Future.delayed(const Duration(milliseconds: 300), () {
         if (Get.isOverlaysOpen || Get.context != null) {

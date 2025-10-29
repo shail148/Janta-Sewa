@@ -12,11 +12,9 @@ class TransferLetterViewModel extends GetxController {
   final _api = RecommendationRepository();
   final _secureStorage = const FlutterSecureStorage();
   final fileController = Get.put(FileUploadController());
-
   final fullName = TextEditingController().obs;
   final mobile = TextEditingController().obs;
   final designation = TextEditingController().obs;
-
   final postedOffice = TextEditingController().obs;
   final optedOffice = TextEditingController().obs;
   final reason = TextEditingController().obs;
@@ -55,7 +53,6 @@ class TransferLetterViewModel extends GetxController {
         isLoading.value = false;
         return;
       }
-
       //headers me dalna
       final headers = {
         'Content-Type': 'application/json',
@@ -94,7 +91,6 @@ class TransferLetterViewModel extends GetxController {
       if (kDebugMode) {
         print('Error while transfer letter api: ${e.toString()}');
       }
-
       Utils.showErrorSnackBar("Error", e.toString());
     }
   }

@@ -5,6 +5,7 @@ import 'package:janta_sewa/utils/utils.dart';
 import 'package:janta_sewa/views/bottomTabs/bottom_nav_page.dart';
 
 class SuggestionViewModel extends GetxController {
+
   final applicantName = TextEditingController().obs;
   final applicantMobile = TextEditingController().obs;
   final address = TextEditingController().obs;
@@ -38,8 +39,7 @@ class SuggestionViewModel extends GetxController {
 
   void suggestionForSchemeApi(var data) async {
     try {
-      var value;
-      //  = await _api.suggestionForSchemeApi(data);
+      var value= await _api.suggestionForSchemeApi(data);
       if (value['error'] != null) {
         Utils.showErrorSnackBar("Error", value['error'].toString());
       } else {

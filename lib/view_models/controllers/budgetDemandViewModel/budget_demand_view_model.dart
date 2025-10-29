@@ -16,8 +16,7 @@ class BudgetDemandViewModel extends GetxController {
   Future<void> createBudgetDemandLetter() async {
     // Implement the logic to create the budget demand letter
   }
-  //api call for budget demand letter
-  Future<void> apiCallForBudgetDemandLetter() async {
-    // Implement the API call logic here
-  }
+
+  
+   
 }

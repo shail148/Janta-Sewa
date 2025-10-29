@@ -15,7 +15,7 @@ import 'package:janta_sewa/widgets/text_form_widget.dart';
 import 'package:janta_sewa/widgets/text_widget.dart';
 
 class HospitalAdmission extends StatefulWidget {
-  HospitalAdmission({super.key});
+  const HospitalAdmission({super.key});
 
   @override
   State<HospitalAdmission> createState() => _HospitalAdmissionState();

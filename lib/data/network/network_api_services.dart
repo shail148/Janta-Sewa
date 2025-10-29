@@ -14,9 +14,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class NetworkApiServices extends BaseApiServices {
   final _storage = const FlutterSecureStorage();
   String? _authToken;
-
   NetworkApiServices();
-
   /// Must be called once before first API call
   Future<void> initialize() async {
     try {
@@ -26,10 +24,6 @@ class NetworkApiServices extends BaseApiServices {
       if (kDebugMode) print('Init load error: $e');
     }
   }
-
-  // --------------------------------------------------------------------------
-  // 🔐 TOKEN MANAGEMENT
-  // --------------------------------------------------------------------------
   Future<void> saveToken(String token) async {
     try {
       await _storage.write(key: 'token', value: token);
@@ -70,10 +64,6 @@ class NetworkApiServices extends BaseApiServices {
       if (kDebugMode) print('Failed to save cookies: $e');
     }
   }
-
-  // --------------------------------------------------------------------------
-  // 🧩 HEADER HELPERS
-  // --------------------------------------------------------------------------
   Map<String, String> _defaultHeaders() {
     final headers = <String, String>{
       "Content-Type": "application/json",
@@ -139,17 +129,21 @@ class NetworkApiServices extends BaseApiServices {
       print('📦 $data');
     }
     try {
-      // ✅ Use IOClient to prevent SSL hang issues
+      
       final ioClient = HttpClient()
         ..badCertificateCallback = (cert, host, port) => true;
       final client = IOClient(ioClient);
-      print("🟢 Sending POST request...");
+      if(kDebugMode){
+        print("🟢 Sending POST request...");
+      }
       final response = await client.post(
         Uri.parse(url),
         headers: _mergeHeaders(headers),
         body: jsonEncode(data),
       );
-      print("🟢 Response received (${response.statusCode})");
+      if(kDebugMode){
+        print("🟢 Response received (${response.statusCode})");
+      }
 
       client.close();
 
@@ -197,9 +191,6 @@ class NetworkApiServices extends BaseApiServices {
     }
   }
 
-  // --------------------------------------------------------------------------
-  // 📤 MULTIPART UPLOAD (FILES)
-  // --------------------------------------------------------------------------
   Future<dynamic> postMultipart(
     String url,
     Map<String, String> fields,
@@ -241,10 +232,6 @@ class NetworkApiServices extends BaseApiServices {
       return _handleError(e, 'MULTIPART');
     }
   }
-
-  // --------------------------------------------------------------------------
-  // 🧱 RESPONSE HANDLER
-  // --------------------------------------------------------------------------
   dynamic returnResponse(http.Response response) {
     if (kDebugMode) {
       print('📨 Response: [${response.statusCode}] ${response.body}');
@@ -287,9 +274,6 @@ class NetworkApiServices extends BaseApiServices {
     }
   }
 
-  // --------------------------------------------------------------------------
-  // ⚠️ GENERIC ERROR HANDLER
-  // --------------------------------------------------------------------------
   Map<String, dynamic> _handleError(Object e, String method) {
     if (e is SocketException) {
       if (kDebugMode) print('$method - No internet');

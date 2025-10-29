@@ -42,8 +42,7 @@ class _ContactPageState extends State<ContactPage> {
                       text: "contact_page".tr,
                       color: AppColors.textColor,
                       fontsize: 16,
-                      fontWeight: FontWeight
-                          .w500, 
+                      fontWeight: FontWeight.w500,
                     ),
                     SizedBox(height: 10),
                     ContactPageTile(
